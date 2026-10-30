@@ -13,7 +13,7 @@ The initial worktree was clean.
 | --- | --- | --- |
 | P0 | Source audit complete | `01_PROJECT_AUDIT.md`, commit `8e0f845` |
 | P1 | Partial checkpoint; acceptance pending | `02_MODERN_API_102.md`; real target and configuration/device checks missing |
-| P2 | Not started; tool prerequisites prepared | `03_TELEGRAM_1311_DEX_ANALYSIS.md`; no target APK |
+| P2 | DEX analysis resumed after minor-version waiver | Actual supplied build: org.telegram.messenger.web 13.1.0 |
 | P3 | Not started | Requires P2 deletion/storage/UI evidence |
 | P4 | Not started | Requires P2 edit/render evidence |
 | P5 | Not started | Requires verified marker paths |
@@ -26,6 +26,29 @@ hooks are disabled by the empty verified-target allowlist.**
 No deletion/edit rendering fix, device test pass, installable release APK or
 final-delivery SHA-256 is claimed. The original feature implementations remain
 present. The old 12.10.3 mapping has not been presented as 13.1.1 evidence.
+
+## Supplied APK follow-up
+
+Follow-up baseline: `d2cf50e5c5897a8c0a2038a5db220bbde8f85096`.
+Worktree was clean; the same task branch, configured Git identity and GitHub
+login were verified again.
+
+The user supplied `Telegram.apk`. Actual APK inspection found package
+`org.telegram.messenger.web`, version `13.1.0`, versionCode `72299`, and four
+DEX files. Android SDK apkanalyzer and DexSQL MCP get_manifest agree.
+APK SHA-256 is
+`4c122bca5edb997e38fc65360c33e6e726e6f1b31ba23987df0adad0e323a9d8`.
+Signature verification returned exit code 0; official provenance was not
+independently established.
+
+This does not match the original exact target. The user then clarified that
+minor-version differences can be ignored temporarily, so DEX analysis proceeds
+on this actual 13.1.0 build. The `.web` package difference is separate from that
+waiver; runtime scope and the verified-target allowlist remain unchanged.
+No build/test rerun was needed for the initial identity-only checkpoint.
+
+Evidence: `docs/evidence/supplied_apk_identity.json` and the updated P2 record.
+The APK remains ignored by Git and was not modified or committed.
 
 ## Checkpoint validation
 

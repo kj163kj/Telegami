@@ -41,6 +41,11 @@ Telegram mapping has been removed or rewritten.
 No actual target APK was available. No versionCode, APK hash, signer, DEX count,
 13.1.1 method signature, or mapping was inferred from the old 12.10.3 asset.
 
+Follow-up: the user supplied `Telegram.apk`, but Android SDK and DexSQL both
+identify it as `org.telegram.messenger.web` version `13.1.0` (72299). It fails
+the existing target policy. Its observed versionCode was not added to the
+allowlist. See `03_TELEGRAM_1311_DEX_ANALYSIS.md` for the actual identity evidence.
+
 `TelegramTarget.verifiedVersionCodes` is intentionally empty. Consequently,
 **all Telegram builds, including an app advertising 13.1.1, are rejected before
 business hook registration**. This checkpoint is not a working 13.1.1 module.

@@ -1,8 +1,53 @@
 # P2 prerequisite record: Telegram 13.1.1
 
 Date: 2026-10-30 (Asia/Shanghai).
-Status: target analysis NOT STARTED. P1 acceptance is still pending.
-This document records tool preparation and missing evidence only.
+Status: DEX analysis resumed on the supplied 13.1.0 APK after user clarification.
+P1 acceptance is still pending. This document records the actual inspected build.
+
+User clarification: minor version differences may be ignored temporarily.
+The supplied 13.1.0 APK is therefore accepted as an analysis input. Its package
+is still `org.telegram.messenger.web`; changing the original runtime scope from
+`org.telegram.messenger` has not been authorized by that version-only waiver.
+
+## Supplied APK identity check
+
+The user subsequently supplied `C:/Users/Administrator/Desktop/Telegami/Telegram.apk`.
+Android SDK apkanalyzer and DexSQL MCP get_manifest independently report:
+
+| Field | Observed supplied APK | Required target |
+| --- | --- | --- |
+| applicationId | `org.telegram.messenger.web` | `org.telegram.messenger` |
+| versionName | `13.1.0` | `13.1.1` |
+| versionCode | `72299` | Must come from the matching target APK |
+| File size | 70,867,407 bytes | Not prescribed |
+| DEX count | 4: classes.dex through classes4.dex | Must come from matching target |
+| minSdk / targetSdk / compileSdk | 23 / 36 / 36 | Record actual target metadata |
+| Native ABIs | arm64-v8a, armeabi-v7a, x86, x86_64 | Record actual target metadata |
+
+APK SHA-256:
+`4c122bca5edb997e38fc65360c33e6e726e6f1b31ba23987df0adad0e323a9d8`.
+
+Signer certificate SHA-256:
+`49c1522548ebacd46ce322b6fd47f6092bb745d0f88082145caf35e14dcc38e1`.
+
+`apksigner verify --print-certs` returned exit code 0. Signature validity alone
+does not independently establish official provenance. The verifier warned about
+unsigned META-INF informational entries; those entries are not accepted as
+authenticated build evidence.
+
+DexSQL 0.1.1 opened the actual APK and returned the same manifest identity
+through MCP. Its dataset was closed afterward. The summary request limited
+permission rows to one; all identity fields above were present in full, and no
+claim is made to have audited all permission entries.
+
+Structured evidence, individual DEX hashes, server version and raw DexSQL
+manifest response: `docs/evidence/supplied_apk_identity.json`.
+Signature verifier output: `artifacts/validation/supplied-apk-apksigner.log`.
+
+The input failed the original exact identity requirements. After the user's
+minor-version waiver, analyze this actual 13.1.0 build and label its evidence
+accordingly. Runtime package scope is unchanged pending clarification.
+No business source code was changed during this identity check.
 
 ## Required target identity
 
@@ -18,9 +63,10 @@ This document records tool preparation and missing evidence only.
 | Build/ABI/split information | Unknown |
 | Comparison 12.10.3 APK | Missing |
 
-No target APK was found in the workspace, Desktop, Downloads or supplied
-attachment directory. The supplied attachment is a task specification, not an
-APK. Other unrelated downloaded APKs were not used as target evidence.
+Initial scans found no target APK in the workspace, Desktop, Downloads or
+supplied attachment directory. The original text attachment is a task
+specification. The subsequently supplied APK above fails target identity checks.
+Other unrelated downloaded APKs were not used as target evidence.
 The official DrKLO/Telegram GitHub release list checked during preparation
 provided no target APK asset. No claim is made that all possible external APK
 sources have been exhausted.
