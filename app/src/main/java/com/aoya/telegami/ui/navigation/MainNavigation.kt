@@ -80,7 +80,12 @@ fun MainNavigation(
         }
 
     val appTitle = stringResource(R.string.app_name)
-    val tabSubtitle = stringResource(selectedTab.titleRes)
+    val tabSubtitle =
+        if (selectedTab == BottomTab.About) {
+            stringResource(R.string.about_section_title)
+        } else {
+            stringResource(selectedTab.titleRes)
+        }
     val surfaceColor = MiuixTheme.colorScheme.surface
     val pageBackdrop =
         rememberLayerBackdrop {

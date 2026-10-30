@@ -175,7 +175,7 @@ fun AboutScreen(
 
         item(key = "about_desc_section") {
             Spacer(modifier = Modifier.height(8.dp))
-            MiuixPreferenceGroup(title = stringResource(R.string.title_about)) {
+            MiuixPreferenceGroup(title = stringResource(R.string.about_section_title)) {
                 Text(
                     text = stringResource(R.string.about_description),
                     style = MiuixTheme.textStyles.body2,

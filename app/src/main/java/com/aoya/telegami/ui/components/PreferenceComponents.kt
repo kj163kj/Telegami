@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.aoya.telegami.R
 import top.yukonga.miuix.kmp.basic.ButtonDefaults
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.HorizontalDivider
@@ -131,7 +132,7 @@ fun MiuixMultiSelectPreference(
         remember(options, selectedValues) {
             options
                 .filter { it.value in selectedValues }
-                .joinToString(", ") { it.label }
+                .joinToString("、") { it.label }
         }
 
     ArrowPreference(
@@ -207,12 +208,12 @@ fun MiuixMultiSelectPreference(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 TextButton(
-                    text = stringResource(android.R.string.cancel),
+                    text = stringResource(R.string.action_cancel),
                     onClick = { showDialog = false },
                     modifier = Modifier.weight(1f),
                 )
                 TextButton(
-                    text = stringResource(android.R.string.ok),
+                    text = stringResource(R.string.action_confirm),
                     onClick = {
                         showDialog = false
                         onConfirm(draftSelection.toSet())
