@@ -5,4 +5,3 @@
     invoke-direct/range {v0 .. v6}, Lorg/telegram/messenger/MessagesStorage;->markMessagesAsDeletedInternal(JLjava/util/ArrayList;ZII)Ljava/util/ArrayList;
     return-void
 .end method
-

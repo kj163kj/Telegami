@@ -43,8 +43,9 @@ independently established.
 
 This does not match the original exact target. The user then clarified that
 minor-version differences can be ignored temporarily, so DEX analysis proceeds
-on this actual 13.1.0 build. The `.web` package difference is separate from that
-waiver; runtime scope and the verified-target allowlist remain unchanged.
+on this actual 13.1.0 build. The user subsequently explicitly authorized both `org.telegram.messenger`
+and `org.telegram.messenger.web`. Both now appear in scope, package selection,
+and resolver selection. The build gate remains closed pending resolver validation.
 No build/test rerun was needed for the initial identity-only checkpoint.
 
 Evidence: `docs/evidence/supplied_apk_identity.json` and the updated P2 record.
@@ -54,7 +55,7 @@ The APK remains ignored by Git and was not modified or committed.
 
 - Passed: Git/GitHub preflight, baseline recording, independent task branch.
 - Passed: nine static metadata/source/XML checks, including API 102 metadata,
-  single-package scope, entry class, absence of deprecated Xposed metadata,
+  two-package scope (after the user scope clarification), entry class, absence of deprecated Xposed metadata,
   application label/description, launcher retention, no Legacy APIs in Kotlin
   source, unchanged exact API dependency and XML parsing.
 - Passed: JDK 21 + Gradle 9.4.1 bootstrap.
@@ -107,23 +108,23 @@ P0 separately added `docs/01_PROJECT_AUDIT.md`.
 - Current chat tool attachment requires client/session reload; the local
   DexSQL protocol probe was successful independently of that reload.
 
-## Required next inputs and work
+## Current follow-up (2026-10-30)
 
-The task specification explicitly requires pausing the corresponding phase
-when target APK/DEX/device evidence is missing. Provide the exact official
-Telegram Android 13.1.1 APK (or a download source); for splits, provide the base
-and required splits. Then extract actual metadata, verify origin, analyze with
-DexSQL, and replace the unverified old resolver/hooks in phase order.
+The supplied 13.1.0 APK is the accepted analysis input. Do not request another
+APK merely because the original specification said 13.1.1 or omitted `.web`.
+Both Android distribution packages are in scope. No browser-based Telegram Web
+application is involved. Play-specific build identity and runtime behavior
+remain untested; the supplied website APK is the actual evidence source.
 
-Framework/device tests eventually require an Android device with Modern API 102
-support and the exact target installed. Release delivery also requires a
-deliberate signing identity; no upstream private key is available locally.
+Remote settings now expose service availability, disable editing while
+unavailable, reload on reconnect, and commit edits on an IO dispatcher before
+showing success. Multi-select flags are saved in one editor commit. Failed
+writes disable editing rather than displaying an optimistic saved state.
+Framework/device verification remains outstanding.
 
-Before accepting P1, fix service-unavailable preference writes and verify
-write/read/restart behavior. Before accepting P3/P4, fix the audited cache,
-account isolation, event batching, edit-state and cell-layout problems using
-actual target evidence.
+Next: finish current-APK method and layout evidence, replace the old target
+mapping, then implement deletion persistence and marker rendering in phase
+order. No device is attached. Preserve that limitation in P6/P7 results.
 
-Each checkpoint is committed separately. Use `git log --oneline` for exact
-checkpoint hashes and `git revert <commit>` when a committed stage must be
-undone; do not use destructive reset/clean commands.
+Each checkpoint is committed separately. Use `git revert <commit>` to undo a
+committed stage; do not use destructive reset/clean commands.

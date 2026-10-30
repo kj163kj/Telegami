@@ -704,4 +704,3 @@
     sput-object v0, Lorg/telegram/messenger/NotificationCenter;->Instance:[Lorg/telegram/messenger/NotificationCenter;
     return-void
 .end method
-

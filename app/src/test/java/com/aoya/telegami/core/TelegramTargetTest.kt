@@ -19,16 +19,23 @@ class TelegramTargetTest {
     }
 
     @Test
-    fun rejectsBetaWebForksAndSimilarPackageNames() {
+    fun rejectsBetaForksAndSimilarPackageNames() {
         for (packageName in listOf(
             "org.telegram.messenger.beta",
-            "org.telegram.messenger.web",
             "org.telegram.plus",
             "tw.nekomimi.nekogram",
             "org.telegram.messenger.fake",
             "",
         )) {
             assertNotNull(TelegramTarget.rejectionReason(packageName, "13.1.1", 1L))
+        }
+    }
+
+    @Test
+    fun recognizesBothDistributionPackagesBeforeCheckingBuildEvidence() {
+        for (packageName in TelegramTarget.PACKAGE_NAMES) {
+            val reason = TelegramTarget.rejectionReason(packageName, "13.1.1", 1L)!!
+            org.junit.Assert.assertFalse(reason.startsWith("Unsupported package:"))
         }
     }
 }

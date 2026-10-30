@@ -12,6 +12,7 @@ object Constants {
     val SUPPORTED_TELEGRAM_PACKAGES =
         mapOf(
             "org.telegram.messenger" to "Telegram",
+            "org.telegram.messenger.web" to "Telegram (Website)",
         )
 
     val SUPPORTED_TELEGRAM_PACKAGES_LIST = SUPPORTED_TELEGRAM_PACKAGES.keys.toList()

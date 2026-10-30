@@ -2,9 +2,15 @@ package com.aoya.telegami.ui.fragment
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.preference.Preference
 import androidx.preference.PreferenceDataStore
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceGroup
 import com.aoya.telegami.R
 import com.aoya.telegami.databinding.FragmentSettingsBinding
 import com.aoya.telegami.service.PrefManager
@@ -13,6 +19,7 @@ import com.aoya.telegami.ui.util.setEdge2EdgeFlags
 import com.aoya.telegami.ui.util.setupToolbar
 import com.aoya.telegami.util.toPascalCase
 import dev.androidbroadcast.vbpd.viewBinding
+import kotlinx.coroutines.launch
 
 class FeaturesFragment :
     Fragment(R.layout.fragment_settings),
@@ -101,7 +108,6 @@ class FeaturesFragment :
             defValues: MutableSet<String>?,
         ): MutableSet<String> =
             if (key in multiSelectKeys) {
-                val pascalKey = key.toPascalCase()
                 val enabledOptions = mutableSetOf<String>()
                 when (key) {
                     "hideSeen" -> {
@@ -119,57 +125,103 @@ class FeaturesFragment :
                 throw IllegalArgumentException("Invalid key: $key")
             }
 
-        override fun putBoolean(
-            key: String,
-            value: Boolean,
-        ) {
-            if (key in booleanKeys) {
-                PrefManager.setFeatureEnabled(key.toPascalCase(), value)
-            } else {
-                throw IllegalArgumentException("Invalid key: $key")
-            }
-        }
-
-        override fun putString(
-            key: String,
-            value: String?,
-        ) {
-            if (key in stringKeys) {
-                PrefManager.setFeatureValue(key.toPascalCase(), value!!.toInt())
-            } else {
-                throw IllegalArgumentException("Invalid key: $key")
-            }
-        }
-
-        override fun putStringSet(
-            key: String,
-            values: MutableSet<String>?,
-        ) {
-            if (key in multiSelectKeys) {
-                when (key) {
-                    "hideSeen" -> {
-                        PrefManager.setFeatureEnabled("HideSeenPrivateChat", values?.contains("private_chat") == true)
-                        PrefManager.setFeatureEnabled("HideSeenChannel", values?.contains("channel") == true)
-                    }
-
-                    "markMessages" -> {
-                        PrefManager.setFeatureEnabled("MarkMessagesDeleted", values?.contains("deleted") == true)
-                        PrefManager.setFeatureEnabled("MarkMessagesEdited", values?.contains("edited") == true)
-                    }
-                }
-            } else {
-                throw IllegalArgumentException("Invalid key: $key")
-            }
-        }
     }
 
     class SettingsPreferenceFragment : PreferenceFragmentCompat() {
+        private var saving = false
+
         override fun onCreatePreferences(
             savedInstanceState: Bundle?,
             rootKey: String?,
         ) {
             preferenceManager.preferenceDataStore = SettingsPreferenceDataStore()
-            setPreferencesFromResource(R.xml.features, rootKey)
+            reloadPreferences()
         }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    PrefManager.serviceAvailable.collect {
+                        if (!saving) reloadPreferences()
+                    }
+                }
+            }
+        }
+
+        private fun reloadPreferences() {
+            preferenceScreen = null
+            setPreferencesFromResource(R.xml.features, null)
+            val available = PrefManager.serviceAvailable.value
+            if (!available) {
+                preferenceScreen.addPreference(
+                    Preference(requireContext()).apply {
+                        title = getString(R.string.remote_preferences_unavailable)
+                        summary = getString(R.string.remote_preferences_unavailable_hint)
+                        order = -1
+                        isSelectable = false
+                    },
+                )
+            }
+            bindChanges(preferenceScreen)
+            preferenceScreen.isEnabled = available && !saving
+        }
+
+        private fun bindChanges(group: PreferenceGroup) {
+            for (index in 0 until group.preferenceCount) {
+                val preference = group.getPreference(index)
+                if (preference is PreferenceGroup) {
+                    bindChanges(preference)
+                } else if (preference.key != null) {
+                    preference.setOnPreferenceChangeListener { _, value ->
+                        if (!saving && PrefManager.serviceAvailable.value) {
+                            saving = true
+                            preferenceScreen.isEnabled = false
+                            // Keep AndroidX's optimistic value out of the UI until IPC
+                            // confirms the whole edit, including multi-select switches.
+                            lifecycleScope.launch {
+                                val success =
+                                    try {
+                                        writeChange(preference.key, value)
+                                    } finally {
+                                        saving = false
+                                    }
+                                if (view != null) {
+                                    reloadPreferences()
+                                    if (!success) {
+                                        Toast.makeText(requireContext(), R.string.remote_preferences_write_failed, Toast.LENGTH_LONG).show()
+                                    }
+                                }
+                            }
+                        }
+                        false
+                    }
+                }
+            }
+        }
+
+        private suspend fun writeChange(key: String, value: Any): Boolean =
+            when (key) {
+                "hideSeen" -> {
+                    val values = value as Set<*>
+                    PrefManager.updateFeatures(
+                        mapOf(
+                            "HideSeenPrivateChat" to ("private_chat" in values),
+                            "HideSeenChannel" to ("channel" in values),
+                        ),
+                    )
+                }
+                "markMessages" -> {
+                    val values = value as Set<*>
+                    PrefManager.updateFeatures(
+                        mapOf(
+                            "MarkMessagesDeleted" to ("deleted" in values),
+                            "MarkMessagesEdited" to ("edited" in values),
+                        ),
+                    )
+                }
+                "boostDownload" -> PrefManager.updateFeatures(integers = mapOf("BoostDownload" to value.toString().toInt()))
+                else -> PrefManager.updateFeatures(mapOf(key.toPascalCase() to (value as Boolean)))
+            }
     }
 }

@@ -2,16 +2,22 @@ package com.aoya.telegami.service
 
 import android.content.ComponentName
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatDelegate
 import com.aoya.telegami.core.Constants.COMPONENT_NAME_DEFAULT
 import com.aoya.telegami.telegamiApp
 import com.aoya.telegami.util.PackageHelper.findEnabledAppComponent
 import com.aoya.telegami.util.logi
+import com.aoya.telegami.util.loge
 import com.aoya.telegami.util.logw
 import io.github.libxposed.service.XposedService
 import io.github.libxposed.service.XposedServiceHelper
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.runBlocking
 
 object PrefManager {
@@ -25,19 +31,39 @@ object PrefManager {
     @Volatile
     private var xposedService: XposedService? = null
 
+    @Volatile
+    private var remotePreferences: SharedPreferences? = null
+    private val mutableServiceAvailable = MutableStateFlow(false)
+    val serviceAvailable = mutableServiceAvailable.asStateFlow()
+
     val isLauncherIconInvisible = MutableSharedFlow<Boolean>(replay = 1)
 
     fun init() {
         XposedServiceHelper.registerListener(
             object : XposedServiceHelper.OnServiceListener {
                 override fun onServiceBind(service: XposedService) {
-                    xposedService = service
-                    logi("Connected to LibXposed remote preferences")
+                    try {
+                        xposedService = service
+                        remotePreferences =
+                            if (service.frameworkProperties and XposedService.PROP_CAP_REMOTE != 0L) {
+                                service.getRemotePreferences("features")
+                            } else {
+                                null
+                            }
+                        mutableServiceAvailable.value = remotePreferences != null
+                        logi("LibXposed remote preferences available: ${mutableServiceAvailable.value}")
+                    } catch (error: Exception) {
+                        remotePreferences = null
+                        mutableServiceAvailable.value = false
+                        loge("Failed to bind remote preferences", error)
+                    }
                 }
 
                 override fun onServiceDied(service: XposedService) {
                     if (xposedService === service) {
                         xposedService = null
+                        remotePreferences = null
+                        mutableServiceAvailable.value = false
                         logw("Disconnected from LibXposed remote preferences")
                     }
                 }
@@ -45,35 +71,36 @@ object PrefManager {
         )
     }
 
-    fun setFeatureEnabled(
-        featureKey: String,
-        enabled: Boolean,
-    ) {
-        featurePreferences()?.edit()?.putBoolean(featureKey, enabled)?.apply()
+    suspend fun updateFeatures(
+        booleans: Map<String, Boolean> = emptyMap(),
+        integers: Map<String, Int> = emptyMap(),
+    ): Boolean = withContext(Dispatchers.IO) {
+        val preferences = remotePreferences ?: return@withContext false
+        val success =
+            try {
+                val editor = preferences.edit()
+                booleans.forEach { (key, value) -> editor.putBoolean(key, value) }
+                integers.forEach { (key, value) -> editor.putInt(key, value) }
+                editor.commit()
+            } catch (error: Exception) {
+                loge("Failed to write remote feature preferences", error)
+                false
+            }
+        // RemotePreferences updates its local snapshot before IPC. A failed commit
+        // must not leave that optimistic snapshot displayed as persisted settings.
+        if (!success && remotePreferences === preferences) {
+            remotePreferences = null
+            mutableServiceAvailable.value = false
+        }
+        success && remotePreferences === preferences
     }
 
-    fun setFeatureValue(
-        featureKey: String,
-        value: Int,
-    ) {
-        featurePreferences()?.edit()?.putInt(featureKey, value)?.apply()
-    }
-
-    fun isFeatureEnabled(featureKey: String): Boolean = featurePreferences()?.getBoolean(featureKey, false) ?: false
+    fun isFeatureEnabled(featureKey: String): Boolean = remotePreferences?.getBoolean(featureKey, false) ?: false
 
     fun getFeatureValue(
         featureKey: String,
         defaultValue: Int = 0,
-    ): Int = featurePreferences()?.getInt(featureKey, defaultValue) ?: defaultValue
-
-    private fun featurePreferences() =
-        xposedService
-            ?.takeIf { it.frameworkProperties and XposedService.PROP_CAP_REMOTE != 0L }
-            ?.getRemotePreferences("features")
-            ?: run {
-                logw("LibXposed remote preferences are unavailable")
-                null
-            }
+    ): Int = remotePreferences?.getInt(featureKey, defaultValue) ?: defaultValue
 
     var darkTheme: Int
         get() = appPref.getInt(PREF_DARK_THEME, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)

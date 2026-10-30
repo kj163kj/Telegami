@@ -31,4 +31,3 @@
     move-result-object v11
     return-object v11
 .end method
-

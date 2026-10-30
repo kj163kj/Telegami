@@ -1802,4 +1802,3 @@
     invoke-static {v0, v1}, Lorg/telegram/ui/Components/b6;->release(Landroid/view/View;Lorg/telegram/ui/Components/x5;)V
     return-void
 .end method
-

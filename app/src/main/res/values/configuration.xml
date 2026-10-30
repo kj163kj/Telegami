@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="remote_preferences_unavailable" translatable="false">Module settings service unavailable</string>
+    <string name="remote_preferences_unavailable_hint" translatable="false">Enable Telegami in an API 102 compatible framework, then reopen this page.</string>
+    <string name="remote_preferences_write_failed" translatable="false">Settings were not saved. Reopen Telegami after checking the framework connection.</string>
+</resources>

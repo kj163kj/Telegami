@@ -1112,4 +1112,3 @@
     iput v12, v0, Lorg/telegram/ui/Cells/u1;->rb:I
     return-void
 .end method
-

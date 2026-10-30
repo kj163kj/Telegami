@@ -8,8 +8,9 @@ P0 baseline audit commit: `8e0f845ea9e12a09677541862b6449e5ade771f1`.
 
 - Retained the original `XposedInit : XposedModule` and Hooker/Chain architecture.
 - Set minApiVersion and targetApiVersion to 102, with staticScope=true.
-- Restricted both module scope and the supported-package map to
-  `org.telegram.messenger`.
+- Updated scope, the supported-package map, and resolver selection to both
+  `org.telegram.messenger` and `org.telegram.messenger.web`, as explicitly
+  requested by the user after the original single-package specification.
 - Added an Android application description; retained MainActivity, the module
   settings intent category, and the launcher alias.
 - Confirmed the five deprecated Xposed metadata fields were already absent.
@@ -41,10 +42,12 @@ Telegram mapping has been removed or rewritten.
 No actual target APK was available. No versionCode, APK hash, signer, DEX count,
 13.1.1 method signature, or mapping was inferred from the old 12.10.3 asset.
 
-Follow-up: the user supplied `Telegram.apk`, but Android SDK and DexSQL both
-identify it as `org.telegram.messenger.web` version `13.1.0` (72299). It fails
-the existing target policy. Its observed versionCode was not added to the
-allowlist. See `03_TELEGRAM_1311_DEX_ANALYSIS.md` for the actual identity evidence.
+Follow-up: the supplied APK is `org.telegram.messenger.web` 13.1.0 (72299).
+The user accepted the patch-version difference and authorized both official
+Android distribution packages. These are no longer missing-input blockers.
+The gate still rejects business hooks until the corresponding resolver and
+capture/render evidence are complete; scope inclusion alone does not validate
+a DEX build. See the P2 analysis for actual identity evidence.
 
 `TelegramTarget.verifiedVersionCodes` is intentionally empty. Consequently,
 **all Telegram builds, including an app advertising 13.1.1, are rejected before
@@ -86,10 +89,14 @@ flag once still require a target-process restart. In particular, the original
 MarkMessages lazy flags remain pending P4; this document does not claim live
 marker switching is fixed.
 
-Settings writes while the service is unbound are still no-ops in the original
-PrefManager. The UI must receive an accurate failure/availability result
-before P1 can be accepted. Service reconnect and process-restart persistence
-also need framework/device verification.
+Settings-process writes now use `SharedPreferences.Editor.commit()` on
+Dispatchers.IO and return actual success. Multi-select pairs are committed
+atomically. The settings screen reloads from remote preferences after a write,
+observes service availability with a lifecycle-aware StateFlow collector, and
+disables editing with an explanatory status when the service is unavailable.
+Failed IPC invalidates the local snapshot to avoid presenting an unpersisted
+value as saved. Reconnect triggers a reload. Local app-theme preferences keep
+their existing local storage. Runtime IPC/restart persistence remains untested.
 
 ## Validation and environment
 
@@ -149,3 +156,11 @@ Actual results:
 5. Subsequent P3/P4 marker fixes and P5 method-level isolation.
 
 These are acceptance blockers, not passing tests.
+
+## Scope/configuration follow-up validation
+
+Checkpoint baseline: `0406519221948535b531fb071f3a3df4a010c698`.
+`testDebugUnitTest` compiles the configuration changes and passes four gate
+tests (including two-package recognition). Final lifecycle adjustment is checked
+again before commit. Existing lint findings are not suppressed. No framework
+or device test is claimed. Log: `artifacts/validation/p1-scope-preferences.log`.

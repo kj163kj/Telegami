@@ -5,9 +5,8 @@ Status: DEX analysis resumed on the supplied 13.1.0 APK after user clarification
 P1 acceptance is still pending. This document records the actual inspected build.
 
 User clarification: minor version differences may be ignored temporarily.
-The supplied 13.1.0 APK is therefore accepted as an analysis input. Its package
-is still `org.telegram.messenger.web`; changing the original runtime scope from
-`org.telegram.messenger` has not been authorized by that version-only waiver.
+The supplied 13.1.0 APK is therefore accepted as an analysis input. The user also explicitly authorized both Android packages,
+`org.telegram.messenger` and `org.telegram.messenger.web`. Both are now in scope.
 
 ## Supplied APK identity check
 
@@ -46,35 +45,15 @@ Signature verifier output: `artifacts/validation/supplied-apk-apksigner.log`.
 
 The input failed the original exact identity requirements. After the user's
 minor-version waiver, analyze this actual 13.1.0 build and label its evidence
-accordingly. Runtime package scope is unchanged pending clarification.
+accordingly. Runtime package scope now includes both authorized Android distributions.
 No business source code was changed during this identity check.
 
-## Required target identity
+## Current target policy
 
-| Field | Actual verified value |
-| --- | --- |
-| APK source/provenance | Missing |
-| applicationId | Unverified; task expects org.telegram.messenger |
-| versionName | Unverified; task requires 13.1.1 |
-| versionCode | Unknown; no guessed code is allowed |
-| APK SHA-256 | Unknown |
-| Signer certificate SHA-256 | Unknown |
-| DEX file count and names | Unknown |
-| Build/ABI/split information | Unknown |
-| Comparison 12.10.3 APK | Missing |
-
-Initial scans found no target APK in the workspace, Desktop, Downloads or
-supplied attachment directory. The original text attachment is a task
-specification. The subsequently supplied APK above fails target identity checks.
-Other unrelated downloaded APKs were not used as target evidence.
-The official DrKLO/Telegram GitHub release list checked during preparation
-provided no target APK asset. No claim is made that all possible external APK
-sources have been exhausted.
-
-Please provide the actual official Telegram Android 13.1.1 APK to be supported,
-or an accessible download source for that exact build. If it is a split
-installation, include the base APK and required splits and identify the device
-build/ABI. A 12.10.3 APK is optional comparison material only.
+The accepted analysis input is the supplied 13.1.0 website APK above. The exact
+13.1.1 APK and a Play APK are not prerequisites for continuing this analysis,
+following the user's patch-version and scope instructions. Evidence from this
+input must not be relabeled as independent analysis of another build.
 
 ## DexSQL preparation completed
 
