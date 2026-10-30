@@ -32,8 +32,8 @@ import com.aoya.telegami.util.PackageHelper.findEnabledAppComponent
 import top.yukonga.miuix.kmp.basic.DropdownEntry
 import top.yukonga.miuix.kmp.basic.DropdownItem
 import top.yukonga.miuix.kmp.basic.ScrollBehavior
+import top.yukonga.miuix.kmp.preference.OverlayDropdownPreference
 import top.yukonga.miuix.kmp.preference.SwitchPreference
-import top.yukonga.miuix.kmp.preference.WindowDropdownPreference
 
 @Composable
 fun SettingsScreen(
@@ -114,7 +114,7 @@ fun SettingsScreen(
                     MiuixPreferenceDivider()
                 }
 
-                WindowDropdownPreference(
+                OverlayDropdownPreference(
                     entry = colorDropdownEntry,
                     title = stringResource(R.string.settings_theme_color),
                     enabled = themeColorEnabled,
@@ -127,7 +127,7 @@ fun SettingsScreen(
                 )
                 MiuixPreferenceDivider()
 
-                WindowDropdownPreference(
+                OverlayDropdownPreference(
                     items = darkThemeTexts,
                     selectedIndex = selectedDarkThemeIndex,
                     title = stringResource(R.string.dark_theme),

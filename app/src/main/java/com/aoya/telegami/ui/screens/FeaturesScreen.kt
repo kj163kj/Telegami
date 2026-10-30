@@ -32,8 +32,8 @@ import com.aoya.telegami.ui.components.MultiSelectOption
 import com.aoya.telegami.ui.components.VersionCard
 import kotlinx.coroutines.launch
 import top.yukonga.miuix.kmp.basic.ScrollBehavior
+import top.yukonga.miuix.kmp.preference.OverlayDropdownPreference
 import top.yukonga.miuix.kmp.preference.SwitchPreference
-import top.yukonga.miuix.kmp.preference.WindowDropdownPreference
 
 private data class FeaturesSnapshot(
     val hideOnlineStatus: Boolean = false,
@@ -349,7 +349,7 @@ fun FeaturesScreen(
                     },
                 )
                 MiuixPreferenceDivider()
-                WindowDropdownPreference(
+                OverlayDropdownPreference(
                     items = boostDownloadItems,
                     selectedIndex = selectedBoostIndex,
                     title = stringResource(R.string.feat_boost_download),

@@ -33,11 +33,11 @@ import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.SmallTitle
 import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.basic.TextButton
+import top.yukonga.miuix.kmp.overlay.OverlayDialog
 import top.yukonga.miuix.kmp.preference.ArrowPreference
 import top.yukonga.miuix.kmp.preference.CheckboxLocation
 import top.yukonga.miuix.kmp.preference.CheckboxPreference
 import top.yukonga.miuix.kmp.theme.MiuixTheme
-import top.yukonga.miuix.kmp.window.WindowDialog
 
 data class MultiSelectOption(
     val value: String,
@@ -126,6 +126,7 @@ fun MiuixMultiSelectPreference(
     modifier: Modifier = Modifier,
 ) {
     var showDialog by remember { mutableStateOf(false) }
+    var isHoldDown by remember { mutableStateOf(false) }
     val currentSummaryText =
         remember(options, selectedValues) {
             options
@@ -138,6 +139,7 @@ fun MiuixMultiSelectPreference(
         summary = summary,
         modifier = modifier,
         enabled = enabled,
+        holdDownState = isHoldDown,
         endActions = {
             if (currentSummaryText.isNotEmpty()) {
                 Text(
@@ -155,6 +157,7 @@ fun MiuixMultiSelectPreference(
         onClick = {
             if (enabled) {
                 showDialog = true
+                isHoldDown = true
             }
         },
     )
@@ -166,11 +169,12 @@ fun MiuixMultiSelectPreference(
             }
         }
 
-    WindowDialog(
+    OverlayDialog(
         show = showDialog,
         title = title,
         summary = summary,
         onDismissRequest = { showDialog = false },
+        onDismissFinished = { isHoldDown = false },
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             Card(modifier = Modifier.fillMaxWidth()) {
