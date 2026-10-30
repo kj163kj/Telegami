@@ -26,15 +26,19 @@ Baseline commit: `c904294e215e7866dd55e688922e2f817321387d`
 - `app/src/main/java/com/aoya/telegami/ui/navigation/LiquidGlassBottomBar.kt`: Real AndroidLiquidGlass interactive bottom bar using `rememberLayerBackdrop`, `rememberCombinedBackdrop`, `layerBackdrop`, and `drawBackdrop` (`vibrancy()`, `blur()`, `lens()`, `Highlight`, `Shadow`, `InnerShadow`), spring physics indicator & gesture dragging, plus automatic fallback for pre-Android 12 (`API < 31`) devices.
 - `app/src/main/java/com/aoya/telegami/ui/screens/FeaturesScreen.kt`: Miuix Compose Features screen preserving all 3 categories (`Privacy`, `Messages`, `Misc`) and all 12 feature preferences bound to `PrefManager` and `serviceAvailable`.
 - `app/src/main/java/com/aoya/telegami/ui/screens/SettingsScreen.kt`: Miuix Compose Settings screen preserving `followSystemAccent`, `themeColor`, `darkTheme`, `blackDarkTheme`, and `hideIcon`.
-- `app/src/main/java/com/aoya/telegami/ui/screens/AboutScreen.kt`: Miuix Compose About screen displaying app icon, name, `BuildConfig.VERSION_NAME`, GitHub/Telegram links, fork info, description, GPL-3.0 license link, and developer card (`soul2x`).
-- `app/src/main/java/com/aoya/telegami/ui/components/VersionCard.kt`: Compact Miuix status/version card on the Features screen.
+- `app/src/main/java/com/aoya/telegami/ui/screens/AboutScreen.kt`: Miuix Compose About screen preserved in English, displaying app icon, name, `BuildConfig.VERSION_NAME`, GitHub/Telegram links, fork info, description, GPL-3.0 license link, and developer card (`soul2x`).
+- `app/src/main/java/com/aoya/telegami/ui/components/ModuleStatusCard.kt`: KernelSU-inspired Miuix module activation status card (`工作中` / `未启用`) replacing the former version card on `FeaturesScreen`, driven by LSPosed `XposedService` binding and Telegram scope state, with `PressFeedbackType.Tilt`, `MiuixStatusTag`, and cropped bottom-end watermark icon.
 - `app/src/main/java/com/aoya/telegami/ui/components/PreferenceComponents.kt`: Reusable Miuix preference groups, dividers, icons, color swatches, and multi-select dialog (`OverlayDialog` + `CheckboxPreference`).
+- `app/src/main/res/drawable/ic_check_circle_outline_24.xml`, `app/src/main/res/drawable/ic_error_outline_24.xml`: Rounded status watermark vector icons for `ModuleStatusCard`.
 - `app/src/test/java/com/aoya/telegami/ui/navigation/BottomTabTest.kt`: Unit tests for the bottom navigation tabs, theme color presets, and bottom-bar tap/drag/flick gesture math.
+- `app/src/test/java/com/aoya/telegami/ui/components/ModuleStatusCardTest.kt`: Unit tests for LSPosed module activation status and scope warning resolution.
 - `docs/04_UI_AUDIT.md`: P0 UI audit report.
 
 ### Modified Files
 - `settings.gradle.kts`, `gradle/libs.versions.toml`, `app/build.gradle.kts`
 - `app/src/main/java/com/aoya/telegami/ui/activity/MainActivity.kt`
+- `app/src/main/java/com/aoya/telegami/service/PrefManager.kt` (read-only UI status flow `moduleStatus` & `refreshModuleStatus()`, zero changes to preference keys or write semantics)
+- `app/src/main/res/values/strings.xml`, `app/src/main/res/values/configuration.xml`, `app/src/main/res/values-zh-rCN/strings.xml` (Simplified Chinese localization across all screens except `About`)
 
 ### Removed Legacy View/Fragment Files
 - `HomeFragment.kt`, `FeaturesFragment.kt`, `SettingsFragment.kt`, `AboutFragment.kt`, `Fragment.kt`, `ThemeUtils.kt`
@@ -49,13 +53,13 @@ Baseline commit: `c904294e215e7866dd55e688922e2f817321387d`
 
 ## 4. Build & Test Verification
 
-- `:app:testDebugUnitTest`: **Passed** (17 unit tests, 0 failures).
+- `:app:testDebugUnitTest`: **Passed** (20 unit tests, 0 failures).
 - `:app:lintVitalRelease`: **Passed**.
 - `:app:assembleDebug`: **Passed**
   - Output: `app/build/outputs/apk/debug/app-debug.apk`
-  - SHA-256: `8BB22FA01097ADFA3C0F4E944F7124E14FF05CD8F91F94E18DD142DFB7AF3379`
+  - SHA-256: `5E39C55E953EDD7E3DE92684167CC24FD8E98CC6FC7EDD28EE14538CC74960A7`
 - `:app:assembleRelease`: **Passed**
   - Output: `app/build/outputs/apk/release/app-release-unsigned.apk` (unsigned because `keystore.properties` is not present in the workspace)
-  - SHA-256: `C398537F391E45CC289139168B2257DD232EB89D31517325BE407ADFEA2734DF`
-- Hook / Service / Database Integrity Check: `git diff` against baseline confirms zero modifications to `hooks/`, `XposedInit.kt`, `core/`, `data/`, and `service/`.
+  - SHA-256: `98CDF16D59E4B0B13A410A18AB46254F4A2BA2005E96E261A75F30DB4B87B660`
+- Hook / Database Integrity Check: `git diff` against baseline confirms zero modifications to `hooks/`, `XposedInit.kt`, `core/`, `data/`, or business preference keys.
 - On-Device Runtime & Visual Verification: `adb devices -l` returned no connected Android device or emulator in the current environment. In accordance with Section 11 Rule 12 ("不得将未进行设备验证的视觉或性能效果标记为已验证"), on-device visual screenshots, live frame-time profiling, and live LSPosed framework interaction are explicitly marked as **unverified on physical device**.

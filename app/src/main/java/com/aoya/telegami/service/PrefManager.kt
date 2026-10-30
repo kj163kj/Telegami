@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatDelegate
 import com.aoya.telegami.core.Constants.COMPONENT_NAME_DEFAULT
+import com.aoya.telegami.core.TelegramTarget
 import com.aoya.telegami.telegamiApp
 import com.aoya.telegami.util.PackageHelper.findEnabledAppComponent
 import com.aoya.telegami.util.logi
@@ -19,6 +20,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.runBlocking
+
+data class ModuleStatusInfo(
+    val isModuleEnabled: Boolean = false,
+    val frameworkName: String? = null,
+    val frameworkVersion: String? = null,
+    val frameworkVersionCode: Long? = null,
+    val apiVersion: Int? = null,
+    val isTelegramInScope: Boolean = false,
+)
 
 object PrefManager {
     private const val PREF_DARK_THEME = "dark_theme"
@@ -35,8 +45,43 @@ object PrefManager {
     private var remotePreferences: SharedPreferences? = null
     private val mutableServiceAvailable = MutableStateFlow(false)
     val serviceAvailable = mutableServiceAvailable.asStateFlow()
+    private val mutableModuleStatus = MutableStateFlow(ModuleStatusInfo())
+    val moduleStatus = mutableModuleStatus.asStateFlow()
 
     val isLauncherIconInvisible = MutableSharedFlow<Boolean>(replay = 1)
+
+    private fun readModuleStatus(service: XposedService?): ModuleStatusInfo {
+        if (service == null) return ModuleStatusInfo()
+        return runCatching {
+            val fwName = service.frameworkName.takeIf { it.isNotBlank() }
+            val fwVersion = service.frameworkVersion.takeIf { it.isNotBlank() }
+            val fwCode = service.frameworkVersionCode
+            val apiVer = service.apiVersion
+            val scopeList = runCatching { service.scope }.getOrNull()
+            val telegramScoped = scopeList?.any { it in TelegramTarget.PACKAGE_NAMES } ?: true
+            ModuleStatusInfo(
+                isModuleEnabled = true,
+                frameworkName = fwName,
+                frameworkVersion = fwVersion,
+                frameworkVersionCode = fwCode,
+                apiVersion = apiVer,
+                isTelegramInScope = telegramScoped,
+            )
+        }.getOrElse {
+            ModuleStatusInfo()
+        }
+    }
+
+    fun refreshModuleStatus() {
+        val service = xposedService
+        val status = readModuleStatus(service)
+        if (service != null && !status.isModuleEnabled) {
+            xposedService = null
+            remotePreferences = null
+            mutableServiceAvailable.value = false
+        }
+        mutableModuleStatus.value = status
+    }
 
     fun init() {
         XposedServiceHelper.registerListener(
@@ -51,10 +96,13 @@ object PrefManager {
                                 null
                             }
                         mutableServiceAvailable.value = remotePreferences != null
+                        mutableModuleStatus.value = readModuleStatus(service)
                         logi("LibXposed remote preferences available: ${mutableServiceAvailable.value}")
                     } catch (error: Exception) {
+                        xposedService = null
                         remotePreferences = null
                         mutableServiceAvailable.value = false
+                        mutableModuleStatus.value = ModuleStatusInfo()
                         loge("Failed to bind remote preferences", error)
                     }
                 }
@@ -64,6 +112,7 @@ object PrefManager {
                         xposedService = null
                         remotePreferences = null
                         mutableServiceAvailable.value = false
+                        mutableModuleStatus.value = ModuleStatusInfo()
                         logw("Disconnected from LibXposed remote preferences")
                     }
                 }
@@ -91,6 +140,7 @@ object PrefManager {
         if (!success && remotePreferences === preferences) {
             remotePreferences = null
             mutableServiceAvailable.value = false
+            refreshModuleStatus()
         }
         success && remotePreferences === preferences
     }

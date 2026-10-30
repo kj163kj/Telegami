@@ -153,6 +153,7 @@ fun MainNavigation(
                         when (tab) {
                             BottomTab.Features -> {
                                 FeaturesScreen(
+                                    isDarkTheme = isDarkTheme,
                                     contentPadding = scaffoldPadding,
                                     bottomBarPadding = bottomBarHeightDp,
                                     scrollBehavior = featuresScrollBehavior,

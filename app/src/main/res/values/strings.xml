@@ -12,8 +12,18 @@
     <string name="action_cancel">取消</string>
     <string name="action_confirm">确定</string>
 
-    <!-- Home -->
-    <string name="home_module_version">v%s</string>
+    <!-- Module Status Card -->
+    <string name="status_module_working">工作中</string>
+    <string name="status_tag_enabled">已启用</string>
+    <string name="status_tag_scope_missing">未勾选作用域</string>
+    <string name="status_module_enabled_summary">已在 %1$s 中启用</string>
+    <string name="status_module_enabled_version_summary">已在 %1$s (%2$s) 中启用</string>
+    <string name="status_module_scope_warning">已在 %1$s 中启用，请勾选 Telegram 作用域</string>
+    <string name="status_module_api_mode">%1$s · API %2$d</string>
+    <string name="status_module_disabled">未启用</string>
+    <string name="status_tag_disabled">未激活</string>
+    <string name="status_module_disabled_summary">尚未在 LSPosed 中启用模块</string>
+    <string name="status_module_disabled_hint">请在 LSPosed 管理器中启用并勾选 Telegram</string>
 
     <!-- Features -->
     <string name="feat_category_privacy">隐私</string>

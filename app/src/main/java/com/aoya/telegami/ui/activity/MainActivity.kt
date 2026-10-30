@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.DisposableEffect
+import com.aoya.telegami.service.PrefManager
 import com.aoya.telegami.ui.navigation.MainNavigation
 import com.aoya.telegami.ui.theme.TelegamiTheme
 import com.aoya.telegami.ui.theme.isTelegamiDarkTheme
@@ -15,6 +16,11 @@ import com.aoya.telegami.ui.theme.rememberTelegamiThemeState
 
 class MainActivity : AppCompatActivity() {
     var readyToKill: Boolean = true
+
+    override fun onResume() {
+        super.onResume()
+        PrefManager.refreshModuleStatus()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

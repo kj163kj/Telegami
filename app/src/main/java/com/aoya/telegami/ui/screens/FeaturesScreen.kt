@@ -28,8 +28,8 @@ import com.aoya.telegami.service.PrefManager
 import com.aoya.telegami.ui.components.MiuixMultiSelectPreference
 import com.aoya.telegami.ui.components.MiuixPreferenceDivider
 import com.aoya.telegami.ui.components.MiuixPreferenceGroup
+import com.aoya.telegami.ui.components.ModuleStatusCard
 import com.aoya.telegami.ui.components.MultiSelectOption
-import com.aoya.telegami.ui.components.VersionCard
 import kotlinx.coroutines.launch
 import top.yukonga.miuix.kmp.basic.ScrollBehavior
 import top.yukonga.miuix.kmp.preference.OverlayDropdownPreference
@@ -79,6 +79,7 @@ private fun readFeaturesSnapshot(): FeaturesSnapshot {
 
 @Composable
 fun FeaturesScreen(
+    isDarkTheme: Boolean,
     contentPadding: PaddingValues,
     bottomBarPadding: Dp,
     scrollBehavior: ScrollBehavior,
@@ -87,6 +88,7 @@ fun FeaturesScreen(
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val serviceAvailable by PrefManager.serviceAvailable.collectAsState()
+    val moduleStatus by PrefManager.moduleStatus.collectAsState()
     var saving by remember { mutableStateOf(false) }
     var reloadTrigger by remember { mutableIntStateOf(0) }
 
@@ -217,9 +219,12 @@ fun FeaturesScreen(
                 bottom = contentPadding.calculateBottomPadding() + bottomBarPadding + 24.dp,
             ),
     ) {
-        item(key = "version_card") {
-            VersionCard(
+        item(key = "module_status_card") {
+            ModuleStatusCard(
                 serviceAvailable = serviceAvailable,
+                statusInfo = moduleStatus,
+                isDarkTheme = isDarkTheme,
+                onRefresh = { PrefManager.refreshModuleStatus() },
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
             )
         }
