@@ -2,9 +2,13 @@ package com.aoya.telegami.ui.navigation
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.SizeTransform
+import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -42,6 +46,8 @@ import top.yukonga.miuix.kmp.basic.Scaffold
 import top.yukonga.miuix.kmp.basic.TopAppBar
 import top.yukonga.miuix.kmp.basic.rememberTopAppBarState
 import top.yukonga.miuix.kmp.theme.MiuixTheme
+
+private val StrongEaseOut = CubicBezierEasing(0.23f, 1f, 0.32f, 1f)
 
 @Composable
 fun MainNavigation(
@@ -118,9 +124,23 @@ fun MainNavigation(
                 AnimatedContent(
                     targetState = selectedTab,
                     transitionSpec = {
-                        val duration = if (animationsEnabled) 180 else 0
-                        fadeIn(animationSpec = tween(duration)) togetherWith
-                            fadeOut(animationSpec = tween(duration))
+                        if (!animationsEnabled) {
+                            fadeIn(animationSpec = tween(0)) togetherWith
+                                fadeOut(animationSpec = tween(0))
+                        } else {
+                            val direction = if (targetState.ordinal >= initialState.ordinal) 1 else -1
+                            (
+                                slideInHorizontally(
+                                    animationSpec = tween(durationMillis = 200, easing = StrongEaseOut),
+                                ) { fullWidth -> direction * (fullWidth / 16) } +
+                                    fadeIn(animationSpec = tween(durationMillis = 180, easing = StrongEaseOut))
+                            ) togetherWith (
+                                slideOutHorizontally(
+                                    animationSpec = tween(durationMillis = 160, easing = StrongEaseOut),
+                                ) { fullWidth -> -direction * (fullWidth / 20) } +
+                                    fadeOut(animationSpec = tween(durationMillis = 130, easing = StrongEaseOut))
+                            ) using SizeTransform(clip = false)
+                        }
                     },
                     label = "TabContentTransition",
                 ) { tab ->
@@ -158,9 +178,7 @@ fun MainNavigation(
             LiquidGlassBottomBar(
                 selectedTab = selectedTab,
                 onTabSelected = { newTab ->
-                    if (newTab != selectedTab) {
-                        selectedTabName = newTab.name
-                    }
+                    selectedTabName = newTab.name
                 },
                 backdrop = pageBackdrop,
                 isDarkTheme = isDarkTheme,
