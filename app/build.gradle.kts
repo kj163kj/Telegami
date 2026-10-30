@@ -3,6 +3,7 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
     id("org.jetbrains.kotlin.plugin.serialization")
     alias(libs.plugins.materialthemebuilder)
@@ -119,6 +120,7 @@ android {
 
     buildFeatures {
         buildConfig = true
+        compose = true
         viewBinding = true
     }
 }
@@ -129,6 +131,7 @@ dependencies {
     implementation(libs.androidx.preference.ktx)
     implementation(libs.material)
     implementation(libs.androidx.activity)
+    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.navigation.fragment)
@@ -140,6 +143,11 @@ dependencies {
     implementation(libs.dev.androidbroadcast.vbpd)
     implementation(libs.dev.androidbroadcast.vbpd.reflection)
     implementation(libs.me.zhanghai.android.appiconloader)
+    implementation(libs.miuix.ui)
+    implementation(libs.miuix.preference)
+    implementation(libs.miuix.icons)
+    implementation(libs.kyant.backdrop)
+    implementation(libs.kyant.shapes)
 
     compileOnly(libs.libxposed.api)
     implementation(libs.libxposed.service)
