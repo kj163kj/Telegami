@@ -1,0 +1,23 @@
+SELECT file_id,class_descriptor,name,type_descriptor FROM fields WHERE (class_descriptor IN ('Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteMessages;','Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteChannelMessages;') AND name IN ('messages','channel_id','pts','pts_count')) OR (class_descriptor='Lorg/telegram/ui/ActionBar/r2;' AND name='currentAccount')
+
++---------+------------------------------------------------------------------+----------------+-----------------------+
+| file_id | class_descriptor                                                 | name           | type_descriptor       |
++---------+------------------------------------------------------------------+----------------+-----------------------+
+| 0       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteChannelMessages; | channel_id     | J                     |
+| 0       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteChannelMessages; | messages       | Ljava/util/ArrayList; |
+| 0       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteChannelMessages; | pts            | I                     |
+| 0       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteChannelMessages; | pts_count      | I                     |
+| 0       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteMessages;        | messages       | Ljava/util/ArrayList; |
+| 0       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteMessages;        | pts            | I                     |
+| 0       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteMessages;        | pts_count      | I                     |
+| 0       | Lorg/telegram/ui/ActionBar/r2;                                   | currentAccount | I                     |
+| 2       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteChannelMessages; | channel_id     | J                     |
+| 2       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteChannelMessages; | messages       | Ljava/util/ArrayList; |
+| 2       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteChannelMessages; | pts            | I                     |
+| 2       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteChannelMessages; | pts_count      | I                     |
+| 2       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteMessages;        | messages       | Ljava/util/ArrayList; |
+| 2       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteMessages;        | pts            | I                     |
+| 2       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteMessages;        | pts_count      | I                     |
+| 2       | Lorg/telegram/ui/ActionBar/r2;                                   | currentAccount | I                     |
+| 3       | Lorg/telegram/ui/ActionBar/r2;                                   | currentAccount | I                     |
++---------+------------------------------------------------------------------+----------------+-----------------------+

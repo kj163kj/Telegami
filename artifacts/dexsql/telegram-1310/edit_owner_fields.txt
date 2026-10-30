@@ -1,0 +1,14 @@
+SELECT DISTINCT class_descriptor,name,type_descriptor FROM fields WHERE class_descriptor IN ('Lorg/telegram/tgnet/TLRPC$Message;','Lorg/telegram/messenger/MessageObject;') AND name IN ('flags','edit_date','edit_hide','date','currentAccount','forceUpdate','scheduled','notime')
+
++----------------------------------------+----------------+-----------------+
+| class_descriptor                       | name           | type_descriptor |
++----------------------------------------+----------------+-----------------+
+| Lorg/telegram/messenger/MessageObject; | currentAccount | I               |
+| Lorg/telegram/messenger/MessageObject; | forceUpdate    | Z               |
+| Lorg/telegram/messenger/MessageObject; | notime         | Z               |
+| Lorg/telegram/messenger/MessageObject; | scheduled      | Z               |
+| Lorg/telegram/tgnet/TLRPC$Message;     | date           | I               |
+| Lorg/telegram/tgnet/TLRPC$Message;     | edit_date      | I               |
+| Lorg/telegram/tgnet/TLRPC$Message;     | edit_hide      | Z               |
+| Lorg/telegram/tgnet/TLRPC$Message;     | flags          | I               |
++----------------------------------------+----------------+-----------------+

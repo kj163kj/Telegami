@@ -1,0 +1,11 @@
+SELECT file_id,descriptor FROM methods WHERE method_kind IS NOT NULL AND class_descriptor IN ('Lorg/telegram/SQLite/SQLiteDatabase;','Lorg/telegram/SQLite/SQLiteCursor;') AND name IN ('queryFinalized','next','intValue','longValue','dispose')
+
++---------+-------------------------------------------------------------------------------------------------------------------------------+
+| file_id | descriptor                                                                                                                    |
++---------+-------------------------------------------------------------------------------------------------------------------------------+
+| 0       | Lorg/telegram/SQLite/SQLiteCursor;->dispose()V                                                                                |
+| 0       | Lorg/telegram/SQLite/SQLiteCursor;->intValue(I)I                                                                              |
+| 0       | Lorg/telegram/SQLite/SQLiteCursor;->longValue(I)J                                                                             |
+| 0       | Lorg/telegram/SQLite/SQLiteCursor;->next()Z                                                                                   |
+| 0       | Lorg/telegram/SQLite/SQLiteDatabase;->queryFinalized(Ljava/lang/String;[Ljava/lang/Object;)Lorg/telegram/SQLite/SQLiteCursor; |
++---------+-------------------------------------------------------------------------------------------------------------------------------+

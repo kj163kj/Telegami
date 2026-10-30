@@ -1,0 +1,9 @@
+SELECT file_id,descriptor,superclass_descriptor FROM classes WHERE descriptor IN ('Lorg/telegram/messenger/DispatchQueue;','Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteMessages;','Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteChannelMessages;')
+
++---------+------------------------------------------------------------------+-----------------------------------+
+| file_id | descriptor                                                       | superclass_descriptor             |
++---------+------------------------------------------------------------------+-----------------------------------+
+| 0       | Lorg/telegram/messenger/DispatchQueue;                           | Ljava/lang/Thread;                |
+| 2       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteChannelMessages; | Lorg/telegram/tgnet/TLRPC$Update; |
+| 2       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteMessages;        | Lorg/telegram/tgnet/TLRPC$Update; |
++---------+------------------------------------------------------------------+-----------------------------------+

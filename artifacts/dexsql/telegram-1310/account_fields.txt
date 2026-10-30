@@ -1,0 +1,19 @@
+SELECT file_id,class_descriptor,name,type_descriptor FROM fields WHERE class_descriptor IN ('Lorg/telegram/messenger/BaseController;','Lorg/telegram/messenger/NotificationCenter;','Lorg/telegram/messenger/MessageObject;') AND name IN ('currentAccount','currentAccountInstance','messageOwner','forceUpdate','messagesDeleted')
+
++---------+---------------------------------------------+-----------------+------------------------------------+
+| file_id | class_descriptor                            | name            | type_descriptor                    |
++---------+---------------------------------------------+-----------------+------------------------------------+
+| 0       | Lorg/telegram/messenger/BaseController;     | currentAccount  | I                                  |
+| 0       | Lorg/telegram/messenger/MessageObject;      | currentAccount  | I                                  |
+| 0       | Lorg/telegram/messenger/MessageObject;      | forceUpdate     | Z                                  |
+| 0       | Lorg/telegram/messenger/MessageObject;      | messageOwner    | Lorg/telegram/tgnet/TLRPC$Message; |
+| 0       | Lorg/telegram/messenger/NotificationCenter; | currentAccount  | I                                  |
+| 0       | Lorg/telegram/messenger/NotificationCenter; | messagesDeleted | I                                  |
+| 2       | Lorg/telegram/messenger/BaseController;     | currentAccount  | I                                  |
+| 2       | Lorg/telegram/messenger/MessageObject;      | currentAccount  | I                                  |
+| 2       | Lorg/telegram/messenger/MessageObject;      | forceUpdate     | Z                                  |
+| 2       | Lorg/telegram/messenger/MessageObject;      | messageOwner    | Lorg/telegram/tgnet/TLRPC$Message; |
+| 2       | Lorg/telegram/messenger/NotificationCenter; | messagesDeleted | I                                  |
+| 3       | Lorg/telegram/messenger/MessageObject;      | currentAccount  | I                                  |
+| 3       | Lorg/telegram/messenger/MessageObject;      | messageOwner    | Lorg/telegram/tgnet/TLRPC$Message; |
++---------+---------------------------------------------+-----------------+------------------------------------+

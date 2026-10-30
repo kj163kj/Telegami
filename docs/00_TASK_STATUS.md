@@ -12,8 +12,8 @@ The initial worktree was clean.
 | Phase | Status | Evidence / remaining dependency |
 | --- | --- | --- |
 | P0 | Source audit complete | `01_PROJECT_AUDIT.md`, commit `8e0f845` |
-| P1 | Partial checkpoint; acceptance pending | `02_MODERN_API_102.md`; real target and configuration/device checks missing |
-| P2 | DEX analysis resumed after minor-version waiver | Actual supplied build: org.telegram.messenger.web 13.1.0 |
+| P1 | Source configuration checked; runtime gate/device acceptance pending | `02_MODERN_API_102.md`; two packages and confirmed IO writes |
+| P2 | Core capture/render contract analyzed | `03_TELEGRAM_1311_DEX_ANALYSIS.md`; actual supplied 13.1.0, optional hooks tracked separately |
 | P3 | Not started | Requires P2 deletion/storage/UI evidence |
 | P4 | Not started | Requires P2 edit/render evidence |
 | P5 | Not started | Requires verified marker paths |
