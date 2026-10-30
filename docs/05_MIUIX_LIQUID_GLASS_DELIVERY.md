@@ -10,7 +10,7 @@ Baseline commit: `c904294e215e7866dd55e688922e2f817321387d`
 | Dependency | Artifact | Version | Compatibility |
 | --- | --- | --- | --- |
 | Kotlin | `org.jetbrains.kotlin.android` / `plugin.compose` | `2.3.21` | Existing project Kotlin version |
-| AndroidX Activity Compose | `androidx.activity:activity-compose` | `1.9.3` | Matches project `activity = 1.9.3` |
+| AndroidX Activity / Compose | `androidx.activity:activity` / `activity-compose` | `1.13.0` | Matches Miuix `0.9.1` & provides `NavigationEventDispatcherOwner` |
 | Miuix UI | `top.yukonga.miuix.kmp:miuix-ui-android` | `0.9.1` | Official release compiled against Kotlin `2.3.21` & Compose `1.11.0` |
 | Miuix Preference | `top.yukonga.miuix.kmp:miuix-preference-android` | `0.9.1` | Official release compiled against Kotlin `2.3.21` & Compose `1.11.0` |
 | Miuix Icons | `top.yukonga.miuix.kmp:miuix-icons-android` | `0.9.1` | Official release compiled against Kotlin `2.3.21` & Compose `1.11.0` |
@@ -28,8 +28,8 @@ Baseline commit: `c904294e215e7866dd55e688922e2f817321387d`
 - `app/src/main/java/com/aoya/telegami/ui/screens/SettingsScreen.kt`: Miuix Compose Settings screen preserving `followSystemAccent`, `themeColor`, `darkTheme`, `blackDarkTheme`, and `hideIcon`.
 - `app/src/main/java/com/aoya/telegami/ui/screens/AboutScreen.kt`: Miuix Compose About screen displaying app icon, name, `BuildConfig.VERSION_NAME`, GitHub/Telegram links, fork info, description, GPL-3.0 license link, and developer card (`soul2x`).
 - `app/src/main/java/com/aoya/telegami/ui/components/VersionCard.kt`: Compact Miuix status/version card on the Features screen.
-- `app/src/main/java/com/aoya/telegami/ui/components/PreferenceComponents.kt`: Reusable Miuix preference groups, dividers, icons, color swatches, and multi-select dialog (`WindowDialog` + `CheckboxPreference`).
-- `app/src/test/java/com/aoya/telegami/ui/navigation/BottomTabTest.kt`: Unit tests for the bottom navigation tabs and theme color presets.
+- `app/src/main/java/com/aoya/telegami/ui/components/PreferenceComponents.kt`: Reusable Miuix preference groups, dividers, icons, color swatches, and multi-select dialog (`OverlayDialog` + `CheckboxPreference`).
+- `app/src/test/java/com/aoya/telegami/ui/navigation/BottomTabTest.kt`: Unit tests for the bottom navigation tabs, theme color presets, and bottom-bar tap/drag/flick gesture math.
 - `docs/04_UI_AUDIT.md`: P0 UI audit report.
 
 ### Modified Files
@@ -49,13 +49,13 @@ Baseline commit: `c904294e215e7866dd55e688922e2f817321387d`
 
 ## 4. Build & Test Verification
 
-- `:app:testDebugUnitTest`: **Passed** (14 unit tests, 0 failures).
+- `:app:testDebugUnitTest`: **Passed** (17 unit tests, 0 failures).
 - `:app:lintVitalRelease`: **Passed**.
 - `:app:assembleDebug`: **Passed**
   - Output: `app/build/outputs/apk/debug/app-debug.apk`
-  - SHA-256: `6BF8B0224E82079CBE51A3C47D89B1CF2114181BE0BA722715FE1C4453FB6D4A`
+  - SHA-256: `8BB22FA01097ADFA3C0F4E944F7124E14FF05CD8F91F94E18DD142DFB7AF3379`
 - `:app:assembleRelease`: **Passed**
   - Output: `app/build/outputs/apk/release/app-release-unsigned.apk` (unsigned because `keystore.properties` is not present in the workspace)
-  - SHA-256: `FDDDFB494AC58EEF77F66EB3D911D36E99A5093520A575850C763F7E7A6ADEE1`
+  - SHA-256: `C398537F391E45CC289139168B2257DD232EB89D31517325BE407ADFEA2734DF`
 - Hook / Service / Database Integrity Check: `git diff` against baseline confirms zero modifications to `hooks/`, `XposedInit.kt`, `core/`, `data/`, and `service/`.
 - On-Device Runtime & Visual Verification: `adb devices -l` returned no connected Android device or emulator in the current environment. In accordance with Section 11 Rule 12 ("不得将未进行设备验证的视觉或性能效果标记为已验证"), on-device visual screenshots, live frame-time profiling, and live LSPosed framework interaction are explicitly marked as **unverified on physical device**.
