@@ -1,4 +1,4 @@
-# P2 prerequisite record: Telegram 13.1.1
+# Telegram 13.1.0 DEX analysis (P2 reference)
 
 Date: 2026-10-30 (Asia/Shanghai).
 Status: DEX analysis resumed on the supplied 13.1.0 APK after user clarification.
@@ -15,11 +15,11 @@ Android SDK apkanalyzer and DexSQL MCP get_manifest independently report:
 
 | Field | Observed supplied APK | Required target |
 | --- | --- | --- |
-| applicationId | `org.telegram.messenger.web` | `org.telegram.messenger` |
-| versionName | `13.1.0` | `13.1.1` |
-| versionCode | `72299` | Must come from the matching target APK |
+| applicationId | `org.telegram.messenger.web` | `org.telegram.messenger` and `org.telegram.messenger.web` |
+| versionName | `13.1.0` | Stable `13.1.x` temporarily accepted by user request |
+| versionCode | `72299` | No allowlist; target classes must pass exact resolver checks |
 | File size | 70,867,407 bytes | Not prescribed |
-| DEX count | 4: classes.dex through classes4.dex | Must come from matching target |
+| DEX count | 4: classes.dex through classes4.dex | Must be observed per APK; Play build remains uninspected |
 | minSdk / targetSdk / compileSdk | 23 / 36 / 36 | Record actual target metadata |
 | Native ABIs | arm64-v8a, armeabi-v7a, x86, x86_64 | Record actual target metadata |
 
@@ -50,8 +50,8 @@ No business source code was changed during this identity check.
 
 ## Current target policy
 
-The accepted analysis input is the supplied 13.1.0 website APK above. The exact
-13.1.1 APK and a Play APK are not prerequisites for continuing this analysis,
+The inspected input is the supplied 13.1.0 website APK above. The exact 13.1.1
+APK and Play APK are not prerequisites for continuing the implementation,
 following the user's patch-version and scope instructions. Evidence from this
 input must not be relabeled as independent analysis of another build.
 
@@ -149,14 +149,15 @@ The return type is ArrayList, never Kotlin Unit. Query failure must delegate.
 `processUpdateArray` posts storage work and UI work separately. UI may receive
 a deletion before an asynchronous module write completes. The normal UI
 lambda `$419` posts messagesDeleted and then sets MessageObject.deleted on
-controller objects (updates_ui_delete.smali lines 307, 350, 386). Merely
-blocking postNotificationName does not prevent those controller mutations.
-The adaptation therefore plans capture before normal update processing:
-query on Telegram's storage queue, persist confirmed rows, and pass a copied
-update batch with retained IDs removed. Keep original update objects and
-caller-owned lists intact, and keep the original method's Boolean result.
-PTS bookkeeping outside this copied batch must retain the caller's objects.
-Storage interception remains a fallback for other verified mode-0 paths.
+controller objects (updates_ui_delete.smali lines 307, 350, 386). Current source
+hooks the verified `$419` UI runnable before it emits the deletion notification
+and records short-lived in-memory keys only (no disk/Telegram DB work on the UI
+thread). The private storage delete then captures rows synchronously only when
+already on Telegram's storage queue; its persisted cache replaces the pending
+keys before the notification consumer checks them. The module does not mutate
+the update batch or stop Telegram from setting MessageObject.deleted. Query
+failures and off-queue calls fail open; pending-key expiry and all UI behavior
+still require device verification.
 
 MessagesStorage.getStorageQueue returns DispatchQueue, which extends Thread;
 postRunnable(Runnable):boolean is verified. Same-queue capture can run inline.
@@ -164,9 +165,10 @@ No waiting, Room query or Telegram SQL query may run on the Android main thread.
 Capture failures leave the original deletion path available. Framework/device
 latency and all nonstandard deletion paths still need P6 verification.
 
-Own deleteMessages takes IDs at arg0, dialog at arg3, mode at arg5. Replace the
-old process-wide one-shot flag with expiring per-account/dialog/message
-permits. A permit for one batch must not authorize a different chat/account.
+Own deleteMessages takes IDs at arg0, dialog at arg3, mode at arg5. Current
+source uses expiring per-account/dialog/message permits to distinguish local
+user deletions. Unit tests cover account/dialog/message isolation, partial
+batches and expiry; full event ordering still needs a device test.
 
 NotificationCenter.messagesDeleted is a real static int, initialized to 7 in
 this build. Reflect the field rather than retaining a magic 7. The normal
@@ -192,19 +194,18 @@ effect contributions increase ob. onLayout lines 62-81 creates the time
 StaticLayout from sb and pb, using Theme.n6.T2:TextPaint. All original total
 width additions and status-icon space must survive the module's width delta.
 
-Use an Android ReplacementSpan for marker icons and Layout.getDesiredWidth
-for the new span-aware width. The original x3 measureText width is the baseline;
-apply the same delta to both widths, preserving Telegram's additional space.
-Do not use the previous 5/6 adjustment. Preserve the original CharSequence and
-its spans, retain date/time text and allow both marker icons independently.
-Do not replace the entire timestamp with the deletion timestamp. Room
-createdAt is already milliseconds; no conversion by 1000 is appropriate.
+Current source uses Android ReplacementSpan marker icons and
+Layout.getDesiredWidth for the new span-aware width. It preserves Telegram's
+date/time text and applies the measured width delta to both fields, allowing
+both marker icons independently. This implementation has not been visually
+verified on a device. Room createdAt is milliseconds; no conversion by 1000 is
+appropriate.
 
 V3 reads MessageObject.forceUpdate near line78 and clears it near1112, then
-calls x3 before time layout creation. A weak registry of bound cells can use
-this verified binder to remeasure after IO loads, saves or preference changes.
-Requesting invalidate alone cannot rebuild the time StaticLayout. Recycled
-cells must always use the latest binding args and current bound MessageObject.
+calls x3 before time layout creation. Current source tracks cells weakly and
+re-runs x3 after IO loads or relevant preference changes. Requesting invalidate
+alone cannot rebuild the time StaticLayout. Recycled-cell behavior and measured
+layout still require device verification.
 
 ### Retained feature limitations
 

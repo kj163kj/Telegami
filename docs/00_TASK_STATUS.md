@@ -14,18 +14,23 @@ The initial worktree was clean.
 | P0 | Source audit complete | `01_PROJECT_AUDIT.md`, commit `8e0f845` |
 | P1 | Source configuration checked; runtime gate/device acceptance pending | `02_MODERN_API_102.md`; two packages and confirmed IO writes |
 | P2 | Core capture/render contract analyzed | `03_TELEGRAM_1311_DEX_ANALYSIS.md`; actual supplied 13.1.0, optional hooks tracked separately |
-| P3 | Not started | Requires P2 deletion/storage/UI evidence |
-| P4 | Not started | Requires P2 edit/render evidence |
-| P5 | Not started | Requires verified marker paths |
+| P3 | Source implementation in progress | Account-scoped Room v2 storage, storage-queue capture, deletion permits and targeted notification filtering; unit tests pass, no device test |
+| P4 | Source implementation in progress | Telegram time-state field and span-aware marker rendering implemented; display/layout remains unverified on device |
+| P5 | In progress | Exact resolver added for marker/deletion targets; legacy feature mappings still require review |
 | P6 | Not started | Requires working implementation and actual device |
 | P7 | Not started | Requires accepted earlier phases and release signing |
 
-**This repository checkpoint is not a completed 13.1.1 adaptation. All business
-hooks are disabled by the empty verified-target allowlist.**
+**This is not a completed or device-accepted adaptation.** The supplied 13.1.0
+website APK is the only DEX build inspected. Runtime initialization now checks
+the exact reflected structure before installing hooks; a package/version match
+alone is not sufficient. The Play APK and its runtime behavior remain
+unverified.
 
-No deletion/edit rendering fix, device test pass, installable release APK or
-final-delivery SHA-256 is claimed. The original feature implementations remain
-present. The old 12.10.3 mapping has not been presented as 13.1.1 evidence.
+The deletion capture and edit/deletion marker implementations are present in
+the current source changes, and unit tests pass. No device test pass, installable
+release APK or final-delivery SHA-256 is claimed. Existing unrelated feature
+implementations remain present; the old 12.10.3 mapping is not treated as
+13.1.0/13.1.1 DEX evidence.
 
 ## Supplied APK follow-up
 
@@ -45,8 +50,9 @@ This does not match the original exact target. The user then clarified that
 minor-version differences can be ignored temporarily, so DEX analysis proceeds
 on this actual 13.1.0 build. The user subsequently explicitly authorized both `org.telegram.messenger`
 and `org.telegram.messenger.web`. Both now appear in scope, package selection,
-and resolver selection. The build gate remains closed pending resolver validation.
-No build/test rerun was needed for the initial identity-only checkpoint.
+and resolver selection. A stable 13.1.x name is accepted only when the exact
+resolver initializes; only the supplied `.web` package was inspected. The Play
+package is included by user request but its build structure is unverified.
 
 Evidence: `docs/evidence/supplied_apk_identity.json` and the updated P2 record.
 The APK remains ignored by Git and was not modified or committed.
@@ -122,9 +128,40 @@ showing success. Multi-select flags are saved in one editor commit. Failed
 writes disable editing rather than displaying an optimistic saved state.
 Framework/device verification remains outstanding.
 
-Next: finish current-APK method and layout evidence, replace the old target
-mapping, then implement deletion persistence and marker rendering in phase
-order. No device is attached. Preserve that limitation in P6/P7 results.
+Next: verify the P3 UI/storage ordering path on-device when available, review
+older feature mappings, and complete device tests. The 13.1.0 reference
+resolver and source-level marker implementation are present; no Play APK or
+device is available for runtime verification.
 
 Each checkpoint is committed separately. Use `git revert <commit>` to undo a
 committed stage; do not use destructive reset/clean commands.
+
+## Current source validation (2026-10-30)
+
+- `:app:testDebugUnitTest`: 12 tests passed (0 failures/errors/skips), covering
+  package/version acceptance, deletion permits, pending retention keys and
+  exact reflection descriptors.
+- Review fixed a database reflection mistake: pre-delete capture now queries
+  the `SQLiteDatabase` instance already obtained from Telegram storage, rather
+  than looking up the database field on that instance a second time. Marker
+  refresh removes stale decorations before remeasurement, including when
+  marker widths happen to match.
+- KSP generated Room DAO code for the concrete `@Transaction` methods; the
+  generated implementation wraps both methods in transactions. Generated v2
+  schema matches the migration table columns, nullability, composite primary
+  key and `(accountId, dialogId)` index.
+- `:app:assembleDebug` and `:app:assembleRelease`: passed. The release output is
+  `app-release-unsigned.apk` because no `keystore.properties` is present; it is
+  not a signed installable release deliverable.
+- `git diff --check`: passed after the final source changes.
+- `adb devices -l`: no connected Android device; hook, settings, layout and
+  SQLite migration behavior remain unverified on-device.
+- `lintDebug`: failed with 61 errors and 81 warnings. No error locations are in
+  changed source files; this is not a passing lint run. The initial baseline
+  comparison found all six error-bearing files unchanged from baseline.
+- APK SHA-256: debug
+  `955691B898AAAE8E14F14384A306C5AD227EF11EEE7FE70DF578B8CC58C32FFF`;
+  unsigned release
+  `D2C7C9346AAB503917B063ED5B7316C0794751A27D4F5DF63B8F6B1D0DD2283A`.
+- Changes in this stage are kept as a new checkpoint after
+  `af6f0a83630fd0c6d48fe5326fdc7439568aa58d`; the earlier commit is not amended.

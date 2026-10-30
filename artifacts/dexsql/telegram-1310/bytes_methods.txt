@@ -1,0 +1,11 @@
+SELECT file_id,descriptor FROM methods WHERE method_kind IS NOT NULL AND class_descriptor IN ('Lorg/telegram/SQLite/SQLiteCursor;','Lorg/telegram/tgnet/NativeByteBuffer;','Lorg/telegram/tgnet/TLRPC$Message;') AND name IN ('byteBufferValue','readInt32','TLdeserialize','readAttachPath','reuse')
+
++---------+---------------------------------------------------------------------------------------------------------------------------------+
+| file_id | descriptor                                                                                                                      |
++---------+---------------------------------------------------------------------------------------------------------------------------------+
+| 0       | Lorg/telegram/SQLite/SQLiteCursor;->byteBufferValue(I)Lorg/telegram/tgnet/NativeByteBuffer;                                     |
+| 2       | Lorg/telegram/tgnet/NativeByteBuffer;->readInt32(Z)I                                                                            |
+| 2       | Lorg/telegram/tgnet/NativeByteBuffer;->reuse()V                                                                                 |
+| 2       | Lorg/telegram/tgnet/TLRPC$Message;->TLdeserialize(Lorg/telegram/tgnet/InputSerializedData;IZ)Lorg/telegram/tgnet/TLRPC$Message; |
+| 2       | Lorg/telegram/tgnet/TLRPC$Message;->readAttachPath(Lorg/telegram/tgnet/InputSerializedData;J)V                                  |
++---------+---------------------------------------------------------------------------------------------------------------------------------+

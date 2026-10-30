@@ -1,0 +1,7 @@
+SELECT file_id,descriptor FROM methods WHERE method_kind IS NOT NULL AND class_descriptor='Lorg/telegram/SQLite/SQLiteCursor;' AND name='byteBufferValue'
+
++---------+---------------------------------------------------------------------------------------------+
+| file_id | descriptor                                                                                  |
++---------+---------------------------------------------------------------------------------------------+
+| 0       | Lorg/telegram/SQLite/SQLiteCursor;->byteBufferValue(I)Lorg/telegram/tgnet/NativeByteBuffer; |
++---------+---------------------------------------------------------------------------------------------+

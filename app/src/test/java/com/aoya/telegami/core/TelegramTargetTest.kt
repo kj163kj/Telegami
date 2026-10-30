@@ -1,25 +1,28 @@
 package com.aoya.telegami.core
 
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Test
 
 class TelegramTargetTest {
     @Test
-    fun rejectsEveryUnverifiedBuildEvenWithTheRequestedVersionName() {
-        for (code in listOf(Long.MIN_VALUE, 0L, 1L, 13_011L, Int.MAX_VALUE.toLong(), Long.MAX_VALUE)) {
-            assertNotNull(TelegramTarget.rejectionReason("org.telegram.messenger", "13.1.1", code))
+    fun acceptsBothAuthorizedPackagesOnThe13Point1StableLine() {
+        for (packageName in TelegramTarget.PACKAGE_NAMES) {
+            for (version in listOf("13.1.0", "13.1.1", "13.1.27")) {
+                assertNull(TelegramTarget.rejectionReason(packageName, version, 1L))
+            }
         }
     }
 
     @Test
     fun rejectsOtherVersionsAndMissingVersionNames() {
-        for (version in listOf(null, "", "12.10.3", "13.1.0", "13.1.10", "13.1.1-beta", "13.1.1 ")) {
+        for (version in listOf(null, "", "12.10.3", "13.2.0", "13.1", "13.1.1-beta", "13.1.1 ")) {
             assertNotNull(TelegramTarget.rejectionReason("org.telegram.messenger", version, 1L))
         }
     }
 
     @Test
-    fun rejectsBetaForksAndSimilarPackageNames() {
+    fun rejectsForksAndSimilarPackageNames() {
         for (packageName in listOf(
             "org.telegram.messenger.beta",
             "org.telegram.plus",
@@ -31,11 +34,4 @@ class TelegramTargetTest {
         }
     }
 
-    @Test
-    fun recognizesBothDistributionPackagesBeforeCheckingBuildEvidence() {
-        for (packageName in TelegramTarget.PACKAGE_NAMES) {
-            val reason = TelegramTarget.rejectionReason(packageName, "13.1.1", 1L)!!
-            org.junit.Assert.assertFalse(reason.startsWith("Unsupported package:"))
-        }
-    }
 }

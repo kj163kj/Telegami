@@ -1,0 +1,7 @@
+SELECT file_id,descriptor FROM methods WHERE method_kind IS NOT NULL AND class_descriptor='Lorg/telegram/messenger/MessageObject;' AND name='getPeerId'
+
++---------+-------------------------------------------------------------------------------------+
+| file_id | descriptor                                                                          |
++---------+-------------------------------------------------------------------------------------+
+| 0       | Lorg/telegram/messenger/MessageObject;->getPeerId(Lorg/telegram/tgnet/TLRPC$Peer;)J |
++---------+-------------------------------------------------------------------------------------+

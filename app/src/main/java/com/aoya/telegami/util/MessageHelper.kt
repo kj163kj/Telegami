@@ -1,101 +1,90 @@
 package com.aoya.telegami.util
 
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.drawable.Drawable
+import android.text.Layout
 import android.text.SpannableStringBuilder
 import android.text.Spanned
+import android.text.TextPaint
+import android.text.style.ReplacementSpan
 import com.aoya.telegami.Telegami
-import com.aoya.telegami.data.DeletedMessage
 import com.aoya.telegami.virt.messenger.AndroidUtilities
-import com.aoya.telegami.virt.messenger.LocaleController
-import com.aoya.telegami.virt.messenger.MessageObject
-import com.aoya.telegami.virt.ui.actionbar.Theme
-import com.aoya.telegami.virt.ui.components.ColoredImageSpan
 
 object MessageHelper {
-    private val icons: Map<String, CharSequence> by lazy {
-        mapOf(
-            "edit" to createIconSpan("msg_edit", 0xFF5FA8D3.toInt()),
-            "delete" to createIconSpan("msg_delete", 0xFFFF6B6B.toInt()),
-        )
-    }
+    private const val EDIT_COLOR = 0xFF5FA8D3.toInt()
+    private const val DELETE_COLOR = 0xFFFF6B6B.toInt()
 
-    private val editedLabel: String by lazy {
-        getResourceString("EditedMessage")
-    }
-
-    fun createDeletedString(msg: DeletedMessage): CharSequence =
-        SpannableStringBuilder().apply {
-            append(icons["delete"])
-            append(' ')
-            msg.createdAt?.let {
-                append(
-                    LocaleController.getInstance().getFormatterDay().format(
-                        it.toLong() * 1000,
-                    ),
-                )
-            }
+    fun appendEdited(text: CharSequence): CharSequence {
+        if (hasIcon(text, "msg_edit")) return text
+        val icon = iconSpan("msg_edit", EDIT_COLOR) ?: return text
+        val labelId = Telegami.getResource("EditedMessage", "string")
+        val label = labelId.takeIf { it != 0 }?.let {
+            runCatching { Telegami.telegram.localizedString.invoke(null, it) as? String }.getOrNull()
         }
-
-    fun createEditedString(msgObj: MessageObject): CharSequence =
-        SpannableStringBuilder().apply {
-            append(icons["edit"])
-            append(' ')
-            msgObj.messageOwner?.let {
-                append(
-                    LocaleController.getInstance().getFormatterDay().format(
-                        it.date.toLong() * 1000,
-                    ),
-                )
-            }
-        }
-
-    fun replaceWithIcon(text: CharSequence): CharSequence {
-        val label = editedLabel
-        if (label.isEmpty()) return text
-
-        val start = text.indexOf(label)
-        if (start < 0) return text
-
-        val str = text.toString()
-        return SpannableStringBuilder().apply {
-            append(str.substring(0, start))
-            append(icons["edit"])
-            append(' ')
-            append(str.substring(start + label.length))
+        val start = label?.takeIf { it.isNotEmpty() }?.let { text.indexOf(it) } ?: -1
+        return if (start >= 0 && label != null) {
+            SpannableStringBuilder(text).replace(start, start + label.length, icon)
+        } else {
+            appendIcon(text, icon)
         }
     }
 
-    private fun getResourceString(resourceName: String): String {
-        val strResId =
-            Telegami
-                .getResource(
-                    resourceName,
-                    "string",
-                ).takeIf { it != 0 } ?: return ""
-        return LocaleController.getString(strResId)
+    fun appendDeleted(text: CharSequence): CharSequence {
+        if (hasIcon(text, "msg_delete")) return text
+        val icon = iconSpan("msg_delete", DELETE_COLOR) ?: return text
+        return appendIcon(text, icon)
     }
 
-    private fun createIconSpan(
-        resourceName: String,
-        color: Int? = null,
-    ): CharSequence {
-        val drawableResId =
-            Telegami
-                .getResource(
-                    resourceName,
-                    "drawable",
-                ).takeIf { it != 0 } ?: return ""
+    private fun hasIcon(text: CharSequence, resource: String): Boolean =
+        text is Spanned && text.getSpans(0, text.length, TimeIconSpan::class.java).any { it.resourceName == resource }
 
-        val drawable = Telegami.context.getDrawable(drawableResId)?.mutate() ?: return ""
-        val span = ColoredImageSpan.newInstance(drawable)
-        span.setSize(Theme.chatTimePaint.textSize.toInt())
+    private fun appendIcon(text: CharSequence, icon: CharSequence): CharSequence =
+        SpannableStringBuilder(text).append(' ').append(icon)
 
-        color?.let { span.setOverrideColor(it) }
+    fun measured(text: CharSequence, paint: TextPaint): Int =
+        Layout.getDesiredWidth(text, paint).let { kotlin.math.ceil(it.toDouble()).toInt() }
 
-        // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-        //     span.contentDescription = LocaleController.getString(R.string.EditedMessage)
-        // }
+    private fun iconSpan(resourceName: String, color: Int): CharSequence? {
+        val id = Telegami.getResource(resourceName, "drawable").takeIf { it != 0 } ?: return null
+        val drawable = Telegami.context.getDrawable(id)?.mutate() ?: return null
+        val textSize = (Telegami.telegram.timePaint.get(null) as TextPaint).textSize
+        val size = textSize.toInt().coerceAtLeast(AndroidUtilities.dp(8f))
+        drawable.setBounds(0, 0, size, size)
         return SpannableStringBuilder("\u200B").apply {
-            setSpan(span.getNativeInstance(), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            setSpan(TimeIconSpan(resourceName, drawable, color), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
+    }
+}
+
+private class TimeIconSpan(
+    val resourceName: String,
+    private val icon: Drawable,
+    private val color: Int,
+) : ReplacementSpan() {
+    override fun getSize(
+        paint: Paint,
+        text: CharSequence?,
+        start: Int,
+        end: Int,
+        fm: Paint.FontMetricsInt?,
+    ): Int = icon.bounds.width()
+
+    override fun draw(
+        canvas: Canvas,
+        text: CharSequence?,
+        start: Int,
+        end: Int,
+        x: Float,
+        top: Int,
+        y: Int,
+        bottom: Int,
+        paint: Paint,
+    ) {
+        val baseline = icon.bounds.height().coerceAtMost(bottom - top)
+        val offset = (bottom - top - baseline) / 2
+        icon.setBounds(x.toInt(), top + offset, x.toInt() + icon.bounds.width(), top + offset + baseline)
+        icon.setTint(color)
+        icon.draw(canvas)
     }
 }

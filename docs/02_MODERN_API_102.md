@@ -37,29 +37,26 @@ P0 baseline audit commit: `8e0f845ea9e12a09677541862b6449e5ade771f1`.
 No existing feature implementation, translation, theme, Room database, or
 Telegram mapping has been removed or rewritten.
 
-## Fail-closed target policy
+## Current target policy
 
-No actual target APK was available. No versionCode, APK hash, signer, DEX count,
-13.1.1 method signature, or mapping was inferred from the old 12.10.3 asset.
+The supplied `org.telegram.messenger.web` 13.1.0 APK is the inspected DEX
+reference. The user has authorized both Android package names and asked to
+ignore patch-version differences temporarily. `TelegramTarget` therefore
+accepts stable `13.1.x` builds for those two exact package names. This is not
+proof that every patch build is compatible.
 
-Follow-up: the supplied APK is `org.telegram.messenger.web` 13.1.0 (72299).
-The user accepted the patch-version difference and authorized both official
-Android distribution packages. These are no longer missing-input blockers.
-The gate still rejects business hooks until the corresponding resolver and
-capture/render evidence are complete; scope inclusion alone does not validate
-a DEX build. See the P2 analysis for actual identity evidence.
+Before any installers run, `Telegami.init` constructs `Telegram131Resolver`.
+It resolves the required classes, method descriptors and fields against the
+target app class loader; a missing contract aborts initialization before
+business Hook installation. This is a structural check rather than a
+versionCode allowlist. Only the supplied `.web` APK has been inspected against
+the contract. The Google Play `.messenger` package is in scope by explicit user
+request but has not been independently inspected or runtime-tested; it still
+depends on the resolver succeeding at runtime.
 
-`TelegramTarget.verifiedVersionCodes` is intentionally empty. Consequently,
-**all Telegram builds, including an app advertising 13.1.1, are rejected before
-business hook registration**. This checkpoint is not a working 13.1.1 module.
-The guard is necessary to avoid silently running old hooks and mappings on an
-unverified target.
-
-After obtaining the real APK, record its identity and provenance, complete
-DexSQL evidence for the relevant hooks and mappings, then populate the
-allowlist with observed values. A matching version name alone is insufficient.
-Signing-identity validation is also pending; a package name/version tuple by
-itself does not prove official origin.
+Package-name and version metadata alone cannot prove official origin. The APK
+signature was verified as valid, but its provenance was not independently
+established. See the P2 analysis for the inspected APK identity and DEX source.
 
 ## API/service source verification
 
@@ -84,10 +81,11 @@ layer. There are no Legacy Xposed metadata entries or source dependencies.
 
 ## Configuration limitations still requiring work
 
-Config reads are current when requested, but feature installers that check a
-flag once still require a target-process restart. In particular, the original
-MarkMessages lazy flags remain pending P4; this document does not claim live
-marker switching is fixed.
+Config reads are current when requested. The marker hook now reads feature
+flags at render time and asks tracked cells to remeasure when relevant remote
+preferences change. This is source-implemented but has not been verified in a
+running Telegram process; other feature installers that check a flag only at
+installation still require a restart.
 
 Settings-process writes now use `SharedPreferences.Editor.commit()` on
 Dispatchers.IO and return actual success. Multi-select pairs are committed
@@ -149,11 +147,11 @@ Actual results:
 
 ## Acceptance requirements still open
 
-1. Actual target APK identity, official origin and DEX evidence.
-2. Verified versionCode allowlist and target resolver/mappings.
-3. Accurate settings behavior when the remote service is unavailable.
-4. Actual framework loading, settings launcher and remote write/read/restart tests.
-5. Subsequent P3/P4 marker fixes and P5 method-level isolation.
+1. Inspect the Play APK independently; its runtime structure is guarded but not verified.
+2. Establish APK provenance beyond signature validity if official-origin assurance is required.
+3. Exercise service-unavailable, framework loading, settings launcher and remote preference persistence on device.
+4. Verify P3/P4 deletion ordering, marker layout, multi-account behavior and database migration on device.
+5. Review/isolate older feature mappings, including the stale theme return type, against target requirements.
 
 These are acceptance blockers, not passing tests.
 

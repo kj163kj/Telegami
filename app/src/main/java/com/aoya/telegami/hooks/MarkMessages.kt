@@ -1,125 +1,99 @@
 package com.aoya.telegami.hooks
 
 import android.util.Log
+import android.view.View
 import com.aoya.telegami.Telegami
-import com.aoya.telegami.util.findMethod
+import com.aoya.telegami.data.MessageKey
 import com.aoya.telegami.service.Config
 import com.aoya.telegami.util.MessageHelper
-import com.aoya.telegami.virt.messenger.AndroidUtilities
-import com.aoya.telegami.virt.messenger.MessageObject
-import com.aoya.telegami.virt.ui.ChatActivity
-import com.aoya.telegami.virt.ui.actionbar.Theme
-import com.aoya.telegami.virt.ui.cells.ChatMessageCell
 import io.github.libxposed.api.XposedInterface
-import kotlin.math.ceil
-import com.aoya.telegami.core.obfuscate.ResolverManager as resolver
+import java.util.WeakHashMap
 
 object MarkMessages {
-    const val CHAT_ACTIVITY_CN = "org.telegram.ui.ChatActivity"
-    const val CHAT_MESSAGE_CELL_CN = "org.telegram.ui.Cells.ChatMessageCell"
+    private val boundCells = WeakHashMap<Any, MessageKey>()
+    private val originalTimes = WeakHashMap<Any, CharSequence>()
 
-    val isMarkDeletedEnabled: Boolean by lazy {
-        Config.isFeatureEnabled("MarkMessagesDeleted")
-    }
-    val isMarkEditedEnabled: Boolean by lazy {
-        Config.isFeatureEnabled("MarkMessagesEdited")
-    }
-    val isAnyMarkEnabled: Boolean by lazy {
-        isMarkDeletedEnabled || isMarkEditedEnabled
+    fun refreshDialog(accountId: Long, dialogId: Long) {
+        refreshCells { it.accountId == accountId && it.dialogId == dialogId }
     }
 
-    val deleteDrawableWidth: Int by lazy {
-        Telegami.getDrawableResource("msg_delete")?.let {
-            it?.getIntrinsicWidth()
-        } ?: 0
-    }
-    val editDrawableWidth: Int by lazy {
-        Telegami.getDrawableResource("msg_edit")?.let {
-            it?.getIntrinsicWidth()
-        } ?: 0
+    fun refreshAll() {
+        refreshCells { true }
     }
 
-    fun install(
-        xposed: XposedInterface,
-        classLoader: ClassLoader,
-    ) {
-        val createView = classLoader.findMethod(CHAT_ACTIVITY_CN, "createView", 1)
+    private fun refreshCells(matches: (MessageKey) -> Boolean) {
+        Telegami.runOnMainThread { _ ->
+            val cells = synchronized(boundCells) {
+                boundCells.filterValues(matches).keys.toList()
+            }
+            cells.forEach { cell ->
+                runCatching {
+                    val message = Telegami.telegram.boundMessage.get(cell) ?: return@runCatching
+                    val originalTime = synchronized(originalTimes) { originalTimes.remove(cell) }
+                    if (originalTime != null) Telegami.telegram.timeText.set(cell, originalTime)
+                    Telegami.telegram.measureTime.invoke(cell, message)
+                    (cell as? View)?.apply {
+                        requestLayout()
+                        invalidate()
+                    }
+                }.onFailure { Log.e("Telegami", "Failed to refresh a message cell", it) }
+            }
+        }
+    }
+
+    fun install(xposed: XposedInterface, classLoader: ClassLoader) {
+        val target = Telegami.telegram
+        val createView = target.chatCreateView
         xposed.hook(createView).intercept { chain ->
-            val args = chain.args.toMutableList()
-            val result = chain.proceed(args.toTypedArray())
+            val result = chain.proceed(chain.args.toTypedArray())
             try {
-                val o = ChatActivity(chain.thisObject!!)
-                Globals.loadDeletedMessagesForDialog(o.dialogId)
-            } catch (throwable: Throwable) {
-                Log.e("Telegami", "Hook callback failed after ${createView.name}", throwable)
+                val chat = chain.thisObject!!
+                val dialogId = target.chatDialog.getLong(chat)
+                val accountId = target.accountIdForSlot(target.chatAccount.getInt(chat))
+                Globals.loadDeletedMessagesForDialog(dialogId, accountId)
+            } catch (error: Throwable) {
+                Log.e("Telegami", "Failed to queue deleted-message cache load", error)
             }
             result
         }
-        if (!isAnyMarkEnabled) return
-        val measureTime = classLoader.findMethod(CHAT_MESSAGE_CELL_CN, "measureTime")
-        xposed.hook(measureTime).intercept { chain ->
-            val args = chain.args.toMutableList()
-            val result = chain.proceed(args.toTypedArray())
+
+        xposed.hook(target.measureTime).intercept { chain ->
+            val result = chain.proceed(chain.args.toTypedArray())
             try {
-                val msgCell = ChatMessageCell(chain.thisObject!!)
-                val msgObj = MessageObject(args[0]!!)
-                val dialogId = msgObj.getDialogId()
-                val mid = msgObj.getId()
+                val cell = chain.thisObject!!
+                val message = chain.args[0] ?: return@intercept result
+                val accountSlot = target.messageAccount.getInt(message)
+                val accountId = target.accountIdForSlot(accountSlot)
+                val dialogId = target.messageDialog.invoke(message) as Long
+                val messageId = target.messageId.invoke(message) as Int
+                val key = MessageKey(accountId, dialogId, messageId)
+                synchronized(boundCells) { boundCells[cell] = key }
 
-                var timeStr = msgCell.currentTimeString
-                var timeTextWidth = msgCell.timeTextWidth
-                var timeWidth = msgCell.timeWidth
-                var customDrawableWidth = 0
-
-                var isDeleted = false
-                val oldWidth = ceil(Theme.chatTimePaint.measureText(timeStr, 0, timeStr.length)).toInt()
-                if (isMarkDeletedEnabled) {
-                    isDeleted = Globals.isDeletedMessage(dialogId, mid)
-                    if (isDeleted) {
-                        val msg = Globals.getDeletedMessage(dialogId, mid)!!
-                        timeStr = MessageHelper.createDeletedString(msg)
-                        val newWidth = ceil(Theme.chatTimePaint.measureText(timeStr, 0, timeStr.length)).toInt()
-
-                        val dwidth = newWidth - oldWidth
-                        if (dwidth != 0) {
-                            customDrawableWidth = deleteDrawableWidth
-                            if (customDrawableWidth != 0) {
-                                val drawableAdjustment =
-                                    customDrawableWidth * (Theme.chatTimePaint.textSize - AndroidUtilities.dp(2.0f)) /
-                                        customDrawableWidth
-                                timeTextWidth += drawableAdjustment.toInt() + dwidth
-                                timeWidth += drawableAdjustment.toInt() + 5 * dwidth / 6
-                            }
-                        }
-                    }
+                val isRetained = Globals.isDeletedMessage(dialogId, messageId, accountId)
+                val markDeleted = Config.isFeatureEnabled("MarkMessagesDeleted") && isRetained
+                val markEdited = Config.isFeatureEnabled("MarkMessagesEdited") &&
+                    target.edited.getBoolean(cell)
+                if (!markDeleted && !markEdited) {
+                    synchronized(originalTimes) { originalTimes.remove(cell) }
+                    return@intercept result
                 }
-                if (!isDeleted) {
-                    if (isMarkEditedEnabled) {
-                        timeStr = MessageHelper.replaceWithIcon(timeStr)
-                        val newWidth = ceil(Theme.chatTimePaint.measureText(timeStr, 0, timeStr.length)).toInt()
 
-                        val dwidth = newWidth - oldWidth
-                        if (dwidth != 0) {
-                            customDrawableWidth = editDrawableWidth
+                val original = target.timeText.get(cell) as? CharSequence ?: return@intercept result
+                synchronized(originalTimes) { originalTimes[cell] = original }
+                var decorated: CharSequence = original
+                if (markDeleted) decorated = MessageHelper.appendDeleted(decorated)
+                if (markEdited) decorated = MessageHelper.appendEdited(decorated)
+                val delta = MessageHelper.measured(decorated, target.timePaint.get(null) as android.text.TextPaint) -
+                    MessageHelper.measured(original, target.timePaint.get(null) as android.text.TextPaint)
+                target.timeText.set(cell, decorated)
+                target.timeTextWidth.setInt(cell, target.timeTextWidth.getInt(cell) + delta)
+                target.timeWidth.setInt(cell, target.timeWidth.getInt(cell) + delta)
 
-                            timeTextWidth = msgCell.timeTextWidth
-                            if (customDrawableWidth != 0) {
-                                val drawableAdjustment =
-                                    customDrawableWidth * (Theme.chatTimePaint.textSize - AndroidUtilities.dp(2.0f)) /
-                                        customDrawableWidth
-                                timeTextWidth += drawableAdjustment.toInt() + dwidth
-                                timeWidth += drawableAdjustment.toInt() + 5 * dwidth / 6
-                            }
-                        }
-                    }
-                }
-                msgCell.currentTimeString = timeStr
-                msgCell.timeTextWidth = timeTextWidth
-                msgCell.timeWidth = timeWidth
-            } catch (throwable: Throwable) {
-                Log.e("Telegami", "Hook callback failed after ${measureTime.name}", throwable)
+            } catch (error: Throwable) {
+                Log.e("Telegami", "Failed to apply message-time markers", error)
             }
             result
         }
     }
+
 }

@@ -8,6 +8,7 @@ import android.os.Handler
 import android.widget.Toast
 import com.aoya.telegami.core.i18n.TranslationManager
 import com.aoya.telegami.core.obfuscate.ResolverManager
+import com.aoya.telegami.core.Telegram131Resolver
 import com.aoya.telegami.data.AppDatabase
 import com.aoya.telegami.service.Config
 import com.aoya.telegami.service.UserConfig
@@ -22,6 +23,7 @@ object Telegami {
         private set
 
     lateinit var db: AppDatabase
+    lateinit var telegram: Telegram131Resolver
 
     fun init(
         modulePath: String,
@@ -29,6 +31,7 @@ object Telegami {
         featurePreferences: SharedPreferences,
     ) {
         this.context = app
+        this.telegram = Telegram131Resolver(app.classLoader)
 
         Config.init(featurePreferences)
         UserConfig.init(context)
@@ -66,10 +69,10 @@ object Telegami {
     fun getResource(
         name: String,
         type: String,
-    ): Int = context?.resources?.getIdentifier(name, type, packageName) ?: 0
+    ): Int = context.resources.getIdentifier(name, type, packageName)
 
     fun getDrawableResource(name: String): Drawable? =
-        getResource("msg_gallery", "drawable")?.takeIf { it != 0 }?.let {
-            context?.getDrawable(it)
+        getResource(name, "drawable").takeIf { it != 0 }?.let {
+            context.getDrawable(it)
         }
 }

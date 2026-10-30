@@ -1,41 +1,44 @@
 package com.aoya.telegami.hooks
 
+import android.util.Log
 import com.aoya.telegami.Telegami
 import com.aoya.telegami.service.Config
-import com.aoya.telegami.virt.messenger.LocaleController
-import com.aoya.telegami.virt.messenger.MessageObject
-import com.aoya.telegami.util.findMethod
-import com.aoya.telegami.core.obfuscate.ResolverManager as resolver
 import io.github.libxposed.api.XposedInterface
-import android.util.Log
 
 object ModifyDeletedMessagesMenu {
-    const val CHAT_ACTIVITY_CN = "org.telegram.ui.ChatActivity"
     fun install(xposed: XposedInterface, classLoader: ClassLoader) {
-        val method = classLoader.findMethod(CHAT_ACTIVITY_CN, "fillMessageMenu")
-        xposed.hook(method).intercept { chain ->
-            val args = chain.args.toMutableList()
-            var result: Any? = null
-            var hasResult = false
+        val target = Telegami.telegram
+        xposed.hook(target.fillMenu).intercept { chain ->
+            val result = chain.proceed(chain.args.toTypedArray())
             try {
-                    val msgObj = args[0]?.let { MessageObject(it) } ?: return@intercept chain.proceed(args.toTypedArray())
-                    val arrayList = args[1] as? ArrayList<Int> ?: return@intercept chain.proceed(args.toTypedArray())
-                    val arrayList2 = args[2] as? ArrayList<String> ?: return@intercept chain.proceed(args.toTypedArray())
-                    val arrayList3 = args[3] as? ArrayList<Int> ?: return@intercept chain.proceed(args.toTypedArray())
-
-                    if (Globals.isDeletedMessage(msgObj.getDialogId(), msgObj.getId())) {
-                        arrayList2.add(LocaleController.getString(Telegami.getResource("Copy", "string")))
-                        arrayList2.add(LocaleController.getString(Telegami.getResource("Delete", "string")))
-                        arrayList3.add(3)
-                        arrayList3.add(1)
-                        arrayList.add(Telegami.getResource("msg_copy", "drawable"))
-                        arrayList.add(Telegami.getResource("msg_delete", "drawable"))
-                        hasResult = true
+                val message = chain.args[0] ?: return@intercept result
+                val accountId = target.accountIdForSlot(target.messageAccount.getInt(message))
+                val dialogId = target.messageDialog.invoke(message) as Long
+                val messageId = target.messageId.invoke(message) as Int
+                if (Config.isFeatureEnabled("ShowDeletedMessages") &&
+                    Globals.isDeletedMessage(dialogId, messageId, accountId)
+                ) {
+                    val ids = chain.args[1] as? ArrayList<Int> ?: return@intercept result
+                    val labels = chain.args[2] as? ArrayList<String> ?: return@intercept result
+                    val icons = chain.args[3] as? ArrayList<Int> ?: return@intercept result
+                    if (3 !in ids) {
+                        labels.add(Telegami.getResource("Copy", "string").let { id ->
+                            if (id == 0) return@let "Copy"
+                            com.aoya.telegami.virt.messenger.LocaleController.getString(id)
+                        })
+                        labels.add(Telegami.getResource("Delete", "string").let { id ->
+                            if (id == 0) return@let "Delete"
+                            com.aoya.telegami.virt.messenger.LocaleController.getString(id)
+                        })
+                        ids.add(3)
+                        ids.add(1)
+                        icons.add(Telegami.getResource("msg_copy", "drawable"))
+                        icons.add(Telegami.getResource("msg_delete", "drawable"))
                     }
-            } catch (throwable: Throwable) {
-                Log.e("Telegami", "Hook callback failed before ${method.name}", throwable)
+                }
+            } catch (error: Throwable) {
+                Log.e("Telegami", "Failed to extend the retained-message menu", error)
             }
-            if (!hasResult) result = chain.proceed(args.toTypedArray())
             result
         }
     }
