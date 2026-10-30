@@ -35,7 +35,8 @@ object Logger {
     fun i(
         message: String,
         source: String? = null,
-    ) = log(message, Log.INFO, source)
+        xposed: Boolean = false,
+    ) = log(message, Log.INFO, source, xposed)
 
     // Warn - logged to Xposed in debug only
     fun w(

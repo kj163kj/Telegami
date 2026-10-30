@@ -1,28 +1,25 @@
 package com.aoya.telegami.service
 
 import android.content.SharedPreferences
+import com.aoya.telegami.util.Logger
 import com.aoya.telegami.util.logi
 
 object Config {
+    @Volatile
     private var featPref: SharedPreferences? = null
-    private val featureCache = mutableMapOf<String, Boolean>()
+    private val preferenceListener =
+        SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            Logger.i("Remote feature changed: $key", "Configuration", xposed = true)
+        }
 
     fun init(preferences: SharedPreferences) {
+        featPref?.unregisterOnSharedPreferenceChangeListener(preferenceListener)
         featPref = preferences
-        featureCache.clear()
-        featPref?.all?.forEach { (key, value) ->
-            if (value is Boolean) {
-                featureCache[key] = value
-            }
-        }
-        logi("Loaded ${featureCache.size} remote feature flags")
+        preferences.registerOnSharedPreferenceChangeListener(preferenceListener)
+        logi("Connected to read-only remote feature preferences")
     }
 
-    fun isFeatureEnabled(featureKey: String): Boolean {
-        val enabled = featureCache[featureKey] ?: false
-        logi("Read remote feature $featureKey: $enabled")
-        return enabled
-    }
+    fun isFeatureEnabled(featureKey: String): Boolean = featPref?.getBoolean(featureKey, false) ?: false
 
     fun getFeatureValue(
         featureKey: String,
