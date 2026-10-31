@@ -75,9 +75,9 @@ was added. Provenance is recorded in `artifacts/validation/p15-lint-provenance.t
 Artifacts from the final build:
 
 - Debug: `app/build/outputs/apk/debug/app-debug.apk`, SHA-256
-  `d447b515970afbcf546ae90e698102a010de23986d8acd324261c1b3c44ba931`.
+  `41ee025e96f287126a5fd43d89df630c96f17474137d28392f8381fb05a3ca12`.
 - Release: `app/build/outputs/apk/release/app-release-unsigned.apk`, SHA-256
-  `5268a88a30fe0d81537e7009d331749cc1c8529df86f79b367b922e968ac3700`.
+  `5bb56181fa2d02d413563a67c0e5ea2af9dd9d0ced51018fbde248b5e3058973`.
 
 ## Runtime status
 
