@@ -22,8 +22,8 @@ Baseline commit: `c904294e215e7866dd55e688922e2f817321387d`
 ### Added Files
 - `app/src/main/java/com/aoya/telegami/ui/theme/TelegamiTheme.kt`: MiuixTheme & ThemeController integration, Monet dynamic color support, 19 preset theme colors, dark mode and pure black dark mode support.
 - `app/src/main/java/com/aoya/telegami/ui/navigation/BottomTab.kt`: Fixed 3-tab enum (`Features`, `Settings`, `About`) with Puzzle (`outline_extension_24`), Settings (`outline_settings_24`), and Info (`outline_info_24`) icons.
-- `app/src/main/java/com/aoya/telegami/ui/navigation/MainNavigation.kt`: Single-Activity Miuix `Scaffold` + collapsible `TopAppBar`, `rememberLayerBackdrop` content capture, `SaveableStateHolder` tab state preservation, and back-button handling returning to `Features` from non-default tabs.
-- `app/src/main/java/com/aoya/telegami/ui/navigation/LiquidGlassBottomBar.kt`: Real AndroidLiquidGlass interactive bottom bar using `rememberLayerBackdrop`, `rememberCombinedBackdrop`, `layerBackdrop`, and `drawBackdrop` (`vibrancy()`, `blur()`, `lens()`, `Highlight`, `Shadow`, `InnerShadow`), spring physics indicator & gesture dragging, plus automatic fallback for pre-Android 12 (`API < 31`) devices.
+- `app/src/main/java/com/aoya/telegami/ui/navigation/MainNavigation.kt`: KernelSU-modeled `HorizontalPager` + `MainPagerState` (`PagerNavigationSpringSpec`) inside a root Miuix `Scaffold`, per-page collapsible `TopAppBar` (`popupHost = {}` delegating overlays to root `Scaffold`), `rememberLayerBackdrop` live content capture, and back-button handling returning to `Features` from non-default tabs.
+- `app/src/main/java/com/aoya/telegami/ui/navigation/LiquidGlassBottomBar.kt`: KernelSU-modeled `FloatingBottomBar` using `inspectDragGestures` (`PointerEventPass.Initial`), `DampedDragAnimation` (`CoroutineStart.UNDISPATCHED`), `InteractiveHighlight`, `rememberLayerBackdrop`, `rememberCombinedBackdrop`, `layerBackdrop`, and `drawBackdrop` (`vibrancy()`, `blur()`, `lens()`, `Highlight`, `Shadow`, `InnerShadow`), plus unified inverse-clipped indicator fallback for `API < 31`.
 - `app/src/main/java/com/aoya/telegami/ui/screens/FeaturesScreen.kt`: Miuix Compose Features screen preserving all 3 categories (`Privacy`, `Messages`, `Misc`) and all 12 feature preferences bound to `PrefManager` and `serviceAvailable`.
 - `app/src/main/java/com/aoya/telegami/ui/screens/SettingsScreen.kt`: Miuix Compose Settings screen preserving `followSystemAccent`, `themeColor`, `darkTheme`, `blackDarkTheme`, and `hideIcon`.
 - `app/src/main/java/com/aoya/telegami/ui/screens/AboutScreen.kt`: Miuix Compose About screen preserved in English, displaying app icon, name, `BuildConfig.VERSION_NAME`, GitHub/Telegram links, fork info, description, GPL-3.0 license link, and developer card (`soul2x`).
@@ -57,9 +57,9 @@ Baseline commit: `c904294e215e7866dd55e688922e2f817321387d`
 - `:app:lintVitalRelease`: **Passed**.
 - `:app:assembleDebug`: **Passed**
   - Output: `app/build/outputs/apk/debug/app-debug.apk`
-  - SHA-256: `6E2FE20A282F49B7A9946B23B69BD610FBB93A8C71F4C5A3242A6BF797885927`
+  - SHA-256: `7D1C37C285842CD7D92CB3C81C386A1CE5E5FF7469D92528535216E223019B0F`
 - `:app:assembleRelease`: **Passed**
   - Output: `app/build/outputs/apk/release/app-release-unsigned.apk` (unsigned because `keystore.properties` is not present in the workspace)
-  - SHA-256: `8F9F3AEC738287454974BDADD7B18CA3DFD92F14031BDDADDD2C94A910C4949F`
+  - SHA-256: `E6B36B0B55093B6F3505195FB5ABB40509FD048B1150CE98E1218CD43637A789`
 - Hook / Database Integrity Check: `git diff` against baseline confirms zero modifications to `hooks/`, `XposedInit.kt`, `core/`, `data/`, or business preference keys.
 - On-Device Runtime & Visual Verification: `adb devices -l` returned no connected Android device or emulator in the current environment. In accordance with Section 11 Rule 12 ("不得将未进行设备验证的视觉或性能效果标记为已验证"), on-device visual screenshots, live frame-time profiling, and live LSPosed framework interaction are explicitly marked as **unverified on physical device**.

@@ -3,6 +3,7 @@ package com.aoya.telegami.ui.navigation
 import com.aoya.telegami.R
 import com.aoya.telegami.ui.theme.TelegamiColorOptions
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -73,135 +74,104 @@ class BottomTabTest {
     }
 
     @Test
-    fun bottomBarGestureMath_drags1To1FromSelectedTabAndScrubsFromUnselected() {
-        val barWidth = 916f
-        val pad = 8f // tabWidth = 300f
+    fun bottomBarGestureMath_updatesContinuousTargetFromTouchDownAndRelativeDrag() {
+        val barWidth = 764f
+        val pad = 10f // innerWidth = 744f, tabWidth = 248f
+        val tabWidth = 248f
 
-        // Dragging right by +300px from Features (0f) moves smoothly to Settings (1f)
-        val draggedToSettings =
-            BottomBarGestureMath.draggedTabValue(
-                startedOnSelectedTab = true,
-                dragStartTabValue = 0f,
-                totalDragDxPx = 300f,
-                currentPointerXPx = 458f,
+        // Touching down on About (tab 2) snaps initial droplet target to 2f (KSU FloatingBottomBar behavior)
+        val initialDownIndex =
+            BottomBarGestureMath.tabIndexAtPosition(
+                xPx = 620f,
                 barWidthPx = barWidth,
                 horizontalPadPx = pad,
                 tabsCount = 3,
                 isLtr = true,
             )
-        assertEquals(1f, draggedToSettings, 0.001f)
+        assertEquals(2, initialDownIndex)
 
-        // Dragging right by +600px from Features (0f) moves smoothly to About (2f)
-        val draggedToAbout =
-            BottomBarGestureMath.draggedTabValue(
-                startedOnSelectedTab = true,
-                dragStartTabValue = 0f,
-                totalDragDxPx = 600f,
-                currentPointerXPx = 758f,
-                barWidthPx = barWidth,
-                horizontalPadPx = pad,
+        // Dragging right by +248px from Features (0f) moves smoothly to Settings (1f)
+        val afterFirstTab =
+            BottomBarGestureMath.updatedDragTarget(
+                currentTargetValue = 0f,
+                dragDeltaXPx = 248f,
+                tabWidthPx = tabWidth,
                 tabsCount = 3,
                 isLtr = true,
             )
-        assertEquals(2f, draggedToAbout, 0.001f)
+        assertEquals(1f, afterFirstTab, 0.001f)
 
-        // Scrubbing starting on unselected area tracks the pointer directly
-        val scrubbedToCenter =
-            BottomBarGestureMath.draggedTabValue(
-                startedOnSelectedTab = false,
-                dragStartTabValue = 0f,
-                totalDragDxPx = -120f,
-                currentPointerXPx = 458f, // center of Settings tab (8 + 450)
-                barWidthPx = barWidth,
-                horizontalPadPx = pad,
+        // Dragging another +248px moves smoothly to About (2f)
+        val afterSecondTab =
+            BottomBarGestureMath.updatedDragTarget(
+                currentTargetValue = afterFirstTab,
+                dragDeltaXPx = 248f,
+                tabWidthPx = tabWidth,
                 tabsCount = 3,
                 isLtr = true,
             )
-        assertEquals(1f, scrubbedToCenter, 0.001f)
+        assertEquals(2f, afterSecondTab, 0.001f)
+
+        // RTL reverses horizontal delta direction
+        val rtlDragged =
+            BottomBarGestureMath.updatedDragTarget(
+                currentTargetValue = 0f,
+                dragDeltaXPx = -248f,
+                tabWidthPx = tabWidth,
+                tabsCount = 3,
+                isLtr = false,
+            )
+        assertEquals(1f, rtlDragged, 0.001f)
     }
 
     @Test
-    fun bottomBarGestureMath_projectsFlickVelocityWithoutSkippingNeighborTab() {
-        val barWidth = 916f
-        val pad = 8f // tabWidth = 300f
+    fun bottomBarGestureMath_settlesCleanlyOnTapDragAndFlick() {
+        val tabWidth = 248f
 
-        // Short fast flick right from Features (finger lifts at 0.22 of tab, vx = +1800 px/s -> 6 tabs/s)
+        // Stationary tap on About (targetValue = 2.0f) never overshoots even with lift velocity
+        val tapOnAbout =
+            BottomBarGestureMath.settledTabIndex(
+                targetValue = 2f,
+                velocityXPxPerSec = -900f,
+                tabWidthPx = tabWidth,
+                tabsCount = 3,
+                isLtr = true,
+            )
+        assertEquals(2, tapOnAbout)
+
+        // Short fast flick right from Features (targetValue = 0.25f, vx = +1400 px/s) lands on Settings (1)
         val flickToNext =
             BottomBarGestureMath.settledTabIndex(
-                currentTabValue = 0.22f,
-                velocityXPxPerSec = 1800f,
-                barWidthPx = barWidth,
-                horizontalPadPx = pad,
+                targetValue = 0.25f,
+                velocityXPxPerSec = 1400f,
+                tabWidthPx = tabWidth,
                 tabsCount = 3,
                 isLtr = true,
             )
         assertEquals(1, flickToNext)
 
-        // Tiny micro-jiggle does not accidentally switch tabs
+        // Tiny micro-jiggle does not switch tabs
         val tinyJiggle =
             BottomBarGestureMath.settledTabIndex(
-                currentTabValue = 0.08f,
+                targetValue = 0.08f,
                 velocityXPxPerSec = 90f,
-                barWidthPx = barWidth,
-                horizontalPadPx = pad,
+                tabWidthPx = tabWidth,
                 tabsCount = 3,
                 isLtr = true,
             )
         assertEquals(0, tinyJiggle)
-
-        // Leftward flick from About (2.0 -> 1.75 with vx = -1500 px/s) lands on Settings (1)
-        val flickLeftFromAbout =
-            BottomBarGestureMath.settledTabIndex(
-                currentTabValue = 1.75f,
-                velocityXPxPerSec = -1500f,
-                barWidthPx = barWidth,
-                horizontalPadPx = pad,
-                tabsCount = 3,
-                isLtr = true,
-            )
-        assertEquals(1, flickLeftFromAbout)
     }
 
     @Test
-    fun bottomBarDragCommitTracker_switchesScreenOnlyAfterFingerRelease() {
-        val committedTabs = mutableListOf<BottomTab>()
-        val tracker = BottomBarDragCommitTracker(BottomTab.entries, initialTab = BottomTab.Features)
+    fun bottomBarGestureMath_detectsVerticalPullAwayCancellation() {
+        val barHeight = 192f // 64dp @ 3x
+        val slop = 216f // 72dp @ 3x
 
-        // Sliding across Features (0) -> Settings (1) -> About (2) must NOT emit any mid-drag tab switch
-        tracker.onDragStart()
-        tracker.onDragUpdate()
-        tracker.onDragUpdate()
-        assertTrue(committedTabs.isEmpty())
+        // Thumb drifting slightly above the pill during horizontal drag is NOT cancelled
+        assertFalse(BottomBarGestureMath.isVerticalDragCancelled(-80f, barHeight, slop))
+        assertFalse(BottomBarGestureMath.isVerticalDragCancelled(100f, barHeight, slop))
 
-        // Releasing finger on About (2) commits About exactly once
-        val settledIdx =
-            tracker.onDragRelease(
-                currentSelectedTab = BottomTab.Features,
-                settledIndex = 2,
-                onCommitTab = committedTabs::add,
-            )
-        assertEquals(2, settledIdx)
-        assertEquals(listOf(BottomTab.About), committedTabs)
-
-        // Subsequent recomposition with selectedTab = About does not trigger duplicate external animation
-        assertEquals(false, tracker.onExternalSelectionSync(BottomTab.About))
-
-        // Dragging away from About and returning to About before lifting finger emits no tab switch
-        committedTabs.clear()
-        tracker.onDragStart()
-        tracker.onDragUpdate()
-        tracker.onDragRelease(
-            currentSelectedTab = BottomTab.About,
-            settledIndex = 2,
-            onCommitTab = committedTabs::add,
-        )
-        assertTrue(committedTabs.isEmpty())
-
-        // Cancelled drag never switches the screen
-        tracker.onDragStart()
-        tracker.onDragUpdate()
-        val resetIdx = tracker.onGestureCancel(BottomTab.About)
-        assertEquals(2, resetIdx)
-        assertTrue(committedTabs.isEmpty())
+        // Pulling finger far up into the page (> 72dp above bar) cancels tab switch
+        assertTrue(BottomBarGestureMath.isVerticalDragCancelled(-260f, barHeight, slop))
     }
 }

@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -27,6 +29,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -47,6 +50,7 @@ import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.basic.TextButton
 import top.yukonga.miuix.kmp.preference.ArrowPreference
 import top.yukonga.miuix.kmp.theme.MiuixTheme
+import top.yukonga.miuix.kmp.utils.overScrollVertical
 
 private const val DEVELOPER_GITHUB_URL = "https://github.com/aoya111"
 private const val LICENSE_URL = "${Constants.GITHUB_REPO}/blob/main/LICENSE"
@@ -72,16 +76,21 @@ fun AboutScreen(
             context.startActivity(intent)
         }
     }
+    val layoutDirection = LocalLayoutDirection.current
 
     LazyColumn(
         modifier =
             modifier
                 .fillMaxSize()
+                .overScrollVertical()
                 .nestedScroll(scrollBehavior.nestedScrollConnection),
+        overscrollEffect = null,
         contentPadding =
             PaddingValues(
+                start = contentPadding.calculateStartPadding(layoutDirection),
                 top = contentPadding.calculateTopPadding() + 8.dp,
-                bottom = contentPadding.calculateBottomPadding() + bottomBarPadding + 24.dp,
+                end = contentPadding.calculateEndPadding(layoutDirection),
+                bottom = contentPadding.calculateBottomPadding() + bottomBarPadding + 16.dp,
             ),
     ) {
         item(key = "about_header") {
