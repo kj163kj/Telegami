@@ -48,7 +48,9 @@ import com.aoya.telegami.ui.components.MiuixPreferenceGroup
 import com.aoya.telegami.ui.components.ModuleStatusCard
 import com.aoya.telegami.ui.components.MultiSelectOption
 import kotlinx.coroutines.launch
+import top.yukonga.miuix.kmp.basic.BasicComponentDefaults
 import top.yukonga.miuix.kmp.basic.ButtonDefaults
+import top.yukonga.miuix.kmp.basic.HorizontalDivider
 import top.yukonga.miuix.kmp.basic.ScrollBehavior
 import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.basic.TextButton
@@ -69,6 +71,20 @@ internal const val MAX_VERSIONS_MAX = 1000
 internal const val MAX_VERSIONS_DEFAULT = 100
 
 private val STRICT_INTEGER_REGEX = Regex("^-?\\d+$")
+private val SubPreferenceInsideMargin =
+    PaddingValues(
+        start = 32.dp,
+        top = 14.dp,
+        end = 16.dp,
+        bottom = 14.dp,
+    )
+
+@Composable
+private fun MiuixSubPreferenceDivider() {
+    HorizontalDivider(
+        modifier = Modifier.padding(start = 32.dp, end = 16.dp),
+    )
+}
 
 internal sealed interface IntInputValidation {
     data class Valid(
@@ -252,6 +268,7 @@ private fun MiuixIntInputPreference(
     enabled: Boolean,
     onConfirm: (Int) -> Unit,
     modifier: Modifier = Modifier,
+    insideMargin: PaddingValues = BasicComponentDefaults.InsideMargin,
 ) {
     var showDialog by rememberSaveable { mutableStateOf(false) }
     var draftText by rememberSaveable { mutableStateOf(currentValue.toString()) }
@@ -275,6 +292,7 @@ private fun MiuixIntInputPreference(
         title = title,
         summary = summary,
         modifier = modifier,
+        insideMargin = insideMargin,
         enabled = enabled,
         holdDownState = isHoldDown,
         endActions = {
@@ -692,9 +710,9 @@ fun FeaturesScreen(
             }
         }
 
-        item(key = "category_messages") {
+        item(key = "category_message_records") {
             Spacer(modifier = Modifier.height(8.dp))
-            MiuixPreferenceGroup(title = stringResource(R.string.feat_category_messages)) {
+            MiuixPreferenceGroup(title = stringResource(R.string.feat_category_message_records)) {
                 SwitchPreference(
                     title = stringResource(R.string.feat_show_deleted_messages),
                     summary = stringResource(R.string.feat_show_deleted_messages_desc),
@@ -722,6 +740,96 @@ fun FeaturesScreen(
                 )
                 MiuixPreferenceDivider()
                 SwitchPreference(
+                    title = stringResource(R.string.feat_enable_edit_history),
+                    summary = stringResource(R.string.feat_enable_edit_history_desc),
+                    checked = messageTools.enableEditHistory,
+                    enabled = canEdit,
+                    onCheckedChange = { checked ->
+                        updateMessageToolBoolean(MessageToolSettings.HISTORY, checked)
+                    },
+                )
+                MiuixSubPreferenceDivider()
+                MiuixIntInputPreference(
+                    title = stringResource(R.string.feat_edit_history_retention_days),
+                    summary = stringResource(R.string.feat_edit_history_retention_days_desc),
+                    currentValue = messageTools.editHistoryRetentionDays,
+                    minValue = RETENTION_DAYS_MIN,
+                    maxValue = RETENTION_DAYS_MAX,
+                    unit = stringResource(R.string.feat_edit_history_retention_unit),
+                    enabled = messageTools.retentionDaysEnabled(canEdit),
+                    insideMargin = SubPreferenceInsideMargin,
+                    onConfirm = { newDays ->
+                        updateMessageToolInt(MessageToolSettings.RETENTION, newDays)
+                    },
+                )
+                MiuixSubPreferenceDivider()
+                MiuixIntInputPreference(
+                    title = stringResource(R.string.feat_edit_history_max_versions),
+                    summary = stringResource(R.string.feat_edit_history_max_versions_desc),
+                    currentValue = messageTools.editHistoryMaxVersions,
+                    minValue = MAX_VERSIONS_MIN,
+                    maxValue = MAX_VERSIONS_MAX,
+                    unit = stringResource(R.string.feat_edit_history_max_versions_unit),
+                    enabled = messageTools.maxVersionsEnabled(canEdit),
+                    insideMargin = SubPreferenceInsideMargin,
+                    onConfirm = { newMaxVersions ->
+                        updateMessageToolInt(MessageToolSettings.MAX_VERSIONS, newMaxVersions)
+                    },
+                )
+            }
+        }
+
+        item(key = "category_message_actions") {
+            Spacer(modifier = Modifier.height(8.dp))
+            MiuixPreferenceGroup(title = stringResource(R.string.feat_category_message_actions)) {
+                SwitchPreference(
+                    title = stringResource(R.string.feat_enable_message_repeat),
+                    summary = stringResource(R.string.feat_enable_message_repeat_desc),
+                    checked = messageTools.enableMessageRepeat,
+                    enabled = canEdit,
+                    onCheckedChange = { checked ->
+                        updateMessageToolBoolean(MessageToolSettings.REPEAT, checked)
+                    },
+                )
+                MiuixSubPreferenceDivider()
+                SwitchPreference(
+                    title = stringResource(R.string.feat_enable_repeat_confirmation),
+                    summary = stringResource(R.string.feat_enable_repeat_confirmation_desc),
+                    checked = messageTools.enableRepeatConfirmation,
+                    insideMargin = SubPreferenceInsideMargin,
+                    enabled = messageTools.repeatConfirmationEnabled(canEdit),
+                    onCheckedChange = { checked ->
+                        updateMessageToolBoolean(MessageToolSettings.REPEAT_CONFIRM, checked)
+                    },
+                )
+                MiuixPreferenceDivider()
+                SwitchPreference(
+                    title = stringResource(R.string.feat_enable_message_copy),
+                    summary = stringResource(R.string.feat_enable_message_copy_desc),
+                    checked = messageTools.enableMessageCopy,
+                    enabled = canEdit,
+                    onCheckedChange = { checked ->
+                        updateMessageToolBoolean(MessageToolSettings.COPY, checked)
+                    },
+                )
+                MiuixSubPreferenceDivider()
+                SwitchPreference(
+                    title = stringResource(R.string.feat_enable_copy_confirmation),
+                    summary = stringResource(R.string.feat_enable_copy_confirmation_desc),
+                    checked = messageTools.enableCopyConfirmation,
+                    insideMargin = SubPreferenceInsideMargin,
+                    enabled = messageTools.copyConfirmationEnabled(canEdit),
+                    onCheckedChange = { checked ->
+                        updateMessageToolBoolean(MessageToolSettings.COPY_CONFIRM, checked)
+                    },
+                )
+            }
+        }
+
+        item(key = "category_media_channel") {
+            Spacer(modifier = Modifier.height(8.dp))
+            MiuixPreferenceGroup(title = stringResource(R.string.feat_category_media_channel)) {
+                SwitchPreference(
                     title = stringResource(R.string.feat_prevent_secret_media_deletion),
                     summary = stringResource(R.string.feat_prevent_secret_media_deletion_desc),
                     checked = snapshot.preventSecretMediaDeletion,
@@ -738,112 +846,6 @@ fun FeaturesScreen(
                     enabled = canEdit,
                     onCheckedChange = { checked ->
                         updateBooleanFeature("AllowSaveVideos", checked)
-                    },
-                )
-            }
-        }
-
-        item(key = "category_messages_tools") {
-            Spacer(modifier = Modifier.height(8.dp))
-            MiuixPreferenceGroup(title = stringResource(R.string.feat_subcategory_message_tools)) {
-                SwitchPreference(
-                    title = stringResource(R.string.feat_enable_message_repeat),
-                    summary = stringResource(R.string.feat_enable_message_repeat_desc),
-                    checked = messageTools.enableMessageRepeat,
-                    enabled = canEdit,
-                    onCheckedChange = { checked ->
-                        updateMessageToolBoolean(MessageToolSettings.REPEAT, checked)
-                    },
-                )
-                MiuixPreferenceDivider()
-                SwitchPreference(
-                    title = stringResource(R.string.feat_enable_message_copy),
-                    summary = stringResource(R.string.feat_enable_message_copy_desc),
-                    checked = messageTools.enableMessageCopy,
-                    enabled = canEdit,
-                    onCheckedChange = { checked ->
-                        updateMessageToolBoolean(MessageToolSettings.COPY, checked)
-                    },
-                )
-                MiuixPreferenceDivider()
-                SwitchPreference(
-                    title = stringResource(R.string.feat_enable_edit_history),
-                    summary = stringResource(R.string.feat_enable_edit_history_desc),
-                    checked = messageTools.enableEditHistory,
-                    enabled = canEdit,
-                    onCheckedChange = { checked ->
-                        updateMessageToolBoolean(MessageToolSettings.HISTORY, checked)
-                    },
-                )
-            }
-        }
-
-        item(key = "category_messages_behavior") {
-            Spacer(modifier = Modifier.height(8.dp))
-            MiuixPreferenceGroup(title = stringResource(R.string.feat_subcategory_message_behavior)) {
-                SwitchPreference(
-                    title = stringResource(R.string.feat_enable_repeat_confirmation),
-                    summary = stringResource(R.string.feat_enable_repeat_confirmation_desc),
-                    checked = messageTools.enableRepeatConfirmation,
-                    enabled = messageTools.repeatConfirmationEnabled(canEdit),
-                    onCheckedChange = { checked ->
-                        updateMessageToolBoolean(MessageToolSettings.REPEAT_CONFIRM, checked)
-                    },
-                )
-                MiuixPreferenceDivider()
-                SwitchPreference(
-                    title = stringResource(R.string.feat_enable_copy_confirmation),
-                    summary = stringResource(R.string.feat_enable_copy_confirmation_desc),
-                    checked = messageTools.enableCopyConfirmation,
-                    enabled = messageTools.copyConfirmationEnabled(canEdit),
-                    onCheckedChange = { checked ->
-                        updateMessageToolBoolean(MessageToolSettings.COPY_CONFIRM, checked)
-                    },
-                )
-            }
-        }
-
-        item(key = "category_messages_history") {
-            Spacer(modifier = Modifier.height(8.dp))
-            MiuixPreferenceGroup(title = stringResource(R.string.feat_subcategory_history_management)) {
-                MiuixIntInputPreference(
-                    title = stringResource(R.string.feat_edit_history_retention_days),
-                    summary = stringResource(R.string.feat_edit_history_retention_days_desc),
-                    currentValue = messageTools.editHistoryRetentionDays,
-                    minValue = RETENTION_DAYS_MIN,
-                    maxValue = RETENTION_DAYS_MAX,
-                    unit = stringResource(R.string.feat_edit_history_retention_unit),
-                    enabled = messageTools.retentionDaysEnabled(canEdit),
-                    onConfirm = { newDays ->
-                        updateMessageToolInt(MessageToolSettings.RETENTION, newDays)
-                    },
-                )
-                MiuixPreferenceDivider()
-                MiuixIntInputPreference(
-                    title = stringResource(R.string.feat_edit_history_max_versions),
-                    summary = stringResource(R.string.feat_edit_history_max_versions_desc),
-                    currentValue = messageTools.editHistoryMaxVersions,
-                    minValue = MAX_VERSIONS_MIN,
-                    maxValue = MAX_VERSIONS_MAX,
-                    unit = stringResource(R.string.feat_edit_history_max_versions_unit),
-                    enabled = messageTools.maxVersionsEnabled(canEdit),
-                    onConfirm = { newMaxVersions ->
-                        updateMessageToolInt(MessageToolSettings.MAX_VERSIONS, newMaxVersions)
-                    },
-                )
-            }
-        }
-
-        item(key = "category_misc") {
-            Spacer(modifier = Modifier.height(8.dp))
-            MiuixPreferenceGroup(title = stringResource(R.string.feat_category_misc)) {
-                SwitchPreference(
-                    title = stringResource(R.string.feat_disable_ads),
-                    summary = stringResource(R.string.feat_disable_ads_desc),
-                    checked = snapshot.disableAds,
-                    enabled = canEdit,
-                    onCheckedChange = { checked ->
-                        updateBooleanFeature("DisableAds", checked)
                     },
                 )
                 MiuixPreferenceDivider()
@@ -871,6 +873,21 @@ fun FeaturesScreen(
                         if (newVal != snapshot.boostDownload) {
                             updateIntFeature("BoostDownload", newVal)
                         }
+                    },
+                )
+            }
+        }
+
+        item(key = "category_misc") {
+            Spacer(modifier = Modifier.height(8.dp))
+            MiuixPreferenceGroup(title = stringResource(R.string.feat_category_misc)) {
+                SwitchPreference(
+                    title = stringResource(R.string.feat_disable_ads),
+                    summary = stringResource(R.string.feat_disable_ads_desc),
+                    checked = snapshot.disableAds,
+                    enabled = canEdit,
+                    onCheckedChange = { checked ->
+                        updateBooleanFeature("DisableAds", checked)
                     },
                 )
                 MiuixPreferenceDivider()

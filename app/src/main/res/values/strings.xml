@@ -26,9 +26,11 @@
     <string name="status_module_disabled_hint">请在 LSPosed 管理器中启用并勾选 Telegram</string>
 
     <!-- Features -->
-    <string name="feat_category_privacy">隐私</string>
-    <string name="feat_category_messages">消息</string>
-    <string name="feat_category_misc">其他</string>
+    <string name="feat_category_privacy">隐私保护</string>
+    <string name="feat_category_message_records">消息记录</string>
+    <string name="feat_category_message_actions">消息操作</string>
+    <string name="feat_category_media_channel">媒体与频道</string>
+    <string name="feat_category_misc">其他功能</string>
 
     <string name="feat_hide_seen">隐藏已读状态</string>
     <string name="feat_hide_seen_desc">隐藏消息的已读回执</string>
@@ -63,10 +65,6 @@
     <string name="feat_boost_download_extreme">极速</string>
 
     <!-- Message Tools -->
-    <string name="feat_subcategory_message_tools">消息功能</string>
-    <string name="feat_subcategory_message_behavior">行为设置</string>
-    <string name="feat_subcategory_history_management">历史记录管理</string>
-
     <string name="feat_enable_message_repeat">消息复读</string>
     <string name="feat_enable_message_repeat_desc">将消息作为新消息发送，不建立回复关系。</string>
     <string name="feat_enable_message_copy">复制与作为新消息发送</string>

@@ -2,14 +2,14 @@
 
 Date: 2026-10-31 (Asia/Shanghai)
 Workspace: `C:/Users/Administrator/Desktop/Telegami`
-Branch: `feat/nagramx-message-tools`
-Baseline commit: `ecf754fa792b471c6ae4b2006defd366eaa5cb91`
+Branch: `fix/edit-history-duplicate-revisions`
+Baseline commit: `b3c64aa89d0d48facc609e5bbcee43c3ab1a6d36`
 
 ## 1. Scope & Modified Files
 
 Incremental Miuix Compose UI completion for the 7 message-tool preferences defined in `docs/14_MESSAGE_TOOLS_CONFIG_HANDOFF.md` and `service/MessageToolSettings.kt`. No UI architecture refactoring, navigation changes, Liquid Glass changes, Hook changes, database changes, or new dependencies were introduced.
 
-- `app/src/main/java/com/aoya/telegami/ui/screens/FeaturesScreen.kt`: Added the 7 message-tool settings under the Messages section (`消息功能`, `行为设置`, `历史记录管理`), `MiuixIntInputPreference` (`ArrowPreference` + `OverlayDialog` + `TextField` + `Text` + `TextButton`), strict integer/range validation (`validateIntInput`), master-sub linkage (`MessageToolsSnapshot`), `ON_RESUME` reload observer, and direct `PrefManager` / `MessageToolSettings` read-write binding.
+- `app/src/main/java/com/aoya/telegami/ui/screens/FeaturesScreen.kt`: Organized all 19 feature preferences into 5 clear Miuix groups (`隐私保护`, `消息记录`, `消息操作`, `媒体与频道`, `其他功能`) with indented subordinate items (`SubPreferenceInsideMargin` + `MiuixSubPreferenceDivider`) directly beneath their parent switches, `MiuixIntInputPreference` (`ArrowPreference` + `OverlayDialog` + `TextField` + `Text` + `TextButton`), strict integer/range validation (`validateIntInput`), master-sub linkage (`MessageToolsSnapshot`), `ON_RESUME` reload observer, and direct `PrefManager` / `MessageToolSettings` read-write binding.
 - `app/src/main/res/values/strings.xml`: Added Simplified Chinese titles, descriptions, units, and integer validation messages for the 7 settings.
 - `app/src/main/res/values-zh-rCN/strings.xml`: Added matching `zh-rCN` string resources.
 - `app/src/test/java/com/aoya/telegami/ui/screens/FeaturesMessageToolsTest.kt`: Added unit tests covering config read/write bindings, failed-commit state preservation, integer validation bounds, and master-sub switch linkage without clearing saved child values.
@@ -21,13 +21,13 @@ All 7 items read and write through `PrefManager` (`XposedService.getRemotePrefer
 
 | Group | UI Title | Key (`MessageToolSettings`) | Type | Default | Bounds / Unit | Read Call | Write Call |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 消息功能 | 消息复读 | `enable_message_repeat` (`REPEAT`) | `Boolean` | `false` | — | `PrefManager.getBoolean(REPEAT, false)` | `PrefManager.updateMessageTools(booleans = mapOf(REPEAT to checked))` |
-| 消息功能 | 复制与作为新消息发送 | `enable_message_copy` (`COPY`) | `Boolean` | `false` | — | `PrefManager.getBoolean(COPY, false)` | `PrefManager.updateMessageTools(booleans = mapOf(COPY to checked))` |
-| 消息功能 | 编辑历史 | `enable_edit_history` (`HISTORY`) | `Boolean` | `false` | — | `PrefManager.getBoolean(HISTORY, false)` | `PrefManager.updateMessageTools(booleans = mapOf(HISTORY to checked))` |
-| 行为设置 | 复读前确认 | `enable_repeat_confirmation` (`REPEAT_CONFIRM`) | `Boolean` | `true` | — | `PrefManager.getBoolean(REPEAT_CONFIRM, true)` | `PrefManager.updateMessageTools(booleans = mapOf(REPEAT_CONFIRM to checked))` |
-| 行为设置 | 作为新消息发送前确认 | `enable_copy_confirmation` (`COPY_CONFIRM`) | `Boolean` | `true` | — | `PrefManager.getBoolean(COPY_CONFIRM, true)` | `PrefManager.updateMessageTools(booleans = mapOf(COPY_CONFIRM to checked))` |
-| 历史记录管理 | 编辑历史保留天数 | `edit_history_retention_days` (`RETENTION`) | `Int` | `30` | `1..3650` (`天`) | `MessageToolSettings.bounded(RETENTION, PrefManager.getFeatureValue(RETENTION, 30))` | `PrefManager.updateMessageTools(integers = mapOf(RETENTION to newDays))` |
-| 历史记录管理 | 每条消息最大历史版本数 | `edit_history_max_versions` (`MAX_VERSIONS`) | `Int` | `100` | `2..1000` (`个版本`) | `MessageToolSettings.bounded(MAX_VERSIONS, PrefManager.getFeatureValue(MAX_VERSIONS, 100))` | `PrefManager.updateMessageTools(integers = mapOf(MAX_VERSIONS to newMaxVersions))` |
+| 消息操作 | 消息复读 | `enable_message_repeat` (`REPEAT`) | `Boolean` | `false` | — | `PrefManager.getBoolean(REPEAT, false)` | `PrefManager.updateMessageTools(booleans = mapOf(REPEAT to checked))` |
+| 消息操作 | 复读前确认 | `enable_repeat_confirmation` (`REPEAT_CONFIRM`) | `Boolean` | `true` | — | `PrefManager.getBoolean(REPEAT_CONFIRM, true)` | `PrefManager.updateMessageTools(booleans = mapOf(REPEAT_CONFIRM to checked))` |
+| 消息操作 | 复制与作为新消息发送 | `enable_message_copy` (`COPY`) | `Boolean` | `false` | — | `PrefManager.getBoolean(COPY, false)` | `PrefManager.updateMessageTools(booleans = mapOf(COPY to checked))` |
+| 消息操作 | 作为新消息发送前确认 | `enable_copy_confirmation` (`COPY_CONFIRM`) | `Boolean` | `true` | — | `PrefManager.getBoolean(COPY_CONFIRM, true)` | `PrefManager.updateMessageTools(booleans = mapOf(COPY_CONFIRM to checked))` |
+| 消息记录 | 编辑历史 | `enable_edit_history` (`HISTORY`) | `Boolean` | `false` | — | `PrefManager.getBoolean(HISTORY, false)` | `PrefManager.updateMessageTools(booleans = mapOf(HISTORY to checked))` |
+| 消息记录 | 编辑历史保留天数 | `edit_history_retention_days` (`RETENTION`) | `Int` | `30` | `1..3650` (`天`) | `MessageToolSettings.bounded(RETENTION, PrefManager.getFeatureValue(RETENTION, 30))` | `PrefManager.updateMessageTools(integers = mapOf(RETENTION to newDays))` |
+| 消息记录 | 每条消息最大历史版本数 | `edit_history_max_versions` (`MAX_VERSIONS`) | `Int` | `100` | `2..1000` (`个版本`) | `MessageToolSettings.bounded(MAX_VERSIONS, PrefManager.getFeatureValue(MAX_VERSIONS, 100))` | `PrefManager.updateMessageTools(integers = mapOf(MAX_VERSIONS to newMaxVersions))` |
 
 ## 3. Miuix Compose Compliance
 
@@ -53,6 +53,6 @@ All 7 items read and write through `PrefManager` (`XposedService.getRemotePrefer
   - `masterSubLinkage_disablesSubItemsWhenMasterOffWithoutClearingSavedSubValues`: Passed.
 - **Release Lint** (`:app:lintVitalRelease`): **Passed**.
 - **APK Builds**:
-  - `:app:assembleDebug`: **Passed** (`app/build/outputs/apk/debug/app-debug.apk`, SHA-256: `198EFA896834B091BD558D6B8D896E07FC70E89A61DAA16E0CF8B0FCDE4C3005`).
+  - `:app:assembleDebug`: **Passed** (`app/build/outputs/apk/debug/app-debug.apk`, SHA-256: `72CB049ADA0B2A9B9D41628BFF1268EF4D3836B3366F09092688CFFF3E1119D6`).
   - `:app:assembleRelease`: **Passed**.
 - **Live Device Note**: No physical Android device with LSPosed + Telegram 13.1.1 is attached in this CLI environment; live IPC persistence across process restart and Light/Dark visual rendering on hardware remain to be confirmed on device using `app-debug.apk`.
