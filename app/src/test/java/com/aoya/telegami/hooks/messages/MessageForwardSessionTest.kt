@@ -7,11 +7,9 @@ class MessageForwardSessionTest {
     private val first = MessageDestinationKey(-100, 42)
     private val second = MessageDestinationKey(-100, 43)
 
-    @Test fun actionOnlyAppearsInProtectedGroupsWhenEnabled() {
-        assertTrue(MessageForwardSession.visible(true, true))
-        assertFalse(MessageForwardSession.visible(true, false))
-        assertFalse(MessageForwardSession.visible(false, true))
-        assertFalse(MessageForwardSession.visible(false, false))
+    @Test fun actionVisibilityOnlyDependsOnFeatureSwitchNotConversationProtection() {
+        assertTrue(MessageForwardSession.visible(true))
+        assertFalse(MessageForwardSession.visible(false))
     }
 
     @Test fun openingOrCancellingPickerCannotSubmit() {

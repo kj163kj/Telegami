@@ -16,8 +16,8 @@ class MessageForwardPicker(private val target: TelegramSendResolver) {
     private val sender = MessageSender(target)
 
     fun open(original: MessageMenuActions.Selection) {
-        check(Config.isFeatureEnabled("enable_message_copy") && c.isProtectedGroup(original.message, original.chat)) {
-            "\u4ec5\u5728\u9650\u5236\u8f6c\u53d1\u7684\u7fa4\u7ec4\u4e2d\u53ef\u7528"
+        check(MessageForwardSession.visible(Config.isFeatureEnabled("enable_message_copy"))) {
+            "\u529f\u80fd\u5df2\u5173\u95ed"
         }
         val slot = c.messageAccount.getInt(original.message)
         val accountId = Telegami.telegram.accountIdForSlot(slot)
@@ -32,19 +32,18 @@ class MessageForwardPicker(private val target: TelegramSendResolver) {
         var selectionConsumed = false
 
         fun validate() {
-            check(Config.isFeatureEnabled("enable_message_copy")) { "\u529f\u80fd\u5df2\u5173\u95ed" }
+            check(MessageForwardSession.visible(Config.isFeatureEnabled("enable_message_copy"))) { "\u529f\u80fd\u5df2\u5173\u95ed" }
             check(Telegami.telegram.accountIdForSlot(slot) == accountId &&
                 native.currentAccount.invoke(picker) == slot && native.currentAccount.invoke(original.chat) == slot) {
                 "\u8d26\u53f7\u5df2\u5207\u6362\uff0c\u8bf7\u91cd\u65b0\u9009\u62e9\u6d88\u606f"
             }
             check(!original.activity.isFinishing && !original.activity.isDestroyed) { "\u804a\u5929\u9875\u9762\u5df2\u5173\u95ed" }
-            check(Telegami.telegram.chatDialog.getLong(original.chat) == sourceDialog &&
-                c.isProtectedGroup(selection.message, original.chat)) { "\u6765\u6e90\u7fa4\u72b6\u6001\u5df2\u53d8\u5316" }
+            check(Telegami.telegram.chatDialog.getLong(original.chat) == sourceDialog) { "\u6765\u6e90\u4f1a\u8bdd\u5df2\u53d8\u5316" }
         }
 
         fun report(error: Throwable) {
-            Logger.e("Protected forward picker rejected", error, "MessageTools")
-            MessageMenuActions.toast(original.activity, error.cause?.message ?: error.message ?: "\u8f6c\u53d1\u5931\u8d25")
+            Logger.e("Sourceless forward picker rejected", error, "MessageTools")
+            MessageMenuActions.toast(original.activity, error.cause?.message ?: error.message ?: "\u65e0\u6765\u6e90\u8f6c\u53d1\u5931\u8d25")
         }
 
         fun closePicker() {
@@ -80,7 +79,7 @@ class MessageForwardPicker(private val target: TelegramSendResolver) {
                                     if (session.submit()) {
                                         selectionConsumed = true
                                         jobs.forEach { it() }
-                                        Logger.i("Protected forward queued destinations=${destinations.size}", "MessageTools", xposed = true)
+                                        Logger.i("Sourceless forward queued destinations=${destinations.size}", "MessageTools", xposed = true)
                                         closePicker()
                                         MessageMenuActions.toast(original.activity, "\u5df2\u63d0\u4ea4\u5230 Telegram")
                                     }
@@ -91,7 +90,7 @@ class MessageForwardPicker(private val target: TelegramSendResolver) {
                             }
                             if (Config.getBoolean("enable_copy_confirmation", true)) {
                                 AlertDialog.Builder(original.activity)
-                                    .setTitle("\u8f6c\u53d1")
+                                    .setTitle("\u65e0\u6765\u6e90\u8f6c\u53d1")
                                     .setMessage("\u53d1\u9001\u5230\u9009\u4e2d\u7684 ${destinations.size} \u4e2a\u4f1a\u8bdd\u6216\u8bdd\u9898\uff1f")
                                     .setPositiveButton("\u53d1\u9001") { _, _ -> send() }
                                     .setNegativeButton("\u53d6\u6d88", null)
@@ -117,6 +116,6 @@ class MessageForwardPicker(private val target: TelegramSendResolver) {
         native.pickerDelegate.set(picker, proxy)
         validate()
         check(native.present.invoke(original.chat, picker) == true) { "\u65e0\u6cd5\u6253\u5f00 Telegram \u8f6c\u53d1\u9009\u62e9\u5668" }
-        Logger.i("Opened protected forward native picker", "MessageTools", xposed = true)
+        Logger.i("Opened sourceless forward native picker", "MessageTools", xposed = true)
     }
 }

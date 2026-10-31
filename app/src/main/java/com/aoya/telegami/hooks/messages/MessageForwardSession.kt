@@ -29,6 +29,6 @@ class MessageForwardSession {
     }
 
     companion object {
-        fun visible(enabled: Boolean, protectedGroup: Boolean): Boolean = enabled && protectedGroup
+        fun visible(enabled: Boolean): Boolean = enabled
     }
 }

@@ -40,8 +40,8 @@ object MessageCopyHook {
         )
         MessageMenuActions.register(
             MessageMenuActions.Action(
-                MessageMenuActions.SEND_COPY, "\u8f6c\u53d1", "msg_forward",
-                { chat, message -> MessageForwardSession.visible(Config.isFeatureEnabled("enable_message_copy"), c.isProtectedGroup(message, chat)) },
+                MessageMenuActions.SEND_COPY, "\u65e0\u6765\u6e90\u8f6c\u53d1", "msg_forward",
+                { _, _ -> MessageForwardSession.visible(Config.isFeatureEnabled("enable_message_copy")) },
                 forwardPicker::open,
                 fallbackIcons = listOf("msg_forward_replace", "msg_copy"),
             ),
