@@ -1,0 +1,31 @@
+﻿+---------+-----------------------------------------------------------------+
+| file_id | descriptor                                                      |
++---------+-----------------------------------------------------------------+
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityBankCard;             |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityBlockquote;           |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityBlockquote_layer180;  |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityBold;                 |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityBotCommand;           |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityCashtag;              |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityCode;                 |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityCustomEmoji;          |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityDiffDelete;           |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityDiffInsert;           |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityDiffReplace;          |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityEmail;                |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityFormattedDate;        |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityHashtag;              |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityItalic;               |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityMention;              |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityMentionName;          |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityMentionName_layer131; |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityPhone;                |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityPre;                  |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntitySpoiler;              |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityStrike;               |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityTextUrl;              |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityTonAddress;           |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityUnderline;            |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityUnknown;              |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageEntityUrl;                  |
++---------+-----------------------------------------------------------------+

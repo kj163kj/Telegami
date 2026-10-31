@@ -9,7 +9,9 @@ import com.aoya.telegami.util.Logger
 
 class MessageSender(private val target: TelegramSendResolver) {
     private val c = target.common
-    private val gate = MessageActionGate<MessageKey>()
+    companion object {
+        private val gate = MessageActionGate<MessageKey>()
+    }
 
     fun execute(selection: MessageMenuActions.Selection, asCopy: Boolean, configKey: String, confirmationKey: String) {
         val owner = c.ownerField.get(selection.message) ?: return
@@ -64,6 +66,7 @@ class MessageSender(private val target: TelegramSendResolver) {
         check(dialog != 0L && !(c.encryptedDialog.invoke(null, dialog) as Boolean)) { "暂不支持此会话类型" }
         check(c.chatMode.getInt(selection.chat) == 0) { "暂不支持定时、快捷回复或特殊会话" }
         val chat = c.currentChat.get(selection.chat)
+        check(dialog > 0 || chat != null) { "Chat information unavailable" }
         if (chat != null) {
             check(!(target.forum.invoke(null, chat) as Boolean) && !(target.monoForum.invoke(null, chat) as Boolean)) {
                 "暂不支持话题或频道私信复读，避免发送到错误位置"
@@ -100,7 +103,8 @@ class MessageSender(private val target: TelegramSendResolver) {
             }
             check(target.permissionChecks.getValue(permission).invoke(null, chat) as Boolean) { "当前聊天不允许发送此类内容" }
         }
-        val protected = c.isProtectedGroup(message, selection.chat) || c.noForwards.getBoolean(owner)
+        val protected = c.isProtectedGroup(message, selection.chat)
+        check(protected || !c.noForwards.getBoolean(owner)) { "Message protection prevents resending" }
         val copy = requestedCopy || protected
         val helper = target.instance.invoke(null, slot)!!
         if (!copy) {

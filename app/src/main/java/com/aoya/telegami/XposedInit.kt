@@ -109,5 +109,6 @@ class XposedInit : XposedModule() {
             com.aoya.telegami.hooks.messages.MessageMenuActions.install(this, classLoader)
         }
         install("MessageRepeatHook") { com.aoya.telegami.hooks.messages.MessageRepeatHook.install() }
+        install("MessageCopyHook") { com.aoya.telegami.hooks.messages.MessageCopyHook.install() }
     }
 }
