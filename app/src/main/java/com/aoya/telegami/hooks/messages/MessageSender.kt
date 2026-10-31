@@ -31,7 +31,9 @@ class MessageSender(private val target: TelegramSendResolver) {
         target.thread.get(selection.chat), target.currentSuggestion.get(selection.chat),
     )
 
-    fun execute(selection: MessageMenuActions.Selection, asCopy: Boolean, configKey: String, confirmationKey: String) {
+    fun repeat(selection: MessageMenuActions.Selection) {
+        val configKey = "enable_message_repeat"
+        val confirmationKey = "enable_repeat_confirmation"
         val owner = c.ownerField.get(selection.message) ?: return
         val slot = c.messageAccount.getInt(selection.message)
         val accountId = Telegami.telegram.accountIdForSlot(slot)
@@ -56,7 +58,7 @@ class MessageSender(private val target: TelegramSendResolver) {
                 check(!(target.slowMode.invoke(selection.chat, selection.activity.window.decorView) as Boolean)) {
                     "\u6162\u901f\u6a21\u5f0f\u9650\u5236\uff0c\u8bf7\u7b49\u5f85\u540e\u518d\u53d1\u9001"
                 }
-                prepare(selection, destination, asCopy)()
+                prepare(selection, destination, false)()
                 performed = true
                 Logger.i("Native send queued message=${key.messageId} topic=${destination.key.topicId}", "MessageTools", xposed = true)
             } catch (error: Throwable) {
@@ -92,19 +94,13 @@ class MessageSender(private val target: TelegramSendResolver) {
         scheduleRepeat: Int = 0,
     ): () -> Unit {
         val message = selection.message
-        val owner = c.ownerField.get(message) ?: error("\u6d88\u606f\u5185\u5bb9\u4e0d\u53ef\u7528")
+        val owner = validateSource(message)
         val dialog = destination.key.dialogId
         val slot = c.messageAccount.getInt(message)
         val controller = c.getController.invoke(null, slot)!!
         check(!(target.frozen.invoke(controller) as Boolean)) { "\u5f53\u524d\u8d26\u53f7\u65e0\u6cd5\u53d1\u9001\u6d88\u606f" }
         check(dialog != 0L && !(c.encryptedDialog.invoke(null, dialog) as Boolean)) { "\u6682\u4e0d\u652f\u6301\u6b64\u4f1a\u8bdd\u7c7b\u578b" }
-        check(c.id.getInt(owner) > 0 && c.sendState.getInt(owner) == 0) { "\u6d88\u606f\u5c1a\u672a\u53d1\u9001\u6210\u529f" }
-        check(c.action.get(owner) == null && c.richMessage.get(owner) == null &&
-            c.forbiddenKinds.none { it.invoke(message) as Boolean }) { "\u6682\u4e0d\u652f\u6301\u6b64\u7279\u6b8a\u6d88\u606f\u7c7b\u578b" }
         val media = c.mediaField.get(owner)
-        check(!MessageSendPolicy.isSelfDestructing(c.ttl.getInt(owner), media?.let(c.mediaTtl::getInt) ?: 0, c.ttlPeriod.getInt(owner))) {
-            "\u4e0d\u652f\u6301\u9605\u540e\u5373\u711a\u6d88\u606f"
-        }
         val chat = if (dialog < 0) target.getChat.invoke(controller, -dialog) else null
         check(dialog > 0 || chat != null) { "\u76ee\u6807\u7fa4\u4fe1\u606f\u4e0d\u53ef\u7528" }
         if (chat != null) {
@@ -132,7 +128,49 @@ class MessageSender(private val target: TelegramSendResolver) {
         target.paramsNotify.setBoolean(params, notify)
         target.paramsSchedule.setInt(params, scheduleDate)
         target.paramsScheduleRepeat.setInt(params, scheduleRepeat)
-        return { target.send.invoke(helper, params); Unit }
+        return {
+            target.send.invoke(helper, params)
+            Unit
+        }
+    }
+
+    fun validateSource(message: Any): Any {
+        val owner = c.ownerField.get(message) ?: error("\u6d88\u606f\u5185\u5bb9\u4e0d\u53ef\u7528")
+        check(c.id.getInt(owner) > 0 && c.sendState.getInt(owner) == 0) { "\u6d88\u606f\u5c1a\u672a\u53d1\u9001\u6210\u529f" }
+        check(c.action.get(owner) == null && c.richMessage.get(owner) == null &&
+            c.forbiddenKinds.none { it.invoke(message) as Boolean }) { "\u6682\u4e0d\u652f\u6301\u6b64\u7279\u6b8a\u6d88\u606f\u7c7b\u578b" }
+        val media = c.mediaField.get(owner)
+        check(!MessageSendPolicy.isSelfDestructing(c.ttl.getInt(owner), media?.let(c.mediaTtl::getInt) ?: 0, c.ttlPeriod.getInt(owner))) {
+            "\u4e0d\u652f\u6301\u9605\u540e\u5373\u711a\u6d88\u606f"
+        }
+        return owner
+    }
+
+    fun prepareComment(
+        slot: Int, destination: Destination, comment: CharSequence,
+        notify: Boolean, scheduleDate: Int, scheduleRepeat: Int,
+    ): () -> Unit {
+        val controller = c.getController.invoke(null, slot)!!
+        val dialog = destination.key.dialogId
+        val chat = if (dialog < 0) target.getChat.invoke(controller, -dialog) else null
+        check(chat == null || target.permissionChecks.getValue("canSendPlain").invoke(null, chat) == true) {
+            "\u76ee\u6807\u7fa4\u4e0d\u5141\u8bb8\u53d1\u9001\u6587\u672c"
+        }
+        val text = arrayOf(comment)
+        val entities = target.extractEntities.invoke(target.mediaControllerInstance.invoke(null, slot), text, true)
+        val params = target.textParams.invoke(null, text[0].toString(), dialog)!!
+        target.paramsEntities.set(params, entities)
+        target.paramsReply.set(params, destination.thread)
+        target.paramsTop.set(params, destination.thread)
+        target.paramsMonoPeer.setLong(params, destination.key.monoForumPeer)
+        target.paramsNotify.setBoolean(params, notify)
+        target.paramsSchedule.setInt(params, scheduleDate)
+        target.paramsScheduleRepeat.setInt(params, scheduleRepeat)
+        val helper = target.instance.invoke(null, slot)!!
+        return {
+            target.send.invoke(helper, params)
+            Unit
+        }
     }
 
     private fun copyParams(owner: Any, message: Any, destination: Destination): Any {

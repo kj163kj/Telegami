@@ -12,6 +12,7 @@ DECODE = [
     (2, 44797, "picker_select"), (2, 6117, "open_selected_topic"),
     (2, 49298, "delegate_default_d"), (2, 49379, "delegate_default_j"),
     (0, 45400, "destination_permissions"), (0, 40463, "ephemeral"),
+    (2, 51020, "picker_send_comment"), (0, 39496, "comment_entities"),
 ]
 
 SQL = """SELECT file_id,method_idx,descriptor FROM methods
@@ -21,6 +22,8 @@ WHERE method_kind IS NOT NULL AND (
 (class_descriptor='Lorg/telegram/ui/bz;' AND name IN ('<init>','M3')) OR
 (class_descriptor='Lorg/telegram/ui/ActionBar/r2;' AND name IN ('setCurrentAccount','getCurrentAccount','presentFragment','finishFragment')) OR
 (class_descriptor='Lorg/telegram/messenger/TopicsController;' AND name='findTopic') OR
+(class_descriptor='Lorg/telegram/messenger/MediaDataController;' AND name IN ('getInstance','getEntities')) OR
+(class_descriptor='Lorg/telegram/messenger/MessageObject;' AND name='<init>') OR
 (class_descriptor='Lorg/telegram/messenger/MessagesController;' AND name IN ('getChat','getTopicsController','isFrozen')) OR
 (class_descriptor='Lorg/telegram/messenger/ChatObject;' AND name='canManageMonoForum') OR
 (class_descriptor='Lorg/telegram/messenger/SendMessagesHelper;' AND name='canSendMessageToChat'))

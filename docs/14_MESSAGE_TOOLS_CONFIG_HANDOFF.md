@@ -12,10 +12,10 @@ There is no Legacy XSharedPreferences or world-readable file.
 | Key | Type | Default | Meaning / bounds |
 | --- | --- | --- | --- |
 | enable_message_repeat | Boolean | false | Repeat menu + native send |
-| enable_message_copy | Boolean | false | Protected-group text clipboard + Send as Copy |
+| enable_message_copy | Boolean | false | Protected-group text clipboard + Forward via native destination picker |
 | enable_edit_history | Boolean | false | Capture + history menu |
 | enable_repeat_confirmation | Boolean | true | Repeat confirmation |
-| enable_copy_confirmation | Boolean | true | Send as Copy confirmation, not clipboard confirmation |
+| enable_copy_confirmation | Boolean | true | Forward confirmation AFTER native destination selection, not clipboard confirmation |
 | edit_history_retention_days | Int | 30 | 1..3650; captured-at age |
 | edit_history_max_versions | Int | 100 | 2..1000 per account/dialog/message |
 
@@ -53,3 +53,20 @@ new limits apply on append/read. Data is never retroactively fetched.
 P14 JVM tests and debug build: p14-config.log.
 Actual LSPosed remote propagation and persistence across process restart remain
 UNVERIFIED without the framework/device.
+
+## Updated forward semantics (2026-10-31)
+
+The Telegram context-menu action formerly titled Send as Copy is now Forward
+(Chinese: 转发). It is visible only in groups/channels where Telegram reports
+isChatNoForwards. Normal chats retain Telegram's native Forward action only.
+The custom action opens Telegram's own dialog/topic destination picker and
+sends fresh messages to the selected destinations, NOT the source chat.
+Cancel/back performs no send. With enable_copy_confirmation=true, an extra
+confirmation appears after selection; false does not skip destination selection.
+Existing key names, defaults and Modern Remote Preferences persistence do not
+change. The separate management UI can update its wording independently; no
+management App UI/resources/navigation were modified in this repair.
+
+Repeat now keeps current topic/monoforum routing and no longer blocks ordinary
+chat auto-delete retention (ttl_period). Native send permissions still apply.
+See docs/17_TOPIC_REPEAT_FORWARD.md for exact DEX evidence and device test gaps.

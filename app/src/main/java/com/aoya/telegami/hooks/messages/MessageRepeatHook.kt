@@ -10,7 +10,7 @@ object MessageRepeatHook {
             MessageMenuActions.Action(
                 MessageMenuActions.REPEAT, "复读", "msg_forward",
                 { _, _ -> Config.isFeatureEnabled("enable_message_repeat") },
-                { sender.execute(it, false, "enable_message_repeat", "enable_repeat_confirmation") },
+                sender::repeat,
             ),
         )
     }

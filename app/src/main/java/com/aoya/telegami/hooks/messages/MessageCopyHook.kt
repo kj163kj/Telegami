@@ -10,13 +10,14 @@ import com.aoya.telegami.service.Config
 object MessageCopyHook {
     fun install() {
         val c = MessageMenuActions.target
-        val sender = MessageSender(TelegramSendResolver(c))
+        val forwardPicker = MessageForwardPicker(TelegramSendResolver(c))
         fun canCopy(chat: Any, message: Any): Boolean {
             if (!Config.isFeatureEnabled("enable_message_copy") || !c.isProtectedGroup(message, chat)) return false
             val owner = c.ownerField.get(message) ?: return false
             val media = c.mediaField.get(owner)
-            return c.ttl.getInt(owner) == 0 && c.ttlPeriod.getInt(owner) == 0 &&
-                (media == null || c.mediaTtl.getInt(media) == 0) &&
+            return !MessageSendPolicy.isSelfDestructing(
+                c.ttl.getInt(owner), media?.let(c.mediaTtl::getInt) ?: 0, c.ttlPeriod.getInt(owner),
+            ) &&
                 c.forbiddenKinds.none { it.invoke(message) as Boolean } &&
                 !(c.text.get(owner) as? String).isNullOrEmpty()
         }
@@ -39,10 +40,10 @@ object MessageCopyHook {
         )
         MessageMenuActions.register(
             MessageMenuActions.Action(
-                MessageMenuActions.SEND_COPY, "\u4f5c\u4e3a\u65b0\u6d88\u606f\u53d1\u9001", "msg_forward_replace",
-                { _, _ -> Config.isFeatureEnabled("enable_message_copy") },
-                { sender.execute(it, true, "enable_message_copy", "enable_copy_confirmation") },
-                fallbackIcons = listOf("msg_copy", "msg_forward"),
+                MessageMenuActions.SEND_COPY, "\u8f6c\u53d1", "msg_forward",
+                { chat, message -> MessageForwardSession.visible(Config.isFeatureEnabled("enable_message_copy"), c.isProtectedGroup(message, chat)) },
+                forwardPicker::open,
+                fallbackIcons = listOf("msg_forward_replace", "msg_copy"),
             ),
         )
     }
