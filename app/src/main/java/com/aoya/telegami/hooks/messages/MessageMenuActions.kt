@@ -22,6 +22,7 @@ object MessageMenuActions {
         val visible: (Any, Any) -> Boolean,
         val execute: (Selection) -> Unit,
         val fallbackIcons: List<String> = emptyList(),
+        val iconOverride: Int? = null,
     )
 
     private val actions = linkedMapOf<Int, Action>()
@@ -114,6 +115,7 @@ object MessageMenuActions {
     }
 
     private fun resolveIcon(chat: Any, action: Action): Int {
+        action.iconOverride?.let { return it }
         val names = buildList {
             add(action.icon)
             addAll(action.fallbackIcons)
