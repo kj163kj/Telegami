@@ -54,7 +54,14 @@ class TranslationManager(providers: List<TranslationProvider>, private val confi
 
     private suspend fun translateFormatted(
         provider: TranslationProvider, request: TranslationRequest, keep: Boolean,
-    ): TranslationResult = TranslationResult(provider.id, provider.translate(request))
+    ): TranslationResult {
+        if (provider.nativeEntities || !keep || request.content.entities.isEmpty())
+            return TranslationResult(provider.id, provider.translate(request))
+        val encoded = TranslationFormatting.encode(request.content)
+        val translated = provider.translate(request.copy(content = TranslationText(encoded.html)))
+        val decoded = TranslationFormatting.decode(encoded, translated.text)
+        return TranslationResult(provider.id, decoded.content, decoded.fallback)
+    }
 
     fun clearCache() = synchronized(cache) { cache.clear() }
 
