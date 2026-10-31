@@ -9,5 +9,6 @@ class TranslationSelectionTest {
         assertTrue(TranslationSelection.allowed("openai_compatible", true))
         assertTrue(TranslationSelection.allowed("google", false))
         assertFalse(TranslationSelection.allowed("unknown", true))
+        assertFalse(TranslationSelection.allowed("bing", true))
     }
 }

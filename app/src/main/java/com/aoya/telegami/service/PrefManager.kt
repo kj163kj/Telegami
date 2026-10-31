@@ -126,7 +126,7 @@ object PrefManager {
         strings: Map<String, String> = emptyMap(),
     ): Boolean = withContext(Dispatchers.IO) {
         if (strings[com.aoya.telegami.translation.TranslationSettings.AI_KEY]?.let {
-                it.isNotEmpty() && !it.startsWith(com.aoya.telegami.translation.TranslationSecretVault.PREFIX)
+                it.isNotEmpty() && runCatching { com.aoya.telegami.translation.TranslationSecretVault.decrypt(it) }.isFailure
             } == true) return@withContext false
         val preferences = remotePreferences ?: return@withContext false
         val success =

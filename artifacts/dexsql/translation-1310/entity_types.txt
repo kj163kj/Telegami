@@ -1,0 +1,31 @@
++-----------------------------------------------------------------+----------------------------------------------------------------------------+
+| class_descriptor                                                | descriptor                                                                 |
++-----------------------------------------------------------------+----------------------------------------------------------------------------+
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityBankCard;             | Lorg/telegram/tgnet/TLRPC$TL_messageEntityBankCard;-><init>()V             |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityBlockquote;           | Lorg/telegram/tgnet/TLRPC$TL_messageEntityBlockquote;-><init>()V           |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityBlockquote_layer180;  | Lorg/telegram/tgnet/TLRPC$TL_messageEntityBlockquote_layer180;-><init>()V  |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityBold;                 | Lorg/telegram/tgnet/TLRPC$TL_messageEntityBold;-><init>()V                 |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityBotCommand;           | Lorg/telegram/tgnet/TLRPC$TL_messageEntityBotCommand;-><init>()V           |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityCashtag;              | Lorg/telegram/tgnet/TLRPC$TL_messageEntityCashtag;-><init>()V              |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityCode;                 | Lorg/telegram/tgnet/TLRPC$TL_messageEntityCode;-><init>()V                 |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityCustomEmoji;          | Lorg/telegram/tgnet/TLRPC$TL_messageEntityCustomEmoji;-><init>()V          |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityDiffDelete;           | Lorg/telegram/tgnet/TLRPC$TL_messageEntityDiffDelete;-><init>()V           |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityDiffInsert;           | Lorg/telegram/tgnet/TLRPC$TL_messageEntityDiffInsert;-><init>()V           |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityDiffReplace;          | Lorg/telegram/tgnet/TLRPC$TL_messageEntityDiffReplace;-><init>()V          |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityEmail;                | Lorg/telegram/tgnet/TLRPC$TL_messageEntityEmail;-><init>()V                |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityFormattedDate;        | Lorg/telegram/tgnet/TLRPC$TL_messageEntityFormattedDate;-><init>()V        |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityHashtag;              | Lorg/telegram/tgnet/TLRPC$TL_messageEntityHashtag;-><init>()V              |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityItalic;               | Lorg/telegram/tgnet/TLRPC$TL_messageEntityItalic;-><init>()V               |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityMention;              | Lorg/telegram/tgnet/TLRPC$TL_messageEntityMention;-><init>()V              |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityMentionName;          | Lorg/telegram/tgnet/TLRPC$TL_messageEntityMentionName;-><init>()V          |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityMentionName_layer131; | Lorg/telegram/tgnet/TLRPC$TL_messageEntityMentionName_layer131;-><init>()V |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityPhone;                | Lorg/telegram/tgnet/TLRPC$TL_messageEntityPhone;-><init>()V                |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityPre;                  | Lorg/telegram/tgnet/TLRPC$TL_messageEntityPre;-><init>()V                  |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntitySpoiler;              | Lorg/telegram/tgnet/TLRPC$TL_messageEntitySpoiler;-><init>()V              |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityStrike;               | Lorg/telegram/tgnet/TLRPC$TL_messageEntityStrike;-><init>()V               |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityTextUrl;              | Lorg/telegram/tgnet/TLRPC$TL_messageEntityTextUrl;-><init>()V              |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityTonAddress;           | Lorg/telegram/tgnet/TLRPC$TL_messageEntityTonAddress;-><init>()V           |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityUnderline;            | Lorg/telegram/tgnet/TLRPC$TL_messageEntityUnderline;-><init>()V            |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityUnknown;              | Lorg/telegram/tgnet/TLRPC$TL_messageEntityUnknown;-><init>()V              |
+| Lorg/telegram/tgnet/TLRPC$TL_messageEntityUrl;                  | Lorg/telegram/tgnet/TLRPC$TL_messageEntityUrl;-><init>()V                  |
++-----------------------------------------------------------------+----------------------------------------------------------------------------+

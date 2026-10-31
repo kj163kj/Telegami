@@ -52,8 +52,10 @@ class MessageTranslationHook(
 
         xposed.hook(start).intercept { chain ->
             val instance = chain.thisObject!!
-            if (!settings().enabled || summarize.getBoolean(instance) || rich.get(instance) != null)
+            if (!settings().enabled || summarize.getBoolean(instance) || rich.get(instance) != null) {
+                states.remove(instance)?.job?.cancel()
                 return@intercept chain.proceed()
+            }
             val current = states.getOrPut(instance) {
                 val selection = opening.get() ?: run {
                     val raw = arrayOf<CharSequence>(source.get(instance) as? CharSequence ?: "")
@@ -64,14 +66,14 @@ class MessageTranslationHook(
                 State(selection)
             }
             current.job?.cancel()
+            account.setInt(instance, current.opening.request.account)
             val generation = ++current.generation
             val language = (toLanguage.get(instance) as? String)?.replace('_', '-')?.let { if (it == "nb") "no" else it }
                 ?: settings().targetLanguage
             val request = current.opening.request.copy(toLanguage = language)
             current.job = scope.launch(start = CoroutineStart.LAZY) {
                 try {
-                    if (!TranslationSelection.allowed(current.opening.provider, settings().aiConfigured))
-                        throw TranslationException(TranslationError.UNCONFIGURED)
+                    TranslationSelection.error(current.opening.provider, settings().aiConfigured)?.let { throw TranslationException(it) }
                     val result = manager.translate(request, current.opening.provider, force = current.opening.force)
                     ensureActive()
                     if (states[instance] === current && current.generation == generation) {
@@ -128,7 +130,7 @@ class MessageTranslationHook(
                 val labels = descriptors.map {
                     when {
                         it.ai -> settings().aiName + if (settings().aiConfigured) "" else " (\u672a\u914d\u7f6e)"
-                        it.id == "bing" -> "Bing (\u63a5\u53e3\u672a\u9a8c\u8bc1)"
+                        !it.selectable -> it.name + " (\u63a5\u53e3\u53d7\u9650\uff0c\u6682\u4e0d\u542f\u7528)"
                         else -> it.name
                     } as CharSequence
                 }.toTypedArray()
@@ -141,7 +143,9 @@ class MessageTranslationHook(
                     .invoke(dialog, labels, DialogInterface.OnClickListener { _, index ->
                         val id = descriptors.getOrNull(index)?.id ?: return@OnClickListener
                         if (!TranslationSelection.allowed(id, settings().aiConfigured)) {
-                            MessageMenuActions.toast(selection.activity, "\u8bf7\u5148\u5728\u6a21\u5757\u8bbe\u7f6e\u4e2d\u914d\u7f6e AI \u63a5\u53e3")
+                            MessageMenuActions.toast(selection.activity, if (id == "openai_compatible")
+                                "\u8bf7\u5148\u5728\u6a21\u5757\u8bbe\u7f6e\u4e2d\u914d\u7f6e AI \u63a5\u53e3"
+                                else "\u8be5\u7ffb\u8bd1\u6e90\u5f53\u524d\u4e0d\u53ef\u7528\uff0c\u672a\u53d1\u9001\u6d88\u606f\u5185\u5bb9")
                         } else {
                             scope.launch {
                                 if (!persistSelection(id, settings().targetLanguage))

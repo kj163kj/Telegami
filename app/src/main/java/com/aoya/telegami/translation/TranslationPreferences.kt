@@ -28,6 +28,9 @@ object TranslationPreferences {
             !TranslationSettings.booleanDefaults.keys.containsAll(booleans.keys)) return@withContext false
         if (strings.values.any { it.length > 16_000 } || apiKey?.let { it.length > 4096 || it.any { c -> c.code !in 32..126 } } == true)
             return@withContext false
+        val limits = mapOf(TranslationSettings.AI_NAME to 80, TranslationSettings.AI_MODEL to 256,
+            TranslationSettings.AI_BASE_URL to 4096, TranslationSettings.TARGET to 32, TranslationSettings.PROVIDER to 64)
+        if (strings.any { (key, value) -> value.length > (limits[key] ?: 16_000) }) return@withContext false
         if (strings[TranslationSettings.PROVIDER]?.let { it !in TranslationProviderRegistry.ids } == true) return@withContext false
         if (strings[TranslationSettings.TARGET]?.let { !validLanguage(it) } == true) return@withContext false
         val base = strings[TranslationSettings.AI_BASE_URL]

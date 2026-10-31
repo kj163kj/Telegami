@@ -43,7 +43,7 @@ class OpenAICompatibleTranslatorTest {
     }
 
     @Test fun errorsAndMalformedResponses() = runBlocking {
-        for ((status, expected) in listOf(401 to TranslationError.AUTH, 404 to TranslationError.UNAVAILABLE, 429 to TranslationError.RATE_LIMIT, 500 to TranslationError.SERVER)) {
+        for ((status, expected) in listOf(400 to TranslationError.UNAVAILABLE, 401 to TranslationError.AUTH, 404 to TranslationError.UNAVAILABLE, 429 to TranslationError.RATE_LIMIT, 500 to TranslationError.SERVER)) {
             try { provider(status, "private body").testConnection(); fail() }
             catch (e: TranslationException) { assertEquals(expected, e.code); assertFalse(e.toString().contains("private")) }
         }

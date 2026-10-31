@@ -31,7 +31,11 @@ class YandexTranslator(private val http: TranslationHttp) : TranslationProvider 
         val url = "https://translate.yandex.net/api/v1/tr.json/translate".toHttpUrl().newBuilder()
             .addQueryParameter("srv", "android").addQueryParameter("uuid", session)
             .addQueryParameter("id", "${uuid()}-9-0").build()
-        fun language(code: String) = when (code.lowercase()) { "zh-cn", "zh-hans", "zh-tw", "zh-hant" -> "zh"; else -> code }
+        fun language(code: String) = when (code.lowercase()) {
+            "zh-cn", "zh-hans" -> "zh"
+            "zh-tw", "zh-hant" -> throw TranslationException(TranslationError.UNSUPPORTED_LANGUAGE)
+            else -> code
+        }
         val language = if (request.fromLanguage == "auto") language(request.toLanguage)
             else "${language(request.fromLanguage)}-${language(request.toLanguage)}"
         val json = JsonParser.parseString(http.execute(Request.Builder().url(url)

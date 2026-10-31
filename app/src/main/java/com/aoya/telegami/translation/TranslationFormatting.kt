@@ -15,10 +15,13 @@ object TranslationFormatting {
         "Email" to "span", "Hashtag" to "span", "BotCommand" to "span", "Phone" to "span", "Cashtag" to "span")
     private val verbatim = setOf("CustomEmoji", "Mention", "Url", "Email", "Hashtag", "BotCommand", "Phone", "Cashtag", "Code", "Pre")
 
-    fun encode(source: TranslationText): Encoded {
-        val valid = source.entities.all { it.kind in tags && it.offset >= 0 && it.length > 0 &&
+    fun validEntities(source: TranslationText): Boolean = source.entities.size <= 512 &&
+        source.entities.all { it.kind in tags && it.offset >= 0 && it.length > 0 &&
             it.offset.toLong() + it.length <= source.text.length && boundary(source.text, it.offset) && boundary(source.text, it.offset + it.length) }
-        if (!valid || source.entities.size > 512) return Encoded(source, escape(source.text), emptyMap(), false)
+
+    fun encode(source: TranslationText): Encoded {
+        val valid = validEntities(source)
+        if (!valid) return Encoded(source, escape(source.text), emptyMap(), false)
         val points = (listOf(0, source.text.length) + source.entities.flatMap { listOf(it.offset, it.offset + it.length) }).distinct().sorted()
         val html = StringBuilder()
         val counts = mutableMapOf<Int, Int>()

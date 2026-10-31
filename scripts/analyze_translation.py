@@ -22,6 +22,8 @@ class_descriptor='Lorg/telegram/tgnet/RequestDelegate;' OR
 callee_class='Lorg/telegram/tgnet/TLRPC$TL_messages_translateText;' OR
 (method_class='Lorg/telegram/ui/Components/r51;' AND callee_class IN
 ('Lorg/telegram/tgnet/ConnectionsManager;','Lorg/telegram/ui/Components/r51;')) ORDER BY file_id,method_idx""",
+    "entity_types": """SELECT DISTINCT class_descriptor,descriptor FROM methods WHERE method_kind IS NOT NULL
+AND name='<init>' AND class_descriptor LIKE 'Lorg/telegram/tgnet/TLRPC$TL_messageEntity%' ORDER BY class_descriptor""",
 }
 DECODE = [(2, 37477, "sheet_constructor"), (2, 37490, "sheet_request"),
           (2, 37496, "sheet_render"), (2, 37497, "sheet_callback"), (2, 37494, "sheet_dismiss"),

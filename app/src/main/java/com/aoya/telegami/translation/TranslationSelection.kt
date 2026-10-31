@@ -10,6 +10,13 @@ data class TranslationHookSettings(
 
 /** Source selection is explicit; an unavailable AI never silently falls back to a different service. */
 object TranslationSelection {
-    fun allowed(providerId: String, aiConfigured: Boolean): Boolean =
-        providerId in TranslationProviderRegistry.ids && (providerId != "openai_compatible" || aiConfigured)
+    fun error(providerId: String, aiConfigured: Boolean): TranslationError? {
+        val provider = TranslationProviderRegistry.descriptors.firstOrNull { it.id == providerId }
+        return when {
+            provider == null || !provider.selectable -> TranslationError.UNAVAILABLE
+            provider.ai && !aiConfigured -> TranslationError.UNCONFIGURED
+            else -> null
+        }
+    }
+    fun allowed(providerId: String, aiConfigured: Boolean): Boolean = error(providerId, aiConfigured) == null
 }

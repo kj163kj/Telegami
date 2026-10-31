@@ -35,4 +35,36 @@ class TranslationManagerTest {
         try { manager.translate(TranslationRequest(TranslationText("hello"), "zh")); fail() }
         catch (e: TranslationException) { assertEquals(TranslationError.TIMEOUT, e.code) }
     }
+
+    @Test fun providerFailureNeverSendsTextToAnotherSource() = runBlocking {
+        var fallbackCalls = 0
+        val failed = object : TranslationProvider {
+            override val id = "openai_compatible"
+            override suspend fun translate(request: TranslationRequest): TranslationText = throw TranslationException(TranslationError.AUTH)
+        }
+        val fallback = object : TranslationProvider {
+            override val id = "google"
+            override suspend fun translate(request: TranslationRequest): TranslationText { fallbackCalls++; return TranslationText("wrong") }
+        }
+        val manager = TranslationManager(listOf(failed, fallback)) { TranslationConfig(providerId = "openai_compatible") }
+        try { manager.translate(TranslationRequest(TranslationText("private"), "en")); fail() }
+        catch (e: TranslationException) { assertEquals(TranslationError.AUTH, e.code) }
+        assertEquals(0, fallbackCalls)
+    }
+
+    @Test fun emptyOutputIsAnErrorAndInvalidEntityRangesAreDropped() = runBlocking {
+        var output = TranslationText("")
+        val provider = object : TranslationProvider {
+            override val id = "google"
+            override suspend fun translate(request: TranslationRequest) = output
+        }
+        val manager = TranslationManager(listOf(provider)) { TranslationConfig() }
+        val request = TranslationRequest(TranslationText("hello"), "en")
+        try { manager.translate(request); fail() }
+        catch (e: TranslationException) { assertEquals(TranslationError.INVALID_RESPONSE, e.code) }
+        output = TranslationText("hello", listOf(TranslationEntity("Bold", -1, 5)))
+        val result = manager.translate(request)
+        assertTrue(result.formattingFallback)
+        assertTrue(result.content.entities.isEmpty())
+    }
 }

@@ -41,10 +41,10 @@ interface TranslationProvider {
 }
 
 object TranslationProviderRegistry {
-    data class Descriptor(val id: String, val name: String, val ai: Boolean = false)
+    data class Descriptor(val id: String, val name: String, val ai: Boolean = false, val selectable: Boolean = true)
     val descriptors = listOf(
         Descriptor("google", "Google Translate"), Descriptor("yandex", "Yandex Translate"),
-        Descriptor("bing", "Bing Translator"), Descriptor("telegram_native", "Telegram Native"),
+        Descriptor("bing", "Bing Translator", selectable = false), Descriptor("telegram_native", "Telegram Native"),
         Descriptor("openai_compatible", "OpenAI-Compatible", true),
     )
     val ids = descriptors.map { it.id }.toSet()

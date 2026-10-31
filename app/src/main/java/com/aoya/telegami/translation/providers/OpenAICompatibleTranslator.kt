@@ -51,6 +51,7 @@ class OpenAICompatibleTranslator(private val http: TranslationHttp, private val 
         val result = choice.getAsJsonObject("message")["content"]
         if (result == null || !result.isJsonPrimitive || !result.asJsonPrimitive.isString || result.asString.isBlank())
             throw TranslationException(TranslationError.INVALID_RESPONSE)
+        if (result.asString.length > 64_000) throw TranslationException(TranslationError.TOO_LONG)
         return result.asString
     }
 

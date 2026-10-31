@@ -1,0 +1,250 @@
+{
+  "jvm": {
+    "tests": 128,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "name": "com.aoya.telegami.core.ApplicationIdentityTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.core.TelegramTargetTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.hooks.DeletionPermitsTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.hooks.messages.ForwardMediaPolicyTest",
+      "tests": "9",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.hooks.messages.HistoryContentTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.hooks.messages.HistoryRevisionsTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.hooks.messages.HistoryVersionTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.hooks.messages.MessageActionGateTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.hooks.messages.MessageForwardSessionTest",
+      "tests": "9",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.hooks.messages.MessageHistoryDaoTest",
+      "tests": "18",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.hooks.messages.MessageMenuListsTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.hooks.messages.MessageSendPolicyTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.hooks.messages.MessageToolSettingsTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.hooks.messages.TextEntityTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.hooks.PendingDeletionKeysTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.translation.LlmPromptManagerTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.translation.OpenAICompatibleTranslatorTest",
+      "tests": "4",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.translation.TranslationFormattingTest",
+      "tests": "6",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.translation.TranslationHttpTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.translation.TranslationManagerTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.translation.TranslationPreferencesTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.translation.TranslationSelectionTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.translation.WebTranslatorsTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.ui.components.ModuleStatusCardTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.ui.navigation.BottomTabTest",
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.ui.screens.FeaturesMessageToolsTest",
+      "tests": "4",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.util.ExactReflectionTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.util.LocalMediaSnapshotTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.aoya.telegami.util.ScopedOverridesTest",
+      "tests": "6",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "live_probes": [
+    "LIVE_FORMAT google case=Bold fallback=false entities=1",
+    "LIVE_FORMAT google case=Italic fallback=false entities=1",
+    "LIVE_FORMAT google case=Underline fallback=false entities=1",
+    "LIVE_FORMAT google case=Strike fallback=false entities=1",
+    "LIVE_FORMAT google case=TextUrl fallback=false entities=1",
+    "LIVE_FORMAT google case=Spoiler fallback=false entities=1",
+    "LIVE_FORMAT google case=Blockquote fallback=false entities=1",
+    "LIVE_FORMAT google case=Pre fallback=false entities=1",
+    "LIVE_FORMAT google case=Mention fallback=false entities=1",
+    "LIVE_FORMAT google case=CustomEmoji fallback=false entities=1",
+    "LIVE_FORMAT yandex case=Bold fallback=false entities=1",
+    "LIVE_FORMAT yandex case=Italic fallback=false entities=1",
+    "LIVE_FORMAT yandex case=Underline fallback=false entities=1",
+    "LIVE_FORMAT yandex case=Strike fallback=false entities=1",
+    "LIVE_FORMAT yandex case=TextUrl fallback=false entities=1",
+    "LIVE_FORMAT yandex case=Spoiler fallback=false entities=1",
+    "LIVE_FORMAT yandex case=Blockquote fallback=false entities=1",
+    "LIVE_FORMAT yandex case=Pre fallback=true entities=0",
+    "LIVE_FORMAT yandex case=Mention fallback=false entities=1",
+    "LIVE_FORMAT yandex case=CustomEmoji fallback=false entities=1",
+    "LIVE_FORMAT google fallback=false entities=1 text=\u4f60\u597d\u4e16\u754c\u3002",
+    "LIVE google auto->en OK: Hello World.",
+    "LIVE google auto->zh-CN OK: \u4f60\u597d\u4e16\u754c\u3002",
+    "LIVE google auto->zh-CN OK: \u4f60\u597d\u4e16\u754c\u3002",
+    "LIVE google auto->ja OK: \u3053\u3093\u306b\u3061\u306f\u4e16\u754c\u3002",
+    "LIVE yandex auto->en OK: Hello, world.",
+    "LIVE yandex auto->zh-CN OK: \u4f60\u597d\uff0c\u4e16\u754c\uff01.",
+    "LIVE yandex auto->zh-CN OK: \u55e8\uff0c\u4e16\u754c\u3002",
+    "LIVE yandex auto->ja OK: \u3053\u3093\u306b\u3061\u306f\u3002",
+    "LIVE bing auto->en FAILED: AUTH",
+    "LIVE bing auto->zh-CN FAILED: AUTH",
+    "LIVE bing auto->zh-CN FAILED: AUTH",
+    "LIVE bing auto->ja FAILED: AUTH"
+  ],
+  "device": "UNVERIFIED: runtime not executed by this script",
+  "keystore_instrumentation": "UNVERIFIED: compiled only"
+}

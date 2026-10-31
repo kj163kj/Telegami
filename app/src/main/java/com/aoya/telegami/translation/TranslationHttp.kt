@@ -9,7 +9,7 @@ import okhttp3.Request
 import okhttp3.Response
 import java.io.ByteArrayOutputStream
 import java.io.IOException
-import java.net.SocketTimeoutException
+import java.io.InterruptedIOException
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -22,7 +22,7 @@ class TranslationHttp(val client: OkHttpClient = defaultClient()) {
         call.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 if (continuation.isActive) continuation.resumeWithException(
-                    TranslationException(if (e is SocketTimeoutException) TranslationError.TIMEOUT else TranslationError.NETWORK),
+                    TranslationException(if (e is InterruptedIOException) TranslationError.TIMEOUT else TranslationError.NETWORK),
                 )
             }
 
@@ -46,7 +46,9 @@ class TranslationHttp(val client: OkHttpClient = defaultClient()) {
                     if (continuation.isActive) continuation.resume(value)
                 } catch (e: Exception) {
                     if (continuation.isActive) continuation.resumeWithException(
-                        if (e is TranslationException) e else TranslationException(TranslationError.NETWORK),
+                        if (e is TranslationException) e else TranslationException(
+                            if (e is InterruptedIOException) TranslationError.TIMEOUT else TranslationError.NETWORK,
+                        ),
                     )
                 }
             }

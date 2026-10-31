@@ -1,6 +1,7 @@
 package com.aoya.telegami.translation
 
 import com.aoya.telegami.translation.providers.GoogleTranslator
+import com.aoya.telegami.translation.providers.YandexTranslator
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Assume.assumeTrue
@@ -56,5 +57,28 @@ class TranslationFormattingTest {
             println("LIVE_FORMAT google fallback=${result.formattingFallback} entities=${result.content.entities.size} text=${result.content.text}")
             assertFalse(result.content.text.contains("data-tg"))
         } catch (e: TranslationException) { println("LIVE_FORMAT google FAILED ${e.code}") }
+    }
+
+    @Test fun liveFormatMatrix() = runBlocking {
+        assumeTrue(System.getenv("TELEGAMI_TRANSLATION_LIVE") == "1")
+        val http = TranslationHttp()
+        val examples = listOf("Bold", "Italic", "Underline", "Strike", "TextUrl", "Spoiler", "Blockquote", "Pre", "Mention", "CustomEmoji")
+        for (provider in listOf(GoogleTranslator(http), YandexTranslator(http))) {
+            val manager = TranslationManager(listOf(provider)) { TranslationConfig(providerId = provider.id) }
+            for (kind in examples) {
+                val sample = when (kind) {
+                    "Pre" -> TranslationText("println(1)\nHello world", listOf(TranslationEntity(kind, 0, 10, language = "kotlin")))
+                    "Mention" -> TranslationText("@telegram Hello world", listOf(TranslationEntity(kind, 0, 9)))
+                    "CustomEmoji" -> TranslationText("😀 Hello world", listOf(TranslationEntity(kind, 0, 2, identity = 123)))
+                    else -> TranslationText("Hello world.\n\nSecond paragraph. 😀", listOf(TranslationEntity(kind, 0, 5, url = "https://example.com")))
+                }
+                try {
+                    val result = manager.translate(TranslationRequest(sample, "zh-CN"), force = true)
+                    println("LIVE_FORMAT ${provider.id} case=$kind fallback=${result.formattingFallback} entities=${result.content.entities.size}")
+                    assertFalse(result.content.text.contains("data-tg"))
+                    if (!result.formattingFallback) assertEquals(kind, result.content.entities.single().kind)
+                } catch (e: TranslationException) { println("LIVE_FORMAT ${provider.id} case=$kind FAILED ${e.code}") }
+            }
+        }
     }
 }
