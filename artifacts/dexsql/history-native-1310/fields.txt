@@ -1,0 +1,15 @@
++---------+-----------+--------------------------------------------------------------------------------------------+
+| file_id | field_idx | descriptor                                                                                 |
++---------+-----------+--------------------------------------------------------------------------------------------+
+| 0       | 43324     | Lorg/telegram/tgnet/TLRPC$Message;->edit_hide:Z                                            |
+| 0       | 43375     | Lorg/telegram/tgnet/TLRPC$Message;->reply_to:Lorg/telegram/tgnet/TLRPC$MessageReplyHeader; |
+| 0       | 43398     | Lorg/telegram/tgnet/TLRPC$Message;->ttl:I                                                  |
+| 0       | 43399     | Lorg/telegram/tgnet/TLRPC$Message;->ttl_period:I                                           |
+| 2       | 15811     | Lorg/telegram/tgnet/TLRPC$Message;->edit_hide:Z                                            |
+| 2       | 15865     | Lorg/telegram/tgnet/TLRPC$Message;->reply_to:Lorg/telegram/tgnet/TLRPC$MessageReplyHeader; |
+| 2       | 15888     | Lorg/telegram/tgnet/TLRPC$Message;->ttl:I                                                  |
+| 2       | 15889     | Lorg/telegram/tgnet/TLRPC$Message;->ttl_period:I                                           |
+| 2       | 28615     | Lorg/telegram/ui/ActionBar/x0;->F:Z                                                        |
+| 2       | 31097     | Lorg/telegram/ui/Cells/u1;->M7:Z                                                           |
+| 3       | 7290      | Lorg/telegram/tgnet/TLRPC$Message;->reply_to:Lorg/telegram/tgnet/TLRPC$MessageReplyHeader; |
++---------+-----------+--------------------------------------------------------------------------------------------+

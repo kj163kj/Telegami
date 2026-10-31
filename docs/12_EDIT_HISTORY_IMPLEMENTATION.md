@@ -1,5 +1,8 @@
 # P12-P13: Edit history
 
+Historical phase record. The capture scope and generic viewer described below
+are superseded by `19_NATIVE_HISTORY_CAPTURE_FIX.md` (2026-10-31).
+
 P12 implements the exact storage runnable BEFORE interceptor, old row read by
 account-owned DB + dialog + message ID, TL serialization, immutable snapshots
 and content hashing. See report 09 for the verified call chain and DEX evidence.
