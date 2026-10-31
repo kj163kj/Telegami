@@ -4,7 +4,6 @@ import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.Toast
 import com.aoya.telegami.Telegami
 import com.aoya.telegami.service.Config
 import com.aoya.telegami.util.SecretMedia
@@ -15,7 +14,6 @@ import com.aoya.telegami.virt.messenger.MessageObject
 import com.aoya.telegami.virt.ui.SecretMediaViewer
 import com.aoya.telegami.virt.ui.components.BulletinFactory
 import io.github.libxposed.api.XposedInterface
-import java.io.File
 import com.aoya.telegami.core.obfuscate.ResolverManager as resolver
 
 object PreventSecretMediaDeletion {
@@ -45,70 +43,24 @@ object PreventSecretMediaDeletion {
             if (!hasResult) result = chain.proceed(args.toTypedArray())
             result
         }
-        if (Telegami.packageName == "xyz.nextalone.nagram") {
-            val cName1 = "org.telegram.ui.Stories.StoriesStorage\$\$ExternalSyntheticLambda5"
-
-            val lambdaClass = classLoader.loadClass(cName1)
-            val run = lambdaClass.declaredMethods.first { it.name == "run" }.apply { isAccessible = true }
-            xposed.hook(run).intercept { chain ->
-                val args = chain.args.toMutableList()
-                var result: Any? = null
-                var hasResult = false
-                try {
-                    val dialogId =
-                        lambdaClass.getDeclaredField("f\$1").apply { isAccessible = true }.get(chain.thisObject) as? Long
-                            ?: return@intercept chain.proceed(args.toTypedArray())
-                    val mIds =
-                        lambdaClass.getDeclaredField("f\$2").apply { isAccessible = true }.get(chain.thisObject) as? ArrayList<Int>
-                            ?: return@intercept chain.proceed(args.toTypedArray())
-                    val accountId = Telegami.telegram.accountIdForController(chain.thisObject!!)
-                    if (Globals.handleDeletedMessages(dialogId, mIds, accountId)) return@intercept chain.proceed(args.toTypedArray())
-                    hasResult = true
-                } catch (throwable: Throwable) {
-                    Log.e("Telegami", "Hook callback failed before ${run.name}", throwable)
-                }
-                if (!hasResult) result = chain.proceed(args.toTypedArray())
-                result
+        val emptyMedia = classLoader.findMethod(MESSAGES_STORAGE_CN, "emptyMessagesMedia")
+        xposed.hook(emptyMedia).intercept { chain ->
+            val args = chain.args.toMutableList()
+            var result: Any? = null
+            var hasResult = false
+            try {
+                val dialogId = args[0] as Long
+                val mIds = args[1] as ArrayList<Int>
+                val accountId = Telegami.telegram.accountIdForController(chain.thisObject!!)
+                if (Globals.handleDeletedMessages(dialogId, mIds, accountId)) return@intercept chain.proceed(args.toTypedArray())
+                hasResult = true
+            } catch (throwable: Throwable) {
+                Log.e("Telegami", "Hook callback failed before ${emptyMedia.name}", throwable)
             }
-        } else {
-            val emptyMedia = classLoader.findMethod(MESSAGES_STORAGE_CN, "emptyMessagesMedia")
-            xposed.hook(emptyMedia).intercept { chain ->
-                val args = chain.args.toMutableList()
-                var result: Any? = null
-                var hasResult = false
-                try {
-                    val dialogId = args[0] as Long
-                    val mIds = args[1] as ArrayList<Int>
-                    val accountId = Telegami.telegram.accountIdForController(chain.thisObject!!)
-                    if (Globals.handleDeletedMessages(dialogId, mIds, accountId)) return@intercept chain.proceed(args.toTypedArray())
-                    hasResult = true
-                } catch (throwable: Throwable) {
-                    Log.e("Telegami", "Hook callback failed before ${emptyMedia.name}", throwable)
-                }
-                if (!hasResult) result = chain.proceed(args.toTypedArray())
-                result
-            }
+            if (!hasResult) result = chain.proceed(args.toTypedArray())
+            result
         }
-        if (Telegami.packageName == "tw.nekomimi.nekogram") {
-            // Nekogram 12.10.3 inlines openMedia into u.R(w32, float, float).
-            val openMedia = classLoader.findMethod("org.telegram.ui.u", "R", 3)
-            xposed.hook(openMedia).intercept { chain ->
-                val result = chain.proceed(chain.args.toTypedArray())
-                try {
-                    val viewerClass = classLoader.loadClass(resolver.get(SECRET_MEDIA_VIEWER_CN))
-                    val field =
-                        viewerClass
-                            .getDeclaredField(resolver.getField(SECRET_MEDIA_VIEWER_CN, "activeViewer"))
-                            .apply { isAccessible = true }
-                    val viewer = field.get(null)?.let(::SecretMediaViewer) ?: return@intercept result
-                    val msgObj = viewer.currentMessageObject ?: return@intercept result
-                    if (msgObj.isSecretMedia()) addDownloadItem(viewer, msgObj)
-                } catch (throwable: Throwable) {
-                    Log.e("Telegami", "Failed to add secret-media download item", throwable)
-                }
-                result
-            }
-        } else if (Telegami.packageName == "org.telegram.messenger") {
+        if (Telegami.packageName == "org.telegram.messenger") {
             // Telegram 12.10.3 inlines SecretMediaViewer.openMedia into ao.t0.
             val openMedia = classLoader.findMethod("org.telegram.ui.ao", "t0")
             xposed.hook(openMedia).intercept { chain ->

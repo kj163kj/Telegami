@@ -29,7 +29,7 @@ class ItemOptions private constructor(
         onClickListener: Runnable,
     ): ItemOptions =
         apply {
-            if (Telegami.packageName in FOUR_ARGUMENT_ADD_CLIENTS) {
+            if (Telegami.packageName == "org.telegram.messenger") {
                 instance
                     .asResolver()
                     .firstMethod {
@@ -62,11 +62,6 @@ class ItemOptions private constructor(
 
     companion object {
         private const val OBJ_PATH = "org.telegram.ui.Components.ItemOptions"
-        private val FOUR_ARGUMENT_ADD_CLIENTS =
-            setOf(
-                "org.telegram.messenger",
-                "tw.nekomimi.nekogram",
-            )
 
         fun makeOptions(
             fragment: Any,

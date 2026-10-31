@@ -1,7 +1,7 @@
 package com.aoya.telegami.core
 
 object TelegramTarget {
-    val PACKAGE_NAMES = setOf("org.telegram.messenger", "org.telegram.messenger.web")
+    val PACKAGE_NAMES = Constants.SUPPORTED_TELEGRAM_PACKAGES.keys
 
     fun rejectionReason(
         packageName: String,

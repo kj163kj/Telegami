@@ -1,6 +1,5 @@
 package com.aoya.telegami.hooks
 
-import com.aoya.telegami.Telegami
 import com.aoya.telegami.service.Config
 import com.aoya.telegami.service.UserConfig
 import com.aoya.telegami.virt.tgnet.TLRPC
@@ -14,7 +13,6 @@ object ApplyTheme {
     const val PEER_COLOR_ACTIVITY_CN = "org.telegram.ui.PeerColorActivity"
     const val USER_CONFIG_CN = "org.telegram.messenger.UserConfig"
     fun install(xposed: XposedInterface, classLoader: ClassLoader) {
-        if (Telegami.packageName in listOf("uz.unnarsx.cherrygram", "xyz.nextalone.nagram")) return
         if (!Config.isFeatureEnabled("UnlockChannelFeatures")) return
         val applyMethod = classLoader.findMethod(PEER_COLOR_ACTIVITY_CN, "apply")
         xposed.hook(applyMethod).intercept { chain ->

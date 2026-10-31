@@ -1,7 +1,6 @@
 package com.aoya.telegami.hooks
 
 import android.util.Log
-import com.aoya.telegami.Telegami
 import com.aoya.telegami.service.Config
 import com.aoya.telegami.util.findMethod
 import com.aoya.telegami.virt.messenger.FileLoadOperation
@@ -14,13 +13,11 @@ object BoostDownload {
     const val BOOST_NONE = 0
     const val BOOST_ON = 1
     const val BOOST_EXTREME = 2
-    val EXCLUDED_PACKAGE = listOf("it.octogram.android", "tw.nekomimi.nekogram", "uz.unnarsx.cherrygram")
 
     fun install(
         xposed: XposedInterface,
         classLoader: ClassLoader,
     ) {
-        if (Telegami.packageName in EXCLUDED_PACKAGE) return
         val method = classLoader.findMethod(FILE_LOAD_OPERATION_CN, "updateParams")
         xposed.hook(method).intercept { chain ->
             val args = chain.args.toMutableList()

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Version checker for Telegram variants.
+Version checker for official Telegram.
 Checks GitHub releases and APKMirror for new versions.
 Outputs JSON and creates GitHub issues for updates.
 """
@@ -14,19 +14,13 @@ from pathlib import Path
 
 import requests
 
-# Telegram variants to track
+# Track the official stable release feed, not third-party clients.
 TELEGRAM_VARIANTS = {
     "org.telegram.messenger": {
         "name": "Telegram (Official)",
         "github": None,
         "apkmirror": "telegram-fz-llc/telegram",
         "package_name": "org.telegram.messenger",
-    },
-    "tw.nekomimi.nekogram": {
-        "name": "Nekogram",
-        "github": "Nekogram/Nekogram",
-        "apkmirror": "mimiworks/nekogram",
-        "package_name": "tw.nekomimi.nekogram",
     },
 }
 

@@ -22,9 +22,9 @@ class BulletinFactory(
                     .resolve()
                     .firstMethod {
                         name = resolver.getMethod(OBJ_PATH, "createSaveToGalleryBulletin")
-                        parameterCount = if (Telegami.packageName in TWO_ARGUMENT_CLIENTS) 2 else 3
+                        parameterCount = if (Telegami.packageName == "org.telegram.messenger") 2 else 3
                     }.let {
-                        if (Telegami.packageName in TWO_ARGUMENT_CLIENTS) {
+                        if (Telegami.packageName == "org.telegram.messenger") {
                             it.invoke(ctx, video)
                         } else {
                             it.invoke(ctx, video, arg3)
@@ -32,10 +32,5 @@ class BulletinFactory(
                     }!!,
             )
 
-        private val TWO_ARGUMENT_CLIENTS =
-            setOf(
-                "org.telegram.messenger",
-                "tw.nekomimi.nekogram",
-            )
     }
 }

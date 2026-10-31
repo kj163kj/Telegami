@@ -1,33 +1,19 @@
 package com.aoya.telegami.core.obfuscate
 
+import com.aoya.telegami.core.TelegramTarget
 import com.aoya.telegami.util.loge
-import com.aoya.telegami.util.logw
 
 object ResolverManager {
     private lateinit var resolver: Resolver
-
-    private val packageToVariant =
-        mapOf(
-            "it.octogram.android" to "octogram",
-            "org.telegram.messenger" to "telegram",
-            "org.telegram.messenger.web" to "telegram",
-            "tw.nekomimi.nekogram" to "nekogram",
-            "uz.unnarsx.cherrygram" to "cherrygram",
-        )
 
     fun init(
         packageName: String,
         modulePath: String,
     ) {
+        require(packageName in TelegramTarget.PACKAGE_NAMES) { "Unsupported Telegram package: $packageName" }
         resolver =
             try {
-                val variantName = packageToVariant[packageName]
-                if (variantName != null) {
-                    JsonResolver.fromModuleAssets(modulePath, variantName)
-                } else {
-                    logw("Unknown package $packageName")
-                    Default
-                }
+                JsonResolver.fromModuleAssets(modulePath, "telegram")
             } catch (e: Exception) {
                 loge("Telegami: Failed to load mappings", e)
                 Default

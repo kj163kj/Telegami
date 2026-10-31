@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="xposed_scope">
-        <item>it.octogram.android</item>
-        <item>nu.gpu.nagram</item>
-        <item>org.forkclient.messenger.beta</item>
-        <item>org.forkgram.messenger</item>
-        <item>org.telegram.group</item>
         <item>org.telegram.messenger</item>
-        <item>org.telegram.messenger.beta</item>
         <item>org.telegram.messenger.web</item>
-        <item>org.telegram.plus</item>
-        <item>tw.nekomimi.nekogram</item>
-        <item>uz.unnarsx.cherrygram</item>
-        <item>xyz.nextalone.nagram</item>
     </string-array>
 
     <string-array name="hide_seen_texts">

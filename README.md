@@ -1,5 +1,16 @@
 # Telegami
 
+## Supported Telegram Apps
+
+Only official Android Telegram stable 13.1.x is supported:
+
+- Google Play: `org.telegram.messenger`.
+- Website: `org.telegram.messenger.web`.
+
+Third-party clients and Telegram beta builds are not supported. The module uses
+LSPosed Modern API 102. NagramX-derived message tools and the original repeat
+icon are retained; they do not require or enable the NagramX client.
+
 <div align="center">
 
 ![Telegami](https://socialify.git.ci/aoya111/Telegami/image?description=1&font=Inter&language=1&name=1&pattern=Floating+Cogs&theme=Auto)

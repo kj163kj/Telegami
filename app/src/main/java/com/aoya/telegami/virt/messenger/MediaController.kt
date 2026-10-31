@@ -38,21 +38,12 @@ class MediaController {
                     }
                 }
 
-            if (Telegami.packageName in listOf("it.octogram.android", "tw.nekomimi.nekogram")) {
-                (Telegami.loadClass(resolver.get(OBJ_PATH)) as Class<Any>)
-                    .resolve()
-                    .firstMethod {
-                        name = resolver.getMethod(OBJ_PATH, "saveFile")
-                        parameterCount = 7
-                    }.invoke(fullPath, context, type, filename, mime, callback, true)
-            } else {
-                (Telegami.loadClass(resolver.get(OBJ_PATH)) as Class<Any>)
-                    .resolve()
-                    .firstMethod {
-                        name = resolver.getMethod(OBJ_PATH, "saveFile")
-                        parameterCount = 6
-                    }.invoke(fullPath, context, type, filename, mime, callback)
-            }
+            (Telegami.loadClass(resolver.get(OBJ_PATH)) as Class<Any>)
+                .resolve()
+                .firstMethod {
+                    name = resolver.getMethod(OBJ_PATH, "saveFile")
+                    parameterCount = 6
+                }.invoke(fullPath, context, type, filename, mime, callback)
         }
     }
 }

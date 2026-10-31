@@ -24,7 +24,7 @@ object ProfileDetails {
         xposed: XposedInterface,
         classLoader: ClassLoader,
     ) {
-        val method = classLoader.findMethod(PROFILE_ACTIVITY_CN, "processOnClickOrPress")
+        val method = classLoader.findMethod(PROFILE_ACTIVITY_CN, "processOnClickOrPress", 4)
         xposed.hook(method).intercept { chain ->
             val args = chain.args.toMutableList()
             var result: Any? = null
@@ -33,9 +33,8 @@ object ProfileDetails {
                 run before@{
                     val o = ProfileActivity(chain.thisObject!!)
 
-                    // Nekogram 12.10.3 adds two leading callback arguments.
-                    val argumentOffset = if (args.size >= 4) 2 else 0
-                    val rowIdx = args[argumentOffset] as Int
+                    // Official 13.1.x C4(float x, float y, int row, View view).
+                    val rowIdx = args[2] as Int
                     if (rowIdx != o.usernameRow) return@before
 
                     val chatId = o.chatId
@@ -65,7 +64,7 @@ object ProfileDetails {
 
                     val contentView = o.contentView as? ViewGroup ?: return@before
                     val resourcesProvider = o.resourcesProvider
-                    val view = args[argumentOffset + 1] as View
+                    val view = args[3] as View
                     val msgCopyId = Telegami.getResource("msg_copy", "drawable") ?: 0
 
                     val itemOptions = ItemOptions.makeOptions(contentView, resourcesProvider, view, false)

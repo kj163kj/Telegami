@@ -1,0 +1,9 @@
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| file_id | method_idx | descriptor                                                                                                                                                                        |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 0       | 39142      | Lorg/telegram/messenger/MediaController;->saveFile(Ljava/lang/String;Landroid/content/Context;ILjava/lang/String;Ljava/lang/String;)V                                             |
+| 0       | 39143      | Lorg/telegram/messenger/MediaController;->saveFile(Ljava/lang/String;Landroid/content/Context;ILjava/lang/String;Ljava/lang/String;Lorg/telegram/messenger/Utilities$Callback;)V  |
+| 0       | 39144      | Lorg/telegram/messenger/MediaController;->saveFile(Ljava/lang/String;Landroid/content/Context;ILjava/lang/String;Ljava/lang/String;Lorg/telegram/messenger/Utilities$Callback;Z)V |
+| 0       | 39145      | Lorg/telegram/messenger/MediaController;->saveFile(Ljava/lang/String;Ljava/lang/String;Landroid/content/Context;Lorg/telegram/messenger/Utilities$Callback;)V                     |
+| 2       | 42925      | Lorg/telegram/ui/ProfileActivity;->C4(FFILandroid/view/View;)Z                                                                                                                    |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
