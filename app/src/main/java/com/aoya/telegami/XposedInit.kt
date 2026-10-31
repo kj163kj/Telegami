@@ -110,5 +110,14 @@ class XposedInit : XposedModule() {
         }
         install("MessageRepeatHook") { com.aoya.telegami.hooks.messages.MessageRepeatHook.install() }
         install("MessageCopyHook") { com.aoya.telegami.hooks.messages.MessageCopyHook.install() }
+        install("MessageEditHistoryHook") {
+            val target = com.aoya.telegami.core.TelegramHistoryResolver(
+                com.aoya.telegami.core.TelegramMessageResolver(classLoader),
+            )
+            com.aoya.telegami.hooks.messages.MessageEditHistoryHook.install(
+                this, target, com.aoya.telegami.data.MessageHistoryStorage::persist,
+            )
+            com.aoya.telegami.hooks.messages.MessageHistoryViewer.install(target)
+        }
     }
 }

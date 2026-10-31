@@ -18,3 +18,33 @@ P12 is a staged source checkpoint: installation waits for the persistent sink
 in P13. No temporary in-memory history is advertised as durable storage.
 P12 JVM tests and debug build are recorded in p12-history-capture.log.
 This is not evidence of storageQueue or device-runtime correctness.
+
+P13 connects that interceptor to `MessageHistoryStorage` synchronously before
+native execution. Room transactions append old and new rows with monotonic
+per-message version IDs. Repeated batches and stale batches are ignored.
+Retention uses capture time; version limits remove oldest stored rows.
+Expiry/orphan cleanup runs on first use, at most hourly during capture, and
+whenever history is read. Configuration lowering also trims the opened message.
+No database failure interrupts the original Telegram storage operation.
+
+History viewer adds a private menu ID and uses an executor for queries and
+image decoding. It shows chronological version numbers, original/edited labels,
+edit/message and capture times, formatted text, media type and a separate
+current-at-open snapshot. It explains missing originals and missing local media.
+The viewer never writes current Telegram messages. Account and dialog are
+rechecked before presenting asynchronous results.
+
+Only already-local photo files are copied before native media deletion.
+There is no network fetch. Preview limits: 8 MiB per file, 128 MiB total disk,
+512-pixel decoded bounds and at most 12 decoded previews per dialog. Files are
+private to the hooked Telegram package; relative filenames are validated.
+Video/file playback and non-photo thumbnail previews are not implemented.
+Stored TL/entity/media data remains available even without a preview.
+
+P13 validation: 21 JVM tests, debug build, and actual v2->v3 SQL exercised on
+desktop SQLite. The SQLite test verifies deletion rows are unchanged, composite
+keys, scoped trimming and persistence after reopening. DAO JVM tests exercise
+deduplication, A->B->A, stale events and scope boundaries with an in-memory
+implementation; these do not replace Room instrumentation. Logs:
+`p13-history-storage.log`, `p13-history-migration.log`.
+Actual UI, storageQueue, Room migration and process restart remain UNVERIFIED.
