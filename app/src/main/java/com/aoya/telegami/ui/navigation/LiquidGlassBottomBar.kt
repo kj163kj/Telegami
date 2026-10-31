@@ -34,7 +34,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -183,6 +182,87 @@ internal object BottomBarGestureMath {
         val projectedDelta = (velocityTabsPerSec * 0.12f).coerceIn(-0.65f, 0.65f)
         return (currentTabValue + projectedDelta).roundToInt().coerceIn(0, tabsCount - 1)
     }
+
+    fun resolveTabToCommit(
+        tabs: List<BottomTab>,
+        currentSelectedTab: BottomTab,
+        targetIndex: Int,
+    ): BottomTab? {
+        if (tabs.isEmpty()) return null
+        val clampedIndex = targetIndex.coerceIn(0, tabs.lastIndex)
+        val candidate = tabs[clampedIndex]
+        return candidate.takeIf { it != currentSelectedTab }
+    }
+}
+
+internal class BottomBarDragCommitTracker(
+    private val tabs: List<BottomTab>,
+    initialTab: BottomTab,
+) {
+    var isDragging: Boolean = false
+        private set
+    var internalTargetIndex: Int = initialTab.ordinal
+        private set
+
+    fun onExternalSelectionSync(selectedTab: BottomTab): Boolean {
+        if (!isDragging && selectedTab.ordinal != internalTargetIndex) {
+            internalTargetIndex = selectedTab.ordinal
+            return true
+        }
+        return false
+    }
+
+    fun onDragStart() {
+        isDragging = true
+    }
+
+    fun onDragUpdate() {
+        // Intentionally does not commit tab selection while the finger is still dragging.
+    }
+
+    fun onTap(
+        currentSelectedTab: BottomTab,
+        tappedIndex: Int,
+        onCommitTab: (BottomTab) -> Unit,
+    ): Boolean {
+        val targetIndex = tappedIndex.coerceIn(0, (tabs.size - 1).coerceAtLeast(0))
+        val committed =
+            BottomBarGestureMath.resolveTabToCommit(
+                tabs = tabs,
+                currentSelectedTab = currentSelectedTab,
+                targetIndex = targetIndex,
+            )
+        return if (committed != null) {
+            internalTargetIndex = targetIndex
+            onCommitTab(committed)
+            true
+        } else {
+            false
+        }
+    }
+
+    fun onDragRelease(
+        currentSelectedTab: BottomTab,
+        settledIndex: Int,
+        onCommitTab: (BottomTab) -> Unit,
+    ): Int {
+        isDragging = false
+        val targetIndex = settledIndex.coerceIn(0, (tabs.size - 1).coerceAtLeast(0))
+        internalTargetIndex = targetIndex
+        BottomBarGestureMath
+            .resolveTabToCommit(
+                tabs = tabs,
+                currentSelectedTab = currentSelectedTab,
+                targetIndex = targetIndex,
+            )?.let(onCommitTab)
+        return targetIndex
+    }
+
+    fun onGestureCancel(currentSelectedTab: BottomTab): Int {
+        isDragging = false
+        internalTargetIndex = currentSelectedTab.ordinal
+        return internalTargetIndex
+    }
 }
 
 @Composable
@@ -303,8 +383,10 @@ private fun LiquidBottomTabs(
     val currentIsLtr by rememberUpdatedState(isLtr)
     val currentHorizontalPadPx by rememberUpdatedState(horizontalPadPx)
 
-    var isDragging by remember { mutableStateOf(false) }
-    var internalTargetIndex by remember { mutableIntStateOf(selectedTab.ordinal) }
+    val dragCommitTracker =
+        remember(tabs) {
+            BottomBarDragCommitTracker(tabs = tabs, initialTab = selectedTab)
+        }
 
     val offsetAnimation = remember { Animatable(0f) }
 
@@ -322,8 +404,7 @@ private fun LiquidBottomTabs(
         }
 
     LaunchedEffect(selectedTab.ordinal) {
-        if (!isDragging && selectedTab.ordinal != internalTargetIndex) {
-            internalTargetIndex = selectedTab.ordinal
+        if (dragCommitTracker.onExternalSelectionSync(selectedTab)) {
             dampedDragAnimation.animateToValue(selectedTab.ordinal.toFloat())
         }
     }
@@ -342,45 +423,38 @@ private fun LiquidBottomTabs(
                     }
                 },
                 onDragStart = { initialTabValue ->
-                    isDragging = true
+                    dragCommitTracker.onDragStart()
                     dampedDragAnimation.press()
                     dampedDragAnimation.updateValue(initialTabValue)
-                    val liveIndex = initialTabValue.roundToInt().coerceIn(0, tabsCount - 1)
-                    if (liveIndex != currentSelectedTab.ordinal) {
-                        internalTargetIndex = liveIndex
-                        tabs.getOrNull(liveIndex)?.let(currentOnTabSelected)
-                    }
                 },
                 onDragUpdate = { _, stepDx, newTabValue ->
+                    dragCommitTracker.onDragUpdate()
                     dampedDragAnimation.updateValue(newTabValue)
                     animationScope.launch {
                         offsetAnimation.snapTo(offsetAnimation.value + stepDx)
                     }
-                    val liveIndex = newTabValue.roundToInt().coerceIn(0, tabsCount - 1)
-                    if (liveIndex != currentSelectedTab.ordinal) {
-                        internalTargetIndex = liveIndex
-                        tabs.getOrNull(liveIndex)?.let(currentOnTabSelected)
-                    }
                 },
                 onTap = { tappedIndex ->
-                    val targetTab = tabs.getOrNull(tappedIndex)
-                    if (targetTab != null && tappedIndex != currentSelectedTab.ordinal) {
-                        internalTargetIndex = tappedIndex
-                        currentOnTabSelected(targetTab)
+                    val switched =
+                        dragCommitTracker.onTap(
+                            currentSelectedTab = currentSelectedTab,
+                            tappedIndex = tappedIndex,
+                            onCommitTab = currentOnTabSelected,
+                        )
+                    if (switched) {
                         dampedDragAnimation.animateToValue(tappedIndex.toFloat())
                     } else {
                         dampedDragAnimation.settleToValue(currentSelectedTab.ordinal.toFloat())
                     }
                 },
                 onDragRelease = { settledIndex ->
-                    isDragging = false
-                    internalTargetIndex = settledIndex
-                    tabs.getOrNull(settledIndex)?.let { tab ->
-                        if (tab != currentSelectedTab) {
-                            currentOnTabSelected(tab)
-                        }
-                    }
-                    dampedDragAnimation.settleToValue(settledIndex.toFloat())
+                    val targetIndex =
+                        dragCommitTracker.onDragRelease(
+                            currentSelectedTab = currentSelectedTab,
+                            settledIndex = settledIndex,
+                            onCommitTab = currentOnTabSelected,
+                        )
+                    dampedDragAnimation.settleToValue(targetIndex.toFloat())
                     animationScope.launch {
                         if (animationsEnabled) {
                             offsetAnimation.animateTo(0f, spring(1f, 300f, 0.5f))
@@ -390,9 +464,8 @@ private fun LiquidBottomTabs(
                     }
                 },
                 onGestureCancel = {
-                    isDragging = false
-                    internalTargetIndex = currentSelectedTab.ordinal
-                    dampedDragAnimation.settleToValue(currentSelectedTab.ordinal.toFloat())
+                    val resetIndex = dragCommitTracker.onGestureCancel(currentSelectedTab)
+                    dampedDragAnimation.settleToValue(resetIndex.toFloat())
                     animationScope.launch {
                         if (animationsEnabled) {
                             offsetAnimation.animateTo(0f, spring(1f, 300f, 0.5f))
@@ -638,12 +711,14 @@ private fun FallbackBottomTabs(
     val currentHorizontalPadPx by rememberUpdatedState(horizontalPadPx)
 
     var isDragging by remember { mutableStateOf(false) }
-    var internalTargetIndex by remember { mutableIntStateOf(selectedTab.ordinal) }
+    val dragCommitTracker =
+        remember(tabs) {
+            BottomBarDragCommitTracker(tabs = tabs, initialTab = selectedTab)
+        }
     val tabIndicatorOffset = remember { Animatable(selectedTab.ordinal.toFloat()) }
 
     LaunchedEffect(selectedTab, animationsEnabled) {
-        if (!isDragging && selectedTab.ordinal != internalTargetIndex) {
-            internalTargetIndex = selectedTab.ordinal
+        if (dragCommitTracker.onExternalSelectionSync(selectedTab)) {
             if (animationsEnabled) {
                 tabIndicatorOffset.animateTo(
                     targetValue = selectedTab.ordinal.toFloat(),
@@ -684,43 +759,35 @@ private fun FallbackBottomTabs(
                     onPressStart = { _, _ -> },
                     onDragStart = { initialTabValue ->
                         isDragging = true
+                        dragCommitTracker.onDragStart()
                         animationScope.launch { tabIndicatorOffset.snapTo(initialTabValue) }
-                        val liveIndex = initialTabValue.roundToInt().coerceIn(0, tabsCount - 1)
-                        if (liveIndex != currentSelectedTab.ordinal) {
-                            internalTargetIndex = liveIndex
-                            tabs.getOrNull(liveIndex)?.let(currentOnTabSelected)
-                        }
                     },
                     onDragUpdate = { _, _, newTabValue ->
+                        dragCommitTracker.onDragUpdate()
                         animationScope.launch { tabIndicatorOffset.snapTo(newTabValue) }
-                        val liveIndex = newTabValue.roundToInt().coerceIn(0, tabsCount - 1)
-                        if (liveIndex != currentSelectedTab.ordinal) {
-                            internalTargetIndex = liveIndex
-                            tabs.getOrNull(liveIndex)?.let(currentOnTabSelected)
-                        }
                     },
                     onTap = { tappedIndex ->
-                        val targetTab = tabs.getOrNull(tappedIndex)
-                        if (targetTab != null && tappedIndex != currentSelectedTab.ordinal) {
-                            internalTargetIndex = tappedIndex
-                            currentOnTabSelected(targetTab)
-                        }
+                        dragCommitTracker.onTap(
+                            currentSelectedTab = currentSelectedTab,
+                            tappedIndex = tappedIndex,
+                            onCommitTab = currentOnTabSelected,
+                        )
                         settleFallbackIndicator(tappedIndex)
                     },
                     onDragRelease = { settledIndex ->
                         isDragging = false
-                        internalTargetIndex = settledIndex
-                        tabs.getOrNull(settledIndex)?.let { tab ->
-                            if (tab != currentSelectedTab) {
-                                currentOnTabSelected(tab)
-                            }
-                        }
-                        settleFallbackIndicator(settledIndex)
+                        val targetIndex =
+                            dragCommitTracker.onDragRelease(
+                                currentSelectedTab = currentSelectedTab,
+                                settledIndex = settledIndex,
+                                onCommitTab = currentOnTabSelected,
+                            )
+                        settleFallbackIndicator(targetIndex)
                     },
                     onGestureCancel = {
                         isDragging = false
-                        internalTargetIndex = currentSelectedTab.ordinal
-                        settleFallbackIndicator(currentSelectedTab.ordinal)
+                        val resetIndex = dragCommitTracker.onGestureCancel(currentSelectedTab)
+                        settleFallbackIndicator(resetIndex)
                     },
                 )
                 .padding(4.dp),
@@ -754,11 +821,18 @@ private fun FallbackBottomTabs(
                     .height(56.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
+            val visualHighlightedIndex =
+                if (isDragging) {
+                    tabIndicatorOffset.value.roundToInt().coerceIn(0, tabsCount - 1)
+                } else {
+                    selectedTab.ordinal
+                }
             tabs.forEach { tab ->
                 val isSelected = tab == selectedTab
+                val isVisuallyHighlighted = tab.ordinal == visualHighlightedIndex
                 val title = stringResource(tab.titleRes)
                 val tintColor =
-                    if (isSelected) {
+                    if (isVisuallyHighlighted) {
                         accentColor
                     } else {
                         MiuixTheme.colorScheme.onSurfaceVariantSummary
@@ -775,8 +849,11 @@ private fun FallbackBottomTabs(
                                 selected = isSelected
                                 contentDescription = title
                                 onClick {
-                                    internalTargetIndex = tab.ordinal
-                                    onTabSelected(tab)
+                                    dragCommitTracker.onTap(
+                                        currentSelectedTab = selectedTab,
+                                        tappedIndex = tab.ordinal,
+                                        onCommitTab = onTabSelected,
+                                    )
                                     settleFallbackIndicator(tab.ordinal)
                                     true
                                 }
@@ -794,7 +871,7 @@ private fun FallbackBottomTabs(
                         text = title,
                         fontSize = 11.sp,
                         lineHeight = 13.sp,
-                        fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
+                        fontWeight = if (isVisuallyHighlighted) FontWeight.SemiBold else FontWeight.Normal,
                         color = tintColor,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,

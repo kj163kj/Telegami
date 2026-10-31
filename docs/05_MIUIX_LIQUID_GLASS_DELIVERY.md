@@ -53,13 +53,13 @@ Baseline commit: `c904294e215e7866dd55e688922e2f817321387d`
 
 ## 4. Build & Test Verification
 
-- `:app:testDebugUnitTest`: **Passed** (20 unit tests, 0 failures).
+- `:app:testDebugUnitTest`: **Passed** (21 unit tests, 0 failures).
 - `:app:lintVitalRelease`: **Passed**.
 - `:app:assembleDebug`: **Passed**
   - Output: `app/build/outputs/apk/debug/app-debug.apk`
-  - SHA-256: `5E39C55E953EDD7E3DE92684167CC24FD8E98CC6FC7EDD28EE14538CC74960A7`
+  - SHA-256: `6E2FE20A282F49B7A9946B23B69BD610FBB93A8C71F4C5A3242A6BF797885927`
 - `:app:assembleRelease`: **Passed**
   - Output: `app/build/outputs/apk/release/app-release-unsigned.apk` (unsigned because `keystore.properties` is not present in the workspace)
-  - SHA-256: `98CDF16D59E4B0B13A410A18AB46254F4A2BA2005E96E261A75F30DB4B87B660`
+  - SHA-256: `8F9F3AEC738287454974BDADD7B18CA3DFD92F14031BDDADDD2C94A910C4949F`
 - Hook / Database Integrity Check: `git diff` against baseline confirms zero modifications to `hooks/`, `XposedInit.kt`, `core/`, `data/`, or business preference keys.
 - On-Device Runtime & Visual Verification: `adb devices -l` returned no connected Android device or emulator in the current environment. In accordance with Section 11 Rule 12 ("不得将未进行设备验证的视觉或性能效果标记为已验证"), on-device visual screenshots, live frame-time profiling, and live LSPosed framework interaction are explicitly marked as **unverified on physical device**.

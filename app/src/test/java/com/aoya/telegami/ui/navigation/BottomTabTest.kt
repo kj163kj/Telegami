@@ -161,4 +161,47 @@ class BottomTabTest {
             )
         assertEquals(1, flickLeftFromAbout)
     }
+
+    @Test
+    fun bottomBarDragCommitTracker_switchesScreenOnlyAfterFingerRelease() {
+        val committedTabs = mutableListOf<BottomTab>()
+        val tracker = BottomBarDragCommitTracker(BottomTab.entries, initialTab = BottomTab.Features)
+
+        // Sliding across Features (0) -> Settings (1) -> About (2) must NOT emit any mid-drag tab switch
+        tracker.onDragStart()
+        tracker.onDragUpdate()
+        tracker.onDragUpdate()
+        assertTrue(committedTabs.isEmpty())
+
+        // Releasing finger on About (2) commits About exactly once
+        val settledIdx =
+            tracker.onDragRelease(
+                currentSelectedTab = BottomTab.Features,
+                settledIndex = 2,
+                onCommitTab = committedTabs::add,
+            )
+        assertEquals(2, settledIdx)
+        assertEquals(listOf(BottomTab.About), committedTabs)
+
+        // Subsequent recomposition with selectedTab = About does not trigger duplicate external animation
+        assertEquals(false, tracker.onExternalSelectionSync(BottomTab.About))
+
+        // Dragging away from About and returning to About before lifting finger emits no tab switch
+        committedTabs.clear()
+        tracker.onDragStart()
+        tracker.onDragUpdate()
+        tracker.onDragRelease(
+            currentSelectedTab = BottomTab.About,
+            settledIndex = 2,
+            onCommitTab = committedTabs::add,
+        )
+        assertTrue(committedTabs.isEmpty())
+
+        // Cancelled drag never switches the screen
+        tracker.onDragStart()
+        tracker.onDragUpdate()
+        val resetIdx = tracker.onGestureCancel(BottomTab.About)
+        assertEquals(2, resetIdx)
+        assertTrue(committedTabs.isEmpty())
+    }
 }
