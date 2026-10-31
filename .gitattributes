@@ -1,0 +1,8 @@
+﻿# GitHub Linguist overrides
+# Ignore reverse-engineering artifacts and disassembly from language stats
+artifacts/** linguist-detectable=false
+artifacts/** linguist-vendored
+*.smali linguist-detectable=false
+*.sql linguist-detectable=false
+docs/** linguist-documentation
+scripts/** linguist-vendored
