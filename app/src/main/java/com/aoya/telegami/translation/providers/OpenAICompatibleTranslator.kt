@@ -2,6 +2,7 @@ package com.aoya.telegami.translation.providers
 
 import com.aoya.telegami.translation.*
 import com.aoya.telegami.translation.llm.LlmConfig
+import com.aoya.telegami.translation.llm.LlmPromptManager
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -19,9 +20,10 @@ class OpenAICompatibleTranslator(private val http: TranslationHttp, private val 
 
     override suspend fun translate(request: TranslationRequest): TranslationText = guarded {
         val c = config()
+        val prompts = LlmPromptManager.render(c, request.content.text, request.toLanguage)
         val messages = JsonArray().apply {
-            add(message("system", c.systemPrompt.replace("@toLang", request.toLanguage)))
-            add(message("user", c.userPrompt.replace("@toLang", request.toLanguage).replace("@text", request.content.text)))
+            add(message("system", prompts.system))
+            add(message("user", prompts.user))
         }
         TranslationText(complete(c, messages))
     }
