@@ -29,6 +29,9 @@ object Config {
 
     fun isFeatureEnabled(featureKey: String): Boolean = getBoolean(featureKey, false)
 
+    fun getString(key: String, defaultValue: String = ""): String =
+        runCatching { featPref?.getString(key, defaultValue) ?: defaultValue }.getOrDefault(defaultValue)
+
     fun getBoolean(key: String, defaultValue: Boolean): Boolean =
         runCatching { featPref?.getBoolean(key, defaultValue) ?: defaultValue }
             .onFailure { Logger.e("Cannot read remote boolean $key", it, "Configuration") }

@@ -123,13 +123,18 @@ object PrefManager {
     suspend fun updateFeatures(
         booleans: Map<String, Boolean> = emptyMap(),
         integers: Map<String, Int> = emptyMap(),
+        strings: Map<String, String> = emptyMap(),
     ): Boolean = withContext(Dispatchers.IO) {
+        if (strings[com.aoya.telegami.translation.TranslationSettings.AI_KEY]?.let {
+                it.isNotEmpty() && !it.startsWith(com.aoya.telegami.translation.TranslationSecretVault.PREFIX)
+            } == true) return@withContext false
         val preferences = remotePreferences ?: return@withContext false
         val success =
             try {
                 val editor = preferences.edit()
                 booleans.forEach { (key, value) -> editor.putBoolean(key, value) }
                 integers.forEach { (key, value) -> editor.putInt(key, value) }
+                strings.forEach { (key, value) -> editor.putString(key, value) }
                 editor.commit()
             } catch (error: Exception) {
                 loge("Failed to write remote feature preferences", error)
@@ -146,6 +151,9 @@ object PrefManager {
     }
 
     fun isFeatureEnabled(featureKey: String): Boolean = remotePreferences?.getBoolean(featureKey, false) ?: false
+
+    fun getString(key: String, defaultValue: String = ""): String =
+        runCatching { remotePreferences?.getString(key, defaultValue) ?: defaultValue }.getOrDefault(defaultValue)
 
     fun getBoolean(key: String, defaultValue: Boolean): Boolean =
         runCatching { remotePreferences?.getBoolean(key, defaultValue) ?: defaultValue }.getOrDefault(defaultValue)

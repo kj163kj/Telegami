@@ -112,6 +112,14 @@ class XposedInit : XposedModule() {
             com.aoya.telegami.hooks.messages.MessageRepeatHook.install(this, getModuleApplicationInfo().sourceDir)
         }
         install("MessageCopyHook") { com.aoya.telegami.hooks.messages.MessageCopyHook.install() }
+        install("MessageTranslationHook") {
+            val ipc = com.aoya.telegami.translation.TranslationIpc(Telegami.context)
+            com.aoya.telegami.hooks.messages.MessageTranslationHook(
+                com.aoya.telegami.translation.TranslationPreferences::hookSettings,
+                ipc,
+                ipc::select,
+            ).install(this)
+        }
         install("ProtectedNativeForward") {
             com.aoya.telegami.hooks.messages.MessageForwardPicker(
                 com.aoya.telegami.core.TelegramSendResolver(
