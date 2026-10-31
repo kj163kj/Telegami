@@ -39,9 +39,10 @@ object MessageCopyHook {
         )
         MessageMenuActions.register(
             MessageMenuActions.Action(
-                MessageMenuActions.SEND_COPY, "\u4f5c\u4e3a\u65b0\u6d88\u606f\u53d1\u9001", "msg_forward",
+                MessageMenuActions.SEND_COPY, "\u4f5c\u4e3a\u65b0\u6d88\u606f\u53d1\u9001", "msg_forward_replace",
                 { _, _ -> Config.isFeatureEnabled("enable_message_copy") },
                 { sender.execute(it, true, "enable_message_copy", "enable_copy_confirmation") },
+                fallbackIcons = listOf("msg_copy", "msg_forward"),
             ),
         )
     }

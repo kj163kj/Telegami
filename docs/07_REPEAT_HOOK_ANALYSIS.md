@@ -23,12 +23,20 @@ words. DEX file 0 is classes.dex; file 2 is classes3.dex.
 | Forward, call normally | `Lorg/telegram/messenger/SendMessagesHelper;->sendMessage(Ljava/util/ArrayList;JZZZIJ)I` | 0 / 45702; `forward_wrapper.smali` |
 | Full forward implementation | `Lorg/telegram/messenger/SendMessagesHelper;->sendMessage(Ljava/util/ArrayList;JZZZIILorg/telegram/messenger/MessageObject;IJJLorg/telegram/messenger/MessageSuggestionParams;)I` | 0 / 45701; `forward.smali` |
 
-Menu arguments are message, action-ID list, label list and drawable-ID list;
+Menu arguments are message, **drawable-ID list**, label list and **action-ID list**;
 all three lists must stay aligned. Use private positive IDs outside native
 cases and check for collisions. `Fa` reads `ko.c5:MessageObject` and clears
 selection at its normal default tail. The custom handler snapshots that
-selection before delegation, then uses the default tail for popup cleanup.
+selection and executes the action before delegation, then uses the default tail for popup cleanup.
 Never replace native Copy/Delete IDs or pass custom IDs to network code.
+
+Correction after device feedback: the earlier report reversed the two integer
+lists. `telegram-1310/chat_menu.smali` lines 580-585 show `msg_copy` appended
+to `v1` (Java argument 1). `menu_create.smali` lines 3255-3275 consume that
+list as the icon argument to `h1.f(int, CharSequence)`. Argument 3 supplies
+the IDs consumed by `mf.c2.onClick(View)` (DEX 2 / 6753, case 5), which calls
+`ko.Fa(int)`. `wj.b(int)` is an alternate toolbar path, not the primary popup
+listener. No additional bridge hook is necessary to fix the list-order bug.
 
 Forward arguments: message list, destination dialog, forwardFromMyName,
 hideCaption, notify, scheduleDate, payStars. Repeat uses `false,false,true,0,0`

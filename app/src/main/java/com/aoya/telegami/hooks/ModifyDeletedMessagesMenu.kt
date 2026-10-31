@@ -3,6 +3,7 @@ package com.aoya.telegami.hooks
 import android.util.Log
 import com.aoya.telegami.Telegami
 import com.aoya.telegami.service.Config
+import com.aoya.telegami.hooks.messages.MessageMenuLists
 import io.github.libxposed.api.XposedInterface
 
 object ModifyDeletedMessagesMenu {
@@ -18,22 +19,18 @@ object ModifyDeletedMessagesMenu {
                 if (Config.isFeatureEnabled("ShowDeletedMessages") &&
                     Globals.isDeletedMessage(dialogId, messageId, accountId)
                 ) {
-                    val ids = chain.args[1] as? ArrayList<Int> ?: return@intercept result
-                    val labels = chain.args[2] as? ArrayList<String> ?: return@intercept result
-                    val icons = chain.args[3] as? ArrayList<Int> ?: return@intercept result
-                    if (3 !in ids) {
-                        labels.add(Telegami.getResource("Copy", "string").let { id ->
+                    val menu = MessageMenuLists(chain.args.toList())
+                    if (3 !in menu.ids) {
+                        val copyLabel = Telegami.getResource("Copy", "string").let { id ->
                             if (id == 0) return@let "Copy"
                             com.aoya.telegami.virt.messenger.LocaleController.getString(id)
-                        })
-                        labels.add(Telegami.getResource("Delete", "string").let { id ->
+                        }
+                        val deleteLabel = Telegami.getResource("Delete", "string").let { id ->
                             if (id == 0) return@let "Delete"
                             com.aoya.telegami.virt.messenger.LocaleController.getString(id)
-                        })
-                        ids.add(3)
-                        ids.add(1)
-                        icons.add(Telegami.getResource("msg_copy", "drawable"))
-                        icons.add(Telegami.getResource("msg_delete", "drawable"))
+                        }
+                        menu.append(3, copyLabel, Telegami.getResource("msg_copy", "drawable"))
+                        menu.append(1, deleteLabel, Telegami.getResource("msg_delete", "drawable"))
                     }
                 }
             } catch (error: Throwable) {
