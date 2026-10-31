@@ -62,7 +62,7 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.aoya.telegami"
+        applicationId = "com.techsky.telegami"
         minSdk = 26
         targetSdk = 35
         versionCode = versionProps.getProperty("versionCode").toInt()

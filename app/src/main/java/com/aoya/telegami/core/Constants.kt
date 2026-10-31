@@ -1,8 +1,8 @@
 package com.aoya.telegami.core
 
 object Constants {
-    const val APP_ID = "com.aoya.telegami"
-    const val APP_DEBUG_ID = "com.aoya.telegami.debug"
+    const val APP_ID = "com.techsky.telegami"
+    const val APP_DEBUG_ID = "com.techsky.telegami.debug"
 
     const val COMPONENT_NAME_DEFAULT = "com.aoya.telegami.MainActivityLauncher"
 
