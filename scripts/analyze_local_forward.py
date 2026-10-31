@@ -17,7 +17,7 @@ class_descriptor IN ('Lorg/telegram/ui/ActionBar/AlertDialog$Builder;','Lorg/tel
 (class_descriptor='Lorg/telegram/messenger/NotificationCenter;' AND name IN ('getInstance','addObserver','removeObserver')) OR
 class_descriptor='Lorg/telegram/messenger/NotificationCenter$NotificationCenterDelegate;' OR
 (class_descriptor='Lorg/telegram/messenger/SendMessagesHelper;' AND name IN ('generatePhotoSizes','sendMessage')) OR
-(class_descriptor='Lorg/telegram/ui/ko;' AND name IN ('v','getResourceProvider','y6')))
+(class_descriptor='Lorg/telegram/ui/ko;' AND name IN ('v','ad','getResourceProvider','y6')))
 ORDER BY file_id,method_idx""",
     "fields": """SELECT file_id,field_idx,descriptor FROM fields WHERE
 (class_descriptor='Lorg/telegram/messenger/NotificationCenter;' AND name IN ('fileLoaded','fileLoadFailed')) OR
@@ -25,7 +25,7 @@ ORDER BY file_id,method_idx""",
 ('id','access_hash','file_reference','size','dc_id','flags','thumbs','video_thumbs')) OR
 (class_descriptor='Lorg/telegram/tgnet/TLRPC$Photo;' AND name='sizes') OR
 (class_descriptor='Lorg/telegram/tgnet/TLRPC$PhotoSize;' AND name='size') OR
-(class_descriptor='Lorg/telegram/ui/ko;' AND name IN ('g5','h5','V5','e5','m5')) OR
+(class_descriptor='Lorg/telegram/ui/ko;' AND name IN ('g5','h5','V5','W5','X5','e5','m5')) OR
 (class_descriptor='Lorg/telegram/messenger/MessageObject$GroupedMessages;' AND name='messages')
 ORDER BY file_id,field_idx""",
     "notifications": """SELECT DISTINCT file_id,method_idx,method,field FROM method_field_accesses
@@ -41,6 +41,8 @@ DECODE = [
     (2, 23284, "dialog_show"), (0, 36681, "load_photo"),
     (0, 36684, "load_document"), (0, 36638, "attach_path"),
     (0, 40370, "message_size"), (0, 45444, "generate_photo"),
+    (0, 45445, "generate_photo_local_fields"),
+    (2, 17729, "photo_size_serialization"),
     (2, 49940, "native_forward_selection"),
     (0, 37569, "file_failed_notification"), (0, 37572, "file_loaded_notification"),
 ]

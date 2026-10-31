@@ -112,6 +112,13 @@ class XposedInit : XposedModule() {
             com.aoya.telegami.hooks.messages.MessageRepeatHook.install(this, getModuleApplicationInfo().sourceDir)
         }
         install("MessageCopyHook") { com.aoya.telegami.hooks.messages.MessageCopyHook.install() }
+        install("ProtectedNativeForward") {
+            com.aoya.telegami.hooks.messages.MessageForwardPicker(
+                com.aoya.telegami.core.TelegramSendResolver(
+                    com.aoya.telegami.hooks.messages.MessageMenuActions.target,
+                ),
+            ).installNativeBridge(this)
+        }
         install("MessageEditHistoryHook") {
             val target = com.aoya.telegami.core.TelegramHistoryResolver(
                 com.aoya.telegami.core.TelegramMessageResolver(classLoader),

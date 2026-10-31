@@ -8,5 +8,5 @@ class_descriptor IN ('Lorg/telegram/ui/ActionBar/AlertDialog$Builder;','Lorg/tel
 (class_descriptor='Lorg/telegram/messenger/NotificationCenter;' AND name IN ('getInstance','addObserver','removeObserver')) OR
 class_descriptor='Lorg/telegram/messenger/NotificationCenter$NotificationCenterDelegate;' OR
 (class_descriptor='Lorg/telegram/messenger/SendMessagesHelper;' AND name IN ('generatePhotoSizes','sendMessage')) OR
-(class_descriptor='Lorg/telegram/ui/ko;' AND name IN ('v','getResourceProvider','y6')))
+(class_descriptor='Lorg/telegram/ui/ko;' AND name IN ('v','ad','getResourceProvider','y6')))
 ORDER BY file_id,method_idx

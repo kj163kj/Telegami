@@ -1,6 +1,7 @@
 package com.aoya.telegami.core
 
 import android.os.Bundle
+import android.util.SparseArray
 import com.aoya.telegami.hooks.messages.MessageDestinationKey
 import com.aoya.telegami.hooks.messages.MessageSender
 import com.aoya.telegami.util.exactField
@@ -44,6 +45,42 @@ class TelegramForwardResolver(private val send: TelegramSendResolver) {
     val selected = delegate.exactMethod("v", c.bool, picker, c.list, CharSequence::class.java, c.bool, c.bool, c.int, c.int, topicUi)
     val defaultD = delegate.exactMethod("D", c.bool)
     val defaultJ = delegate.exactMethod("J", c.bool, picker)
+    val nativeForward = c.chat.exactMethod(
+        "v", c.bool, picker, c.list, CharSequence::class.java, c.bool, c.bool, c.int, c.int, topicUi,
+    )
+    private val grouped = c.type("org.telegram.messenger.MessageObject\$GroupedMessages")
+    private val forwardMessage = c.chat.exactField("g5", c.message)
+    private val forwardGroup = c.chat.exactField("h5", grouped)
+    private val groupMessages = grouped.exactField("messages", c.list)
+    private val sparseArrayType = java.lang.reflect.Array.newInstance(SparseArray::class.java, 0).javaClass
+    private val selectedArrays = listOf("V5", "W5", "X5").map { c.chat.exactField(it, sparseArrayType) }
+    private val editingMessage = c.chat.exactField("m5", c.message)
+    private val endSelection = c.chat.exactMethod("ad", Void.TYPE, c.bool)
+
+    /** Same single-message/album/ordered multi-selection extraction as native ko.v. */
+    fun forwardSources(chat: Any): List<Any> {
+        if (editingMessage.get(chat) != null) return emptyList()
+        val single = forwardMessage.get(chat)
+        if (single != null) {
+            val group = forwardGroup.get(chat)
+            return (group?.let { groupMessages.get(it) as? List<*> } ?: listOf(single)).filterNotNull()
+        }
+        val arrays = selectedArrays.first().get(chat) as? Array<*> ?: return emptyList()
+        return arrays.reversed().flatMap {
+            val array = it as? SparseArray<*> ?: return@flatMap emptyList()
+            (0 until array.size()).map { index -> array.keyAt(index) }.sorted()
+                .mapNotNull { key -> array.get(key) }
+        }
+    }
+
+    fun clearForwardSelection(chat: Any) {
+        forwardMessage.set(chat, null)
+        forwardGroup.set(chat, null)
+        selectedArrays.forEach { field ->
+            (field.get(chat) as? Array<*>)?.forEach { (it as? SparseArray<*>)?.clear() }
+        }
+        endSelection.invoke(chat, false)
+    }
 
     fun newPicker(slot: Int): Any {
         val args = Bundle().apply {

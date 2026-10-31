@@ -28,6 +28,8 @@
 | 2       | 16165     | Lorg/telegram/tgnet/TLRPC$Photo;->sizes:Ljava/util/ArrayList;                          |
 | 2       | 16173     | Lorg/telegram/tgnet/TLRPC$PhotoSize;->size:I                                           |
 | 2       | 55634     | Lorg/telegram/ui/ko;->V5:[Landroid/util/SparseArray;                                   |
+| 2       | 55647     | Lorg/telegram/ui/ko;->W5:[Landroid/util/SparseArray;                                   |
+| 2       | 55660     | Lorg/telegram/ui/ko;->X5:[Landroid/util/SparseArray;                                   |
 | 2       | 55755     | Lorg/telegram/ui/ko;->e5:Lorg/telegram/messenger/MessagePreviewParams;                 |
 | 2       | 55782     | Lorg/telegram/ui/ko;->g5:Lorg/telegram/messenger/MessageObject;                        |
 | 2       | 55796     | Lorg/telegram/ui/ko;->h5:Lorg/telegram/messenger/MessageObject$GroupedMessages;        |

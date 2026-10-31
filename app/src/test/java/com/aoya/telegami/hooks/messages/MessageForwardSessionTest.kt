@@ -23,10 +23,12 @@ class MessageForwardSessionTest {
     @Test fun duplicateCallbacksCannotSubmitTwice() {
         val session = MessageForwardSession()
         assertTrue(session.acceptingSelection)
+        assertFalse(session.submitted)
         assertEquals(listOf(first), session.select(listOf(first, first)))
         assertFalse(session.acceptingSelection)
         assertNull(session.select(listOf(second)))
         assertTrue(session.submit())
+        assertTrue(session.submitted)
         assertFalse(session.acceptingSelection)
         assertFalse(session.submit())
         assertNull(session.select(listOf(first)))

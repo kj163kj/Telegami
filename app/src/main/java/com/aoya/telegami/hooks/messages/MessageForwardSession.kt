@@ -8,6 +8,9 @@ class MessageForwardSession {
     val acceptingSelection: Boolean
         @Synchronized get() = state == State.SELECTING
 
+    val submitted: Boolean
+        @Synchronized get() = state == State.SUBMITTED
+
     @Synchronized
     fun select(destinations: List<MessageDestinationKey>): List<MessageDestinationKey>? {
         if (state != State.SELECTING || destinations.isEmpty()) return null
