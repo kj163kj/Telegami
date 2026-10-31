@@ -9,6 +9,7 @@ class MessageToolSettingsTest {
         val defaults = MessageToolSettings.booleanDefaults
         assertEquals(false, defaults[MessageToolSettings.REPEAT])
         assertEquals(false, defaults[MessageToolSettings.COPY])
+        assertEquals(false, defaults[MessageToolSettings.SOURCELESS_FORWARD])
         assertEquals(false, defaults[MessageToolSettings.HISTORY])
         assertEquals(true, defaults[MessageToolSettings.REPEAT_CONFIRM])
         assertEquals(true, defaults[MessageToolSettings.COPY_CONFIRM])

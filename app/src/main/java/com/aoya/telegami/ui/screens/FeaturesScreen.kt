@@ -114,6 +114,7 @@ internal fun validateIntInput(
 internal data class MessageToolsSnapshot(
     val enableMessageRepeat: Boolean = false,
     val enableMessageCopy: Boolean = false,
+    val enableSourcelessForward: Boolean = false,
     val enableEditHistory: Boolean = false,
     val enableRepeatConfirmation: Boolean = true,
     val enableCopyConfirmation: Boolean = true,
@@ -122,7 +123,7 @@ internal data class MessageToolsSnapshot(
 ) {
     fun repeatConfirmationEnabled(canEdit: Boolean): Boolean = canEdit && enableMessageRepeat
 
-    fun copyConfirmationEnabled(canEdit: Boolean): Boolean = canEdit && enableMessageCopy
+    fun copyConfirmationEnabled(canEdit: Boolean): Boolean = canEdit && enableSourcelessForward
 
     fun retentionDaysEnabled(canEdit: Boolean): Boolean = canEdit && enableEditHistory
 
@@ -174,6 +175,7 @@ internal fun readMessageToolsSnapshot(
     MessageToolsSnapshot(
         enableMessageRepeat = port.getBoolean(MessageToolSettings.REPEAT, false),
         enableMessageCopy = port.getBoolean(MessageToolSettings.COPY, false),
+        enableSourcelessForward = port.getBoolean(MessageToolSettings.SOURCELESS_FORWARD, false),
         enableEditHistory = port.getBoolean(MessageToolSettings.HISTORY, false),
         enableRepeatConfirmation = port.getBoolean(MessageToolSettings.REPEAT_CONFIRM, true),
         enableCopyConfirmation = port.getBoolean(MessageToolSettings.COPY_CONFIRM, true),
@@ -810,6 +812,16 @@ fun FeaturesScreen(
                     enabled = canEdit,
                     onCheckedChange = { checked ->
                         updateMessageToolBoolean(MessageToolSettings.COPY, checked)
+                    },
+                )
+                MiuixPreferenceDivider()
+                SwitchPreference(
+                    title = stringResource(R.string.feat_enable_sourceless_forward),
+                    summary = stringResource(R.string.feat_enable_sourceless_forward_desc),
+                    checked = messageTools.enableSourcelessForward,
+                    enabled = canEdit,
+                    onCheckedChange = { checked ->
+                        updateMessageToolBoolean(MessageToolSettings.SOURCELESS_FORWARD, checked)
                     },
                 )
                 MiuixSubPreferenceDivider()

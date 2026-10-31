@@ -23,8 +23,9 @@ All 7 items read and write through `PrefManager` (`XposedService.getRemotePrefer
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 消息操作 | 消息复读 | `enable_message_repeat` (`REPEAT`) | `Boolean` | `false` | — | `PrefManager.getBoolean(REPEAT, false)` | `PrefManager.updateMessageTools(booleans = mapOf(REPEAT to checked))` |
 | 消息操作 | 复读前确认 | `enable_repeat_confirmation` (`REPEAT_CONFIRM`) | `Boolean` | `true` | — | `PrefManager.getBoolean(REPEAT_CONFIRM, true)` | `PrefManager.updateMessageTools(booleans = mapOf(REPEAT_CONFIRM to checked))` |
-| 消息操作 | 复制与作为新消息发送 | `enable_message_copy` (`COPY`) | `Boolean` | `false` | — | `PrefManager.getBoolean(COPY, false)` | `PrefManager.updateMessageTools(booleans = mapOf(COPY to checked))` |
-| 消息操作 | 作为新消息发送前确认 | `enable_copy_confirmation` (`COPY_CONFIRM`) | `Boolean` | `true` | — | `PrefManager.getBoolean(COPY_CONFIRM, true)` | `PrefManager.updateMessageTools(booleans = mapOf(COPY_CONFIRM to checked))` |
+| 消息操作 | 启用强制复制 | `enable_message_copy` (`COPY`) | `Boolean` | `false` | — | `PrefManager.getBoolean(COPY, false)` | `PrefManager.updateMessageTools(booleans = mapOf(COPY to checked))` |
+| 消息操作 | 无来源转发 | `enable_sourceless_forward` (`SOURCELESS_FORWARD`) | `Boolean` | `false` | — | `PrefManager.getBoolean(SOURCELESS_FORWARD, false)` | `PrefManager.updateMessageTools(booleans = mapOf(SOURCELESS_FORWARD to checked))` |
+| 消息操作 | 无来源转发前确认 | `enable_copy_confirmation` (`COPY_CONFIRM`) | `Boolean` | `true` | — | `PrefManager.getBoolean(COPY_CONFIRM, true)` | `PrefManager.updateMessageTools(booleans = mapOf(COPY_CONFIRM to checked))` |
 | 消息记录 | 编辑历史 | `enable_edit_history` (`HISTORY`) | `Boolean` | `false` | — | `PrefManager.getBoolean(HISTORY, false)` | `PrefManager.updateMessageTools(booleans = mapOf(HISTORY to checked))` |
 | 消息记录 | 编辑历史保留天数 | `edit_history_retention_days` (`RETENTION`) | `Int` | `30` | `1..3650` (`天`) | `MessageToolSettings.bounded(RETENTION, PrefManager.getFeatureValue(RETENTION, 30))` | `PrefManager.updateMessageTools(integers = mapOf(RETENTION to newDays))` |
 | 消息记录 | 每条消息最大历史版本数 | `edit_history_max_versions` (`MAX_VERSIONS`) | `Int` | `100` | `2..1000` (`个版本`) | `MessageToolSettings.bounded(MAX_VERSIONS, PrefManager.getFeatureValue(MAX_VERSIONS, 100))` | `PrefManager.updateMessageTools(integers = mapOf(MAX_VERSIONS to newMaxVersions))` |
@@ -40,7 +41,7 @@ All 7 items read and write through `PrefManager` (`XposedService.getRemotePrefer
 | Master Key | Child Key | Disabled Condition | Value Preservation |
 | --- | --- | --- | --- |
 | `enable_message_repeat` | `enable_repeat_confirmation` | `!canEdit \|\| !enableMessageRepeat` | Toggling `REPEAT` off only writes `enable_message_repeat=false`; `enable_repeat_confirmation` keeps its saved value and restores when `REPEAT` turns back on. |
-| `enable_message_copy` | `enable_copy_confirmation` | `!canEdit \|\| !enableMessageCopy` | Toggling `COPY` off only writes `enable_message_copy=false`; `enable_copy_confirmation` keeps its saved value (ordinary clipboard copy does not consult `COPY_CONFIRM`). |
+| `enable_sourceless_forward` | `enable_copy_confirmation` | `!canEdit \|\| !enableSourcelessForward` | Toggling `SOURCELESS_FORWARD` off only writes `enable_sourceless_forward=false`; `enable_copy_confirmation` keeps its saved value and restores when `SOURCELESS_FORWARD` turns back on. Independent switch `enable_message_copy` (强制复制) operates standalone without confirmation dialog. |
 | `enable_edit_history` | `edit_history_retention_days` | `!canEdit \|\| !enableEditHistory` | Toggling `HISTORY` off disables row & closes open dialog without modifying `edit_history_retention_days`. |
 | `enable_edit_history` | `edit_history_max_versions` | `!canEdit \|\| !enableEditHistory` | Toggling `HISTORY` off disables row & closes open dialog without modifying `edit_history_max_versions`. |
 

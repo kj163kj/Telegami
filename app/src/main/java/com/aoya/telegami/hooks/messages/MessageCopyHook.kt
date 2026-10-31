@@ -6,13 +6,14 @@ import android.content.Context
 import android.text.Html
 import com.aoya.telegami.core.TelegramSendResolver
 import com.aoya.telegami.service.Config
+import com.aoya.telegami.service.MessageToolSettings
 
 object MessageCopyHook {
     fun install() {
         val c = MessageMenuActions.target
         val forwardPicker = MessageForwardPicker(TelegramSendResolver(c))
         fun canCopy(chat: Any, message: Any): Boolean {
-            if (!Config.isFeatureEnabled("enable_message_copy") || !c.isProtectedGroup(message, chat)) return false
+            if (!Config.isFeatureEnabled(MessageToolSettings.COPY) || !c.isProtectedGroup(message, chat)) return false
             val owner = c.ownerField.get(message) ?: return false
             val media = c.mediaField.get(owner)
             return !MessageSendPolicy.isSelfDestructing(
@@ -41,7 +42,7 @@ object MessageCopyHook {
         MessageMenuActions.register(
             MessageMenuActions.Action(
                 MessageMenuActions.SEND_COPY, "\u65e0\u6765\u6e90\u8f6c\u53d1", "msg_forward",
-                { _, _ -> MessageForwardSession.visible(Config.isFeatureEnabled("enable_message_copy")) },
+                { _, _ -> MessageForwardSession.visible(Config.isFeatureEnabled(MessageToolSettings.SOURCELESS_FORWARD)) },
                 forwardPicker::open,
                 fallbackIcons = listOf("msg_forward_replace", "msg_copy"),
             ),

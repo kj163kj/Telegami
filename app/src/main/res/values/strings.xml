@@ -67,15 +67,17 @@
     <!-- Message Tools -->
     <string name="feat_enable_message_repeat">消息复读</string>
     <string name="feat_enable_message_repeat_desc">将消息作为新消息发送，不建立回复关系。</string>
-    <string name="feat_enable_message_copy">复制与作为新消息发送</string>
-    <string name="feat_enable_message_copy_desc">在受保护群组中启用文本复制，并允许使用「作为新消息发送」。</string>
+    <string name="feat_enable_message_copy">启用强制复制</string>
+    <string name="feat_enable_message_copy_desc">在受保护群组中启用文本复制。</string>
+    <string name="feat_enable_sourceless_forward">无来源转发</string>
+    <string name="feat_enable_sourceless_forward_desc">将消息作为无转发来源的新消息发送到目标会话。</string>
     <string name="feat_enable_edit_history">编辑历史</string>
     <string name="feat_enable_edit_history_desc">本地捕获消息编辑前后的历史版本。</string>
 
     <string name="feat_enable_repeat_confirmation">复读前确认</string>
     <string name="feat_enable_repeat_confirmation_desc">点击「复读」后是否显示确认对话框。</string>
-    <string name="feat_enable_copy_confirmation">作为新消息发送前确认</string>
-    <string name="feat_enable_copy_confirmation_desc">点击「作为新消息发送」后是否显示确认对话框。</string>
+    <string name="feat_enable_copy_confirmation">无来源转发前确认</string>
+    <string name="feat_enable_copy_confirmation_desc">点击「无来源转发」选择目标会话后是否显示确认对话框。</string>
 
     <string name="feat_edit_history_retention_days">编辑历史保留天数</string>
     <string name="feat_edit_history_retention_days_desc">超过保留期限的本地历史记录会被清理。</string>

@@ -51,15 +51,17 @@ class FeaturesMessageToolsTest {
             val initial = readMessageToolsSnapshot(port)
             assertFalse(initial.enableMessageRepeat)
             assertFalse(initial.enableMessageCopy)
+            assertFalse(initial.enableSourcelessForward)
             assertFalse(initial.enableEditHistory)
             assertTrue(initial.enableRepeatConfirmation)
             assertTrue(initial.enableCopyConfirmation)
             assertEquals(30, initial.editHistoryRetentionDays)
             assertEquals(100, initial.editHistoryMaxVersions)
 
-            // 2. Write all 5 Boolean switches and verify exact remote keys & reloaded state
+            // 2. Write all 6 Boolean switches and verify exact remote keys & reloaded state
             assertTrue(persistMessageToolBoolean(port, MessageToolSettings.REPEAT, true).saved)
             assertTrue(persistMessageToolBoolean(port, MessageToolSettings.COPY, true).saved)
+            assertTrue(persistMessageToolBoolean(port, MessageToolSettings.SOURCELESS_FORWARD, true).saved)
             assertTrue(persistMessageToolBoolean(port, MessageToolSettings.HISTORY, true).saved)
             assertTrue(persistMessageToolBoolean(port, MessageToolSettings.REPEAT_CONFIRM, false).saved)
             assertTrue(persistMessageToolBoolean(port, MessageToolSettings.COPY_CONFIRM, false).saved)
@@ -71,6 +73,7 @@ class FeaturesMessageToolsTest {
 
             assertEquals(true, port.booleans["enable_message_repeat"])
             assertEquals(true, port.booleans["enable_message_copy"])
+            assertEquals(true, port.booleans["enable_sourceless_forward"])
             assertEquals(true, port.booleans["enable_edit_history"])
             assertEquals(false, port.booleans["enable_repeat_confirmation"])
             assertEquals(false, port.booleans["enable_copy_confirmation"])
@@ -80,6 +83,7 @@ class FeaturesMessageToolsTest {
             val reloaded = finalWrite.snapshot
             assertTrue(reloaded.enableMessageRepeat)
             assertTrue(reloaded.enableMessageCopy)
+            assertTrue(reloaded.enableSourcelessForward)
             assertTrue(reloaded.enableEditHistory)
             assertFalse(reloaded.enableRepeatConfirmation)
             assertFalse(reloaded.enableCopyConfirmation)
@@ -155,9 +159,14 @@ class FeaturesMessageToolsTest {
             assertFalse(defaultSnap.retentionDaysEnabled(canEdit = true))
             assertFalse(defaultSnap.maxVersionsEnabled(canEdit = true))
 
-            // Turn on all 3 masters and customize all 4 sub-settings
-            persistMessageToolBoolean(port, MessageToolSettings.REPEAT, true)
+            // Enabling standalone forced copy does NOT enable copyConfirmation (which belongs to sourceless forward)
             persistMessageToolBoolean(port, MessageToolSettings.COPY, true)
+            val copyOnlySnap = readMessageToolsSnapshot(port)
+            assertFalse(copyOnlySnap.copyConfirmationEnabled(canEdit = true))
+
+            // Turn on all parent masters and customize all 4 sub-settings
+            persistMessageToolBoolean(port, MessageToolSettings.REPEAT, true)
+            persistMessageToolBoolean(port, MessageToolSettings.SOURCELESS_FORWARD, true)
             persistMessageToolBoolean(port, MessageToolSettings.HISTORY, true)
             persistMessageToolBoolean(port, MessageToolSettings.REPEAT_CONFIRM, false)
             persistMessageToolBoolean(port, MessageToolSettings.COPY_CONFIRM, false)
@@ -170,9 +179,9 @@ class FeaturesMessageToolsTest {
             assertTrue(activeSnap.maxVersionsEnabled(canEdit = true))
             assertFalse(activeSnap.repeatConfirmationEnabled(canEdit = false))
 
-            // Turn OFF all 3 masters -> sub-settings disable, but stored values remain untouched
+            // Turn OFF parent masters -> sub-settings disable, but stored values remain untouched
             persistMessageToolBoolean(port, MessageToolSettings.REPEAT, false)
-            persistMessageToolBoolean(port, MessageToolSettings.COPY, false)
+            persistMessageToolBoolean(port, MessageToolSettings.SOURCELESS_FORWARD, false)
             val disabledSnap = persistMessageToolBoolean(port, MessageToolSettings.HISTORY, false).snapshot
 
             assertFalse(disabledSnap.repeatConfirmationEnabled(canEdit = true))
@@ -186,7 +195,7 @@ class FeaturesMessageToolsTest {
 
             // Turn masters back ON -> all 4 sub-settings re-enable with their original saved values restored
             persistMessageToolBoolean(port, MessageToolSettings.REPEAT, true)
-            persistMessageToolBoolean(port, MessageToolSettings.COPY, true)
+            persistMessageToolBoolean(port, MessageToolSettings.SOURCELESS_FORWARD, true)
             val restoredSnap = persistMessageToolBoolean(port, MessageToolSettings.HISTORY, true).snapshot
 
             assertTrue(restoredSnap.repeatConfirmationEnabled(canEdit = true))

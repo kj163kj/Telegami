@@ -6,6 +6,7 @@ import com.aoya.telegami.core.TelegramForwardResolver
 import com.aoya.telegami.core.TelegramHistoryResolver
 import com.aoya.telegami.core.TelegramSendResolver
 import com.aoya.telegami.service.Config
+import com.aoya.telegami.service.MessageToolSettings
 import com.aoya.telegami.util.Logger
 import io.github.libxposed.api.XposedInterface
 import java.lang.reflect.Proxy
@@ -20,9 +21,15 @@ class MessageForwardPicker(private val target: TelegramSendResolver) {
     private val preparation by lazy { ProtectedMediaPreparation(target) }
 
     fun open(original: MessageMenuActions.Selection) {
-        check(Config.isFeatureEnabled("enable_message_copy")) { "\u529f\u80fd\u5df2\u5173\u95ed" }
+        check(Config.isFeatureEnabled(MessageToolSettings.SOURCELESS_FORWARD)) { "\u529f\u80fd\u5df2\u5173\u95ed" }
         val picker = native.newPicker(c.messageAccount.getInt(original.message))
-        val selected = selectionHandler(listOf(original), picker, "enable_message_copy", MessageForwardSession())
+        val selected =
+            selectionHandler(
+                listOf(original),
+                picker,
+                MessageToolSettings.SOURCELESS_FORWARD,
+                MessageForwardSession(),
+            )
         val proxy = Proxy.newProxyInstance(c.loader, arrayOf(native.delegate)) { proxyObject, method, args ->
             when (method) {
                 native.defaultD, native.defaultJ -> false

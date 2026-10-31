@@ -4,6 +4,7 @@ package com.aoya.telegami.service
 object MessageToolSettings {
     const val REPEAT = "enable_message_repeat"
     const val COPY = "enable_message_copy"
+    const val SOURCELESS_FORWARD = "enable_sourceless_forward"
     const val HISTORY = "enable_edit_history"
     const val REPEAT_CONFIRM = "enable_repeat_confirmation"
     const val COPY_CONFIRM = "enable_copy_confirmation"
@@ -11,7 +12,7 @@ object MessageToolSettings {
     const val MAX_VERSIONS = "edit_history_max_versions"
 
     val booleanDefaults = mapOf(
-        REPEAT to false, COPY to false, HISTORY to false,
+        REPEAT to false, COPY to false, SOURCELESS_FORWARD to false, HISTORY to false,
         REPEAT_CONFIRM to true, COPY_CONFIRM to true,
     )
     val integerDefaults = mapOf(RETENTION to 30, MAX_VERSIONS to 100)
