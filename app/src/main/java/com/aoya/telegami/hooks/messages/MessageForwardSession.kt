@@ -28,6 +28,13 @@ class MessageForwardSession {
         return true
     }
 
+    fun submitToDestination(openDestination: () -> Unit, send: () -> Unit): Boolean {
+        if (!submit()) return false
+        openDestination()
+        send()
+        return true
+    }
+
     companion object {
         fun visible(enabled: Boolean): Boolean = enabled
     }

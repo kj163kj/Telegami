@@ -25,11 +25,22 @@ class TelegramForwardResolver(private val send: TelegramSendResolver) {
     private val manageMono = c.type("org.telegram.messenger.ChatObject")
         .exactMethod("canManageMonoForum", c.bool, c.int, c.chatType)
     private val messageConstructor = c.message.getConstructor(c.int, c.owner, c.bool, c.bool)
+    private val chatConstructor = c.chat.getConstructor(Bundle::class.java)
+    private val dialogObject = c.type("org.telegram.messenger.DialogObject")
+    private val encryptedId = dialogObject.exactMethod("getEncryptedChatId", c.int, c.long)
+    private val userDialog = dialogObject.exactMethod("isUserDialog", c.bool, c.long)
+    private val checkCanOpen = c.controller.exactMethod("checkCanOpenChat", c.bool, Bundle::class.java, fragment)
+    private val monoManageRights = c.controller.exactMethod("isMonoForumWithManageRights", c.bool, c.long)
+    private val storage = c.type("org.telegram.messenger.MessagesStorage")
+    private val storageInstance = storage.exactMethod("getInstance", storage, c.int)
+    private val storageMonoForum = storage.exactMethod("isMonoForum", c.bool, c.long)
+    private val applyTopic = c.type("jf.d").exactMethod("a", Void.TYPE, c.chat, topicKey)
     val pickerDelegate = picker.exactField("B2", delegate)
     val currentAccount = fragment.exactMethod("getCurrentAccount", c.int)
     private val setAccount = fragment.exactMethod("setCurrentAccount", Void.TYPE, c.int)
     val present = fragment.exactMethod("presentFragment", c.bool, fragment)
-    val finish = fragment.exactMethod("finishFragment", Void.TYPE)
+    private val presentReplacing = fragment.exactMethod("presentFragment", c.bool, fragment, c.bool)
+    private val removeFromStack = fragment.exactMethod("removeSelfFromStack", Void.TYPE)
     val selected = delegate.exactMethod("v", c.bool, picker, c.list, CharSequence::class.java, c.bool, c.bool, c.int, c.int, topicUi)
     val defaultD = delegate.exactMethod("D", c.bool)
     val defaultJ = delegate.exactMethod("J", c.bool, picker)
@@ -48,10 +59,41 @@ class TelegramForwardResolver(private val send: TelegramSendResolver) {
 
     fun detachedMessage(slot: Int, owner: Any): Any = messageConstructor.newInstance(slot, owner, false, false)
 
-    fun destination(key: Any, slot: Int): MessageSender.Destination {
+    fun destinationIdentity(key: Any): MessageDestinationKey {
         check(topicKey.isInstance(key)) { "Unexpected native destination type" }
-        val dialogId = keyDialog.getLong(key)
-        val topicId = keyTopic.getLong(key)
+        return MessageDestinationKey(keyDialog.getLong(key), keyTopic.getLong(key))
+    }
+
+    /** Same Bundle, topic application and replacing presentation as native ko.v. */
+    fun openDestination(sourceChat: Any, fromPicker: Any, key: Any, slot: Int, fromTopicUi: Boolean) {
+        val identity = destinationIdentity(key)
+        val dialog = identity.dialogId
+        check(dialog != 0L) { "Invalid native destination" }
+        val controller = c.getController.invoke(null, slot)!!
+        val args = Bundle().apply {
+            putBoolean("historyPreloaded", false)
+            when {
+                c.encryptedDialog.invoke(null, dialog) == true -> putInt("enc_id", encryptedId.invoke(null, dialog) as Int)
+                userDialog.invoke(null, dialog) == true -> putLong("user_id", dialog)
+                else -> putLong("chat_id", -dialog)
+            }
+            if (storageMonoForum.invoke(storageInstance.invoke(null, slot), dialog) == true) {
+                putInt("chatMode", 8)
+                if (monoManageRights.invoke(controller, dialog) != true) putBoolean("isSubscriberSuggestions", true)
+            }
+        }
+        check(checkCanOpen.invoke(controller, args, fromPicker) == true) { "Telegram \u65e0\u6cd5\u6253\u5f00\u76ee\u6807\u4f1a\u8bdd" }
+        val chat = chatConstructor.newInstance(args)
+        setAccount.invoke(chat, slot)
+        if (identity.topicId != 0L || fromTopicUi) {
+            applyTopic.invoke(null, chat, key)
+            removeFromStack.invoke(fromPicker)
+        }
+        check(presentReplacing.invoke(sourceChat, chat, true) == true) { "\u65e0\u6cd5\u8fdb\u5165\u76ee\u6807\u804a\u5929" }
+    }
+
+    fun destination(key: Any, slot: Int): MessageSender.Destination {
+        val (dialogId, topicId) = destinationIdentity(key)
         if (topicId == 0L) return MessageSender.Destination(MessageDestinationKey(dialogId))
         val controller = c.getController.invoke(null, slot)!!
         val chat = if (dialogId < 0) send.getChat.invoke(controller, -dialogId) else null

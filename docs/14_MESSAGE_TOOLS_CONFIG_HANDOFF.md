@@ -64,6 +64,12 @@ The custom action opens Telegram's own dialog/topic destination picker and
 sends fresh messages to the selected destinations, NOT the source chat.
 Cancel/back performs no send. With enable_copy_confirmation=true, an extra
 confirmation appears after selection; false does not skip destination selection.
+On submission, Telegram opens the selected destination chat/topic BEFORE send
+preflight. Both successful queueing and send/preflight failure leave that chat
+visible; no success/error handler returns to the source or destination picker.
+Multiple selections leave the first selected destination visible. Cancelling
+before submission does not navigate or send. Native refusal to open a chat or
+an account-identity change still prevents unsafe navigation and sending.
 Existing key names, defaults and Modern Remote Preferences persistence do not
 change. The separate management UI can update its wording independently; no
 management App UI/resources/navigation were modified in this repair.

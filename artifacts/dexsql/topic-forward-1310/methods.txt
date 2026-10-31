@@ -3,6 +3,8 @@
 +---------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | 0       | 35426      | Lorg/telegram/messenger/ChatObject;->canManageMonoForum(IJ)Z                                                                                                                              |
 | 0       | 35427      | Lorg/telegram/messenger/ChatObject;->canManageMonoForum(ILorg/telegram/tgnet/TLRPC$Chat;)Z                                                                                                |
+| 0       | 35960      | Lorg/telegram/messenger/DialogObject;->getEncryptedChatId(J)I                                                                                                                             |
+| 0       | 35990      | Lorg/telegram/messenger/DialogObject;->isUserDialog(J)Z                                                                                                                                   |
 | 0       | 39496      | Lorg/telegram/messenger/MediaDataController;->getEntities([Ljava/lang/CharSequence;Z)Ljava/util/ArrayList;                                                                                |
 | 0       | 39497      | Lorg/telegram/messenger/MediaDataController;->getEntities([Ljava/lang/CharSequence;ZZ)Ljava/util/ArrayList;                                                                               |
 | 0       | 39507      | Lorg/telegram/messenger/MediaDataController;->getInstance(I)Lorg/telegram/messenger/MediaDataController;                                                                                  |
@@ -20,11 +22,18 @@
 | 0       | 40141      | Lorg/telegram/messenger/MessageObject;-><init>(ILorg/telegram/tgnet/TLRPC$Message;ZZ)V                                                                                                    |
 | 0       | 40142      | Lorg/telegram/messenger/MessageObject;-><init>(ILorg/telegram/tgnet/TLRPC$TL_channelAdminLogEvent;Ljava/util/ArrayList;Ljava/util/HashMap;Lorg/telegram/tgnet/TLRPC$Chat;[IZ)V            |
 | 0       | 40143      | Lorg/telegram/messenger/MessageObject;-><init>(ILorg/telegram/tgnet/tl/TL_stories$StoryItem;)V                                                                                            |
+| 0       | 41253      | Lorg/telegram/messenger/MessagesController;->checkCanOpenChat(Landroid/os/Bundle;Lorg/telegram/ui/ActionBar/r2;)Z                                                                         |
+| 0       | 41254      | Lorg/telegram/messenger/MessagesController;->checkCanOpenChat(Landroid/os/Bundle;Lorg/telegram/ui/ActionBar/r2;Lorg/telegram/messenger/MessageObject;)Z                                   |
+| 0       | 41255      | Lorg/telegram/messenger/MessagesController;->checkCanOpenChat(Landroid/os/Bundle;Lorg/telegram/ui/ActionBar/r2;Lorg/telegram/messenger/MessageObject;Lje/e;)Z                             |
 | 0       | 41396      | Lorg/telegram/messenger/MessagesController;->getChat(Ljava/lang/Long;)Lorg/telegram/tgnet/TLRPC$Chat;                                                                                     |
 | 0       | 41483      | Lorg/telegram/messenger/MessagesController;->getTopicsController()Lorg/telegram/messenger/TopicsController;                                                                               |
 | 0       | 41551      | Lorg/telegram/messenger/MessagesController;->isFrozen()Z                                                                                                                                  |
+| 0       | 41557      | Lorg/telegram/messenger/MessagesController;->isMonoForumWithManageRights(J)Z                                                                                                              |
+| 0       | 42781      | Lorg/telegram/messenger/MessagesStorage;->getInstance(I)Lorg/telegram/messenger/MessagesStorage;                                                                                          |
+| 0       | 42839      | Lorg/telegram/messenger/MessagesStorage;->isMonoForum(J)Z                                                                                                                                 |
 | 0       | 45400      | Lorg/telegram/messenger/SendMessagesHelper;->canSendMessageToChat(Lorg/telegram/tgnet/TLRPC$Chat;Lorg/telegram/messenger/MessageObject;)I                                                 |
 | 0       | 46201      | Lorg/telegram/messenger/TopicsController;->findTopic(JJ)Lorg/telegram/tgnet/TLRPC$TL_forumTopic;                                                                                          |
+| 2       | 6117       | Ljf/d;->a(Lorg/telegram/ui/ko;Lorg/telegram/messenger/MessagesStorage$TopicKey;)V                                                                                                         |
 | 2       | 24579      | Lorg/telegram/ui/ActionBar/r2;->finishFragment()V                                                                                                                                         |
 | 2       | 24580      | Lorg/telegram/ui/ActionBar/r2;->finishFragment(Z)Z                                                                                                                                        |
 | 2       | 24594      | Lorg/telegram/ui/ActionBar/r2;->getCurrentAccount()I                                                                                                                                      |
@@ -32,9 +41,12 @@
 | 2       | 24686      | Lorg/telegram/ui/ActionBar/r2;->presentFragment(Lorg/telegram/ui/ActionBar/r2;)Z                                                                                                          |
 | 2       | 24687      | Lorg/telegram/ui/ActionBar/r2;->presentFragment(Lorg/telegram/ui/ActionBar/r2;Z)Z                                                                                                         |
 | 2       | 24688      | Lorg/telegram/ui/ActionBar/r2;->presentFragment(Lorg/telegram/ui/ActionBar/r2;ZZ)Z                                                                                                        |
+| 2       | 24691      | Lorg/telegram/ui/ActionBar/r2;->removeSelfFromStack()V                                                                                                                                    |
+| 2       | 24692      | Lorg/telegram/ui/ActionBar/r2;->removeSelfFromStack(Z)V                                                                                                                                   |
 | 2       | 24700      | Lorg/telegram/ui/ActionBar/r2;->setCurrentAccount(I)V                                                                                                                                     |
 | 2       | 44731      | Lorg/telegram/ui/bz;-><init>(Landroid/os/Bundle;)V                                                                                                                                        |
 | 2       | 44797      | Lorg/telegram/ui/bz;->M3(JJZLorg/telegram/ui/og1;)V                                                                                                                                       |
+| 2       | 49256      | Lorg/telegram/ui/ko;-><init>(Landroid/os/Bundle;)V                                                                                                                                        |
 | 2       | 49506      | Lorg/telegram/ui/ko;->S8()J                                                                                                                                                               |
 | 2       | 49655      | Lorg/telegram/ui/ko;->d()J                                                                                                                                                                |
 | 2       | 49940      | Lorg/telegram/ui/ko;->v(Lorg/telegram/ui/bz;Ljava/util/ArrayList;Ljava/lang/CharSequence;ZZIILorg/telegram/ui/og1;)Z                                                                      |
