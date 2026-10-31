@@ -24,6 +24,7 @@ object MessageHistoryViewer {
 
     fun install(target: TelegramHistoryResolver) {
         val c = target.c
+        val factory = HistorySnapshotFactory(target)
         MessageMenuActions.register(MessageMenuActions.Action(
             MessageMenuActions.HISTORY, "\u7f16\u8f91\u5386\u53f2", "msg_recent",
             { _, _ -> Config.isFeatureEnabled("enable_edit_history") },
@@ -38,7 +39,9 @@ object MessageHistoryViewer {
                 val currentMedia = c.mediaField.get(owner)?.javaClass?.simpleName ?: "none"
                 val currentEditDate = c.editDate.getInt(owner)
                 val currentDate = c.date.getInt(owner)
-                val currentOwner = target.encode(owner)
+                val currentSnapshot = factory.snapshot(owner, slot, accountId)
+                val currentOwner = currentSnapshot?.ownerTl ?: target.encode(owner)
+                val currentHash = currentSnapshot?.contentHash
                 val activity = selection.activity
                 val active = AtomicBoolean(true)
                 val loading = AlertDialog.Builder(activity).setMessage("\u6b63\u5728\u8bfb\u53d6\u672c\u5730\u5386\u53f2\u2026")
@@ -66,7 +69,7 @@ object MessageHistoryViewer {
                             onSuccess = { rows ->
                                 try {
                                     Logger.i("History query loaded ${rows.size} captured versions", "EditHistory", xposed = true)
-                                    show(target, selection, rows, currentText, currentEntities, currentMedia, currentEditDate, currentDate, currentOwner, key.messageId)
+                                    show(target, selection, rows, currentText, currentEntities, currentMedia, currentEditDate, currentDate, currentOwner, currentHash, key.messageId)
                                 } catch (error: Throwable) {
                                     rows.forEach { it.second?.recycle() }
                                     Logger.e("History viewer failed", error, "EditHistory")
@@ -87,15 +90,20 @@ object MessageHistoryViewer {
     private fun show(
         target: TelegramHistoryResolver, selection: MessageMenuActions.Selection, rows: List<Pair<MessageHistoryEntry, Bitmap?>>,
         currentText: String, currentEntities: List<TextEntity>, currentMedia: String, currentEditDate: Int,
-        currentDate: Int, currentOwner: ByteArray, messageId: Int,
+        currentDate: Int, currentOwner: ByteArray, currentHash: String?, messageId: Int,
     ) {
-        val versions = rows.map { (entry, bitmap) ->
-            val time = (entry.editDate.takeIf { it > 0 } ?: entry.messageDate).toLong() * 1000
+        val versions = rows.mapIndexed { index, (entry, bitmap) ->
+            val original = index == 0 && entry.editDate == 0
+            val time = when {
+                entry.editDate > 0 -> entry.editDate * 1000L
+                original -> entry.messageDate * 1000L
+                else -> entry.capturedAt
+            }
             val entities = runCatching {
                 Gson().fromJson(entry.messageEntities, Array<TextEntity>::class.java).toList()
             }.getOrDefault(emptyList())
             HistoryVersion(
-                title = "#${entry.versionId}  ${if (entry.editDate == 0) "\u539f\u59cb\u7248\u672c" else "\u7f16\u8f91\u7248\u672c"}",
+                title = "#${index + 1}  ${if (original) "\u539f\u59cb\u7248\u672c" else "\u7f16\u8f91\u7248\u672c"}",
                 time = date(time), captured = "\u6355\u83b7: ${date(entry.capturedAt)}",
                 text = entry.messageText, entities = entities,
                 media = mediaLabel(entry.mediaType) + if (entry.mediaType == "TL_messageMediaPhoto" && bitmap == null) {
@@ -103,19 +111,24 @@ object MessageHistoryViewer {
                 } else "",
                 preview = bitmap,
                 ownerTl = entry.ownerTl,
+                contentHash = entry.contentHash, editDate = entry.editDate,
             )
         }
         val current = HistoryVersion(
             "\u5f53\u524d\u6d88\u606f\uff08\u6253\u5f00\u65f6\uff09", date((currentEditDate.takeIf { it > 0 } ?: currentDate) * 1000L),
             "", currentText, currentEntities, mediaLabel(currentMedia), null, current = true, ownerTl = currentOwner,
+            contentHash = currentHash, editDate = currentEditDate,
         )
         val notice = when {
             rows.isEmpty() -> "\u5c1a\u65e0\u5df2\u6355\u83b7\u7684\u5386\u53f2\u7248\u672c"
             rows.first().first.let { it.versionId > 1 || it.editDate != 0 } -> "\u539f\u59cb\u7248\u672c\u672a\u6355\u83b7\u6216\u5df2\u6e05\u7406"
             else -> "\u4ec5\u663e\u793a\u672c\u5730\u5df2\u6355\u83b7\u7684\u7248\u672c"
         }
+        val timeline = HistoryVersionTimeline.withCurrent(versions, current)
+        val currentMerged = timeline.size == versions.size && timeline.lastOrNull()?.current == true
+        Logger.i("History display captured=${versions.size} rows=${timeline.size} currentMerged=$currentMerged", "EditHistory", xposed = true)
         MessageHistoryScreen.show(selection.activity, selection.chat, target.c.messageAccount.getInt(selection.message),
-            TelegramHistoryUiResolver(target), messageId, versions + current, notice) {
+            TelegramHistoryUiResolver(target), messageId, timeline, notice) {
             rows.forEach { it.second?.recycle() }
         }
     }

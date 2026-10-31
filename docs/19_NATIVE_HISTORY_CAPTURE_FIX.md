@@ -1,5 +1,8 @@
 # Native history viewer and independent capture
 
+Follow-up: `20_HISTORY_DUPLICATE_FIX.md` supersedes the duplicate handling and
+separate current-at-open row described in this report.
+
 Date: 2026-10-31. Branch: `fix/native-edit-history-capture`.
 Baseline: `efbba0d33ca3bafc238865858b3061a60038ed7a`.
 Git identity and GitHub authentication were verified; the initial tree was clean.

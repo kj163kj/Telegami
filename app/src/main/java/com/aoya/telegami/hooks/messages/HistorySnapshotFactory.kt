@@ -65,7 +65,7 @@ class HistorySnapshotFactory(private val target: TelegramHistoryResolver) {
             c.date.getInt(owner), c.editDate.getInt(owner), text,
             gson.toJson(MessageText.entities(c, owner)), entityBytes, mediaType, metadataJson,
             mediaBytes, target.encode(owner),
-            HistoryContent.hash(text.toByteArray(Charsets.UTF_8), entityBytes, metadataJson.toByteArray(Charsets.UTF_8)),
+            HistoryContent.contentHash(text, entityBytes, mediaType, metadataJson),
             preview,
         )
     }

@@ -38,9 +38,22 @@ internal data class HistoryVersion(
     val preview: Bitmap?,
     val current: Boolean = false,
     val ownerTl: ByteArray = byteArrayOf(),
+    val contentHash: String? = null,
+    val editDate: Int = 0,
 ) {
     fun matches(query: String): Boolean = query.isBlank() ||
         listOf(title, time, captured, text, media).any { it.contains(query.trim(), ignoreCase = true) }
+}
+
+internal object HistoryVersionTimeline {
+    fun withCurrent(versions: List<HistoryVersion>, current: HistoryVersion): List<HistoryVersion> {
+        val latest = versions.lastOrNull() ?: return listOf(current)
+        // The UI snapshot can predate a new revision captured while the asynchronous query runs.
+        if (current.editDate < latest.editDate) return versions
+        return if (current.contentHash != null && current.contentHash == latest.contentHash) {
+            versions.dropLast(1) + latest.copy(title = "${latest.title}  \u00b7 \u5f53\u524d\u6d88\u606f", current = true)
+        } else versions + current
+    }
 }
 
 /** NagramX's chat-style layout using actual host ActionBar, ChatActionCell and ChatMessageCell. */

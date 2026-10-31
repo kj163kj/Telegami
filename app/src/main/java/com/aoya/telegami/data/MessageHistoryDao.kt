@@ -26,31 +26,48 @@ abstract class MessageHistoryDao {
     abstract fun referencedPreviews(): List<String>
 
     @Transaction
-    open fun append(candidates: List<MessageHistoryEntry>, maxVersions: Int) {
-        if (candidates.isEmpty()) return
+    open fun append(candidates: List<MessageHistoryEntry>, maxVersions: Int): Int {
+        if (candidates.isEmpty()) return 0
         val first = candidates.first()
         require(candidates.all {
             it.accountId == first.accountId && it.dialogId == first.dialogId && it.messageId == first.messageId
         })
-        var last = latest(first.accountId, first.dialogId, first.messageId)
-        val newest = candidates.last()
+        val normalized = candidates.map(HistoryContent::canonical)
+        var last = latest(first.accountId, first.dialogId, first.messageId)?.let(HistoryContent::canonical)
+        val newest = normalized.last()
         if (last != null) {
-            if (last.editDate > newest.editDate) return
+            if (last.editDate > newest.editDate) return 0
+            if (newest.editDate == 0 && last.contentHash != newest.contentHash) {
+                val originalReplay = read(first.accountId, first.dialogId, first.messageId).any {
+                    it.editDate == 0 && HistoryContent.canonical(it).contentHash == newest.contentHash
+                }
+                if (originalReplay) return 0
+            }
             if (last.contentHash == newest.contentHash) {
-                if (candidates.all { it.contentHash == newest.contentHash }) return
-                val previous = read(first.accountId, first.dialogId, first.messageId).dropLast(1).lastOrNull()
-                // A duplicate old+new pair differs from a missed intermediate edit
-                // followed by a reversion to the last known content.
-                if (previous?.contentHash == first.contentHash && last.editDate != 0 && last.editDate == newest.editDate) return
+                // Both storage hooks can observe the same revision with different stale old rows.
+                if (last.editDate == newest.editDate || normalized.all { it.contentHash == newest.contentHash }) return 0
+                val known = read(first.accountId, first.dialogId, first.messageId).map(HistoryContent::canonical)
+                val lastHash = last.contentHash
+                val lastDate = last.editDate
+                val unseenIntermediate = normalized.dropLast(1).any { old ->
+                    old.contentHash != lastHash && old.editDate > 0 && old.editDate >= lastDate &&
+                        known.none { it.contentHash == old.contentHash && it.editDate == old.editDate }
+                }
+                // A server acknowledgement can advance edit_date without changing the optimistic text.
+                if (!unseenIntermediate) return 0
             }
         }
-        candidates.forEach { candidate ->
-            if (candidate.contentHash != last?.contentHash) {
+        var inserted = 0
+        normalized.forEachIndexed { index, candidate ->
+            val oldOriginal = index < normalized.lastIndex && last != null && candidate.editDate == 0
+            if (!oldOriginal && candidate.editDate >= (last?.editDate ?: 0) && candidate.contentHash != last?.contentHash) {
                 val entry = candidate.copy(versionId = (last?.versionId ?: 0L) + 1)
                 insert(entry)
                 last = entry
+                inserted++
             }
         }
         trim(first.accountId, first.dialogId, first.messageId, maxVersions.coerceAtLeast(2))
+        return inserted
     }
 }

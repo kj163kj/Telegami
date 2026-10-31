@@ -23,14 +23,24 @@ object MessageHistoryStorage {
                 snapshot.mediaType, snapshot.mediaMetadata, snapshot.mediaTl, snapshot.ownerTl, snapshot.contentHash, preview,
             )
         }
-        dao.append(entries, Config.historyMaxVersions())
+        val inserted = dao.append(entries, Config.historyMaxVersions())
+        entries.firstOrNull()?.let {
+            val revisions = entries.joinToString(",") { row ->
+                "${row.editDate}:${HistoryContent.canonical(row).contentHash.take(12)}:${row.mediaType}"
+            }
+            Logger.i("History append mid=${it.messageId} dialog=${it.dialogId} candidates=${entries.size} inserted=$inserted revisions=[$revisions]", "EditHistory", xposed = true)
+        }
+        Unit
     }
 
     fun read(key: MessageKey): List<MessageHistoryEntry> = synchronized(lock) {
         val dao = Telegami.db.messageHistoryDao()
         maintain(dao, force = true)
         dao.trim(key.accountId, key.dialogId, key.messageId, Config.historyMaxVersions())
-        dao.read(key.accountId, key.dialogId, key.messageId)
+        val stored = dao.read(key.accountId, key.dialogId, key.messageId)
+        val visible = HistoryRevisions.visible(stored)
+        Logger.i("History read mid=${key.messageId} dialog=${key.dialogId} stored=${stored.size} visible=${visible.size}", "EditHistory", xposed = true)
+        visible
     }
 
     private fun maintain(dao: MessageHistoryDao, force: Boolean = false) {

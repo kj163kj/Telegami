@@ -22,6 +22,18 @@ data class HistorySnapshot(
 )
 
 object HistoryContent {
+    private const val NO_MEDIA = "{\"type\":\"none\",\"invert\":false,\"spoiler\":false}"
+
+    fun contentHash(text: String, entities: ByteArray, mediaType: String, metadata: String): String = hash(
+        text.toByteArray(Charsets.UTF_8), entities,
+        (if (mediaType == "none" || mediaType == "TL_messageMediaEmpty") NO_MEDIA else metadata).toByteArray(Charsets.UTF_8),
+    )
+
+    /** Older rows hashed null and TL_messageMediaEmpty differently. Keep their raw TL untouched. */
+    fun canonical(entry: MessageHistoryEntry): MessageHistoryEntry = if (
+        entry.mediaType == "none" || entry.mediaType == "TL_messageMediaEmpty"
+    ) entry.copy(contentHash = contentHash(entry.messageText, entry.entitiesTl, entry.mediaType, entry.mediaMetadata)) else entry
+
     /** Length delimiters avoid collisions between differently partitioned fields. */
     fun hash(vararg parts: ByteArray): String {
         val digest = MessageDigest.getInstance("SHA-256")
