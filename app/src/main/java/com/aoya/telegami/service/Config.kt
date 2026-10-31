@@ -10,6 +10,10 @@ object Config {
     private val preferenceListener =
         SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
             Logger.i("Remote feature changed: $key", "Configuration", xposed = true)
+            if (key == null || key == "HideOnlineStatus") {
+                runCatching { com.aoya.telegami.hooks.HideOnlineStatus.onPreferenceChanged() }
+                    .onFailure { Logger.e("Failed to refresh offline presence", it, "Configuration") }
+            }
             if (key == null || key in setOf("MarkMessagesDeleted", "MarkMessagesEdited", "ShowDeletedMessages")) {
                 runCatching { com.aoya.telegami.hooks.MarkMessages.refreshAll() }
                     .onFailure { Logger.e("Failed to schedule marker refresh", it, "Configuration") }

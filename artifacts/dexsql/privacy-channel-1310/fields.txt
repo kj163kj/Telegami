@@ -1,0 +1,9 @@
++---------+-----------+------------------------------------------------------------+
+| file_id | field_idx | descriptor                                                 |
++---------+-----------+------------------------------------------------------------+
+| 0       | 43352     | Lorg/telegram/tgnet/TLRPC$Message;->noforwards:Z           |
+| 0       | 45645     | Lorg/telegram/tgnet/tl/TL_account$updateStatus;->offline:Z |
+| 2       | 15841     | Lorg/telegram/tgnet/TLRPC$Message;->noforwards:Z           |
+| 2       | 22591     | Lorg/telegram/tgnet/tl/TL_account$updateStatus;->offline:Z |
+| 3       | 7282      | Lorg/telegram/tgnet/TLRPC$Message;->noforwards:Z           |
++---------+-----------+------------------------------------------------------------+

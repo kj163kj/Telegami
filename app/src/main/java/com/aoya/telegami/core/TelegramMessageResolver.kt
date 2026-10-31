@@ -2,6 +2,7 @@ package com.aoya.telegami.core
 
 import android.app.Activity
 import android.view.View
+import com.aoya.telegami.hooks.UnlockChannelFeatures
 import com.aoya.telegami.util.exactField
 import com.aoya.telegami.util.exactMethod
 
@@ -55,7 +56,9 @@ class TelegramMessageResolver(val loader: ClassLoader) {
         val ownerObject = ownerField.get(messageObject) ?: return false
         return (dialogForOwner.invoke(null, ownerObject) as Long) < 0 &&
             currentChat.get(chatObject)?.let {
-                protectedChat.invoke(getController.invoke(null, slot), it) as Boolean
+                UnlockChannelFeatures.withOriginalProtection {
+                    protectedChat.invoke(getController.invoke(null, slot), it) as Boolean
+                }
             } == true
     }
 }

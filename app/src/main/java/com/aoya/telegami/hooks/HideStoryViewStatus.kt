@@ -1,30 +1,31 @@
 package com.aoya.telegami.hooks
 
+import android.graphics.Canvas
+import com.aoya.telegami.core.TelegramStoryPrivacyResolver
 import com.aoya.telegami.service.Config
-import com.aoya.telegami.util.findMethod
+import com.aoya.telegami.util.Logger
+import com.aoya.telegami.util.exactMethod
 import io.github.libxposed.api.XposedInterface
-import android.util.Log
+import java.util.concurrent.atomic.AtomicBoolean
 
 object HideStoryViewStatus {
-    const val STORIES_CONTROLLER_CN = "org.telegram.ui.Stories.StoriesController"
-    fun install(xposed: XposedInterface, classLoader: ClassLoader) {
-        if (!Config.isFeatureEnabled("HideStoryViewStatus")) return
-        val method = classLoader.findMethod(STORIES_CONTROLLER_CN, "markStoryAsRead")
-        xposed.hook(method).intercept { chain ->
-            val args = chain.args.toMutableList()
-            var result: Any? = null
-            var hasResult = false
-            try {
-                result = false
-                hasResult = true
-            } catch (throwable: Throwable) {
-                Log.e("Telegami", "Hook callback failed before ${method.name}", throwable)
+    private const val KEY = "HideStoryViewStatus"
+
+    fun install(xposed: XposedInterface, loader: ClassLoader) {
+        val target = TelegramStoryPrivacyResolver(loader)
+        for (method in listOf(target.markRead, target.incrementViews)) {
+            val firstOverride = AtomicBoolean()
+            xposed.hook(method).intercept { chain ->
+                if (!Config.isFeatureEnabled(KEY)) return@intercept chain.proceed(chain.args.toTypedArray())
+                if (firstOverride.compareAndSet(false, true)) {
+                    Logger.i("Suppressed story-view producer ${method.declaringClass.name}.${method.name}", KEY, xposed = true)
+                }
+                false
             }
-            if (!hasResult) {
-                result = chain.proceed(args.toTypedArray())
-                hasResult = true
-            }
-            result
         }
+        val drawStory = loader.loadClass("xg.m2").exactMethod("b", Void.TYPE, Canvas::class.java)
+        runCatching { xposed.deoptimize(drawStory) }
+            .onFailure { Logger.e("Unable to deoptimize story viewer", it, KEY) }
+        Logger.i("Installed both exact story-view producers; live=${Config.isFeatureEnabled(KEY)}", KEY, xposed = true)
     }
 }

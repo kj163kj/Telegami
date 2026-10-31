@@ -12,6 +12,7 @@ import com.aoya.telegami.hooks.BoostDownload
 import com.aoya.telegami.hooks.DisableAds
 import com.aoya.telegami.hooks.FakePremium
 import com.aoya.telegami.hooks.HideStoryViewStatus
+import com.aoya.telegami.hooks.HideOnlineStatus
 import com.aoya.telegami.hooks.LocaleController
 import com.aoya.telegami.hooks.MarkMessages
 import com.aoya.telegami.hooks.PreventSecretMediaDeletion
@@ -94,6 +95,7 @@ class XposedInit : XposedModule() {
         install("AllowScreenshots") { AllowScreenshots.install(this, classLoader) }
         install("ProfileDetails") { ProfileDetails.install(this, classLoader) }
         install("Privacy") { Privacy.install(this, classLoader) }
+        install("HideOnlineStatus") { HideOnlineStatus.install(this, classLoader) }
         install("HideStoryViewStatus") { HideStoryViewStatus.install(this, classLoader) }
         install("ShowDeletedMessages") { ShowDeletedMessages.install(this, classLoader) }
         install("PreventSecretMediaDeletion") { PreventSecretMediaDeletion.install(this, classLoader) }

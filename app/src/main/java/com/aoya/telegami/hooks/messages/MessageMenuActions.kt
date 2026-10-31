@@ -4,6 +4,7 @@ import android.app.Activity
 import android.widget.Toast
 import com.aoya.telegami.Telegami
 import com.aoya.telegami.core.TelegramMessageResolver
+import com.aoya.telegami.hooks.UnlockChannelFeatures
 import com.aoya.telegami.util.Logger
 import io.github.libxposed.api.XposedInterface
 
@@ -41,7 +42,9 @@ object MessageMenuActions {
         if (installed) return
         target = TelegramMessageResolver(loader)
         xposed.hook(target.fillMenu).intercept { chain ->
-            val result = chain.proceed(chain.args.toTypedArray())
+            val result = UnlockChannelFeatures.withMenuAccess(chain.args[0]) {
+                chain.proceed(chain.args.toTypedArray())
+            }
             try {
                 val chat = chain.thisObject!!
                 val message = chain.args[0] ?: return@intercept result

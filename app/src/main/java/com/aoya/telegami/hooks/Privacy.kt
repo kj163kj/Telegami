@@ -4,23 +4,18 @@ import com.aoya.telegami.service.Config
 import com.aoya.telegami.util.logd
 import com.aoya.telegami.virt.tgnet.RequestDelegate
 import com.aoya.telegami.virt.tgnet.TLRPC
-import com.aoya.telegami.virt.tgnet.tl.TLAccount
-import com.aoya.telegami.virt.ui.ProfileActivity
 import com.aoya.telegami.util.findMethod
-import com.aoya.telegami.core.i18n.TranslationManager as i18n
 import com.aoya.telegami.core.obfuscate.ResolverManager as resolver
 import android.util.Log
 import io.github.libxposed.api.XposedInterface
 
 object Privacy {
     const val CONNECTIONS_MANAGER_CN = "org.telegram.tgnet.ConnectionsManager"
-    const val PROFILE_ACTIVITY_CN = "org.telegram.ui.ProfileActivity"
 
     fun install(xposed: XposedInterface, classLoader: ClassLoader) {
         val classOf: (String) -> Class<*> = { classLoader.loadClass(resolver.get(it)) }
         val tlMessagesSetEncTypingClass = classOf("org.telegram.tgnet.TLRPC\$TL_messages_setEncryptedTyping")
         val tlMessagesSetTypingClass = classOf("org.telegram.tgnet.TLRPC\$TL_messages_setTyping")
-        val tlAccountUpdateStatusClass = classOf("org.telegram.tgnet.tl.TL_account\$updateStatus")
         val tlMessagesReadHistoryClass = classOf("org.telegram.tgnet.TLRPC\$TL_messages_readHistory")
         val tlMessagesReadEncHistoryClass = classOf("org.telegram.tgnet.TLRPC\$TL_messages_readEncryptedHistory")
         val tlMessagesReadDiscussionClass = classOf("org.telegram.tgnet.TLRPC\$TL_messages_readDiscussion")
@@ -42,11 +37,6 @@ object Privacy {
                         logd("[PrivacyHook] should HideTyping")
                         result = null
                         hasResult = true
-                    }
-
-                    if (tlAccountUpdateStatusClass.isInstance(o) && Config.isFeatureEnabled("HideOnlineStatus")) {
-                        logd("[PrivacyHook] should HideOnlineStatus")
-                        TLAccount.UpdateStatus(o).offline = true
                     }
 
                     if ((
@@ -85,25 +75,5 @@ object Privacy {
             result
         }
 
-        if (Config.isFeatureEnabled("HideOnlineStatus")) {
-            val updateProfileData = classLoader.findMethod(PROFILE_ACTIVITY_CN, "updateProfileData")
-            xposed.hook(updateProfileData).intercept { chain ->
-                val args = chain.args.toMutableList()
-                val result = chain.proceed(args.toTypedArray())
-                try {
-                        val o = ProfileActivity(chain.thisObject!!)
-
-                        val clientUserId = o.getUserConfig().getClientUserId()
-                        val userId = o.userId
-
-                        if (clientUserId != 0L && userId != 0L && userId == clientUserId) {
-                            o.onlineTextView.getOrNull(1)?.setText(i18n.get("ProfileStatusOffline"))
-                        }
-                } catch (throwable: Throwable) {
-                    Log.e("Telegami", "Hook callback failed after ${updateProfileData.name}", throwable)
-                }
-                result
-            }
-        }
     }
 }
