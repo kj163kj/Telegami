@@ -34,6 +34,19 @@ current-at-open snapshot. It explains missing originals and missing local media.
 The viewer never writes current Telegram messages. Account and dialog are
 rechecked before presenting asynchronous results.
 
+Device-feedback follow-up: `MessageHistoryScreen` replaces the AlertDialog
+text column with a full-window, read-only list, search, version/time labels,
+message ID/count, latest-at-open row and tappable local-image previews.
+Rows stay chronological and initially scroll to the current version, as in
+NagramX. Empty/missing-original states remain explicit. Android system/IME
+insets and day/night palettes are handled without changing management-app UI.
+The interaction reference is NagramX `AyuMessageHistory.createView()` and
+`applySearchFilter()`, not an import of its Fragment/ChatMessageCell code.
+That code depends on Neko/Ayu classes absent from official Telegram. The
+adaptation uses Android Dialog/ListView and Telegami's existing immutable
+history records; it is not a pixel-identical native NagramX Fragment.
+No new Telegram reflection targets or network fetches are introduced.
+
 Only already-local photo files are copied before native media deletion.
 There is no network fetch. Preview limits: 8 MiB per file, 128 MiB total disk,
 512-pixel decoded bounds and at most 12 decoded previews per dialog. Files are

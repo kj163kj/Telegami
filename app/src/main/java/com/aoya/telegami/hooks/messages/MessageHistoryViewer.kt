@@ -3,11 +3,6 @@ package com.aoya.telegami.hooks.messages
 import android.app.AlertDialog
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.ScrollView
-import android.widget.TextView
 import com.aoya.telegami.Telegami
 import com.aoya.telegami.core.TelegramHistoryResolver
 import com.aoya.telegami.data.MessageHistoryEntry
@@ -41,6 +36,7 @@ object MessageHistoryViewer {
                 val currentEntities = MessageText.entities(c, owner)
                 val currentMedia = c.mediaField.get(owner)?.javaClass?.simpleName ?: "none"
                 val currentEditDate = c.editDate.getInt(owner)
+                val currentDate = c.date.getInt(owner)
                 val activity = selection.activity
                 val active = AtomicBoolean(true)
                 val loading = AlertDialog.Builder(activity).setMessage("\u6b63\u5728\u8bfb\u53d6\u672c\u5730\u5386\u53f2\u2026")
@@ -67,7 +63,8 @@ object MessageHistoryViewer {
                         result.fold(
                             onSuccess = { rows ->
                                 try {
-                                    show(selection, rows, currentText, currentEntities, currentMedia, currentEditDate)
+                                    Logger.i("History query loaded ${rows.size} captured versions", "EditHistory", xposed = true)
+                                    show(selection, rows, currentText, currentEntities, currentMedia, currentEditDate, currentDate, key.messageId)
                                 } catch (error: Throwable) {
                                     rows.forEach { it.second?.recycle() }
                                     Logger.e("History viewer failed", error, "EditHistory")
@@ -88,51 +85,35 @@ object MessageHistoryViewer {
     private fun show(
         selection: MessageMenuActions.Selection, rows: List<Pair<MessageHistoryEntry, Bitmap?>>,
         currentText: String, currentEntities: List<TextEntity>, currentMedia: String, currentEditDate: Int,
+        currentDate: Int, messageId: Int,
     ) {
-        val activity = selection.activity
-        val padding = (16 * activity.resources.displayMetrics.density).toInt()
-        val column = LinearLayout(activity).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(padding, padding, padding, padding)
-        }
-        fun label(text: CharSequence) {
-            column.addView(TextView(activity).apply {
-                this.text = text
-                textSize = 15f
-                setTextIsSelectable(true)
-                setPadding(0, padding / 2, 0, padding / 2)
-            })
-        }
-        label("\u4ec5\u663e\u793a\u672c\u5730\u6355\u83b7\u7684\u7248\u672c\uff1b\u5b89\u88c5\u6216\u542f\u7528\u524d\u7684\u5386\u53f2\u65e0\u6cd5\u6062\u590d\u3002")
-        if (rows.isEmpty()) label("\u5c1a\u65e0\u5df2\u6355\u83b7\u7684\u5386\u53f2\u7248\u672c")
-        if (rows.firstOrNull()?.first?.let { it.versionId > 1 || it.editDate != 0 } == true) {
-            label("\u539f\u59cb\u7248\u672c\u672a\u6355\u83b7\u6216\u5df2\u6309\u4fdd\u7559\u7b56\u7565\u6e05\u7406")
-        }
-        rows.forEach { (entry, bitmap) ->
+        val versions = rows.map { (entry, bitmap) ->
             val time = (entry.editDate.takeIf { it > 0 } ?: entry.messageDate).toLong() * 1000
-            label("#${entry.versionId}  ${if (entry.editDate == 0) "\u539f\u59cb\u7248\u672c" else "\u7f16\u8f91\u7248\u672c"}\n${date(time)}\n\u6355\u83b7: ${date(entry.capturedAt)}")
             val entities = runCatching {
                 Gson().fromJson(entry.messageEntities, Array<TextEntity>::class.java).toList()
             }.getOrDefault(emptyList())
-            label(MessageText.styled(entry.messageText, entities))
-            label("\u5a92\u4f53: ${mediaLabel(entry.mediaType)}")
-            if (bitmap != null) column.addView(ImageView(activity).apply {
-                setImageBitmap(bitmap)
-                adjustViewBounds = true
-                contentDescription = "\u5df2\u4fdd\u5b58\u7684\u672c\u5730\u5386\u53f2\u56fe\u7247"
-            }, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, padding * 12))
-            else if (entry.mediaType == "TL_messageMediaPhoto") {
-                label("\u672c\u5730\u56fe\u7247\u5feb\u7167\u4e0d\u53ef\u7528\uff08\u672a\u7f13\u5b58\u3001\u8d85\u9650\u6216\u5df2\u6e05\u7406\uff09")
-            }
+            HistoryVersion(
+                title = "#${entry.versionId}  ${if (entry.editDate == 0) "\u539f\u59cb\u7248\u672c" else "\u7f16\u8f91\u7248\u672c"}",
+                time = date(time), captured = "\u6355\u83b7: ${date(entry.capturedAt)}",
+                text = entry.messageText, entities = entities,
+                media = mediaLabel(entry.mediaType) + if (entry.mediaType == "TL_messageMediaPhoto" && bitmap == null) {
+                    " \u00b7 \u672c\u5730\u5feb\u7167\u4e0d\u53ef\u7528"
+                } else "",
+                preview = bitmap,
+            )
         }
-        label("\u5f53\u524d\u6d88\u606f\uff08\u6253\u5f00\u65f6\uff09  ${if (currentEditDate > 0) date(currentEditDate * 1000L) else ""}")
-        label(MessageText.styled(currentText, currentEntities))
-        label("\u5a92\u4f53: ${mediaLabel(currentMedia)}")
-        AlertDialog.Builder(activity).setTitle("\u7f16\u8f91\u5386\u53f2")
-            .setView(ScrollView(activity).apply { addView(column) })
-            .setPositiveButton("\u5173\u95ed", null)
-            .setOnDismissListener { rows.forEach { it.second?.recycle() } }
-            .show()
+        val current = HistoryVersion(
+            "\u5f53\u524d\u6d88\u606f\uff08\u6253\u5f00\u65f6\uff09", date((currentEditDate.takeIf { it > 0 } ?: currentDate) * 1000L),
+            "", currentText, currentEntities, mediaLabel(currentMedia), null, current = true,
+        )
+        val notice = when {
+            rows.isEmpty() -> "\u5c1a\u65e0\u5df2\u6355\u83b7\u7684\u5386\u53f2\u7248\u672c"
+            rows.first().first.let { it.versionId > 1 || it.editDate != 0 } -> "\u539f\u59cb\u7248\u672c\u672a\u6355\u83b7\u6216\u5df2\u6e05\u7406"
+            else -> "\u4ec5\u663e\u793a\u672c\u5730\u5df2\u6355\u83b7\u7684\u7248\u672c"
+        }
+        MessageHistoryScreen.show(selection.activity, messageId, versions + current, notice) {
+            rows.forEach { it.second?.recycle() }
+        }
     }
 
     private fun date(timestamp: Long): String =
