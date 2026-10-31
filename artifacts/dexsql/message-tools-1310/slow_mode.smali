@@ -13,4 +13,3 @@
     const/4 v3, 0x0
     return v3
 .end method
-

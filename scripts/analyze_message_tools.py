@@ -17,6 +17,7 @@ WHERE method_kind IS NOT NULL AND (
 (class_descriptor='Lorg/telegram/messenger/MessageObject;' AND name IN ('getDialogId','canForwardMessage','isPhoto','isVideo','isMusic','isVoice','isRoundVideo','isSticker','isAnimatedSticker','isSecretMedia','isSponsored','isEphemeral')) OR
 (class_descriptor='Lorg/telegram/messenger/ChatObject;' AND (name LIKE 'canSend%' OR name IN ('canWriteToChat','isForum','isMonoForum'))) OR
 (class_descriptor='Lorg/telegram/messenger/MessagesController;' AND name IN ('isChatNoForwards','getInstance')) OR
+(class_descriptor='Lorg/telegram/messenger/DialogObject;' AND name='isEncryptedDialog') OR
 (class_descriptor='Lorg/telegram/messenger/FileLoader;' AND name IN ('getInstance','getPathToMessage')) OR
 (class_descriptor='Lorg/telegram/SQLite/SQLiteCursor;' AND name IN ('byteBufferValue','next','dispose')) OR
 (class_descriptor='Lorg/telegram/tgnet/TLRPC$Message;' AND name IN ('TLdeserialize','readAttachPath')) OR
@@ -24,6 +25,12 @@ WHERE method_kind IS NOT NULL AND (
 (class_descriptor='Lorg/telegram/tgnet/NativeByteBuffer;' AND name IN ('readInt32','reuse')) OR
 (class_descriptor='Lorg/telegram/tgnet/TLObject;' AND name IN ('serializeToStream','getObjectSize')))
 ORDER BY file_id,method_idx""",
+    "media_classes": """SELECT file_id,descriptor FROM classes WHERE descriptor IN
+('Lorg/telegram/tgnet/TLRPC$TL_messageMediaPhoto;',
+'Lorg/telegram/tgnet/TLRPC$TL_messageMediaDocument;',
+'Lorg/telegram/tgnet/TLRPC$TL_messageMediaEmpty;',
+'Lorg/telegram/tgnet/TLRPC$TL_messageMediaWebPage;')
+ORDER BY file_id,descriptor""",
     "fields": """SELECT file_id,field_idx,descriptor FROM fields WHERE
 (file_id=0 AND class_descriptor IN ('Lorg/telegram/messenger/MessageObject;','Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;')) OR
 (file_id=2 AND class_descriptor IN ('Lorg/telegram/tgnet/TLRPC$Message;','Lorg/telegram/tgnet/TLRPC$MessageMedia;','Lorg/telegram/tgnet/TLRPC$MessageEntity;','Lorg/telegram/tgnet/TLRPC$Photo;','Lorg/telegram/tgnet/TLRPC$Document;','Lorg/telegram/tgnet/TLRPC$messages_Messages;')) OR
@@ -72,7 +79,7 @@ def main():
              str(file_id), "--method-idx", str(method_idx)],
             check=True, capture_output=True,
         )
-        output.joinpath(name + ".smali").write_bytes(result.stdout)
+        output.joinpath(name + ".smali").write_bytes(result.stdout.rstrip() + b"\n")
 
 
 if __name__ == "__main__":

@@ -25,6 +25,9 @@ object Config {
 
     fun isFeatureEnabled(featureKey: String): Boolean = featPref?.getBoolean(featureKey, false) ?: false
 
+    fun getBoolean(key: String, defaultValue: Boolean): Boolean =
+        featPref?.getBoolean(key, defaultValue) ?: defaultValue
+
     fun getFeatureValue(
         featureKey: String,
         defaultValue: Int = 0,

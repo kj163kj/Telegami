@@ -16,4 +16,3 @@
     invoke-virtual {v0, v1}, Lorg/telegram/messenger/DispatchQueue;->postRunnable(Ljava/lang/Runnable;)Z
     return-void
 .end method
-

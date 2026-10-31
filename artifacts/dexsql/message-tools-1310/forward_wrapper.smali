@@ -16,4 +16,3 @@
     move-result v13
     return v13
 .end method
-

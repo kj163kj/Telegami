@@ -20,4 +20,3 @@
     iget-boolean v3, v3, Lorg/telegram/tgnet/TLRPC$Chat;->noforwards:Z
     return v3
 .end method
-

@@ -19,4 +19,3 @@
     move-result v0
     return v0
 .end method
-

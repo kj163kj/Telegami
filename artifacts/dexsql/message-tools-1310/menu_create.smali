@@ -4790,4 +4790,3 @@
         0x3f800000
     .end array-data
 .end method
-

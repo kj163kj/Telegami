@@ -48,4 +48,3 @@
     iput-boolean v1, v0, Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->hasMediaSpoilers:Z
     return-object v0
 .end method
-

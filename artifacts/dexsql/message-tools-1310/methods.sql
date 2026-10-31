@@ -8,6 +8,7 @@ WHERE method_kind IS NOT NULL AND (
 (class_descriptor='Lorg/telegram/messenger/MessageObject;' AND name IN ('getDialogId','canForwardMessage','isPhoto','isVideo','isMusic','isVoice','isRoundVideo','isSticker','isAnimatedSticker','isSecretMedia','isSponsored','isEphemeral')) OR
 (class_descriptor='Lorg/telegram/messenger/ChatObject;' AND (name LIKE 'canSend%' OR name IN ('canWriteToChat','isForum','isMonoForum'))) OR
 (class_descriptor='Lorg/telegram/messenger/MessagesController;' AND name IN ('isChatNoForwards','getInstance')) OR
+(class_descriptor='Lorg/telegram/messenger/DialogObject;' AND name='isEncryptedDialog') OR
 (class_descriptor='Lorg/telegram/messenger/FileLoader;' AND name IN ('getInstance','getPathToMessage')) OR
 (class_descriptor='Lorg/telegram/SQLite/SQLiteCursor;' AND name IN ('byteBufferValue','next','dispose')) OR
 (class_descriptor='Lorg/telegram/tgnet/TLRPC$Message;' AND name IN ('TLdeserialize','readAttachPath')) OR

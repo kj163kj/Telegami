@@ -105,5 +105,9 @@ class XposedInit : XposedModule() {
         install("FakePremium") { FakePremium.install(this, classLoader) }
         install("BoostDownload") { BoostDownload.install(this, classLoader) }
         install("ApplyTheme") { ApplyTheme.install(this, classLoader) }
+        install("MessageMenuActions") {
+            com.aoya.telegami.hooks.messages.MessageMenuActions.install(this, classLoader)
+        }
+        install("MessageRepeatHook") { com.aoya.telegami.hooks.messages.MessageRepeatHook.install() }
     }
 }

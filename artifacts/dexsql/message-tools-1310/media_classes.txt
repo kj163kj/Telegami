@@ -1,0 +1,8 @@
++---------+----------------------------------------------------+
+| file_id | descriptor                                         |
++---------+----------------------------------------------------+
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageMediaDocument; |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageMediaEmpty;    |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageMediaPhoto;    |
+| 2       | Lorg/telegram/tgnet/TLRPC$TL_messageMediaWebPage;  |
++---------+----------------------------------------------------+

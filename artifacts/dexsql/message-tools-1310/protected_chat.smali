@@ -10,4 +10,3 @@
     move-result v1
     return v1
 .end method
-
