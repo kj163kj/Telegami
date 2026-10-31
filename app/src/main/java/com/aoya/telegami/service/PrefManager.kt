@@ -147,6 +147,18 @@ object PrefManager {
 
     fun isFeatureEnabled(featureKey: String): Boolean = remotePreferences?.getBoolean(featureKey, false) ?: false
 
+    fun getBoolean(key: String, defaultValue: Boolean): Boolean =
+        runCatching { remotePreferences?.getBoolean(key, defaultValue) ?: defaultValue }.getOrDefault(defaultValue)
+
+    suspend fun updateMessageTools(
+        booleans: Map<String, Boolean> = emptyMap(),
+        integers: Map<String, Int> = emptyMap(),
+    ): Boolean {
+        if (!MessageToolSettings.booleanDefaults.keys.containsAll(booleans.keys) ||
+            !MessageToolSettings.integerDefaults.keys.containsAll(integers.keys)) return false
+        return updateFeatures(booleans, integers.mapValues { (key, value) -> MessageToolSettings.bounded(key, value) })
+    }
+
     fun getFeatureValue(
         featureKey: String,
         defaultValue: Int = 0,

@@ -23,16 +23,28 @@ object Config {
         logi("Connected to read-only remote feature preferences")
     }
 
-    fun isFeatureEnabled(featureKey: String): Boolean = featPref?.getBoolean(featureKey, false) ?: false
+    fun isFeatureEnabled(featureKey: String): Boolean = getBoolean(featureKey, false)
 
     fun getBoolean(key: String, defaultValue: Boolean): Boolean =
-        featPref?.getBoolean(key, defaultValue) ?: defaultValue
+        runCatching { featPref?.getBoolean(key, defaultValue) ?: defaultValue }
+            .onFailure { Logger.e("Cannot read remote boolean $key", it, "Configuration") }
+            .getOrDefault(defaultValue)
+
+    fun historyRetentionDays(): Int = MessageToolSettings.bounded(
+        MessageToolSettings.RETENTION, getFeatureValue(MessageToolSettings.RETENTION, 30),
+    )
+
+    fun historyMaxVersions(): Int = MessageToolSettings.bounded(
+        MessageToolSettings.MAX_VERSIONS, getFeatureValue(MessageToolSettings.MAX_VERSIONS, 100),
+    )
 
     fun getFeatureValue(
         featureKey: String,
         defaultValue: Int = 0,
     ): Int {
-        val value = featPref?.getInt(featureKey, defaultValue) ?: defaultValue
+        val value = runCatching { featPref?.getInt(featureKey, defaultValue) ?: defaultValue }
+            .onFailure { Logger.e("Cannot read remote integer $featureKey", it, "Configuration") }
+            .getOrDefault(defaultValue)
         logi("Read remote feature value $featureKey: $value")
         return value
     }

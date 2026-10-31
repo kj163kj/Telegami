@@ -3,12 +3,14 @@ package com.aoya.telegami.hooks.messages
 import android.app.AlertDialog
 import com.aoya.telegami.Telegami
 import com.aoya.telegami.core.TelegramSendResolver
+import com.aoya.telegami.core.TelegramHistoryResolver
 import com.aoya.telegami.data.MessageKey
 import com.aoya.telegami.service.Config
 import com.aoya.telegami.util.Logger
 
 class MessageSender(private val target: TelegramSendResolver) {
     private val c = target.common
+    private val codec by lazy { TelegramHistoryResolver(c) }
     companion object {
         private val gate = MessageActionGate<MessageKey>()
     }
@@ -28,6 +30,10 @@ class MessageSender(private val target: TelegramSendResolver) {
             try {
                 check(Config.isFeatureEnabled(configKey)) { "功能已关闭" }
                 check(Telegami.telegram.accountIdForSlot(slot) == accountId) { "账号已切换，请重新选择消息" }
+                val selectedOwner = c.ownerField.get(selection.message)!!
+                check(c.id.getInt(selectedOwner) == key.messageId &&
+                    c.messageAccount.getInt(selection.message) == slot &&
+                    c.dialogForOwner.invoke(null, selectedOwner) == dialog) { "Selected message changed" }
                 check(Telegami.telegram.chatDialog.getLong(selection.chat) == dialog) { "聊天已变化，请重新选择消息" }
                 check(!selection.activity.isFinishing && !selection.activity.isDestroyed) { "聊天页面已关闭" }
                 sendNow(selection, asCopy)
@@ -114,22 +120,25 @@ class MessageSender(private val target: TelegramSendResolver) {
             return
         }
         check(textOnly || !protected) { "受保护媒体暂不支持重新发送；未修改保护标记" }
-        val text = c.text.get(owner) as? String ?: ""
+        // Native sender can normalize entity/media objects; detach them from the selected message.
+        val copyOwner = codec.cloneOwner(owner)
+        val copyMedia = c.mediaField.get(copyOwner)
+        val text = c.text.get(copyOwner) as? String ?: ""
         check(!textOnly || text.isNotEmpty()) { "没有可发送的文本" }
         val params = target.textParams.invoke(null, if (textOnly) text else null, dialog)!!
-        target.paramsEntities.set(params, ArrayList(c.entities.get(owner) as? List<*> ?: emptyList<Any>()))
+        target.paramsEntities.set(params, ArrayList(c.entities.get(copyOwner) as? List<*> ?: emptyList<Any>()))
         if (!textOnly) {
             target.paramsCaption.set(params, text)
             target.paramsPath.set(params, c.attachPath.get(owner))
             target.paramsParent.set(params, message)
-            target.paramsInvert.setBoolean(params, target.invert.getBoolean(owner))
-            target.paramsSpoiler.setBoolean(params, target.spoiler.getBoolean(media))
+            target.paramsInvert.setBoolean(params, target.invert.getBoolean(copyOwner))
+            target.paramsSpoiler.setBoolean(params, target.spoiler.getBoolean(copyMedia))
             if (mediaName == "TL_messageMediaPhoto") {
-                val photo = target.mediaPhoto.get(media)
+                val photo = target.mediaPhoto.get(copyMedia)
                 check(photo != null && target.paramsPhoto.type.isInstance(photo)) { "图片数据不可用" }
                 target.paramsPhoto.set(params, photo)
             } else {
-                val document = target.mediaDocument.get(media)
+                val document = target.mediaDocument.get(copyMedia)
                 check(document != null && target.paramsDocument.type.isInstance(document)) { "文件数据不可用" }
                 target.paramsDocument.set(params, document)
             }

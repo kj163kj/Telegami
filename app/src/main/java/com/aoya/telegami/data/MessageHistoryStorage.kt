@@ -23,20 +23,20 @@ object MessageHistoryStorage {
                 snapshot.mediaType, snapshot.mediaMetadata, snapshot.mediaTl, snapshot.ownerTl, snapshot.contentHash, preview,
             )
         }
-        dao.append(entries, Config.getFeatureValue("edit_history_max_versions", 100).coerceIn(2, 1000))
+        dao.append(entries, Config.historyMaxVersions())
     }
 
     fun read(key: MessageKey): List<MessageHistoryEntry> = synchronized(lock) {
         val dao = Telegami.db.messageHistoryDao()
         maintain(dao, force = true)
-        dao.trim(key.accountId, key.dialogId, key.messageId, Config.getFeatureValue("edit_history_max_versions", 100).coerceIn(2, 1000))
+        dao.trim(key.accountId, key.dialogId, key.messageId, Config.historyMaxVersions())
         dao.read(key.accountId, key.dialogId, key.messageId)
     }
 
     private fun maintain(dao: MessageHistoryDao, force: Boolean = false) {
         val now = System.currentTimeMillis()
         if (!force && now - lastMaintenance in 0 until 3_600_000L) return
-        val days = Config.getFeatureValue("edit_history_retention_days", 30).coerceIn(1, 3650)
+        val days = Config.historyRetentionDays()
         dao.expire(now - days * 86_400_000L)
         val referenced = dao.referencedPreviews().toHashSet()
         directory.listFiles()?.filter { it.isFile && it.name !in referenced }?.forEach { it.delete() }
