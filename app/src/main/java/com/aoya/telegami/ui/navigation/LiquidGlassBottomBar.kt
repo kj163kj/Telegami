@@ -10,7 +10,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -66,14 +65,9 @@ import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.input.key.type
-import androidx.compose.ui.input.pointer.AwaitPointerEventScope
 import androidx.compose.ui.input.pointer.PointerEventPass
-import androidx.compose.ui.input.pointer.PointerId
-import androidx.compose.ui.input.pointer.PointerInputChange
 import androidx.compose.ui.input.pointer.PointerInputScope
-import androidx.compose.ui.input.pointer.changedToUpIgnoreConsumed
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.input.pointer.positionChangeIgnoreConsumed
 import androidx.compose.ui.input.pointer.util.VelocityTracker
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
@@ -88,7 +82,6 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -131,6 +124,11 @@ import kotlin.time.TimeSource
 
 private val LocalFloatingBottomBarTabScale = staticCompositionLocalOf { { 1f } }
 
+internal data class BottomBarReleaseOutcome(
+    val visualTarget: Float,
+    val newlyCommittedIndex: Int?,
+)
+
 internal object BottomBarGestureMath {
     fun tabIndexAtPosition(
         xPx: Float,
@@ -146,6 +144,30 @@ internal object BottomBarGestureMath {
         return floor((logicalX - horizontalPadPx) / tabWidth)
             .toInt()
             .coerceIn(0, tabsCount - 1)
+    }
+
+    fun continuousTabAtPosition(
+        xPx: Float,
+        barWidthPx: Float,
+        horizontalPadPx: Float,
+        tabsCount: Int,
+        isLtr: Boolean,
+    ): Float {
+        if (tabsCount <= 1) return 0f
+        val innerWidth = (barWidthPx - horizontalPadPx * 2f).coerceAtLeast(1f)
+        val tabWidth = innerWidth / tabsCount
+        val logicalX = if (isLtr) xPx else barWidthPx - xPx
+        return ((logicalX - horizontalPadPx) / tabWidth - 0.5f)
+            .coerceIn(0f, (tabsCount - 1).toFloat())
+    }
+
+    fun clampedHorizontalDelta(
+        previousXPx: Float,
+        currentXPx: Float,
+        barWidthPx: Float,
+    ): Float {
+        if (barWidthPx <= 0f) return 0f
+        return currentXPx.coerceIn(0f, barWidthPx) - previousXPx.coerceIn(0f, barWidthPx)
     }
 
     fun updatedDragTarget(
@@ -167,14 +189,23 @@ internal object BottomBarGestureMath {
         tabWidthPx: Float,
         tabsCount: Int,
         isLtr: Boolean,
+        totalDragDistancePx: Float = Float.MAX_VALUE,
+        dragSlopPx: Float = 0f,
+        lastLogicalDragDir: Float = 0f,
     ): Int {
         if (tabsCount <= 1) return 0
         val safeTabWidth = tabWidthPx.coerceAtLeast(1f)
         val ltrSign = if (isLtr) 1f else -1f
         val velocityTabsPerSec = (velocityXPxPerSec * ltrSign) / safeTabWidth
-        // Capped at +/-0.45f so stationary taps on an integer index never overshoot,
-        // while short fast flicks smoothly advance to the neighbor tab on release.
-        val projectedDelta = (velocityTabsPerSec * 0.08f).coerceIn(-0.45f, 0.45f)
+        val draggedPastSlop = totalDragDistancePx > dragSlopPx
+        val alignedWithDrag =
+            lastLogicalDragDir == 0f || velocityTabsPerSec * lastLogicalDragDir > 0f
+        val projectedDelta =
+            if (draggedPastSlop && alignedWithDrag && abs(velocityTabsPerSec) >= 1.5f) {
+                (velocityTabsPerSec * 0.08f).coerceIn(-0.35f, 0.35f)
+            } else {
+                0f
+            }
         return (targetValue + projectedDelta).roundToInt().coerceIn(0, tabsCount - 1)
     }
 
@@ -183,6 +214,120 @@ internal object BottomBarGestureMath {
         barHeightPx: Float,
         verticalCancelSlopPx: Float,
     ): Boolean = yPx < -verticalCancelSlopPx || yPx > barHeightPx + verticalCancelSlopPx
+}
+
+internal class BottomBarGestureSession(
+    private val barWidthPx: Float,
+    private val barHeightPx: Float,
+    private val horizontalPadPx: Float,
+    private val tabWidthPx: Float,
+    private val tabsCount: Int,
+    private val isLtr: Boolean,
+    private val dragSlopPx: Float,
+    private val verticalCancelSlopPx: Float,
+) {
+    var visualTarget: Float = 0f
+        private set
+    var totalDragDistancePx: Float = 0f
+        private set
+    var lastLogicalDragDir: Float = 0f
+        private set
+
+    fun onDown(
+        downPosition: Offset,
+        fallbackIndex: Int,
+    ): Float {
+        totalDragDistancePx = 0f
+        lastLogicalDragDir = 0f
+        visualTarget =
+            if (tabWidthPx <= 0f || barWidthPx <= 0f) {
+                fallbackIndex.toFloat()
+            } else {
+                BottomBarGestureMath
+                    .tabIndexAtPosition(
+                        xPx = downPosition.x,
+                        barWidthPx = barWidthPx,
+                        horizontalPadPx = horizontalPadPx,
+                        tabsCount = tabsCount,
+                        isLtr = isLtr,
+                    ).toFloat()
+            }
+        return visualTarget
+    }
+
+    fun onMove(
+        previousPosition: Offset,
+        currentPosition: Offset,
+    ): Float {
+        val rawDx = currentPosition.x - previousPosition.x
+        totalDragDistancePx += abs(rawDx)
+        if (abs(rawDx) >= 2f) {
+            lastLogicalDragDir = rawDx * if (isLtr) 1f else -1f
+        }
+        val verticallyCancelled =
+            barHeightPx > 0f &&
+                BottomBarGestureMath.isVerticalDragCancelled(
+                    yPx = currentPosition.y,
+                    barHeightPx = barHeightPx,
+                    verticalCancelSlopPx = verticalCancelSlopPx,
+                )
+        if (!verticallyCancelled && totalDragDistancePx > dragSlopPx && tabWidthPx > 0f && barWidthPx > 0f) {
+            visualTarget =
+                BottomBarGestureMath.continuousTabAtPosition(
+                    xPx = currentPosition.x,
+                    barWidthPx = barWidthPx,
+                    horizontalPadPx = horizontalPadPx,
+                    tabsCount = tabsCount,
+                    isLtr = isLtr,
+                )
+        }
+        return visualTarget
+    }
+
+    fun onUp(
+        upPosition: Offset,
+        velocityXPxPerSec: Float,
+        committedIndex: Int,
+    ): BottomBarReleaseOutcome {
+        val cancelledVertically =
+            barHeightPx > 0f &&
+                BottomBarGestureMath.isVerticalDragCancelled(
+                    yPx = upPosition.y,
+                    barHeightPx = barHeightPx,
+                    verticalCancelSlopPx = verticalCancelSlopPx,
+                )
+        if (cancelledVertically) {
+            visualTarget = committedIndex.toFloat()
+            return BottomBarReleaseOutcome(
+                visualTarget = visualTarget,
+                newlyCommittedIndex = null,
+            )
+        }
+        val settledIndex =
+            BottomBarGestureMath.settledTabIndex(
+                targetValue = visualTarget,
+                velocityXPxPerSec = velocityXPxPerSec,
+                tabWidthPx = tabWidthPx,
+                tabsCount = tabsCount,
+                isLtr = isLtr,
+                totalDragDistancePx = totalDragDistancePx,
+                dragSlopPx = dragSlopPx,
+                lastLogicalDragDir = lastLogicalDragDir,
+            )
+        visualTarget = settledIndex.toFloat()
+        return BottomBarReleaseOutcome(
+            visualTarget = visualTarget,
+            newlyCommittedIndex = settledIndex.takeIf { it != committedIndex },
+        )
+    }
+
+    fun onCancel(committedIndex: Int): BottomBarReleaseOutcome {
+        visualTarget = committedIndex.toFloat()
+        return BottomBarReleaseOutcome(
+            visualTarget = visualTarget,
+            newlyCommittedIndex = null,
+        )
+    }
 }
 
 @Composable
@@ -208,10 +353,10 @@ fun LiquidGlassBottomBar(
     Box(
         modifier =
             modifier
+                .fillMaxWidth()
                 .windowInsetsPadding(horizontalInsets)
-                .pointerInput(Unit) {
-                    detectTapGestures { }
-                }.padding(start = 28.dp, end = 28.dp, bottom = bottomPadding),
+                .consumeUnconsumedTouches()
+                .padding(start = 28.dp, end = 28.dp, bottom = bottomPadding),
         contentAlignment = Alignment.Center,
     ) {
         FloatingBottomBar(
@@ -230,7 +375,7 @@ fun LiquidGlassBottomBar(
                 FloatingBottomBarItem(
                     selected = selectedTab.ordinal == index,
                     onClick = { activateTab(index) },
-                    modifier = Modifier.defaultMinSize(minWidth = 84.dp),
+                    modifier = Modifier.defaultMinSize(minWidth = 88.dp),
                 ) {
                     Icon(
                         painter = painterResource(tab.iconRes),
@@ -324,6 +469,7 @@ private fun FloatingBottomBar(
 
     val horizontalPadPx = with(density) { 4.dp.toPx() }
     val rubberBandPx = with(density) { 4.dp.toPx() }
+    val dragSlopPx = with(density) { 8.dp.toPx() }
     val verticalCancelSlopPx = with(density) { 72.dp.toPx() }
 
     val offsetAnimation = remember { Animatable(0f) }
@@ -342,19 +488,8 @@ private fun FloatingBottomBar(
     var currentIndex by remember { mutableIntStateOf(selectedIndex) }
     val onSelectedUpdated by rememberUpdatedState(onSelected)
 
-    fun indexAt(positionX: Float): Int {
-        if (tabWidthPx <= 0f) return currentIndex
-        return BottomBarGestureMath.tabIndexAtPosition(
-            xPx = positionX,
-            barWidthPx = totalWidthPx,
-            horizontalPadPx = horizontalPadPx,
-            tabsCount = tabsCount,
-            isLtr = isLtr,
-        )
-    }
-
     val dampedDragAnimation =
-        remember(animationScope, tabsCount, density, isLtr, animationsEnabled) {
+        remember(animationScope, tabsCount, animationsEnabled) {
             DampedDragAnimation(
                 animationScope = animationScope,
                 initialValue = currentIndex.toFloat(),
@@ -363,76 +498,6 @@ private fun FloatingBottomBar(
                 initialScale = 1f,
                 pressedScale = if (animationsEnabled) 78f / 56f else 1f,
                 animationsEnabled = animationsEnabled,
-                canDrag = { offset ->
-                    offset.x in 0f..totalWidthPx &&
-                        !BottomBarGestureMath.isVerticalDragCancelled(
-                            yPx = offset.y,
-                            barHeightPx = totalHeightPx,
-                            verticalCancelSlopPx = verticalCancelSlopPx,
-                        )
-                },
-                onDragStarted = { position ->
-                    updateValue(indexAt(position.x).toFloat())
-                },
-                onDragStopped = { upPosition, velocityXPxPerSec ->
-                    val cancelledVertically =
-                        totalHeightPx > 0f &&
-                            BottomBarGestureMath.isVerticalDragCancelled(
-                                yPx = upPosition.y,
-                                barHeightPx = totalHeightPx,
-                                verticalCancelSlopPx = verticalCancelSlopPx,
-                            )
-                    if (cancelledVertically) {
-                        updateValue(currentIndex.toFloat())
-                    } else {
-                        val targetIndex =
-                            BottomBarGestureMath.settledTabIndex(
-                                targetValue = targetValue,
-                                velocityXPxPerSec = velocityXPxPerSec,
-                                tabWidthPx = tabWidthPx,
-                                tabsCount = tabsCount,
-                                isLtr = isLtr,
-                            )
-                        if (currentIndex != targetIndex) {
-                            currentIndex = targetIndex
-                            onSelectedUpdated(targetIndex)
-                        }
-                        updateValue(targetIndex.toFloat())
-                    }
-                    animationScope.launch {
-                        if (animationsEnabled) {
-                            offsetAnimation.animateTo(0f, spring(1f, 300f, 0.5f))
-                        } else {
-                            offsetAnimation.snapTo(0f)
-                        }
-                    }
-                },
-                onDragCancelled = {
-                    updateValue(currentIndex.toFloat())
-                    animationScope.launch {
-                        if (animationsEnabled) {
-                            offsetAnimation.animateTo(0f, spring(1f, 300f, 0.5f))
-                        } else {
-                            offsetAnimation.snapTo(0f)
-                        }
-                    }
-                },
-                onDrag = { _, dragAmount ->
-                    if (tabWidthPx > 0f && dragAmount.x != 0f) {
-                        updateValue(
-                            BottomBarGestureMath.updatedDragTarget(
-                                currentTargetValue = targetValue,
-                                dragDeltaXPx = dragAmount.x,
-                                tabWidthPx = tabWidthPx,
-                                tabsCount = tabsCount,
-                                isLtr = isLtr,
-                            ),
-                        )
-                        animationScope.launch {
-                            offsetAnimation.snapTo(offsetAnimation.value + dragAmount.x)
-                        }
-                    }
-                },
             )
         }
 
@@ -470,6 +535,16 @@ private fun FloatingBottomBar(
             )
         }
 
+    fun resetPanelOffset() {
+        animationScope.launch {
+            if (animationsEnabled) {
+                offsetAnimation.animateTo(0f, spring(1f, 300f, 0.5f))
+            } else {
+                offsetAnimation.snapTo(0f)
+            }
+        }
+    }
+
     val baseHighlight =
         remember {
             Highlight(
@@ -489,13 +564,99 @@ private fun FloatingBottomBar(
             modifier =
                 Modifier
                     .fillMaxWidth()
+                    .height(64.dp)
                     .onGloballyPositioned { coords ->
                         totalWidthPx = coords.size.width.toFloat()
                         totalHeightPx = coords.size.height.toFloat()
                         val contentWidthPx = totalWidthPx - with(density) { 8.dp.toPx() }
                         tabWidthPx = (contentWidthPx / tabsCount).coerceAtLeast(0f)
                     }.selectableGroup()
-                    .graphicsLayer { translationX = panelOffset }
+                    .pointerInput(tabsCount, isLtr, animationsEnabled, density) {
+                        var activeSession: BottomBarGestureSession? = null
+                        detectBottomBarGestures(
+                            onPressStart = { downPosition ->
+                                val widthPx = if (totalWidthPx > 0f) totalWidthPx else size.width.toFloat()
+                                val heightPx = if (totalHeightPx > 0f) totalHeightPx else size.height.toFloat()
+                                val computedTabWidthPx =
+                                    if (tabWidthPx > 0f) {
+                                        tabWidthPx
+                                    } else {
+                                        ((widthPx - horizontalPadPx * 2f) / tabsCount).coerceAtLeast(0f)
+                                    }
+                                val session =
+                                    BottomBarGestureSession(
+                                        barWidthPx = widthPx,
+                                        barHeightPx = heightPx,
+                                        horizontalPadPx = horizontalPadPx,
+                                        tabWidthPx = computedTabWidthPx,
+                                        tabsCount = tabsCount,
+                                        isLtr = isLtr,
+                                        dragSlopPx = dragSlopPx,
+                                        verticalCancelSlopPx = verticalCancelSlopPx,
+                                    )
+                                activeSession = session
+                                val downTarget =
+                                    session.onDown(
+                                        downPosition = downPosition,
+                                        fallbackIndex = currentIndex,
+                                    )
+                                dampedDragAnimation.updateValue(downTarget)
+                                dampedDragAnimation.press()
+                                interactiveHighlight.onPressStart(downPosition)
+                            },
+                            onMove = { prevPosition, currPosition ->
+                                val session = activeSession ?: return@detectBottomBarGestures
+                                val moveTarget =
+                                    session.onMove(
+                                        previousPosition = prevPosition,
+                                        currentPosition = currPosition,
+                                    )
+                                dampedDragAnimation.updateValue(moveTarget)
+                                interactiveHighlight.onMove(currPosition)
+                                val rawDx = currPosition.x - prevPosition.x
+                                val widthPx = if (totalWidthPx > 0f) totalWidthPx else size.width.toFloat()
+                                if (rawDx != 0f && widthPx > 0f) {
+                                    animationScope.launch {
+                                        offsetAnimation.snapTo(
+                                            (offsetAnimation.value + rawDx).coerceIn(-widthPx, widthPx),
+                                        )
+                                    }
+                                }
+                            },
+                            onReleaseUp = { upPosition, velocityXPxPerSec ->
+                                val session = activeSession
+                                activeSession = null
+                                if (session != null) {
+                                    val outcome =
+                                        session.onUp(
+                                            upPosition = upPosition,
+                                            velocityXPxPerSec = velocityXPxPerSec,
+                                            committedIndex = currentIndex,
+                                        )
+                                    // Commit tab selection EXCLUSIVELY here after finger release (ACTION_UP).
+                                    outcome.newlyCommittedIndex?.let { targetIndex ->
+                                        currentIndex = targetIndex
+                                        onSelectedUpdated(targetIndex)
+                                    }
+                                    dampedDragAnimation.updateValue(outcome.visualTarget)
+                                } else {
+                                    dampedDragAnimation.updateValue(currentIndex.toFloat())
+                                }
+                                dampedDragAnimation.release()
+                                interactiveHighlight.onRelease()
+                                resetPanelOffset()
+                            },
+                            onCancel = {
+                                val session = activeSession
+                                activeSession = null
+                                val outcome = session?.onCancel(currentIndex)
+                                dampedDragAnimation.updateValue(outcome?.visualTarget ?: currentIndex.toFloat())
+                                dampedDragAnimation.release()
+                                interactiveHighlight.onRelease()
+                                resetPanelOffset()
+                            },
+                        )
+                    }.graphicsLayer { translationX = panelOffset }
                     .then(
                         if (isBlurEnabled) {
                             Modifier.drawBackdrop(
@@ -529,12 +690,11 @@ private fun FloatingBottomBar(
                         },
                     ).then(
                         if (isBlurEnabled) {
-                            interactiveHighlight.modifier.then(interactiveHighlight.gestureModifier)
+                            interactiveHighlight.modifier
                         } else {
                             Modifier
                         },
-                    ).then(dampedDragAnimation.modifier)
-                    .height(64.dp)
+                    )
                     .padding(4.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -693,11 +853,6 @@ private class DampedDragAnimation(
     val initialScale: Float,
     val pressedScale: Float,
     val animationsEnabled: Boolean,
-    val canDrag: (Offset) -> Boolean = { true },
-    val onDragStarted: DampedDragAnimation.(position: Offset) -> Unit,
-    val onDragStopped: DampedDragAnimation.(upPosition: Offset, velocityXPxPerSec: Float) -> Unit,
-    val onDragCancelled: DampedDragAnimation.() -> Unit,
-    val onDrag: DampedDragAnimation.(size: IntSize, dragAmount: Offset) -> Unit,
 ) {
     private val valueAnimationSpec = spring(1f, 1000f, visibilityThreshold)
     private val velocityAnimationSpec = spring(0.5f, 300f, visibilityThreshold * 10f)
@@ -716,44 +871,13 @@ private class DampedDragAnimation(
     private var releaseJob: Job? = null
 
     private val velocityTracker = VelocityTracker()
-    private val pointerVelocityTracker = VelocityTracker()
     private val startMark = TimeSource.Monotonic.markNow()
 
     val value: Float get() = valueAnimation.value
-    val targetValue: Float get() = valueAnimation.targetValue
     val pressProgress: Float get() = pressProgressAnimation.value
     val scaleX: Float get() = scaleXAnimation.value
     val scaleY: Float get() = scaleYAnimation.value
     val velocity: Float get() = velocityAnimation.value
-
-    val modifier: Modifier =
-        Modifier.pointerInput(Unit) {
-            inspectDragGestures(
-                onDragStart = { down ->
-                    pointerVelocityTracker.resetTracking()
-                    pointerVelocityTracker.addPosition(down.uptimeMillis, down.position)
-                    onDragStarted(down.position)
-                    press()
-                },
-                onDragEnd = { up ->
-                    pointerVelocityTracker.addPosition(up.uptimeMillis, up.position)
-                    val vx = pointerVelocityTracker.calculateVelocity().x
-                    onDragStopped(up.position, vx)
-                    release()
-                },
-                onDragCancel = {
-                    onDragCancelled()
-                    release()
-                },
-            ) { change, dragAmount ->
-                pointerVelocityTracker.addPosition(change.uptimeMillis, change.position)
-                val position = change.position
-                val previousPosition = change.previousPosition
-                if (canDrag(position) && canDrag(previousPosition)) {
-                    onDrag(size, dragAmount)
-                }
-            }
-        }
 
     fun press() {
         releaseJob?.cancel()
@@ -778,7 +902,7 @@ private class DampedDragAnimation(
         releaseJob =
             animationScope.launch {
                 awaitFrame()
-                if (animationsEnabled && value != targetValue) {
+                if (animationsEnabled && value != valueAnimation.targetValue) {
                     val threshold = (valueRange.endInclusive - valueRange.start) * 0.025f
                     snapshotFlow { valueAnimation.value }
                         .first { abs(it - valueAnimation.targetValue) < threshold }
@@ -910,107 +1034,111 @@ half4 main(float2 coord) {
             drawContent()
         }
 
-    val gestureModifier: Modifier =
-        Modifier.pointerInput(animationScope, animationsEnabled) {
-            inspectDragGestures(
-                onDragStart = { down ->
-                    startPosition = down.position
-                    animationScope.launch {
-                        if (animationsEnabled) {
-                            launch { pressProgressAnimation.animateTo(1f, pressProgressAnimationSpec) }
-                        } else {
-                            pressProgressAnimation.snapTo(1f)
-                        }
-                        launch { positionAnimation.snapTo(startPosition) }
-                    }
-                },
-                onDragEnd = {
-                    animationScope.launch {
-                        if (animationsEnabled) {
-                            launch { pressProgressAnimation.animateTo(0f, pressProgressAnimationSpec) }
-                            launch { positionAnimation.animateTo(startPosition, positionAnimationSpec) }
-                        } else {
-                            pressProgressAnimation.snapTo(0f)
-                            positionAnimation.snapTo(startPosition)
-                        }
-                    }
-                },
-                onDragCancel = {
-                    animationScope.launch {
-                        if (animationsEnabled) {
-                            launch { pressProgressAnimation.animateTo(0f, pressProgressAnimationSpec) }
-                            launch { positionAnimation.animateTo(startPosition, positionAnimationSpec) }
-                        } else {
-                            pressProgressAnimation.snapTo(0f)
-                            positionAnimation.snapTo(startPosition)
-                        }
-                    }
-                },
-            ) { change, _ ->
-                animationScope.launch { positionAnimation.snapTo(change.position) }
+    fun onPressStart(downPosition: Offset) {
+        startPosition = downPosition
+        animationScope.launch {
+            if (animationsEnabled) {
+                launch { pressProgressAnimation.animateTo(1f, pressProgressAnimationSpec) }
+            } else {
+                pressProgressAnimation.snapTo(1f)
+            }
+            launch { positionAnimation.snapTo(startPosition) }
+        }
+    }
+
+    fun onMove(currentPosition: Offset) {
+        animationScope.launch {
+            positionAnimation.snapTo(currentPosition)
+        }
+    }
+
+    fun onRelease() {
+        animationScope.launch {
+            if (animationsEnabled) {
+                launch { pressProgressAnimation.animateTo(0f, pressProgressAnimationSpec) }
+                launch { positionAnimation.animateTo(startPosition, positionAnimationSpec) }
+            } else {
+                pressProgressAnimation.snapTo(0f)
+                positionAnimation.snapTo(startPosition)
             }
         }
+    }
 }
 
-private suspend fun PointerInputScope.inspectDragGestures(
-    onDragStart: (down: PointerInputChange) -> Unit = {},
-    onDragEnd: (change: PointerInputChange) -> Unit = {},
+private fun Modifier.consumeUnconsumedTouches(): Modifier =
+    pointerInput(Unit) {
+        awaitEachGesture {
+            val down = awaitFirstDown(requireUnconsumed = true, pass = PointerEventPass.Main)
+            down.consume()
+            while (true) {
+                val event = awaitPointerEvent(PointerEventPass.Main)
+                event.changes.forEach { it.consume() }
+                if (event.changes.none { it.pressed }) break
+            }
+        }
+    }
+
+private suspend fun PointerInputScope.detectBottomBarGestures(
+    onPressStart: (downPosition: Offset) -> Unit,
+    onMove: (previousPosition: Offset, currentPosition: Offset) -> Unit,
+    onReleaseUp: (upPosition: Offset, velocityXPxPerSec: Float) -> Unit,
     onDragCancel: () -> Unit = {},
-    onDrag: (change: PointerInputChange, dragAmount: Offset) -> Unit,
+    onCancel: () -> Unit = onDragCancel,
 ) {
     awaitEachGesture {
         val down =
             awaitFirstDown(
                 requireUnconsumed = false,
-                pass = PointerEventPass.Initial,
+                pass = PointerEventPass.Main,
             )
-        onDragStart(down)
-        onDrag(down, Offset.Zero)
-        val upEvent =
-            dragPointer(
-                pointerId = down.id,
-                onDrag = { onDrag(it, it.positionChangeIgnoreConsumed()) },
-            )
-        if (upEvent != null) onDragEnd(upEvent) else onDragCancel()
-    }
-}
+        down.consume()
 
-private suspend inline fun AwaitPointerEventScope.dragPointer(
-    pointerId: PointerId,
-    onDrag: (PointerInputChange) -> Unit,
-): PointerInputChange? {
-    val isPointerUp = currentEvent.changes.fastFirstOrNull { it.id == pointerId }?.pressed != true
-    if (isPointerUp) {
-        return null
-    }
-    var pointer = pointerId
-    while (true) {
-        val change = awaitDragOrUpPointer(pointer) ?: return null
-        if (change.changedToUpIgnoreConsumed()) {
-            return change
-        }
-        onDrag(change)
-        pointer = change.id
-    }
-}
+        val pointerId = down.id
+        val velocityTracker = VelocityTracker()
+        velocityTracker.addPosition(down.uptimeMillis, down.position)
+        var lastPosition = down.position
 
-private suspend inline fun AwaitPointerEventScope.awaitDragOrUpPointer(
-    pointerId: PointerId,
-): PointerInputChange? {
-    var pointer = pointerId
-    while (true) {
-        val event = awaitPointerEvent(PointerEventPass.Initial)
-        val dragEvent = event.changes.fastFirstOrNull { it.id == pointer } ?: return null
-        if (dragEvent.changedToUpIgnoreConsumed()) {
-            val otherDown = event.changes.fastFirstOrNull { it.pressed }
-            if (otherDown == null) {
-                return dragEvent
-            } else {
-                pointer = otherDown.id
+        onPressStart(down.position)
+
+        var completedNormally = false
+        try {
+            while (true) {
+                val event = awaitPointerEvent(PointerEventPass.Main)
+                val trackedChange = event.changes.fastFirstOrNull { it.id == pointerId }
+                if (trackedChange == null) {
+                    event.changes.forEach { it.consume() }
+                    break
+                }
+
+                // ACTION_CANCEL arrives with pressed=false AND isConsumed=true: never commit on cancel.
+                if (!trackedChange.pressed && trackedChange.isConsumed) {
+                    event.changes.forEach { it.consume() }
+                    break
+                }
+
+                if (!trackedChange.pressed) {
+                    velocityTracker.addPosition(trackedChange.uptimeMillis, trackedChange.position)
+                    val vx = velocityTracker.calculateVelocity().x
+                    val upPosition = trackedChange.position
+                    event.changes.forEach { it.consume() }
+                    completedNormally = true
+                    onReleaseUp(upPosition, vx)
+                    break
+                }
+
+                val prevPosition = lastPosition
+                val currPosition = trackedChange.position
+                lastPosition = currPosition
+                velocityTracker.addPosition(trackedChange.uptimeMillis, currPosition)
+                event.changes.forEach { it.consume() }
+
+                if (currPosition != prevPosition) {
+                    onMove(prevPosition, currPosition)
+                }
             }
-        } else {
-            if (dragEvent.previousPosition != dragEvent.position) {
-                return dragEvent
+        } finally {
+            if (!completedNormally) {
+                onCancel()
             }
         }
     }

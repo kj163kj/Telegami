@@ -14,17 +14,12 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.union
 import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.PagerDefaults
-import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,10 +34,6 @@ import com.aoya.telegami.ui.theme.isTelegamiDarkTheme
 import com.aoya.telegami.ui.util.AccessibilityUtils
 import com.kyant.backdrop.backdrops.layerBackdrop
 import com.kyant.backdrop.backdrops.rememberLayerBackdrop
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.job
-import kotlinx.coroutines.launch
 import top.yukonga.miuix.kmp.basic.MiuixScrollBehavior
 import top.yukonga.miuix.kmp.basic.Scaffold
 import top.yukonga.miuix.kmp.basic.TopAppBar
@@ -57,72 +48,6 @@ internal val PagerNavigationSpringSpec: SpringSpec<Float> =
         visibilityThreshold = 0.01f,
     )
 
-@Stable
-internal class MainPagerState(
-    val pagerState: PagerState,
-    private val coroutineScope: CoroutineScope,
-    private val animatePageChanges: Boolean,
-) {
-    var selectedPage by mutableIntStateOf(pagerState.currentPage)
-        private set
-
-    var isNavigating by mutableStateOf(false)
-        private set
-
-    private var navJob: Job? = null
-
-    fun animateToPage(targetIndex: Int) {
-        if (targetIndex == selectedPage) return
-        if (targetIndex !in 0 until pagerState.pageCount) return
-
-        navJob?.cancel()
-        selectedPage = targetIndex
-        isNavigating = true
-
-        navJob =
-            coroutineScope.launch {
-                val myJob = coroutineContext.job
-                try {
-                    if (animatePageChanges) {
-                        pagerState.animateScrollToPage(
-                            page = targetIndex,
-                            animationSpec = PagerNavigationSpringSpec,
-                        )
-                    } else {
-                        pagerState.scrollToPage(targetIndex)
-                    }
-                } finally {
-                    if (navJob === myJob) {
-                        isNavigating = false
-                        if (pagerState.currentPage != targetIndex) {
-                            selectedPage = pagerState.currentPage
-                        }
-                    }
-                }
-            }
-    }
-
-    fun syncPage() {
-        if (!isNavigating && selectedPage != pagerState.currentPage) {
-            selectedPage = pagerState.currentPage
-        }
-    }
-}
-
-@Composable
-private fun rememberMainPagerState(
-    pagerState: PagerState,
-    animatePageChanges: Boolean,
-    coroutineScope: CoroutineScope = rememberCoroutineScope(),
-): MainPagerState =
-    remember(pagerState, coroutineScope, animatePageChanges) {
-        MainPagerState(
-            pagerState = pagerState,
-            coroutineScope = coroutineScope,
-            animatePageChanges = animatePageChanges,
-        )
-    }
-
 @Composable
 fun MainNavigation(
     themeState: TelegamiThemeState,
@@ -133,28 +58,32 @@ fun MainNavigation(
     val animationsEnabled =
         AccessibilityUtils.isAnimationEnabled(context.contentResolver)
     val tabs = BottomTab.entries
+    var selectedTabOrdinal by rememberSaveable { mutableIntStateOf(BottomTab.Features.ordinal) }
+    val selectedTab =
+        tabs.getOrElse(selectedTabOrdinal) { BottomTab.Features }
 
     val pagerState =
         rememberPagerState(
-            initialPage = BottomTab.Features.ordinal,
+            initialPage = selectedTabOrdinal,
             pageCount = { tabs.size },
         )
-    val mainPagerState =
-        rememberMainPagerState(
-            pagerState = pagerState,
-            animatePageChanges = animationsEnabled,
-        )
 
-    val currentPage = pagerState.currentPage
-    LaunchedEffect(currentPage) {
-        mainPagerState.syncPage()
+    LaunchedEffect(selectedTabOrdinal, animationsEnabled) {
+        val targetPage = selectedTabOrdinal.coerceIn(0, tabs.lastIndex)
+        if (pagerState.currentPage != targetPage || pagerState.currentPageOffsetFraction != 0f) {
+            if (animationsEnabled) {
+                pagerState.animateScrollToPage(
+                    page = targetPage,
+                    animationSpec = PagerNavigationSpringSpec,
+                )
+            } else {
+                pagerState.scrollToPage(targetPage)
+            }
+        }
     }
 
-    val selectedTab =
-        tabs.getOrElse(mainPagerState.selectedPage) { BottomTab.Features }
-
     BackHandler(enabled = selectedTab != BottomTab.Features) {
-        mainPagerState.animateToPage(BottomTab.Features.ordinal)
+        selectedTabOrdinal = BottomTab.Features.ordinal
     }
 
     val appTitle = stringResource(R.string.app_name)
@@ -177,7 +106,7 @@ fun MainNavigation(
                 LiquidGlassBottomBar(
                     selectedTab = selectedTab,
                     onTabSelected = { newTab ->
-                        mainPagerState.animateToPage(newTab.ordinal)
+                        selectedTabOrdinal = newTab.ordinal
                     },
                     backdrop = pageBackdrop,
                     isDarkTheme = isDarkTheme,
@@ -197,12 +126,8 @@ fun MainNavigation(
             HorizontalPager(
                 state = pagerState,
                 beyondViewportPageCount = 2,
+                userScrollEnabled = false,
                 overscrollEffect = null,
-                flingBehavior =
-                    PagerDefaults.flingBehavior(
-                        state = pagerState,
-                        snapAnimationSpec = PagerNavigationSpringSpec,
-                    ),
                 modifier = Modifier.fillMaxSize(),
             ) { pageIndex ->
                 val pageTab = tabs[pageIndex]
