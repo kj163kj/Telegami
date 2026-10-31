@@ -1,6 +1,5 @@
 package com.aoya.telegami.hooks.messages
 
-import android.app.AlertDialog
 import com.aoya.telegami.Telegami
 import com.aoya.telegami.core.TelegramHistoryResolver
 import com.aoya.telegami.core.TelegramSendResolver
@@ -11,6 +10,7 @@ import com.aoya.telegami.util.Logger
 class MessageSender(private val target: TelegramSendResolver) {
     private val c = target.common
     private val codec by lazy { TelegramHistoryResolver(c) }
+    private val dialogs by lazy { NativeMessageDialogs(c) }
 
     data class Destination(
         val key: MessageDestinationKey,
@@ -70,13 +70,14 @@ class MessageSender(private val target: TelegramSendResolver) {
         }
         try {
             if (Config.getBoolean(confirmationKey, true)) {
-                AlertDialog.Builder(selection.activity)
-                    .setTitle("\u590d\u8bfb")
-                    .setMessage("\u5c06\u9009\u4e2d\u6d88\u606f\u53d1\u9001\u5230\u5f53\u524d\u804a\u5929\u6216\u8bdd\u9898\uff1f")
-                    .setPositiveButton("\u53d1\u9001") { _, _ -> send() }
-                    .setNegativeButton("\u53d6\u6d88", null)
-                    .setOnDismissListener { gate.release(key, performed) }
-                    .show()
+                dialogs.show(
+                    selection.activity, selection.chat, "\u590d\u8bfb",
+                    "\u5c06\u9009\u4e2d\u6d88\u606f\u53d1\u9001\u5230\u5f53\u524d\u804a\u5929\u6216\u8bdd\u9898\uff1f",
+                    positiveText = "\u53d1\u9001",
+                    onPositive = send,
+                    onNegative = { gate.release(key, false) },
+                    onCancel = { gate.release(key, false) },
+                )
             } else send()
         } catch (error: Throwable) {
             gate.release(key, false)

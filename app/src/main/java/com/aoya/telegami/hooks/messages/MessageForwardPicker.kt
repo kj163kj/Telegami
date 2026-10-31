@@ -1,6 +1,5 @@
 package com.aoya.telegami.hooks.messages
 
-import android.app.AlertDialog
 import com.aoya.telegami.Telegami
 import com.aoya.telegami.core.TelegramForwardResolver
 import com.aoya.telegami.core.TelegramHistoryResolver
@@ -14,6 +13,7 @@ class MessageForwardPicker(private val target: TelegramSendResolver) {
     private val native by lazy { TelegramForwardResolver(target) }
     private val codec by lazy { TelegramHistoryResolver(c) }
     private val sender = MessageSender(target)
+    private val dialogs by lazy { NativeMessageDialogs(c) }
 
     fun open(original: MessageMenuActions.Selection) {
         check(MessageForwardSession.visible(Config.isFeatureEnabled("enable_message_copy"))) {
@@ -65,7 +65,7 @@ class MessageForwardPicker(private val target: TelegramSendResolver) {
                             val schedule = args[5] as Int
                             val scheduleRepeat = args[6] as Int
                             val fromTopicUi = args[7] != null
-                            val send = {
+                            val send: () -> Unit = {
                                 try {
                                     session.submitToDestination(
                                         openDestination = {
@@ -95,13 +95,14 @@ class MessageForwardPicker(private val target: TelegramSendResolver) {
                                 }
                             }
                             if (Config.getBoolean("enable_copy_confirmation", true)) {
-                                AlertDialog.Builder(original.activity)
-                                    .setTitle("\u65e0\u6765\u6e90\u8f6c\u53d1")
-                                    .setMessage("\u53d1\u9001\u5230\u9009\u4e2d\u7684 ${targets.size} \u4e2a\u4f1a\u8bdd\u6216\u8bdd\u9898\uff1f")
-                                    .setPositiveButton("\u53d1\u9001") { _, _ -> send() }
-                                    .setNegativeButton("\u53d6\u6d88", null)
-                                    .setOnDismissListener { session.cancelConfirmation() }
-                                    .show()
+                                dialogs.show(
+                                    original.activity, original.chat, "\u65e0\u6765\u6e90\u8f6c\u53d1",
+                                    "\u53d1\u9001\u5230\u9009\u4e2d\u7684 ${targets.size} \u4e2a\u4f1a\u8bdd\u6216\u8bdd\u9898\uff1f",
+                                    positiveText = "\u53d1\u9001",
+                                    onPositive = send,
+                                    onNegative = session::cancelConfirmation,
+                                    onCancel = session::cancelConfirmation,
+                                )
                             } else send()
                         }
                     } catch (error: Throwable) {

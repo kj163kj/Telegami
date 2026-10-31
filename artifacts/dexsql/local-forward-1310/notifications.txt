@@ -1,0 +1,9 @@
++---------+------------+-----------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------+
+| file_id | method_idx | method                                                                                                                | field                                                         |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------+
+| 0       | 37569      | Lorg/telegram/messenger/ImageLoader$5;->lambda$fileDidFailedLoad$6(Ljava/lang/String;II)V                             | Lorg/telegram/messenger/NotificationCenter;->fileLoadFailed:I |
+| 0       | 37572      | Lorg/telegram/messenger/ImageLoader$5;->lambda$fileDidLoaded$5(Ljava/io/File;Ljava/lang/String;ILjava/lang/Object;I)V | Lorg/telegram/messenger/NotificationCenter;->fileLoaded:I     |
+| 0       | 37650      | Lorg/telegram/messenger/ImageLoader$HttpImageTask;->lambda$onCancelled$7()V                                           | Lorg/telegram/messenger/NotificationCenter;->fileLoadFailed:I |
+| 0       | 37652      | Lorg/telegram/messenger/ImageLoader$HttpImageTask;->lambda$onPostExecute$3(Ljava/lang/Boolean;)V                      | Lorg/telegram/messenger/NotificationCenter;->fileLoaded:I     |
+| 0       | 37652      | Lorg/telegram/messenger/ImageLoader$HttpImageTask;->lambda$onPostExecute$3(Ljava/lang/Boolean;)V                      | Lorg/telegram/messenger/NotificationCenter;->fileLoadFailed:I |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------+
