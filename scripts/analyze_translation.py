@@ -6,14 +6,15 @@ import subprocess
 
 QUERIES = {
     "methods": """SELECT file_id,method_idx,descriptor FROM methods WHERE method_kind IS NOT NULL AND (
-class_descriptor='Lorg/telegram/ui/Components/r51;' OR
+class_descriptor IN ('Lorg/telegram/ui/Components/r51;','Lorg/telegram/ui/ActionBar/AlertDialog$Builder;') OR
+(class_descriptor='Lorg/telegram/messenger/MediaDataController;' AND name='getEntities') OR
 (class_descriptor='Lorg/telegram/messenger/TranslateController;' AND name IN
 ('pushToTranslate','checkTranslation','invalidateTranslation','cancelTranslations')) OR
 (class_descriptor='Lorg/telegram/tgnet/ConnectionsManager;' AND name IN ('sendRequest','cancelRequest','getInstance')) OR
 class_descriptor='Lorg/telegram/tgnet/RequestDelegate;' OR
 (class_descriptor='Lorg/telegram/ui/ko;' AND name IN ('q8','Fa'))) ORDER BY file_id,method_idx""",
     "fields": """SELECT file_id,field_idx,descriptor FROM fields WHERE class_descriptor IN
-('Lorg/telegram/ui/Components/r51;','Lorg/telegram/tgnet/TLRPC$MessageEntity;',
+('Lorg/telegram/ui/Components/r51;','Lorg/telegram/ui/ActionBar/k3;','Lorg/telegram/tgnet/TLRPC$TL_error;','Lorg/telegram/tgnet/TLRPC$MessageEntity;',
 'Lorg/telegram/tgnet/TLRPC$TL_messages_translateText;','Lorg/telegram/tgnet/TLRPC$TL_messages_translateResult;',
 'Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;','Lorg/telegram/tgnet/TLRPC$TL_messageEntityMentionName;',
 'Lorg/telegram/tgnet/TLRPC$TL_messageEntityCustomEmoji;') ORDER BY file_id,field_idx""",

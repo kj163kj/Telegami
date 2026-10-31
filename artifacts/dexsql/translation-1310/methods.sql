@@ -1,5 +1,6 @@
 SELECT file_id,method_idx,descriptor FROM methods WHERE method_kind IS NOT NULL AND (
-class_descriptor='Lorg/telegram/ui/Components/r51;' OR
+class_descriptor IN ('Lorg/telegram/ui/Components/r51;','Lorg/telegram/ui/ActionBar/AlertDialog$Builder;') OR
+(class_descriptor='Lorg/telegram/messenger/MediaDataController;' AND name='getEntities') OR
 (class_descriptor='Lorg/telegram/messenger/TranslateController;' AND name IN
 ('pushToTranslate','checkTranslation','invalidateTranslation','cancelTranslations')) OR
 (class_descriptor='Lorg/telegram/tgnet/ConnectionsManager;' AND name IN ('sendRequest','cancelRequest','getInstance')) OR
