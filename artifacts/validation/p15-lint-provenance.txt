@@ -1,0 +1,10 @@
+Lint against final feature source (2026-10-31):
+Counter({('Error', 'MissingTranslation'): 62, ('Warning', 'UnusedResources'): 57, ('Warning', 'GradleDependency'): 13, ('Warning', 'NewerVersionAvailable'): 10, ('Warning', 'UseKtx'): 7, ('Warning', 'IconLauncherShape'): 5, ('Error', 'NewApi'): 4, ('Warning', 'ApplySharedPref'): 2, ('Warning', 'UseCompatLoadingForDrawables'): 2, ('Warning', 'ObsoleteSdkInt'): 2, ('Warning', 'StaticFieldLeak'): 2, ('Warning', 'DiscouragedPrivateApi'): 1, ('Warning', 'OldTargetApi'): 1, ('Warning', 'LocalContextResourcesRead'): 1, ('Warning', 'DiscouragedApi'): 1, ('Warning', 'MonochromeLauncherIcon'): 1, ('Warning', 'IconLocation'): 1, ('Warning', 'UseTomlInstead'): 1, ('Warning', 'RtlHardcoded'): 1})
+Error-bearing file provenance vs baseline 3c6ff67:
+UNCHANGED app/src/main/res/anim/activity_close_enter.xml
+UNCHANGED app/src/main/res/anim/activity_close_exit.xml
+UNCHANGED app/src/main/res/anim/activity_open_enter.xml
+UNCHANGED app/src/main/res/anim/activity_open_exit.xml
+UNCHANGED app/src/main/res/values/configuration.xml
+UNCHANGED app/src/main/res/values/strings.xml
+All 66 errors are in resource files unchanged by this task. No lint suppression applied.

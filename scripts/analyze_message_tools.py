@@ -7,6 +7,14 @@ import subprocess
 
 
 QUERIES = {
+    "entity_classes": """SELECT file_id,descriptor FROM classes
+WHERE descriptor LIKE 'Lorg/telegram/tgnet/TLRPC$TL_messageEntity%'
+ORDER BY file_id,descriptor""",
+    "history_methods": """SELECT file_id,method_idx,descriptor FROM methods
+WHERE method_kind IS NOT NULL AND (
+(class_descriptor='Lorg/telegram/messenger/BaseController;' AND name='getUserConfig') OR
+(class_descriptor IN ('Lorg/telegram/tgnet/SerializedData;','Lorg/telegram/tgnet/InputSerializedData;') AND name='readInt32'))
+ORDER BY file_id,method_idx""",
     "methods": """SELECT file_id, method_idx, descriptor FROM methods
 WHERE method_kind IS NOT NULL AND (
 (class_descriptor='Lorg/telegram/ui/ko;' AND name IN ('q8','Fa','h7')) OR
@@ -51,6 +59,8 @@ DECODE = [
     (0, 45301, "params_fields"), (0, 41539, "protected_chat"),
     (0, 41540, "protected_chat_flags"), (0, 40183, "can_forward"),
     (0, 43033, "edit_storage"), (0, 43213, "edit_storage_wrapper"),
+    (0, 40147, "format_entities"), (0, 45302, "params_from_message"),
+    (0, 43214, "put_messages"), (0, 43054, "replace_message"),
 ]
 
 

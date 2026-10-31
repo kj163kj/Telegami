@@ -54,6 +54,16 @@ class MessageHistoryDaoTest {
         assertTrue(dao.rows.isEmpty())
     }
 
+    @Test fun recoversMissedIntermediateVersionWhenContentReverts() {
+        val dao = MemoryDao()
+        dao.append(listOf(entry("A")), 100)
+        // Last known A, but native DB contains a previously missed B before a new A arrives.
+        dao.append(listOf(entry("B", 101), entry("A", 102)), 100)
+        assertEquals(listOf("A", "B", "A"), dao.rows.map { it.contentHash })
+        dao.append(listOf(entry("B", 101), entry("A", 102)), 100)
+        assertEquals(3, dao.rows.size)
+    }
+
     @Test(expected = IllegalArgumentException::class)
     fun refusesMixedScopesInOneTransaction() {
         MemoryDao().append(listOf(entry("A"), entry("B", account = 2)), 100)

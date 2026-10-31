@@ -41,7 +41,7 @@ private to the hooked Telegram package; relative filenames are validated.
 Video/file playback and non-photo thumbnail previews are not implemented.
 Stored TL/entity/media data remains available even without a preview.
 
-P13 validation: 21 JVM tests, debug build, and actual v2->v3 SQL exercised on
+P13 validation: JVM tests, debug build, and actual v2->v3 SQL exercised on
 desktop SQLite. The SQLite test verifies deletion rows are unchanged, composite
 keys, scoped trimming and persistence after reopening. DAO JVM tests exercise
 deduplication, A->B->A, stale events and scope boundaries with an in-memory

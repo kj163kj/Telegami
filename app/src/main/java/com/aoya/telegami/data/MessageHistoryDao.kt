@@ -34,8 +34,16 @@ abstract class MessageHistoryDao {
         })
         var last = latest(first.accountId, first.dialogId, first.messageId)
         val newest = candidates.last()
-        // A repeated batch must not append its old+new pair again.
-        if (last != null && (last.contentHash == newest.contentHash || last.editDate > newest.editDate)) return
+        if (last != null) {
+            if (last.editDate > newest.editDate) return
+            if (last.contentHash == newest.contentHash) {
+                if (candidates.all { it.contentHash == newest.contentHash }) return
+                val previous = read(first.accountId, first.dialogId, first.messageId).dropLast(1).lastOrNull()
+                // A duplicate old+new pair differs from a missed intermediate edit
+                // followed by a reversion to the last known content.
+                if (previous?.contentHash == first.contentHash && last.editDate != 0 && last.editDate == newest.editDate) return
+            }
+        }
         candidates.forEach { candidate ->
             if (candidate.contentHash != last?.contentHash) {
                 val entry = candidate.copy(versionId = (last?.versionId ?: 0L) + 1)

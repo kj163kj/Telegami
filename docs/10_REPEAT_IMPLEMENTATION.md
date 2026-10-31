@@ -30,7 +30,7 @@ Keys currently used: `enable_message_repeat=false` and
 `enable_repeat_confirmation=true`, read live from existing read-only remote
 preferences. No settings UI, navigation or Miuix component was changed.
 
-Validation: `:app:testDebugUnitTest :app:assembleDebug` passed; 14 JVM tests,
+Validation: `:app:testDebugUnitTest :app:assembleDebug` passed; JVM tests,
 including active confirmation/cooldown/cancel tests. Log:
 `artifacts/validation/p10-repeat.log`. DEX evidence generation was rerun and
 normalizes only trailing blank lines in saved smali; bytecode is not modified.

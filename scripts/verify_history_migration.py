@@ -21,6 +21,16 @@ with tempfile.TemporaryDirectory() as temporary:
         for command in sql:
             connection.execute(command)
         assert connection.execute("SELECT * FROM DeletedMessage").fetchall() == before
+        generated = Path("app/build/generated/ksp/debug/kotlin/com/aoya/telegami/data/AppDatabase_Impl.kt")
+        if generated.exists():
+            # Compare handwritten upgrade with Room's generated fresh-install schema.
+            generated_sql = re.findall(r'connection.execSQL\("(CREATE [^"]+)"\)', generated.read_text(encoding="utf-8"))
+            with closing(sqlite3.connect(":memory:")) as fresh:
+                for command in generated_sql:
+                    if "MessageHistoryEntry" in command:
+                        fresh.execute(command)
+                for pragma in ["table_info(MessageHistoryEntry)", "index_list(MessageHistoryEntry)"]:
+                    assert connection.execute("PRAGMA " + pragma).fetchall() == fresh.execute("PRAGMA " + pragma).fetchall(), pragma
         insert = "INSERT INTO MessageHistoryEntry VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
         for account, dialog, message in [(1, -2, 3), (9, -2, 3), (1, -4, 3), (1, -2, 5)]:
             for version in range(1, 5):
@@ -37,4 +47,5 @@ with tempfile.TemporaryDirectory() as temporary:
         assert reopened.execute("SELECT versionId FROM MessageHistoryEntry WHERE accountId=1 AND dialogId=-2 AND messageId=3 ORDER BY versionId").fetchall() == [(3,), (4,)]
         assert reopened.execute("SELECT * FROM DeletedMessage").fetchall() == before
 print("PASS: v2->v3 preserves deletions; scoped retention, composite key and reopen durability")
+print("PASS: migration matches generated Room fresh-install table/index schema")
 print("UNVERIFIED: Android Room on-device migration and Telegram process restart")

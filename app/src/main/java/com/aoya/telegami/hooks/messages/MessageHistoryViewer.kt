@@ -19,6 +19,7 @@ import com.google.gson.Gson
 import java.text.DateFormat
 import java.util.Date
 import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicBoolean
 
 object MessageHistoryViewer {
     private val executor = Executors.newSingleThreadExecutor { task ->
@@ -41,7 +42,9 @@ object MessageHistoryViewer {
                 val currentMedia = c.mediaField.get(owner)?.javaClass?.simpleName ?: "none"
                 val currentEditDate = c.editDate.getInt(owner)
                 val activity = selection.activity
-                val loading = AlertDialog.Builder(activity).setMessage("\u6b63\u5728\u8bfb\u53d6\u672c\u5730\u5386\u53f2\u2026").show()
+                val active = AtomicBoolean(true)
+                val loading = AlertDialog.Builder(activity).setMessage("\u6b63\u5728\u8bfb\u53d6\u672c\u5730\u5386\u53f2\u2026")
+                    .setOnCancelListener { active.set(false) }.show()
                 executor.execute {
                     val result = runCatching {
                         var previewBudget = 12
@@ -52,14 +55,15 @@ object MessageHistoryViewer {
                         }
                     }
                     activity.runOnUiThread {
-                        loading.dismiss()
-                        if (activity.isFinishing || activity.isDestroyed ||
+                        if (activity.isFinishing || activity.isDestroyed || !active.get() ||
                             !Config.isFeatureEnabled("enable_edit_history") ||
                             Telegami.telegram.accountIdForSlot(slot) != accountId ||
                             Telegami.telegram.chatDialog.getLong(selection.chat) != key.dialogId) {
                             result.getOrNull()?.forEach { it.second?.recycle() }
+                            if (!activity.isDestroyed) loading.dismiss()
                             return@runOnUiThread
                         }
+                        loading.dismiss()
                         result.fold(
                             onSuccess = { rows ->
                                 try {
