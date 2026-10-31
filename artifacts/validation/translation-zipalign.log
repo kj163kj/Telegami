@@ -1,0 +1,1 @@
+PASS: release APK zipalign -c -p 4

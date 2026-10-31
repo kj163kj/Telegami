@@ -1,0 +1,3 @@
+PASS: v2->v3 preserves deletions; scoped retention, composite key and reopen durability
+PASS: migration matches generated Room fresh-install table/index schema
+UNVERIFIED: Android Room on-device migration and Telegram process restart

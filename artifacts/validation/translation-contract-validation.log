@@ -1,0 +1,3 @@
+PASS: native descriptors, entity types, broker manifest and transport policy
+PASS: JVM results {'tests': 128, 'failures': 0, 'errors': 0, 'skipped': 0}
+UNVERIFIED: native UI, LSPosed IPC, Keystore runtime, Telegram account API and restarts

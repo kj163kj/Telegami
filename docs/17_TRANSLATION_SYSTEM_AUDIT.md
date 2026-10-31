@@ -67,3 +67,12 @@ the key. Configuration exports explicitly exclude secret ciphertext. Public
 endpoints are unofficial and require live verification; compilation is not proof
 of availability. Native account calls, module IPC and native rendering require
 real LSPosed device tests before being declared verified.
+
+## Implementation Follow-Through
+
+P0-P8 code checkpoints now exist on `feat/multi-source-translation`; tested code
+commit is `454eedfeb8f50cb5d725a69e12b7d0e7b8f17060`.
+See `18_TRANSLATION_SOURCE_CONFIG_HANDOFF.md` for the data-only UI contract and
+`19_TRANSLATION_PROVIDER_IMPLEMENTATION.md` for actual provider results, limitations,
+build/signature evidence and the pending device acceptance checklist.
+NagramX reference checkout: `2db685af00a4352c877ecf96474cbf0494284715`.

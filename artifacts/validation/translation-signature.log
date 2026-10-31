@@ -1,0 +1,18 @@
+Verifies
+Verified using v1 scheme (JAR signing): false
+Verified using v2 scheme (APK Signature Scheme v2): true
+Verified using v3 scheme (APK Signature Scheme v3): false
+Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+Verified using v3.2 scheme (APK Signature Scheme v3.2): false
+Verified using v4 scheme (APK Signature Scheme v4): false
+Verified for SourceStamp: false
+Number of signers: 1
+V2 Signer: certificate DN: CN=Telegami
+V2 Signer: certificate SHA-256 digest: bc80329b9ba7c8c8da2bc2b57057544d7b967477038f2037a2fb332d5a0186d7
+V2 Signer: certificate SHA-1 digest: 1f9c3a6419a71cc556380af19bbe7cdc2945b57e
+V2 Signer: certificate MD5 digest: ad733bcd38d34aeb4914c337edcad5a4
+V2 Signer: key algorithm: RSA
+V2 Signer: key size (bits): 4096
+V2 Signer: public key SHA-256 digest: add2b31ffa94dc671a3e6f0fc4e7d0a7c816ca5bc15e1e61033224db79bc2fd0
+V2 Signer: public key SHA-1 digest: aee744d8eb0a67ee8222d114ea431d121a963859
+V2 Signer: public key MD5 digest: 7e846787fdf69bb120ef31848db7dd4d

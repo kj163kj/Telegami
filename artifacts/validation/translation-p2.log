@@ -1,0 +1,184 @@
+
+C:\Users\Administrator\Desktop\Telegami>if "Windows_NT" == "Windows_NT" setlocal
+
+C:\Users\Administrator\Desktop\Telegami>set DIRNAME=C:\Users\Administrator\Desktop\Telegami\
+
+C:\Users\Administrator\Desktop\Telegami>if "C:\Users\Administrator\Desktop\Telegami\" == "" set DIRNAME=.
+
+C:\Users\Administrator\Desktop\Telegami>set APP_BASE_NAME=gradlew
+
+C:\Users\Administrator\Desktop\Telegami>set APP_HOME=C:\Users\Administrator\Desktop\Telegami\
+
+C:\Users\Administrator\Desktop\Telegami>for %i in ("C:\Users\Administrator\Desktop\Telegami\") do set APP_HOME=%~fi
+
+C:\Users\Administrator\Desktop\Telegami>set APP_HOME=C:\Users\Administrator\Desktop\Telegami\
+
+C:\Users\Administrator\Desktop\Telegami>set DEFAULT_JVM_OPTS="-Xmx64m" "-Xms64m"
+
+C:\Users\Administrator\Desktop\Telegami>if defined JAVA_HOME goto findJavaFromJavaHome
+
+C:\Users\Administrator\Desktop\Telegami>set JAVA_HOME=C:\Users\Administrator\AppData\Local\TelegamiBuildTools\jdk-21.0.13+9
+
+C:\Users\Administrator\Desktop\Telegami>set JAVA_EXE=C:\Users\Administrator\AppData\Local\TelegamiBuildTools\jdk-21.0.13+9/bin/java.exe
+
+C:\Users\Administrator\Desktop\Telegami>if exist "C:\Users\Administrator\AppData\Local\TelegamiBuildTools\jdk-21.0.13+9/bin/java.exe" goto execute
+
+C:\Users\Administrator\Desktop\Telegami>set CLASSPATH=
+
+C:\Users\Administrator\Desktop\Telegami>"C:\Users\Administrator\AppData\Local\TelegamiBuildTools\jdk-21.0.13+9/bin/java.exe" "-Xmx64m" "-Xms64m"   "-Dorg.gradle.appname=gradlew" -classpath "" -jar "C:\Users\Administrator\Desktop\Telegami\\gradle\wrapper\gradle-wrapper.jar" :app:testDebugUnitTest --no-daemon --no-parallel --console=plain -Pkotlin.compiler.execution.strategy=in-process
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+
+> Configure project :
+The Dependency Analysis plugin is only known to work with versions of AGP between 8.4.2 and 8.13.0. You are using 9.2.1. Proceed at your own risk.
+
+> Configure project :app
+WARNING: The option setting 'android.builtInKotlin=false' is deprecated.
+The current default is 'true'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+WARNING: The option setting 'android.newDsl=false' is deprecated.
+The current default is 'true'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+WARNING: API 'applicationVariants' is obsolete and has been replaced with 'AndroidComponentsExtension'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+The legacy variant API is disabled by default in AGP 9.0, but can be re-enabled by adding
+    android.newDsl=false
+to this project's gradle.properties file.
+For more information, see http://developer.android.com/build/r/new-dsl.
+
+To determine what is calling applicationVariants, use -Pandroid.debug.obsoleteApi=true on the command line to display more information.
+WARNING: API 'testVariants' is obsolete and has been replaced with 'AndroidComponentsExtension'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+The legacy variant API is disabled by default in AGP 9.0, but can be re-enabled by adding
+    android.newDsl=false
+to this project's gradle.properties file.
+For more information, see http://developer.android.com/build/r/new-dsl.
+
+To determine what is calling testVariants, use -Pandroid.debug.obsoleteApi=true on the command line to display more information.
+WARNING: API 'unitTestVariants' is obsolete and has been replaced with 'AndroidComponentsExtension'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+The legacy variant API is disabled by default in AGP 9.0, but can be re-enabled by adding
+    android.newDsl=false
+to this project's gradle.properties file.
+For more information, see http://developer.android.com/build/r/new-dsl.
+
+To determine what is calling unitTestVariants, use -Pandroid.debug.obsoleteApi=true on the command line to display more information.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/build.gradle.kts:60:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.
+This class is not used for the public extensions in AGP when android.newDsl=true, which is the default in AGP 9.0, and will be removed in AGP 10.0.
+w: Deprecated 'org.jetbrains.kotlin.android' plugin usage
+The 'org.jetbrains.kotlin.android' plugin in project ':app' is no longer required for Kotlin support since AGP 9.0.
+Solution: Remove both `android.builtInKotlin=true` and `android.newDsl=false` from `gradle.properties`, then migrate to built-in Kotlin.
+See https://kotl.in/gradle/agp-built-in-kotlin for more details.
+
+
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :app:generateDebugMaterialThemeBuilderRes
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:processDebugNavigationResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:dataBindingGenBaseClassesDebug UP-TO-DATE
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:generateDebugMaterialThemeBuilderSource
+> Task :app:generateDebugRFile UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :app:kspDebugKotlin
+> Task :app:compileDebugKotlin
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/hooks/PreventSecretMediaDeletion.kt:53:36 Unchecked cast of 'Any!' to 'ArrayList<Int>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/hooks/PreventSecretMediaDeletion.kt:102:39 Unnecessary safe call on a non-null receiver of type 'TLRPC.Message'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/hooks/ProfileDetails.kt:47:51 Unnecessary safe call on a non-null receiver of type 'MessagesController'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/hooks/ProfileDetails.kt:53:51 Unnecessary safe call on a non-null receiver of type 'MessagesController'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/hooks/ProfileDetails.kt:68:82 Elvis operator (?:) always returns the left operand of non-nullable type 'Int'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/hooks/ProfileDetails.kt:79:34 Unnecessary safe call on a non-null receiver of type 'Int'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/hooks/messages/MessageHistoryScreen.kt:212:57 'static field SOFT_INPUT_ADJUST_RESIZE: Int' is deprecated. Deprecated in Java.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/hooks/messages/MessageHistoryScreen.kt:214:17 'fun setDecorFitsSystemWindows(p0: Boolean): Unit' is deprecated. Deprecated in Java.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/SQLite/SQLiteCursor.kt:17:128 Unnecessary safe call on a non-null receiver of type 'Int'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/SQLite/SQLiteCursor.kt:19:131 Unnecessary safe call on a non-null receiver of type 'Int'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/SQLite/SQLiteDatabase.kt:15:142 Unnecessary safe call on a non-null receiver of type 'String'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/SQLite/SQLiteDatabase.kt:15:178 Unnecessary safe call on a non-null receiver of type 'Array<out Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/SQLite/SQLiteDatabase.kt:15:232 Unnecessary safe call on a non-null receiver of type 'Any'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/AndroidUtilities.kt:17:36 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/AndroidUtilities.kt:26:36 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/ChatObject.kt:13:57 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/ChatObject.kt:13:194 Unnecessary safe call on a non-null receiver of type 'Any'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/ChatObject.kt:16:57 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/ChatObject.kt:16:203 Unnecessary safe call on a non-null receiver of type 'Any'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/FileLoader.kt:31:57 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/FileLoader.kt:38:57 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/FileLoader.kt:46:61 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/LocaleController.kt:24:61 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/LocaleController.kt:28:57 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/LocaleController.kt:28:173 Unnecessary safe call on a non-null receiver of type 'Int'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/MediaController.kt:41:57 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/MessageObject.kt:32:57 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/MessageObject.kt:32:171 Unnecessary safe call on a non-null receiver of type 'Any'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/UserObject.kt:14:57 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/secretmedia/EncryptedFileInputStream.kt:34:26 Unnecessary safe call on a non-null receiver of type 'ByteArray'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/secretmedia/EncryptedFileInputStream.kt:35:28 Unnecessary safe call on a non-null receiver of type 'Int'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/secretmedia/EncryptedFileInputStream.kt:36:28 Unnecessary safe call on a non-null receiver of type 'Int'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/secretmedia/EncryptedFileInputStream.kt:46:38 Unnecessary safe call on a non-null receiver of type 'Long'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/secretmedia/EncryptedFileInputStream.kt:57:61 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/secretmedia/EncryptedFileInputStream.kt:60:49 Unnecessary safe call on a non-null receiver of type 'File'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/secretmedia/EncryptedFileInputStream.kt:60:88 Unnecessary safe call on a non-null receiver of type 'File'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/messenger/time/FastDateFormat.kt:12:145 Unnecessary safe call on a non-null receiver of type 'Long'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/tgnet/TLRPC.kt:236:19 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/tgnet/TLRPC.kt:255:57 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ActionBar/ActionBarMenuItem.kt:18:128 Unnecessary safe call on a non-null receiver of type 'Int'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ActionBar/ActionBarMenuItem.kt:18:208 Unnecessary safe call on a non-null receiver of type 'String'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ActionBar/AlertDialog.kt:23:66 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ActionBar/AlertDialog.kt:23:133 Unnecessary safe call on a non-null receiver of type 'Context'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ActionBar/AlertDialog.kt:29:138 Unnecessary safe call on a non-null receiver of type 'String'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ActionBar/AlertDialog.kt:37:138 Unnecessary safe call on a non-null receiver of type 'Array<CharSequence>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ActionBar/AlertDialog.kt:37:185 Unnecessary safe call on a non-null receiver of type 'DialogInterface.OnClickListener'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ActionBar/AlertDialog.kt:42:138 Unnecessary safe call on a non-null receiver of type 'LinearLayout'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ActionBar/AlertDialog.kt:50:146 Unnecessary safe call on a non-null receiver of type 'String'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ActionBar/AlertDialog.kt:59:18 Unnecessary safe call on a non-null receiver of type 'Any'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ActionBar/AlertDialog.kt:76:146 Unnecessary safe call on a non-null receiver of type 'String'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ActionBar/AlertDialog.kt:85:18 Unnecessary safe call on a non-null receiver of type 'Any'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ActionBar/BaseFragment.kt:47:45 Unnecessary safe call on a non-null receiver of type 'Any'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ActionBar/Theme.kt:21:29 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ActionBar/Theme.kt:25:29 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/Components/BulletinFactory.kt:21:61 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/Components/ColoredImageSpan.kt:39:61 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/Components/ItemOptions.kt:73:57 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/Components/ItemOptions.kt:78:17 Unnecessary safe call on a non-null receiver of type 'Any'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/Components/ItemOptions.kt:85:57 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/Components/ItemOptions.kt:90:17 Unnecessary safe call on a non-null receiver of type 'Any'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/Components/ItemOptions.kt:100:57 Unchecked cast of 'Class<*>' to 'Class<Any>'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/Components/ItemOptions.kt:105:17 Unnecessary safe call on a non-null receiver of type 'Any'.
+w: file:///C:/Users/Administrator/Desktop/Telegami/app/src/main/java/com/aoya/telegami/virt/ui/ProfileActivity.kt:62:31 Unchecked cast of 'Any' to 'Array<Any>'.
+
+> Task :app:compileDebugJavaWithJavac
+> Task :app:processDebugJavaRes
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:bundleDebugClassesToRuntimeJar
+> Task :app:kspDebugUnitTestKotlin
+> Task :app:compileDebugUnitTestKotlin
+> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processDebugUnitTestJavaRes UP-TO-DATE
+> Task :app:testDebugUnitTest
+
+[Incubating] Problems report is available at: file:///C:/Users/Administrator/Desktop/Telegami/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 1m 23s
+32 actionable tasks: 11 executed, 21 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.4.1/userguide/configuration_cache_enabling.html
+
+C:\Users\Administrator\Desktop\Telegami>if 0 EQU 0 goto mainEnd
+
+C:\Users\Administrator\Desktop\Telegami>if "Windows_NT" == "Windows_NT" endlocal

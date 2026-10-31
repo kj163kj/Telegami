@@ -1,0 +1,4 @@
+PASS: official-only scopes, mapping assets, runtime branches and version tracking
+PASS: app-debug.apk official-only mappings/scope, API 102 and preserved NagramX icon
+PASS: app-release.apk official-only mappings/scope, API 102 and preserved NagramX icon
+UNVERIFIED: device installation and LSPosed runtime
