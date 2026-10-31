@@ -1,0 +1,13 @@
+SELECT file_id, method_idx, descriptor FROM methods WHERE method_kind IS NOT NULL AND class_descriptor = 'Lorg/telegram/ui/Cells/u1;' AND ((param_descriptors='Lorg/telegram/messenger/MessageObject;' AND return_descriptor='V') OR name IN ('getMessageObject','onDraw','onMeasure','setMessageObject')) ORDER BY method_idx
+
++---------+------------+-----------------------------------------------------------------------------------------------+
+| file_id | method_idx | descriptor                                                                                    |
++---------+------------+-----------------------------------------------------------------------------------------------+
+| 2       | 27109      | Lorg/telegram/ui/Cells/u1;->getMessageObject()Lorg/telegram/messenger/MessageObject;          |
+| 2       | 27202      | Lorg/telegram/ui/Cells/u1;->onDraw(Landroid/graphics/Canvas;)V                                |
+| 2       | 27206      | Lorg/telegram/ui/Cells/u1;->onMeasure(II)V                                                    |
+| 2       | 27238      | Lorg/telegram/ui/Cells/u1;->setAvatar(Lorg/telegram/messenger/MessageObject;)V                |
+| 2       | 27253      | Lorg/telegram/ui/Cells/u1;->setMessageObjectInternal(Lorg/telegram/messenger/MessageObject;)V |
+| 2       | 27275      | Lorg/telegram/ui/Cells/u1;->u4(Lorg/telegram/messenger/MessageObject;)V                       |
+| 2       | 27293      | Lorg/telegram/ui/Cells/u1;->x3(Lorg/telegram/messenger/MessageObject;)V                       |
++---------+------------+-----------------------------------------------------------------------------------------------+

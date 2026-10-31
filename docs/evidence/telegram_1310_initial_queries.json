@@ -1,0 +1,4902 @@
+[
+  {
+    "label": "dex_files",
+    "sql": "SELECT file_id, source_path FROM dex_files ORDER BY file_id",
+    "result": {
+      "dataset_id": "dataset-1",
+      "diagnostics": [
+        {
+          "code": "sql_static_optimizer_rewrite",
+          "message": "sql_static_optimizer rewrites=1"
+        }
+      ],
+      "statements": [
+        {
+          "columns": [
+            {
+              "data_type": "uint64",
+              "name": "file_id",
+              "nullable": false
+            },
+            {
+              "data_type": "utf8",
+              "name": "source_path",
+              "nullable": false
+            }
+          ],
+          "kind": "query",
+          "next_offset": null,
+          "offset": 0,
+          "rows": [
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "utf8",
+                "value": "C:\\Users\\Administrator\\Desktop\\Telegami\\Telegram.apk"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "1"
+              },
+              {
+                "type": "utf8",
+                "value": "C:\\Users\\Administrator\\Desktop\\Telegami\\Telegram.apk"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "utf8",
+                "value": "C:\\Users\\Administrator\\Desktop\\Telegami\\Telegram.apk"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "utf8",
+                "value": "C:\\Users\\Administrator\\Desktop\\Telegami\\Telegram.apk"
+              }
+            ]
+          ],
+          "sql": "SELECT file_id, source_path FROM dex_files ORDER BY file_id",
+          "statement_index": 0,
+          "total_rows": 4,
+          "truncated": false
+        }
+      ]
+    }
+  },
+  {
+    "label": "classes",
+    "sql": "SELECT file_id, descriptor, superclass_descriptor FROM classes WHERE descriptor IN ('Lorg/telegram/messenger/MessagesStorage;','Lorg/telegram/messenger/MessagesController;','Lorg/telegram/messenger/NotificationCenter;','Lorg/telegram/messenger/MessageObject;','Lorg/telegram/tgnet/TLRPC$Message;','Lorg/telegram/ui/Cells/ChatMessageCell;','Lorg/telegram/ui/ChatActivity;') ORDER BY file_id, descriptor",
+    "result": {
+      "dataset_id": "dataset-1",
+      "diagnostics": [
+        {
+          "code": "sql_static_optimizer_rewrite",
+          "message": "sql_static_optimizer rewrites=2"
+        }
+      ],
+      "statements": [
+        {
+          "columns": [
+            {
+              "data_type": "uint64",
+              "name": "file_id",
+              "nullable": false
+            },
+            {
+              "data_type": "utf8",
+              "name": "descriptor",
+              "nullable": false
+            },
+            {
+              "data_type": "utf8",
+              "name": "superclass_descriptor",
+              "nullable": true
+            }
+          ],
+          "kind": "query",
+          "next_offset": null,
+          "offset": 0,
+          "rows": [
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessageObject;"
+              },
+              {
+                "type": "utf8",
+                "value": "Ljava/lang/Object;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesController;"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/BaseController;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/BaseController;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/NotificationCenter;"
+              },
+              {
+                "type": "utf8",
+                "value": "Ljava/lang/Object;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/tgnet/TLRPC$Message;"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/tgnet/TLObject;"
+              }
+            ]
+          ],
+          "sql": "SELECT file_id, descriptor, superclass_descriptor FROM classes WHERE descriptor IN ('Lorg/telegram/messenger/MessagesStorage;','Lorg/telegram/messenger/MessagesController;','Lorg/telegram/messenger/NotificationCenter;','Lorg/telegram/messenger/MessageObject;','Lorg/telegram/tgnet/TLRPC$Message;','Lorg/telegram/ui/Cells/ChatMessageCell;','Lorg/telegram/ui/ChatActivity;') ORDER BY file_id, descriptor",
+          "statement_index": 0,
+          "total_rows": 5,
+          "truncated": false
+        }
+      ]
+    }
+  },
+  {
+    "label": "methods",
+    "sql": "SELECT file_id, method_idx, descriptor, param_descriptors, return_descriptor FROM methods WHERE method_kind IS NOT NULL AND name IN ('markMessagesAsDeletedInternal','deleteMessages','markDialogMessageAsDeleted','postNotificationName','removeDeletedMessagesFromNotifications','measureTime','setMessageObject','createView') AND class_descriptor LIKE 'Lorg/telegram/%' ORDER BY class_descriptor, name, descriptor",
+    "result": {
+      "dataset_id": "dataset-1",
+      "diagnostics": [
+        {
+          "code": "sql_static_optimizer_rewrite",
+          "message": "sql_static_optimizer rewrites=4"
+        }
+      ],
+      "statements": [
+        {
+          "columns": [
+            {
+              "data_type": "uint64",
+              "name": "file_id",
+              "nullable": false
+            },
+            {
+              "data_type": "uint64",
+              "name": "method_idx",
+              "nullable": false
+            },
+            {
+              "data_type": "utf8",
+              "name": "descriptor",
+              "nullable": false
+            },
+            {
+              "data_type": "utf8",
+              "name": "param_descriptors",
+              "nullable": false
+            },
+            {
+              "data_type": "utf8",
+              "name": "return_descriptor",
+              "nullable": false
+            }
+          ],
+          "kind": "query",
+          "next_offset": null,
+          "offset": 0,
+          "rows": [
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "41304"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesController;->deleteMessages(Ljava/util/ArrayList;Ljava/util/ArrayList;Lorg/telegram/tgnet/TLRPC$EncryptedChat;JIZI)V"
+              },
+              {
+                "type": "utf8",
+                "value": "Ljava/util/ArrayList;,Ljava/util/ArrayList;,Lorg/telegram/tgnet/TLRPC$EncryptedChat;,J,I,Z,I"
+              },
+              {
+                "type": "utf8",
+                "value": "V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "41305"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesController;->deleteMessages(Ljava/util/ArrayList;Ljava/util/ArrayList;Lorg/telegram/tgnet/TLRPC$EncryptedChat;JIZIZ)V"
+              },
+              {
+                "type": "utf8",
+                "value": "Ljava/util/ArrayList;,Ljava/util/ArrayList;,Lorg/telegram/tgnet/TLRPC$EncryptedChat;,J,I,Z,I,Z"
+              },
+              {
+                "type": "utf8",
+                "value": "V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "41306"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesController;->deleteMessages(Ljava/util/ArrayList;Ljava/util/ArrayList;Lorg/telegram/tgnet/TLRPC$EncryptedChat;JZIZJLorg/telegram/tgnet/TLObject;I)V"
+              },
+              {
+                "type": "utf8",
+                "value": "Ljava/util/ArrayList;,Ljava/util/ArrayList;,Lorg/telegram/tgnet/TLRPC$EncryptedChat;,J,Z,I,Z,J,Lorg/telegram/tgnet/TLObject;,I"
+              },
+              {
+                "type": "utf8",
+                "value": "V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "41307"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesController;->deleteMessages(Ljava/util/ArrayList;Ljava/util/ArrayList;Lorg/telegram/tgnet/TLRPC$EncryptedChat;JZIZJLorg/telegram/tgnet/TLObject;IZI)V"
+              },
+              {
+                "type": "utf8",
+                "value": "Ljava/util/ArrayList;,Ljava/util/ArrayList;,Lorg/telegram/tgnet/TLRPC$EncryptedChat;,J,Z,I,Z,J,Lorg/telegram/tgnet/TLObject;,I,Z,I"
+              },
+              {
+                "type": "utf8",
+                "value": "V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42182"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesController;->markDialogMessageAsDeleted(JLjava/util/ArrayList;)V"
+              },
+              {
+                "type": "utf8",
+                "value": "J,Ljava/util/ArrayList;"
+              },
+              {
+                "type": "utf8",
+                "value": "V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43163"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->markMessagesAsDeletedInternal(JIZ)Ljava/util/ArrayList;"
+              },
+              {
+                "type": "utf8",
+                "value": "J,I,Z"
+              },
+              {
+                "type": "utf8",
+                "value": "Ljava/util/ArrayList;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43164"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->markMessagesAsDeletedInternal(JLjava/util/ArrayList;ZII)Ljava/util/ArrayList;"
+              },
+              {
+                "type": "utf8",
+                "value": "J,Ljava/util/ArrayList;,Z,I,I"
+              },
+              {
+                "type": "utf8",
+                "value": "Ljava/util/ArrayList;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43600"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/NotificationCenter;->postNotificationName(I[Ljava/lang/Object;)V"
+              },
+              {
+                "type": "utf8",
+                "value": "I,[Ljava/lang/Object;"
+              },
+              {
+                "type": "utf8",
+                "value": "V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43811"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/NotificationsController;->removeDeletedMessagesFromNotifications(Lz/f;Z)V"
+              },
+              {
+                "type": "utf8",
+                "value": "Lz/f;,Z"
+              },
+              {
+                "type": "utf8",
+                "value": "V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "44049"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/RichMessageLayout$PreviewView$Factory;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "44050"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/RichMessageLayout$PreviewView$Factory;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Lorg/telegram/messenger/RichMessageLayout$PreviewView;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/RichMessageLayout$PreviewView;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "24572"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ActionBar/r2;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "25868"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Cells/i7;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "26274"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Cells/m8;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "26417"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Cells/o3;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "26594"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Cells/q7;->setMessageObject(Lorg/telegram/messenger/MessageObject;)V"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessageObject;"
+              },
+              {
+                "type": "utf8",
+                "value": "V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "27538"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Cells/w6;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "27692"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Cells/x0;->setMessageObject(Lorg/telegram/messenger/MessageObject;)V"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessageObject;"
+              },
+              {
+                "type": "utf8",
+                "value": "V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "28930"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Components/a50;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "28954"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Components/a61;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "31109"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Components/e71;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "31950"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Components/fj;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "32103"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Components/fz;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "32353"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Components/g9;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "32527"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Components/gi0;->setMessageObject(Lorg/telegram/messenger/MessageObject;)V"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessageObject;"
+              },
+              {
+                "type": "utf8",
+                "value": "V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "32691"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Components/gs;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "34864"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Components/m41;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "36409"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Components/pb0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "36961"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Components/q41;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "40075"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Components/w51;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "40093"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Components/w71;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "42088"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ContactsActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "42133"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/DataAutoDownloadActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "42159"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/DataSettingsActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "42208"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/FiltersSetupActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "42230"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/LanguageSelectActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "42362"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/NotificationsCustomSettingsActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "42392"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/NotificationsSettingsActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "42434"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/PasscodeActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "42465"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/PasskeysActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "42771"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/PremiumPreviewFragment;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "42830"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/PrivacyControlActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "42878"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/PrivacySettingsActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "43079"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ProfileActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "43260"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ProxyListActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "43275"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/SaveToGallerySettingsActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "43322"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/SessionsActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "43357"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/StickersActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "43407"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ThemeActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "43449"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/TwoStepVerificationActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "43493"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/UserInfoActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "43508"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/UsersSelectActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "11825"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Wallet/b;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "11872"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Wallet/ca;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "11898"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Wallet/da;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "11913"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Wallet/e3;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "11920"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Wallet/e5;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "12011"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Wallet/fa;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "12132"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Wallet/i7;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "12137"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Wallet/i8;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "12262"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Wallet/k8;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "12405"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Wallet/l9;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "12554"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Wallet/n5;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "12817"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Wallet/s8;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "12901"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Wallet/u9;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "13158"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Wallet/z7;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "43781"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/WallpapersListActivity;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "43916"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/a6;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "43946"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/a80;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "44001"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ac0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "44111"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/am0;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "44379"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/b31;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "44892"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/bz;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "45164"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/c7;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "45198"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/c80;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "45276"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ch0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "45294"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ci0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "45313"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ci1;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "45329"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ck1;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "45348"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/cl0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "45410"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/cp0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "45461"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/cp;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "45534"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/cs;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "45838"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/dc;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "45956"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/di0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "45960"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/di1;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "46246"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ea;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "46307"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ef1;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "46417"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/eq;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "46543"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/f21;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "46613"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/f6;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "46920"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/g31;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "47194"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/gv;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "47225"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/gw0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "47319"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/h41;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "47713"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/hq0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "47801"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/hu;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "47959"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/i80;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "47987"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/i9;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "47997"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/i;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "48096"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ie1;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "48174"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ih0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "48288"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ir0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "48831"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/k00;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "49135"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/kd;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "49654"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ko;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "50088"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/kz;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "50201"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/l70;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "50248"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/l8;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "50372"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/lf1;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "50456"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/lq;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "50714"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/m9;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "50717"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/m;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "50746"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/mb1;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "50786"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/md0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "50839"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/me1;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "51106"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/n10;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "51259"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/n91;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "51351"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ni1;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "51379"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/nj0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "51475"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/nr0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "51550"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ny0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "51699"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/o9;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "51818"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/og1;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "51944"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/op0;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "52039"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/oz;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "52151"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/p91;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "52466"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/q4;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "52657"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/q80;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "52688"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/q;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "53041"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/r70;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "53077"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/r91;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "53117"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/rc0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "53221"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/rq0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "53294"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/rz;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "53557"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/sp;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "53795"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/t91;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "53844"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/tb1;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "53950"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/th1;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "54105"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/tv;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "54140"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/tz;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "54208"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/u4;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "54235"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/u70;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "54426"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/ug1;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "54545"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/un0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "54623"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/uq0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "54793"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/v41;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "54928"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/vd;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "13785"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/web/e;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "13845"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/web/h1;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "13855"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/web/h;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "13986"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/web/p;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "14084"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/web/x1;->createView(Landroid/content/Context;Lorg/telegram/ui/Components/bn0;IILorg/telegram/ui/ActionBar/j6;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;,Lorg/telegram/ui/Components/bn0;,I,I,Lorg/telegram/ui/ActionBar/j6;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "3"
+              },
+              {
+                "type": "uint64",
+                "value": "14149"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/web/z1;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "55948"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/x20;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "56099"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/xa;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "56271"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/xq;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "56804"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/z21;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "56820"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/z31;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "56869"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/z60;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "56925"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/z9;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "57043"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/zg0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "57262"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/zs;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "57321"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/zw0;->createView(Landroid/content/Context;)Landroid/view/View;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/content/Context;"
+              },
+              {
+                "type": "utf8",
+                "value": "Landroid/view/View;"
+              }
+            ]
+          ],
+          "sql": "SELECT file_id, method_idx, descriptor, param_descriptors, return_descriptor FROM methods WHERE method_kind IS NOT NULL AND name IN ('markMessagesAsDeletedInternal','deleteMessages','markDialogMessageAsDeleted','postNotificationName','removeDeletedMessagesFromNotifications','measureTime','setMessageObject','createView') AND class_descriptor LIKE 'Lorg/telegram/%' ORDER BY class_descriptor, name, descriptor",
+          "statement_index": 0,
+          "total_rows": 164,
+          "truncated": false
+        }
+      ]
+    }
+  },
+  {
+    "label": "fields",
+    "sql": "SELECT DISTINCT class_descriptor, name, type_descriptor FROM fields WHERE name IN ('currentTimeString','timeTextWidth','timeWidth','messageOwner','edit_date','flags','messagesDeleted','currentAccount','currentMessageObject') AND class_descriptor IN ('Lorg/telegram/ui/Cells/ChatMessageCell;','Lorg/telegram/messenger/MessageObject;','Lorg/telegram/tgnet/TLRPC$Message;','Lorg/telegram/messenger/NotificationCenter;','Lorg/telegram/messenger/MessagesStorage;') ORDER BY class_descriptor, name",
+    "result": {
+      "dataset_id": "dataset-1",
+      "diagnostics": [
+        {
+          "code": "sql_static_optimizer_rewrite",
+          "message": "sql_static_optimizer rewrites=2"
+        }
+      ],
+      "statements": [
+        {
+          "columns": [
+            {
+              "data_type": "utf8",
+              "name": "class_descriptor",
+              "nullable": false
+            },
+            {
+              "data_type": "utf8",
+              "name": "name",
+              "nullable": false
+            },
+            {
+              "data_type": "utf8",
+              "name": "type_descriptor",
+              "nullable": false
+            }
+          ],
+          "kind": "query",
+          "next_offset": null,
+          "offset": 0,
+          "rows": [
+            [
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessageObject;"
+              },
+              {
+                "type": "utf8",
+                "value": "currentAccount"
+              },
+              {
+                "type": "utf8",
+                "value": "I"
+              }
+            ],
+            [
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessageObject;"
+              },
+              {
+                "type": "utf8",
+                "value": "messageOwner"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/tgnet/TLRPC$Message;"
+              }
+            ],
+            [
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/NotificationCenter;"
+              },
+              {
+                "type": "utf8",
+                "value": "currentAccount"
+              },
+              {
+                "type": "utf8",
+                "value": "I"
+              }
+            ],
+            [
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/NotificationCenter;"
+              },
+              {
+                "type": "utf8",
+                "value": "messagesDeleted"
+              },
+              {
+                "type": "utf8",
+                "value": "I"
+              }
+            ],
+            [
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/tgnet/TLRPC$Message;"
+              },
+              {
+                "type": "utf8",
+                "value": "edit_date"
+              },
+              {
+                "type": "utf8",
+                "value": "I"
+              }
+            ],
+            [
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/tgnet/TLRPC$Message;"
+              },
+              {
+                "type": "utf8",
+                "value": "flags"
+              },
+              {
+                "type": "utf8",
+                "value": "I"
+              }
+            ]
+          ],
+          "sql": "SELECT DISTINCT class_descriptor, name, type_descriptor FROM fields WHERE name IN ('currentTimeString','timeTextWidth','timeWidth','messageOwner','edit_date','flags','messagesDeleted','currentAccount','currentMessageObject') AND class_descriptor IN ('Lorg/telegram/ui/Cells/ChatMessageCell;','Lorg/telegram/messenger/MessageObject;','Lorg/telegram/tgnet/TLRPC$Message;','Lorg/telegram/messenger/NotificationCenter;','Lorg/telegram/messenger/MessagesStorage;') ORDER BY class_descriptor, name",
+          "statement_index": 0,
+          "total_rows": 6,
+          "truncated": false
+        }
+      ]
+    }
+  },
+  {
+    "label": "edited_label",
+    "sql": "SELECT DISTINCT file_id, method_idx, method, value FROM method_strings WHERE value IN ('EditedMessage','ImportedMessages') ORDER BY method, value",
+    "result": {
+      "dataset_id": "dataset-1",
+      "diagnostics": [
+        {
+          "code": "sql_static_optimizer_rewrite",
+          "message": "sql_static_optimizer rewrites=16"
+        }
+      ],
+      "statements": [
+        {
+          "columns": [
+            {
+              "data_type": "uint64",
+              "name": "file_id",
+              "nullable": false
+            },
+            {
+              "data_type": "uint64",
+              "name": "method_idx",
+              "nullable": false
+            },
+            {
+              "data_type": "utf8",
+              "name": "method",
+              "nullable": false
+            },
+            {
+              "data_type": "utf8",
+              "name": "value",
+              "nullable": false
+            }
+          ],
+          "kind": "query",
+          "next_offset": null,
+          "offset": 0,
+          "rows": [
+            [
+              {
+                "type": "uint64",
+                "value": "2"
+              },
+              {
+                "type": "uint64",
+                "value": "26837"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/ui/Cells/t1;->f()Z"
+              },
+              {
+                "type": "utf8",
+                "value": "EditedMessage"
+              }
+            ]
+          ],
+          "sql": "SELECT DISTINCT file_id, method_idx, method, value FROM method_strings WHERE value IN ('EditedMessage','ImportedMessages') ORDER BY method, value",
+          "statement_index": 0,
+          "total_rows": 1,
+          "truncated": false
+        }
+      ]
+    }
+  },
+  {
+    "label": "deletion_names",
+    "sql": "SELECT file_id, method_idx, descriptor FROM methods WHERE method_kind IS NOT NULL AND class_descriptor = 'Lorg/telegram/messenger/MessagesStorage;' AND (name LIKE '%Deleted%' OR name LIKE '%Deleted%' OR name LIKE '%delete%' OR name LIKE '%updateDialogs%') ORDER BY name, descriptor",
+    "result": {
+      "dataset_id": "dataset-1",
+      "diagnostics": [
+        {
+          "code": "sql_static_optimizer_rewrite",
+          "message": "sql_static_optimizer rewrites=9"
+        }
+      ],
+      "statements": [
+        {
+          "columns": [
+            {
+              "data_type": "uint64",
+              "name": "file_id",
+              "nullable": false
+            },
+            {
+              "data_type": "uint64",
+              "name": "method_idx",
+              "nullable": false
+            },
+            {
+              "data_type": "utf8",
+              "name": "descriptor",
+              "nullable": false
+            }
+          ],
+          "kind": "query",
+          "next_offset": null,
+          "offset": 0,
+          "rows": [
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42649"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->addFilesToDelete(Lorg/telegram/tgnet/TLRPC$Message;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;Z)Z"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42708"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deleteAllReactionsFromChat(JJI)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42709"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deleteAllStoryPushMessages()V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42710"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deleteAllStoryReactionPushMessages()V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42711"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deleteContacts(Ljava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42712"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deleteDialog(JI)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42713"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deleteDialogFilter(Lorg/telegram/messenger/MessagesController$DialogFilter;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42714"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deleteDialogFilterInternal(Lorg/telegram/messenger/MessagesController$DialogFilter;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42715"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deleteEphemeralMessages(JI)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42716"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deleteEphemeralMessages(Lz/f;Z)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42717"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deleteEphemeralMessagesInternal(Lz/f;Z)Lz/f;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42718"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deleteFromDownloadQueue(Ljava/util/ArrayList;Z)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42719"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deletePushMessages(JLjava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42720"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deleteSavedDialog(J)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42721"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deleteStoryPushMessage(J)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42722"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deleteUserChatHistory(JJ)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42723"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->deleteWallpaper(J)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42885"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteAllReactionsFromChat$83(Landroid/util/SparseArray;J)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42886"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteAllReactionsFromChat$84(IJJ)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42887"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteAllStoryPushMessages$40()V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42888"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteAllStoryReactionPushMessages$41()V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42889"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteContacts$147(Ljava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42890"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteDialog$88(Ljava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42891"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteDialog$89()V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42892"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteDialog$90(IJ)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42893"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteDialogFilter$72(Lorg/telegram/messenger/MessagesController$DialogFilter;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42894"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteEphemeralMessages$205(Lz/f;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42895"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteEphemeralMessages$206(Lz/f;Z)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42896"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteFromDownloadQueue$183(Ljava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42897"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteSavedDialog$54(JLjava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42898"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteSavedDialog$55(J)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42899"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteStoryPushMessage$39(J)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42900"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteUserChatHistory$85(Ljava/util/ArrayList;JLjava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42901"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteUserChatHistory$86(Ljava/util/ArrayList;J)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42902"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteUserChatHistory$87(JJ)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42903"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$deleteWallpaper$79(J)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42995"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$markMessagesAsDeleted$229(JLjava/util/ArrayList;ZII)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42996"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$markMessagesAsDeleted$231(JIZ)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42997"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$markMessagesAsDeletedByRandoms$220(Ljava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42998"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$markMessagesAsDeletedByRandoms$221(Ljava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "42999"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$markMessagesAsDeletedInternal$224(Ljava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43000"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$markMessagesAsDeletedInternal$225(Lz/f;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43001"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$markMessagesAsDeletedInternal$226(Ljava/util/ArrayList;J)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43002"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$markMessagesAsDeletedInternal$227(Ljava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43003"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$markMessagesAsDeletedInternal$230(Ljava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43009"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$onDeleteQueryComplete$91(J)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43095"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$updateDialogsWithDeletedMessages$228(JJLjava/util/ArrayList;Ljava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43096"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->lambda$updateDialogsWithReadMessages$120(Lorg/telegram/messenger/support/LongSparseIntArray;Lorg/telegram/messenger/support/LongSparseIntArray;Lz/f;Lorg/telegram/messenger/support/LongSparseIntArray;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43160"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->markMessagesAsDeleted(JIZZ)Ljava/util/ArrayList;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43161"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->markMessagesAsDeleted(JLjava/util/ArrayList;ZZII)Ljava/util/ArrayList;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43162"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->markMessagesAsDeletedByRandoms(Ljava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43163"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->markMessagesAsDeletedInternal(JIZ)Ljava/util/ArrayList;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43164"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->markMessagesAsDeletedInternal(JLjava/util/ArrayList;ZII)Ljava/util/ArrayList;"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43180"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->onDeleteQueryComplete(J)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43307"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->updateDialogsWithDeletedMessages(JJLjava/util/ArrayList;Ljava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43308"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->updateDialogsWithDeletedMessagesInternal(JJLjava/util/ArrayList;Ljava/util/ArrayList;)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43309"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->updateDialogsWithReadMessages(Lorg/telegram/messenger/support/LongSparseIntArray;Lorg/telegram/messenger/support/LongSparseIntArray;Lz/f;Lorg/telegram/messenger/support/LongSparseIntArray;Z)V"
+              }
+            ],
+            [
+              {
+                "type": "uint64",
+                "value": "0"
+              },
+              {
+                "type": "uint64",
+                "value": "43310"
+              },
+              {
+                "type": "utf8",
+                "value": "Lorg/telegram/messenger/MessagesStorage;->updateDialogsWithReadMessagesInternal(Ljava/util/ArrayList;Lorg/telegram/messenger/support/LongSparseIntArray;Lorg/telegram/messenger/support/LongSparseIntArray;Lz/f;Lorg/telegram/messenger/support/LongSparseIntArray;)V"
+              }
+            ]
+          ],
+          "sql": "SELECT file_id, method_idx, descriptor FROM methods WHERE method_kind IS NOT NULL AND class_descriptor = 'Lorg/telegram/messenger/MessagesStorage;' AND (name LIKE '%Deleted%' OR name LIKE '%Deleted%' OR name LIKE '%delete%' OR name LIKE '%updateDialogs%') ORDER BY name, descriptor",
+          "statement_index": 0,
+          "total_rows": 58,
+          "truncated": false
+        }
+      ]
+    }
+  }
+]

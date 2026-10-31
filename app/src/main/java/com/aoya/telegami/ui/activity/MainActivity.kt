@@ -1,49 +1,52 @@
 package com.aoya.telegami.ui.activity
 
-import android.content.res.Resources
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import androidx.activity.SystemBarStyle
+import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.drawable.toDrawable
-import com.aoya.telegami.R
-import com.aoya.telegami.databinding.ActivityMainBinding
-import com.aoya.telegami.ui.util.ThemeUtils
-import com.google.android.material.color.DynamicColors
-import com.google.android.material.color.DynamicColorsOptions
+import androidx.compose.runtime.DisposableEffect
+import com.aoya.telegami.service.PrefManager
+import com.aoya.telegami.ui.navigation.MainNavigation
+import com.aoya.telegami.ui.theme.TelegamiTheme
+import com.aoya.telegami.ui.theme.isTelegamiDarkTheme
+import com.aoya.telegami.ui.theme.rememberTelegamiThemeState
 
 class MainActivity : AppCompatActivity() {
     var readyToKill: Boolean = true
+
+    override fun onResume() {
+        super.onResume()
+        PrefManager.refreshModuleStatus()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge()
 
-        DynamicColors.applyToActivityIfAvailable(
-            this,
-            DynamicColorsOptions
-                .Builder()
-                .also {
-                    if (!ThemeUtils.isSystemAccent) {
-                        it.setThemeOverlay(ThemeUtils.getColorThemeStyleRes(this))
-                    }
-                }.build(),
-        )
+        setContent {
+            val themeState = rememberTelegamiThemeState()
+            val isDarkTheme = isTelegamiDarkTheme(themeState.darkTheme)
 
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-    }
+            DisposableEffect(isDarkTheme) {
+                enableEdgeToEdge(
+                    statusBarStyle =
+                        SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { isDarkTheme },
+                    navigationBarStyle =
+                        SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { isDarkTheme },
+                )
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    window.isNavigationBarContrastEnforced = false
+                }
+                onDispose {}
+            }
 
-    override fun onApplyThemeResource(
-        theme: Resources.Theme,
-        resid: Int,
-        first: Boolean,
-    ) {
-        super.onApplyThemeResource(theme, resid, first)
-        if (!DynamicColors.isDynamicColorAvailable()) {
-            theme.applyStyle(ThemeUtils.getColorThemeStyleRes(this), true)
+            TelegamiTheme(themeState = themeState) {
+                MainNavigation(themeState = themeState)
+            }
         }
-
-        theme.applyStyle(ThemeUtils.getOverlayThemeStyleRes(this), true)
     }
 }

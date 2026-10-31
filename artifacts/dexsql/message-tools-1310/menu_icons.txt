@@ -1,0 +1,5 @@
+resource 0x7f08056a drawable/msg_copy
+resource 0x7f08056b drawable/msg_copy_filled
+resource 0x7f0805a8 drawable/msg_forward
+resource 0x7f0805a9 drawable/msg_forward_replace
+resource 0x7f08064a drawable/msg_recent

@@ -1,0 +1,9 @@
+SELECT file_id,descriptor FROM methods WHERE method_kind IS NOT NULL AND class_descriptor='Lorg/telegram/messenger/DialogObject;' AND name IN ('getPeerDialogId','isChatDialog')
+
++---------+-----------------------------------------------------------------------------------------------+
+| file_id | descriptor                                                                                    |
++---------+-----------------------------------------------------------------------------------------------+
+| 0       | Lorg/telegram/messenger/DialogObject;->getPeerDialogId(Lorg/telegram/tgnet/TLRPC$InputPeer;)J |
+| 0       | Lorg/telegram/messenger/DialogObject;->getPeerDialogId(Lorg/telegram/tgnet/TLRPC$Peer;)J      |
+| 0       | Lorg/telegram/messenger/DialogObject;->isChatDialog(J)Z                                       |
++---------+-----------------------------------------------------------------------------------------------+

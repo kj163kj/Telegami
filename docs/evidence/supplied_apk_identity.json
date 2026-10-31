@@ -1,0 +1,140 @@
+{
+  "verified_on": "2026-10-30",
+  "path": "C:\\Users\\Administrator\\Desktop\\Telegami\\Telegram.apk",
+  "file_size": 70867407,
+  "apk_sha256": "4c122bca5edb997e38fc65360c33e6e726e6f1b31ba23987df0adad0e323a9d8",
+  "dex_files": [
+    {
+      "name": "classes.dex",
+      "size": 11390396,
+      "sha256": "f026a71abfc774f6de60e35a589c10d608047f8b5c21b4b98f10a0da073bae9d"
+    },
+    {
+      "name": "classes2.dex",
+      "size": 505256,
+      "sha256": "95154a09ca0483b20a169cf37024a6b4da004e940573c825b6e63f35a1d988ee"
+    },
+    {
+      "name": "classes3.dex",
+      "size": 12518756,
+      "sha256": "0f8e55d82873521cdebd1fbaa009b6b23907df8fbd4bbf33dc1d5ec6fb1d3e87"
+    },
+    {
+      "name": "classes4.dex",
+      "size": 3901184,
+      "sha256": "afee07a14895d189bd8d35dd420c094b620bb063d0aacd6764a6dbf4644ad65a"
+    }
+  ],
+  "native_abis": [
+    "arm64-v8a",
+    "armeabi-v7a",
+    "x86",
+    "x86_64"
+  ],
+  "claimed_build_metadata_not_authenticated": {
+    "META-INF/com/android/build/gradle/app-metadata.properties": "appMetadataVersion=1.1\nandroidGradlePluginVersion=8.13.2\n",
+    "META-INF/version-control-info.textproto": "repositories {\n  system: GIT\n  local_root_path: \"$PROJECT_DIR\"\n  revision: \"98cf1e78b633c41869b69f1bd5e064237e6a8b67\"\n}\n"
+  },
+  "apksigner_exit_code": 0,
+  "signer_certificate_sha256": "49c1522548ebacd46ce322b6fd47f6092bb745d0f88082145caf35e14dcc38e1",
+  "dexsql_server": {
+    "name": "dexsql",
+    "version": "0.1.1+6ac7870875a519ec471e41c93fc86d80e8e2bce7"
+  },
+  "dexsql_open_dataset": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"archive_inputs\":[0],\"dataset_id\":\"dataset-1\",\"has_dex\":true,\"input_bytes\":70867407,\"inputs\":[\"C:\\\\Users\\\\Administrator\\\\Desktop\\\\Telegami\\\\Telegram.apk\"],\"prepare_ms\":105.49}"
+      }
+    ],
+    "structuredContent": {
+      "archive_inputs": [
+        0
+      ],
+      "dataset_id": "dataset-1",
+      "has_dex": true,
+      "input_bytes": 70867407,
+      "inputs": [
+        "C:\\Users\\Administrator\\Desktop\\Telegami\\Telegram.apk"
+      ],
+      "prepare_ms": 105.49
+    },
+    "isError": false
+  },
+  "dexsql_manifest_summary": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"application\":{\"android:allowAudioPlaybackCapture\":\"true\",\"android:allowBackup\":\"true\",\"android:appComponentFactory\":\"androidx.core.app.CoreComponentFactory\",\"android:backupAgent\":\"org.telegram.messenger.BackupAgent\",\"android:enableOnBackInvokedCallback\":\"true\",\"android:extractNativeLibs\":\"true\",\"android:hardwareAccelerated\":\"true\",\"android:icon\":\"@7f0d0002\",\"android:label\":\"@7f0f0000\",\"android:largeHeap\":\"true\",\"android:manageSpaceActivity\":\"org.telegram.ui.ExternalActionActivity\",\"android:name\":\"org.telegram.messenger.ApplicationLoaderImpl\",\"android:preserveLegacyExternalStorage\":\"true\",\"android:requestLegacyExternalStorage\":\"true\",\"android:restoreAnyVersion\":\"true\",\"android:roundIcon\":\"@7f0d0002\",\"android:supportsRtl\":\"false\",\"android:theme\":\"@7f100149\",\"android:usesCleartextTraffic\":\"true\"},\"component_counts\":{\"activity\":20,\"activity-alias\":7,\"provider\":6,\"receiver\":27,\"service\":32},\"dataset_id\":\"dataset-1\",\"input_index\":0,\"manifest\":{\"android:compileSdkVersion\":\"36\",\"android:compileSdkVersionCodename\":\"16\",\"android:installLocation\":\"auto\",\"android:versionCode\":\"72299\",\"android:versionName\":\"13.1.0\",\"package\":\"org.telegram.messenger.web\",\"platformBuildVersionCode\":\"36\",\"platformBuildVersionName\":\"16\"},\"next_offset\":1,\"offset\":0,\"permissions\":[{\"attributes\":{\"android:name\":\"com.google.android.c2dm.permission.RECEIVE\"},\"kind\":\"uses-permission\"}],\"target_sdk\":36,\"total_rows\":76,\"truncated\":true,\"uses_sdk\":{\"android:minSdkVersion\":\"23\",\"android:targetSdkVersion\":\"36\"}}"
+      }
+    ],
+    "structuredContent": {
+      "application": {
+        "android:allowAudioPlaybackCapture": "true",
+        "android:allowBackup": "true",
+        "android:appComponentFactory": "androidx.core.app.CoreComponentFactory",
+        "android:backupAgent": "org.telegram.messenger.BackupAgent",
+        "android:enableOnBackInvokedCallback": "true",
+        "android:extractNativeLibs": "true",
+        "android:hardwareAccelerated": "true",
+        "android:icon": "@7f0d0002",
+        "android:label": "@7f0f0000",
+        "android:largeHeap": "true",
+        "android:manageSpaceActivity": "org.telegram.ui.ExternalActionActivity",
+        "android:name": "org.telegram.messenger.ApplicationLoaderImpl",
+        "android:preserveLegacyExternalStorage": "true",
+        "android:requestLegacyExternalStorage": "true",
+        "android:restoreAnyVersion": "true",
+        "android:roundIcon": "@7f0d0002",
+        "android:supportsRtl": "false",
+        "android:theme": "@7f100149",
+        "android:usesCleartextTraffic": "true"
+      },
+      "component_counts": {
+        "activity": 20,
+        "activity-alias": 7,
+        "provider": 6,
+        "receiver": 27,
+        "service": 32
+      },
+      "dataset_id": "dataset-1",
+      "input_index": 0,
+      "manifest": {
+        "android:compileSdkVersion": "36",
+        "android:compileSdkVersionCodename": "16",
+        "android:installLocation": "auto",
+        "android:versionCode": "72299",
+        "android:versionName": "13.1.0",
+        "package": "org.telegram.messenger.web",
+        "platformBuildVersionCode": "36",
+        "platformBuildVersionName": "16"
+      },
+      "next_offset": 1,
+      "offset": 0,
+      "permissions": [
+        {
+          "attributes": {
+            "android:name": "com.google.android.c2dm.permission.RECEIVE"
+          },
+          "kind": "uses-permission"
+        }
+      ],
+      "target_sdk": 36,
+      "total_rows": 76,
+      "truncated": true,
+      "uses_sdk": {
+        "android:minSdkVersion": "23",
+        "android:targetSdkVersion": "36"
+      }
+    },
+    "isError": false
+  },
+  "target_match": false,
+  "expected_package_name": "org.telegram.messenger",
+  "expected_version_name": "13.1.1",
+  "observed_package_name": "org.telegram.messenger.web",
+  "observed_version_name": "13.1.0",
+  "observed_version_code": 72299,
+  "note": "APK identity mismatch. This APK is not accepted as Telegram 13.1.1 hook evidence. Cryptographic signature verification does not independently establish official provenance."
+}

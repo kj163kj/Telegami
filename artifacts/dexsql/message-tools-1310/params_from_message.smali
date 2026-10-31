@@ -1,0 +1,70 @@
+# file_id=0 method_idx=45302 source="C:\\Users\\Administrator\\Desktop\\Telegami\\Telegram.apk" entry="classes.dex" descriptor="Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->of(Lorg/telegram/messenger/MessageObject;)Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;"
+.method public static of(Lorg/telegram/messenger/MessageObject;)Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;
+    .registers 30
+
+    move-object/from16 v0, v29
+    invoke-virtual {v0}, Lorg/telegram/messenger/MessageObject;->getDialogId()J
+    move-result-wide v11
+    iget-object v1, v0, Lorg/telegram/messenger/MessageObject;->messageOwner:Lorg/telegram/tgnet/TLRPC$Message;
+    iget-object v13, v1, Lorg/telegram/tgnet/TLRPC$Message;->attachPath:Ljava/lang/String;
+    iget-object v2, v1, Lorg/telegram/tgnet/TLRPC$Message;->reply_markup:Lorg/telegram/tgnet/TLRPC$ReplyMarkup;
+    iget-object v3, v1, Lorg/telegram/tgnet/TLRPC$Message;->params:Ljava/util/HashMap;
+    iget-boolean v4, v1, Lorg/telegram/tgnet/TLRPC$Message;->silent:Z
+    xor-int/lit8 v22, v4, 0x1
+    iget-boolean v4, v0, Lorg/telegram/messenger/MessageObject;->scheduled:Z
+    if-eqz v4, :label_001b
+    iget v1, v1, Lorg/telegram/tgnet/TLRPC$Message;->date:I
+    :label_0018
+    move/from16 v23, v1
+    goto :label_001d
+    :label_001b
+    const/4 v1, 0x0
+    goto :label_0018
+    :label_001d
+    const/16 v27, 0x0
+    const/16 v28, 0x0
+    const/4 v1, 0x0
+    move-object/from16 v20, v2
+    const/4 v2, 0x0
+    move-object/from16 v21, v3
+    const/4 v3, 0x0
+    const/4 v4, 0x0
+    const/4 v5, 0x0
+    const/4 v6, 0x0
+    const/4 v7, 0x0
+    const/4 v8, 0x0
+    const/4 v9, 0x0
+    const/4 v10, 0x0
+    const/4 v14, 0x0
+    const/4 v15, 0x0
+    const/16 v16, 0x0
+    const/16 v17, 0x1
+    const/16 v19, 0x0
+    const/16 v24, 0x0
+    const/16 v25, 0x0
+    const/16 v26, 0x0
+    move-object/from16 v18, v0
+    invoke-static/range {v1 .. v28}, Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->of(Ljava/lang/String;Ljava/lang/String;Lorg/telegram/tgnet/TLRPC$MessageMedia;Lorg/telegram/tgnet/TLRPC$TL_photo;Lorg/telegram/messenger/VideoEditedInfo;Lorg/telegram/tgnet/TLRPC$User;Lorg/telegram/tgnet/TLRPC$TL_document;Lorg/telegram/tgnet/TLRPC$TL_game;Lorg/telegram/tgnet/TLRPC$TL_messageMediaPoll;Lorg/telegram/tgnet/TLRPC$TL_messageMediaInvoice;JLjava/lang/String;Lorg/telegram/messenger/MessageObject;Lorg/telegram/messenger/MessageObject;Lorg/telegram/tgnet/TLRPC$WebPage;ZLorg/telegram/messenger/MessageObject;Ljava/util/ArrayList;Lorg/telegram/tgnet/TLRPC$ReplyMarkup;Ljava/util/HashMap;ZIIILjava/lang/Object;Lorg/telegram/messenger/MessageObject$SendAnimationData;Z)Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;
+    move-result-object v0
+    move-object/from16 v1, v18
+    iget-object v2, v1, Lorg/telegram/messenger/MessageObject;->messageOwner:Lorg/telegram/tgnet/TLRPC$Message;
+    if-eqz v2, :label_0061
+    iget-object v2, v2, Lorg/telegram/tgnet/TLRPC$Message;->quick_reply_shortcut:Lorg/telegram/tgnet/TLRPC$InputQuickReplyShortcut;
+    instance-of v3, v2, Lorg/telegram/tgnet/TLRPC$TL_inputQuickReplyShortcut;
+    if-eqz v3, :label_0055
+    check-cast v2, Lorg/telegram/tgnet/TLRPC$TL_inputQuickReplyShortcut;
+    iget-object v2, v2, Lorg/telegram/tgnet/TLRPC$TL_inputQuickReplyShortcut;->shortcut:Ljava/lang/String;
+    iput-object v2, v0, Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->quick_reply_shortcut:Ljava/lang/String;
+    :label_0055
+    invoke-virtual {v1}, Lorg/telegram/messenger/MessageObject;->getQuickReplyId()I
+    move-result v2
+    iput v2, v0, Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->quick_reply_shortcut_id:I
+    iget-object v2, v1, Lorg/telegram/messenger/MessageObject;->messageOwner:Lorg/telegram/tgnet/TLRPC$Message;
+    iget-wide v2, v2, Lorg/telegram/tgnet/TLRPC$Message;->paid_message_stars:J
+    iput-wide v2, v0, Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->payStars:J
+    :label_0061
+    invoke-virtual {v1}, Lorg/telegram/messenger/MessageObject;->getEphemeralReceiverBotId()J
+    move-result-wide v1
+    iput-wide v1, v0, Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->ephemeralReceiverBotId:J
+    return-object v0
+.end method

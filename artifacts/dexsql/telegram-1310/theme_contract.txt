@@ -1,0 +1,7 @@
+SELECT file_id,descriptor FROM methods WHERE method_kind IS NOT NULL AND class_descriptor='Lorg/telegram/ui/ActionBar/n6;' AND name='A0'
+
++---------+--------------------------------------------------------+
+| file_id | descriptor                                             |
++---------+--------------------------------------------------------+
+| 2       | Lorg/telegram/ui/ActionBar/n6;->A0()Ljava/lang/String; |
++---------+--------------------------------------------------------+

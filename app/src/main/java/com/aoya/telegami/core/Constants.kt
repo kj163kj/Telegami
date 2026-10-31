@@ -1,8 +1,8 @@
 package com.aoya.telegami.core
 
 object Constants {
-    const val APP_ID = "com.aoya.telegami"
-    const val APP_DEBUG_ID = "com.aoya.telegami.debug"
+    const val APP_ID = "com.techsky.telegami"
+    const val APP_DEBUG_ID = "com.techsky.telegami.debug"
 
     const val COMPONENT_NAME_DEFAULT = "com.aoya.telegami.MainActivityLauncher"
 
@@ -11,18 +11,8 @@ object Constants {
 
     val SUPPORTED_TELEGRAM_PACKAGES =
         mapOf(
-            "it.octogram.android" to "Octogram",
-            "nu.gpu.nagram" to "NagramX",
-            "org.forkclient.messenger.beta" to "Forkgram GH",
-            "org.forkgram.messenger" to "Forkgram",
-            "org.telegram.group" to "Turrit",
             "org.telegram.messenger" to "Telegram",
-            "org.telegram.messenger.beta" to "Telegram Beta",
-            "org.telegram.messenger.web" to "Telegram Web",
-            "org.telegram.plus" to "Telegram Plus",
-            "tw.nekomimi.nekogram" to "Nekogram",
-            "uz.unnarsx.cherrygram" to "Cherrygram",
-            "xyz.nextalone.nagram" to "Nagram",
+            "org.telegram.messenger.web" to "Telegram (Website)",
         )
 
     val SUPPORTED_TELEGRAM_PACKAGES_LIST = SUPPORTED_TELEGRAM_PACKAGES.keys.toList()

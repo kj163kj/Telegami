@@ -1,0 +1,16 @@
+SELECT file_id,descriptor FROM methods WHERE method_kind IS NOT NULL AND ((class_descriptor IN ('Lorg/telegram/messenger/BaseController;','Lorg/telegram/messenger/MessagesStorage;','Lorg/telegram/messenger/UserConfig;','Lorg/telegram/messenger/DispatchQueue;') AND name IN ('getMessagesStorage','getUserConfig','getStorageQueue','getInstance','getClientUserId','postRunnable')) OR (class_descriptor IN ('Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteMessages;','Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteChannelMessages;') AND name='<init>'))
+
++---------+-------------------------------------------------------------------------------------------------------+
+| file_id | descriptor                                                                                            |
++---------+-------------------------------------------------------------------------------------------------------+
+| 0       | Lorg/telegram/messenger/BaseController;->getMessagesStorage()Lorg/telegram/messenger/MessagesStorage; |
+| 0       | Lorg/telegram/messenger/BaseController;->getUserConfig()Lorg/telegram/messenger/UserConfig;           |
+| 0       | Lorg/telegram/messenger/DispatchQueue;->postRunnable(Ljava/lang/Runnable;)Z                           |
+| 0       | Lorg/telegram/messenger/DispatchQueue;->postRunnable(Ljava/lang/Runnable;J)Z                          |
+| 0       | Lorg/telegram/messenger/MessagesStorage;->getInstance(I)Lorg/telegram/messenger/MessagesStorage;      |
+| 0       | Lorg/telegram/messenger/MessagesStorage;->getStorageQueue()Lorg/telegram/messenger/DispatchQueue;     |
+| 0       | Lorg/telegram/messenger/UserConfig;->getClientUserId()J                                               |
+| 0       | Lorg/telegram/messenger/UserConfig;->getInstance(I)Lorg/telegram/messenger/UserConfig;                |
+| 2       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteChannelMessages;-><init>()V                           |
+| 2       | Lorg/telegram/tgnet/tl/TL_update$TL_updateDeleteMessages;-><init>()V                                  |
++---------+-------------------------------------------------------------------------------------------------------+

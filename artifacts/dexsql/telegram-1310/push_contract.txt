@@ -1,0 +1,7 @@
+SELECT file_id,descriptor FROM methods WHERE method_kind IS NOT NULL AND class_descriptor='Lorg/telegram/messenger/MessagesController;' AND name='deleteMessagesByPush'
+
++---------+---------------------------------------------------------------------------------------------+
+| file_id | descriptor                                                                                  |
++---------+---------------------------------------------------------------------------------------------+
+| 0       | Lorg/telegram/messenger/MessagesController;->deleteMessagesByPush(JLjava/util/ArrayList;J)V |
++---------+---------------------------------------------------------------------------------------------+

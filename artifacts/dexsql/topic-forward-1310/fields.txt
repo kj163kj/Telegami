@@ -1,0 +1,24 @@
++---------+-----------+------------------------------------------------------------------------------------------------+
+| file_id | field_idx | descriptor                                                                                     |
++---------+-----------+------------------------------------------------------------------------------------------------+
+| 0       | 21668     | Lorg/telegram/messenger/MessagesStorage$TopicKey;->dialogId:J                                  |
+| 0       | 21669     | Lorg/telegram/messenger/MessagesStorage$TopicKey;->topicId:J                                   |
+| 0       | 44080     | Lorg/telegram/tgnet/TLRPC$TL_forumTopic;->closed:Z                                             |
+| 0       | 44100     | Lorg/telegram/tgnet/TLRPC$TL_forumTopic;->topicStartMessage:Lorg/telegram/tgnet/TLRPC$Message; |
+| 0       | 48858     | Lorg/telegram/ui/bz;->B2:Lorg/telegram/ui/vy;                                                  |
+| 0       | 48987     | Lorg/telegram/ui/ko;->W3:Lorg/telegram/messenger/MessageObject;                                |
+| 0       | 48994     | Lorg/telegram/ui/ko;->f5:Lorg/telegram/messenger/MessageSuggestionParams;                      |
+| 2       | 5772      | Lorg/telegram/messenger/MessagesStorage$TopicKey;->dialogId:J                                  |
+| 2       | 5773      | Lorg/telegram/messenger/MessagesStorage$TopicKey;->topicId:J                                   |
+| 2       | 17697     | Lorg/telegram/tgnet/TLRPC$TL_forumTopic;->closed:Z                                             |
+| 2       | 17722     | Lorg/telegram/tgnet/TLRPC$TL_forumTopic;->topicStartMessage:Lorg/telegram/tgnet/TLRPC$Message; |
+| 2       | 50463     | Lorg/telegram/ui/bz;->B2:Lorg/telegram/ui/vy;                                                  |
+| 2       | 55645     | Lorg/telegram/ui/ko;->W3:Lorg/telegram/messenger/MessageObject;                                |
+| 2       | 55769     | Lorg/telegram/ui/ko;->f5:Lorg/telegram/messenger/MessageSuggestionParams;                      |
+| 3       | 4309      | Lorg/telegram/messenger/MessagesStorage$TopicKey;->dialogId:J                                  |
+| 3       | 4310      | Lorg/telegram/messenger/MessagesStorage$TopicKey;->topicId:J                                   |
+| 3       | 7472      | Lorg/telegram/tgnet/TLRPC$TL_forumTopic;->topicStartMessage:Lorg/telegram/tgnet/TLRPC$Message; |
+| 3       | 12810     | Lorg/telegram/ui/bz;->B2:Lorg/telegram/ui/vy;                                                  |
+| 3       | 13003     | Lorg/telegram/ui/ko;->W3:Lorg/telegram/messenger/MessageObject;                                |
+| 3       | 13010     | Lorg/telegram/ui/ko;->f5:Lorg/telegram/messenger/MessageSuggestionParams;                      |
++---------+-----------+------------------------------------------------------------------------------------------------+

@@ -1,27 +1,135 @@
 <resources>
     <string name="app_name">Telegami</string>
 
+    <!-- Titles -->
+    <string name="title_features">功能</string>
+    <string name="title_settings">设置</string>
+    <string name="title_about">关于</string>
+
+    <string name="follow_system">跟随系统</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_confirm">确定</string>
+
+    <!-- Module Status Card -->
+    <string name="status_module_working">工作中</string>
+    <string name="status_tag_enabled">已启用</string>
+    <string name="status_tag_scope_missing">未勾选作用域</string>
+    <string name="status_module_enabled_summary">已在 %1$s 中启用</string>
+    <string name="status_module_enabled_version_summary">已在 %1$s (%2$s) 中启用</string>
+    <string name="status_module_scope_warning">已在 %1$s 中启用，请勾选 Telegram 作用域</string>
+    <string name="status_module_api_mode">%1$s · API %2$d</string>
+    <string name="status_module_disabled">未启用</string>
+    <string name="status_tag_disabled">未激活</string>
+    <string name="status_module_disabled_summary">尚未在 LSPosed 中启用模块</string>
+    <string name="status_module_disabled_hint">请在 LSPosed 管理器中启用并勾选 Telegram</string>
+
+    <!-- Features -->
+    <string name="feat_category_privacy">隐私保护</string>
+    <string name="feat_category_message_records">消息记录</string>
+    <string name="feat_category_message_actions">消息操作</string>
+    <string name="feat_category_media_channel">媒体与频道</string>
+    <string name="feat_category_misc">其他功能</string>
+
     <string name="feat_hide_seen">隐藏已读状态</string>
+    <string name="feat_hide_seen_desc">隐藏消息的已读回执</string>
     <string name="feat_hide_seen_private_chat">私聊</string>
     <string name="feat_hide_seen_channel">频道</string>
     <string name="feat_hide_story_view_status">隐藏故事观看状态</string>
-    <string name="feat_hide_story_view_status_desc">隐藏故事观看状态</string>
+    <string name="feat_hide_story_view_status_desc">浏览他人故事时不留下已读记录</string>
     <string name="feat_hide_online_status">隐藏在线状态</string>
-    <string name="feat_hide_online_status_desc">隐藏在线状态</string>
+    <string name="feat_hide_online_status_desc">对其他用户隐藏账号在线状态</string>
     <string name="feat_hide_typing">隐藏正在输入</string>
-    <string name="feat_hide_typing_desc">隐藏正在输入</string>
+    <string name="feat_hide_typing_desc">输入消息时不向对方显示正在输入状态</string>
     <string name="feat_show_deleted_messages">显示已删除的消息</string>
-    <string name="feat_show_deleted_messages_desc">显示已删除的消息</string>
-    <string name="feat_mark_messages_deleted">标记已删除的消息</string>
-    <string name="feat_mark_messages_edited">标记已编辑的消息</string>
-    <string name="feat_prevent_secret_media_deletion">防止删除秘密媒体</string>
-    <string name="feat_prevent_secret_media_deletion_desc">防止删除秘密媒体</string>
-    <string name="feat_unlock_channel_features">解锁频道的所有受限和加密功能</string>
-    <string name="feat_unlock_channel_features_desc">解锁频道的所有受限和加密功能</string>
-    <string name="feat_allow_save_videos">允许将视频保存到图库</string>
-    <string name="feat_allow_save_videos_desc">允许将视频保存到图库</string>
-    <string name="feat_disable_ads">Disable Advertisement</string>
-    <string name="feat_disable_ads_desc">Disable Advertisement</string>
-    <string name="feat_fake_premium">Fake Premium</string>
-    <string name="feat_fake_premium_desc">Fake Premium</string>
+    <string name="feat_show_deleted_messages_desc">在聊天中保留被撤回或删除的消息</string>
+    <string name="feat_mark_messages">标记消息</string>
+    <string name="feat_mark_messages_desc">在聊天消息上标注已删除或已编辑状态</string>
+    <string name="feat_mark_messages_deleted">已删除</string>
+    <string name="feat_mark_messages_edited">已编辑</string>
+    <string name="feat_prevent_secret_media_deletion">防止删除私密媒体</string>
+    <string name="feat_prevent_secret_media_deletion_desc">阻止阅后即焚与私密媒体自动销毁</string>
+    <string name="feat_unlock_channel_features">解锁频道受限功能</string>
+    <string name="feat_unlock_channel_features_desc">解锁频道禁止转发、截图与保存等全部限制</string>
+    <string name="feat_allow_save_videos">允许保存视频</string>
+    <string name="feat_allow_save_videos_desc">允许将受限视频保存到系统图库</string>
+    <string name="feat_disable_ads">禁用广告</string>
+    <string name="feat_disable_ads_desc">屏蔽频道与聊天中的推广赞助广告</string>
+    <string name="feat_fake_premium">伪装高级会员</string>
+    <string name="feat_fake_premium_desc">在本地启用高级会员标识与界面特性</string>
+    <string name="feat_boost_download">下载加速</string>
+    <string name="feat_boost_download_desc">提升媒体与文件下载速度</string>
+    <string name="feat_boost_download_off">关闭</string>
+    <string name="feat_boost_download_on">开启</string>
+    <string name="feat_boost_download_extreme">极速</string>
+
+    <!-- Message Tools -->
+    <string name="feat_enable_message_repeat">消息复读</string>
+    <string name="feat_enable_message_repeat_desc">将消息作为新消息发送，不建立回复关系。</string>
+    <string name="feat_enable_message_copy">复制与作为新消息发送</string>
+    <string name="feat_enable_message_copy_desc">在受保护群组中启用文本复制，并允许使用「作为新消息发送」。</string>
+    <string name="feat_enable_edit_history">编辑历史</string>
+    <string name="feat_enable_edit_history_desc">本地捕获消息编辑前后的历史版本。</string>
+
+    <string name="feat_enable_repeat_confirmation">复读前确认</string>
+    <string name="feat_enable_repeat_confirmation_desc">点击「复读」后是否显示确认对话框。</string>
+    <string name="feat_enable_copy_confirmation">作为新消息发送前确认</string>
+    <string name="feat_enable_copy_confirmation_desc">点击「作为新消息发送」后是否显示确认对话框。</string>
+
+    <string name="feat_edit_history_retention_days">编辑历史保留天数</string>
+    <string name="feat_edit_history_retention_days_desc">超过保留期限的本地历史记录会被清理。</string>
+    <string name="feat_edit_history_retention_unit">天</string>
+
+    <string name="feat_edit_history_max_versions">每条消息最大历史版本数</string>
+    <string name="feat_edit_history_max_versions_desc">限制单条消息保存的历史版本数量。</string>
+    <string name="feat_edit_history_max_versions_unit">个版本</string>
+
+    <string name="msg_tool_int_value_with_unit">%1$d %2$s</string>
+    <string name="msg_tool_int_range_label">范围：%1$d–%2$d</string>
+    <string name="msg_tool_int_range_hint">请输入 %1$d–%2$d 之间的整数（单位：%3$s）</string>
+    <string name="msg_tool_int_error_empty">输入不能为空，请输入 %1$d–%2$d 之间的整数</string>
+    <string name="msg_tool_int_error_not_integer">仅允许输入整数</string>
+    <string name="msg_tool_int_error_out_of_range">超出允许范围，请输入 %1$d–%2$d 之间的整数</string>
+
+    <!-- Settings -->
+    <string name="settings_theme">主题</string>
+    <string name="settings_system_theme_color">跟随系统主题色</string>
+    <string name="settings_theme_color">主题色</string>
+    <string name="settings_dark_theme">深色模式</string>
+    <string name="settings_pure_black_dark_theme">纯黑深色主题</string>
+    <string name="settings_pure_black_dark_theme_summary">启用深色模式时使用纯黑背景</string>
+
+    <string name="settings_module">模块</string>
+    <string name="settings_hide_icon">在桌面隐藏模块图标</string>
+    <string name="settings_hide_icon_summary">隐藏后仍可在 LSPosed 管理器中打开应用</string>
+
+    <!-- Colors -->
+    <string name="color_sakura">樱花粉</string>
+    <string name="color_red">红色</string>
+    <string name="color_pink">粉红色</string>
+    <string name="color_purple">紫色</string>
+    <string name="color_deep_purple">深紫色</string>
+    <string name="color_indigo">靛蓝色</string>
+    <string name="color_blue">蓝色</string>
+    <string name="color_light_blue">浅蓝色</string>
+    <string name="color_cyan">青色</string>
+    <string name="color_teal">蓝绿色</string>
+    <string name="color_green">绿色</string>
+    <string name="color_light_green">浅绿色</string>
+    <string name="color_lime">青柠色</string>
+    <string name="color_yellow">黄色</string>
+    <string name="color_amber">琥珀色</string>
+    <string name="color_orange">橙色</string>
+    <string name="color_deep_orange">深橙色</string>
+    <string name="color_brown">棕色</string>
+    <string name="color_blue_grey">蓝灰色</string>
+
+    <!-- Dark theme modes -->
+    <string name="dark_theme">深色模式</string>
+    <string name="dark_theme_off">始终关闭</string>
+    <string name="dark_theme_on">始终开启</string>
+
+    <!-- Remote preferences -->
+    <string name="remote_preferences_unavailable">模块配置服务不可用</string>
+    <string name="remote_preferences_unavailable_hint">请在兼容 API 102 的 LSPosed 框架中启用模块后重新打开此页面。</string>
+    <string name="remote_preferences_write_failed">设置保存失败，请检查框架连接后重新打开模块。</string>
 </resources>

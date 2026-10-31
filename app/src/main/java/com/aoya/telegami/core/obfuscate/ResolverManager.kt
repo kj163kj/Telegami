@@ -10,6 +10,7 @@ object ResolverManager {
         mapOf(
             "it.octogram.android" to "octogram",
             "org.telegram.messenger" to "telegram",
+            "org.telegram.messenger.web" to "telegram",
             "tw.nekomimi.nekogram" to "nekogram",
             "uz.unnarsx.cherrygram" to "cherrygram",
         )

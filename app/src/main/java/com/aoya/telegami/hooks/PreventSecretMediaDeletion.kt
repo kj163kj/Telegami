@@ -61,7 +61,8 @@ object PreventSecretMediaDeletion {
                     val mIds =
                         lambdaClass.getDeclaredField("f\$2").apply { isAccessible = true }.get(chain.thisObject) as? ArrayList<Int>
                             ?: return@intercept chain.proceed(args.toTypedArray())
-                    if (Globals.handleDeletedMessages(dialogId, mIds)) return@intercept chain.proceed(args.toTypedArray())
+                    val accountId = Telegami.telegram.accountIdForController(chain.thisObject!!)
+                    if (Globals.handleDeletedMessages(dialogId, mIds, accountId)) return@intercept chain.proceed(args.toTypedArray())
                     hasResult = true
                 } catch (throwable: Throwable) {
                     Log.e("Telegami", "Hook callback failed before ${run.name}", throwable)
@@ -78,7 +79,8 @@ object PreventSecretMediaDeletion {
                 try {
                     val dialogId = args[0] as Long
                     val mIds = args[1] as ArrayList<Int>
-                    if (Globals.handleDeletedMessages(dialogId, mIds)) return@intercept chain.proceed(args.toTypedArray())
+                    val accountId = Telegami.telegram.accountIdForController(chain.thisObject!!)
+                    if (Globals.handleDeletedMessages(dialogId, mIds, accountId)) return@intercept chain.proceed(args.toTypedArray())
                     hasResult = true
                 } catch (throwable: Throwable) {
                     Log.e("Telegami", "Hook callback failed before ${emptyMedia.name}", throwable)

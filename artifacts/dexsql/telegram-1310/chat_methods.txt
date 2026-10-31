@@ -1,0 +1,9 @@
+SELECT file_id,method_idx,descriptor FROM methods WHERE method_kind IS NOT NULL AND class_descriptor='Lorg/telegram/ui/ko;' AND (name IN ('getDialogId','getCurrentAccount','createView','didReceivedNotification','getMessageObject','getMessagesController') OR (param_descriptors LIKE 'Lorg/telegram/messenger/MessageObject;,Ljava/util/ArrayList%' AND return_descriptor='V'))
+
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------+
+| file_id | method_idx | descriptor                                                                                                                       |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------+
+| 2       | 49654      | Lorg/telegram/ui/ko;->createView(Landroid/content/Context;)Landroid/view/View;                                                   |
+| 2       | 49669      | Lorg/telegram/ui/ko;->didReceivedNotification(II[Ljava/lang/Object;)V                                                            |
+| 2       | 49877      | Lorg/telegram/ui/ko;->q8(Lorg/telegram/messenger/MessageObject;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)V |
++---------+------------+----------------------------------------------------------------------------------------------------------------------------------+

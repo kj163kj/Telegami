@@ -1,0 +1,15 @@
+# file_id=0 method_idx=40147 source="C:\\Users\\Administrator\\Desktop\\Telegami\\Telegram.apk" entry="classes.dex" descriptor="Lorg/telegram/messenger/MessageObject;->addEntitiesToText(Ljava/lang/CharSequence;Ljava/util/ArrayList;ZZZZ)Z"
+.method public static addEntitiesToText(Ljava/lang/CharSequence;Ljava/util/ArrayList;ZZZZ)Z
+    .registers 13
+
+    const/4 v6, 0x0
+    move-object v0, v7
+    move-object v1, v8
+    move v2, v9
+    move v3, v10
+    move v4, v11
+    move v5, v12
+    invoke-static/range {v0 .. v6}, Lorg/telegram/messenger/MessageObject;->addEntitiesToText(Ljava/lang/CharSequence;Ljava/util/ArrayList;ZZZZI)Z
+    move-result v7
+    return v7
+.end method

@@ -1,9 +1,9 @@
-import java.io.FileInputStream
 import java.util.Properties
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
     id("org.jetbrains.kotlin.plugin.serialization")
     alias(libs.plugins.materialthemebuilder)
@@ -51,7 +51,10 @@ val versionProps =
 
 val keystoreProps =
     Properties().apply {
-        rootProject.file("keystore.properties").inputStream().use { load(it) }
+        val propertiesFile = rootProject.file("keystore.properties")
+        if (propertiesFile.exists()) {
+            propertiesFile.inputStream().use { load(it) }
+        }
     }
 
 android {
@@ -59,7 +62,7 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.aoya.telegami"
+        applicationId = "com.techsky.telegami"
         minSdk = 26
         targetSdk = 35
         versionCode = versionProps.getProperty("versionCode").toInt()
@@ -69,11 +72,14 @@ android {
     }
 
     signingConfigs {
-        create("release") {
-            storeFile = file(keystoreProps.getProperty("storeFile") as String)
-            storePassword = keystoreProps.getProperty("storePassword") as String
-            keyAlias = keystoreProps.getProperty("keyAlias") as String
-            keyPassword = keystoreProps.getProperty("keyPassword") as String
+        if (keystoreProps.isNotEmpty()) {
+            create("release") {
+                storeFile = file(requireNotNull(keystoreProps.getProperty("storeFile")))
+                storePassword = requireNotNull(keystoreProps.getProperty("storePassword"))
+                keyAlias = requireNotNull(keystoreProps.getProperty("keyAlias"))
+                keyPassword = requireNotNull(keystoreProps.getProperty("keyPassword"))
+                storeType = keystoreProps.getProperty("storeType", "jks")
+            }
         }
     }
 
@@ -99,7 +105,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
-            signingConfig = signingConfigs.getByName("release")
+            signingConfig = signingConfigs.findByName("release")
         }
     }
 
@@ -114,6 +120,7 @@ android {
 
     buildFeatures {
         buildConfig = true
+        compose = true
         viewBinding = true
     }
 }
@@ -124,6 +131,7 @@ dependencies {
     implementation(libs.androidx.preference.ktx)
     implementation(libs.material)
     implementation(libs.androidx.activity)
+    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.navigation.fragment)
@@ -135,6 +143,11 @@ dependencies {
     implementation(libs.dev.androidbroadcast.vbpd)
     implementation(libs.dev.androidbroadcast.vbpd.reflection)
     implementation(libs.me.zhanghai.android.appiconloader)
+    implementation(libs.miuix.ui)
+    implementation(libs.miuix.preference)
+    implementation(libs.miuix.icons)
+    implementation(libs.kyant.backdrop)
+    implementation(libs.kyant.shapes)
 
     compileOnly(libs.libxposed.api)
     implementation(libs.libxposed.service)

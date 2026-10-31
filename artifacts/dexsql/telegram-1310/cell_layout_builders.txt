@@ -1,0 +1,9 @@
+SELECT DISTINCT file_id,method_idx,method FROM method_field_accesses WHERE field_class='Lorg/telegram/ui/Cells/u1;' AND field_name='sb' AND using_type='get'
+
++---------+------------+--------------------------------------------------------------------------------------------------------------+
+| file_id | method_idx | method                                                                                                       |
++---------+------------+--------------------------------------------------------------------------------------------------------------+
+| 2       | 26610      | Lorg/telegram/ui/Cells/r1;->createAccessibilityNodeInfo(I)Landroid/view/accessibility/AccessibilityNodeInfo; |
+| 2       | 27205      | Lorg/telegram/ui/Cells/u1;->onLayout(ZIIII)V                                                                 |
+| 2       | 27293      | Lorg/telegram/ui/Cells/u1;->x3(Lorg/telegram/messenger/MessageObject;)V                                      |
++---------+------------+--------------------------------------------------------------------------------------------------------------+

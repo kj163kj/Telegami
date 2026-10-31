@@ -2,17 +2,33 @@ package com.aoya.telegami.service
 
 import android.content.ComponentName
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatDelegate
 import com.aoya.telegami.core.Constants.COMPONENT_NAME_DEFAULT
+import com.aoya.telegami.core.TelegramTarget
 import com.aoya.telegami.telegamiApp
 import com.aoya.telegami.util.PackageHelper.findEnabledAppComponent
 import com.aoya.telegami.util.logi
+import com.aoya.telegami.util.loge
 import com.aoya.telegami.util.logw
 import io.github.libxposed.service.XposedService
 import io.github.libxposed.service.XposedServiceHelper
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.runBlocking
+
+data class ModuleStatusInfo(
+    val isModuleEnabled: Boolean = false,
+    val frameworkName: String? = null,
+    val frameworkVersion: String? = null,
+    val frameworkVersionCode: Long? = null,
+    val apiVersion: Int? = null,
+    val isTelegramInScope: Boolean = false,
+)
 
 object PrefManager {
     private const val PREF_DARK_THEME = "dark_theme"
@@ -25,19 +41,78 @@ object PrefManager {
     @Volatile
     private var xposedService: XposedService? = null
 
+    @Volatile
+    private var remotePreferences: SharedPreferences? = null
+    private val mutableServiceAvailable = MutableStateFlow(false)
+    val serviceAvailable = mutableServiceAvailable.asStateFlow()
+    private val mutableModuleStatus = MutableStateFlow(ModuleStatusInfo())
+    val moduleStatus = mutableModuleStatus.asStateFlow()
+
     val isLauncherIconInvisible = MutableSharedFlow<Boolean>(replay = 1)
+
+    private fun readModuleStatus(service: XposedService?): ModuleStatusInfo {
+        if (service == null) return ModuleStatusInfo()
+        return runCatching {
+            val fwName = service.frameworkName.takeIf { it.isNotBlank() }
+            val fwVersion = service.frameworkVersion.takeIf { it.isNotBlank() }
+            val fwCode = service.frameworkVersionCode
+            val apiVer = service.apiVersion
+            val scopeList = runCatching { service.scope }.getOrNull()
+            val telegramScoped = scopeList?.any { it in TelegramTarget.PACKAGE_NAMES } ?: true
+            ModuleStatusInfo(
+                isModuleEnabled = true,
+                frameworkName = fwName,
+                frameworkVersion = fwVersion,
+                frameworkVersionCode = fwCode,
+                apiVersion = apiVer,
+                isTelegramInScope = telegramScoped,
+            )
+        }.getOrElse {
+            ModuleStatusInfo()
+        }
+    }
+
+    fun refreshModuleStatus() {
+        val service = xposedService
+        val status = readModuleStatus(service)
+        if (service != null && !status.isModuleEnabled) {
+            xposedService = null
+            remotePreferences = null
+            mutableServiceAvailable.value = false
+        }
+        mutableModuleStatus.value = status
+    }
 
     fun init() {
         XposedServiceHelper.registerListener(
             object : XposedServiceHelper.OnServiceListener {
                 override fun onServiceBind(service: XposedService) {
-                    xposedService = service
-                    logi("Connected to LibXposed remote preferences")
+                    try {
+                        xposedService = service
+                        remotePreferences =
+                            if (service.frameworkProperties and XposedService.PROP_CAP_REMOTE != 0L) {
+                                service.getRemotePreferences("features")
+                            } else {
+                                null
+                            }
+                        mutableServiceAvailable.value = remotePreferences != null
+                        mutableModuleStatus.value = readModuleStatus(service)
+                        logi("LibXposed remote preferences available: ${mutableServiceAvailable.value}")
+                    } catch (error: Exception) {
+                        xposedService = null
+                        remotePreferences = null
+                        mutableServiceAvailable.value = false
+                        mutableModuleStatus.value = ModuleStatusInfo()
+                        loge("Failed to bind remote preferences", error)
+                    }
                 }
 
                 override fun onServiceDied(service: XposedService) {
                     if (xposedService === service) {
                         xposedService = null
+                        remotePreferences = null
+                        mutableServiceAvailable.value = false
+                        mutableModuleStatus.value = ModuleStatusInfo()
                         logw("Disconnected from LibXposed remote preferences")
                     }
                 }
@@ -45,35 +120,49 @@ object PrefManager {
         )
     }
 
-    fun setFeatureEnabled(
-        featureKey: String,
-        enabled: Boolean,
-    ) {
-        featurePreferences()?.edit()?.putBoolean(featureKey, enabled)?.apply()
+    suspend fun updateFeatures(
+        booleans: Map<String, Boolean> = emptyMap(),
+        integers: Map<String, Int> = emptyMap(),
+    ): Boolean = withContext(Dispatchers.IO) {
+        val preferences = remotePreferences ?: return@withContext false
+        val success =
+            try {
+                val editor = preferences.edit()
+                booleans.forEach { (key, value) -> editor.putBoolean(key, value) }
+                integers.forEach { (key, value) -> editor.putInt(key, value) }
+                editor.commit()
+            } catch (error: Exception) {
+                loge("Failed to write remote feature preferences", error)
+                false
+            }
+        // RemotePreferences updates its local snapshot before IPC. A failed commit
+        // must not leave that optimistic snapshot displayed as persisted settings.
+        if (!success && remotePreferences === preferences) {
+            remotePreferences = null
+            mutableServiceAvailable.value = false
+            refreshModuleStatus()
+        }
+        success && remotePreferences === preferences
     }
 
-    fun setFeatureValue(
-        featureKey: String,
-        value: Int,
-    ) {
-        featurePreferences()?.edit()?.putInt(featureKey, value)?.apply()
-    }
+    fun isFeatureEnabled(featureKey: String): Boolean = remotePreferences?.getBoolean(featureKey, false) ?: false
 
-    fun isFeatureEnabled(featureKey: String): Boolean = featurePreferences()?.getBoolean(featureKey, false) ?: false
+    fun getBoolean(key: String, defaultValue: Boolean): Boolean =
+        runCatching { remotePreferences?.getBoolean(key, defaultValue) ?: defaultValue }.getOrDefault(defaultValue)
+
+    suspend fun updateMessageTools(
+        booleans: Map<String, Boolean> = emptyMap(),
+        integers: Map<String, Int> = emptyMap(),
+    ): Boolean {
+        if (!MessageToolSettings.booleanDefaults.keys.containsAll(booleans.keys) ||
+            !MessageToolSettings.integerDefaults.keys.containsAll(integers.keys)) return false
+        return updateFeatures(booleans, integers.mapValues { (key, value) -> MessageToolSettings.bounded(key, value) })
+    }
 
     fun getFeatureValue(
         featureKey: String,
         defaultValue: Int = 0,
-    ): Int = featurePreferences()?.getInt(featureKey, defaultValue) ?: defaultValue
-
-    private fun featurePreferences() =
-        xposedService
-            ?.takeIf { it.frameworkProperties and XposedService.PROP_CAP_REMOTE != 0L }
-            ?.getRemotePreferences("features")
-            ?: run {
-                logw("LibXposed remote preferences are unavailable")
-                null
-            }
+    ): Int = remotePreferences?.getInt(featureKey, defaultValue) ?: defaultValue
 
     var darkTheme: Int
         get() = appPref.getInt(PREF_DARK_THEME, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)

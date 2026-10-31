@@ -1,0 +1,12 @@
+SELECT file_id,descriptor FROM methods WHERE method_kind IS NOT NULL AND class_descriptor='Lorg/telegram/messenger/MessageObject;' AND name IN ('getId','getDialogId','isEditing','isSponsored','isOutOwner')
+
++---------+------------------------------------------------------------------------------------------+
+| file_id | descriptor                                                                               |
++---------+------------------------------------------------------------------------------------------+
+| 0       | Lorg/telegram/messenger/MessageObject;->getDialogId()J                                   |
+| 0       | Lorg/telegram/messenger/MessageObject;->getDialogId(Lorg/telegram/tgnet/TLRPC$Message;)J |
+| 0       | Lorg/telegram/messenger/MessageObject;->getId()I                                         |
+| 0       | Lorg/telegram/messenger/MessageObject;->isEditing()Z                                     |
+| 0       | Lorg/telegram/messenger/MessageObject;->isOutOwner()Z                                    |
+| 0       | Lorg/telegram/messenger/MessageObject;->isSponsored()Z                                   |
++---------+------------------------------------------------------------------------------------------+

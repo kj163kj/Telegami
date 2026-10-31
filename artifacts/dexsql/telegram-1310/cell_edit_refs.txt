@@ -1,0 +1,11 @@
+SELECT DISTINCT file_id, method_idx, method, field FROM method_field_accesses WHERE field LIKE '%R$string;->EditedMessage:%' OR (method_class = 'Lorg/telegram/ui/Cells/u1;' AND field LIKE '%edit_date:%') ORDER BY method,field
+
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------+
+| file_id | method_idx | method                                                                                                                            | field                                              |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------+
+| 2       | 26837      | Lorg/telegram/ui/Cells/t1;->f()Z                                                                                                  | Lorg/telegram/messenger/R$string;->EditedMessage:I |
+| 2       | 26984      | Lorg/telegram/ui/Cells/u1;->V3(Lorg/telegram/messenger/MessageObject;Lorg/telegram/messenger/MessageObject$GroupedMessages;ZZZZ)V | Lorg/telegram/tgnet/TLRPC$Message;->edit_date:I    |
+| 2       | 27293      | Lorg/telegram/ui/Cells/u1;->x3(Lorg/telegram/messenger/MessageObject;)V                                                           | Lorg/telegram/messenger/R$string;->EditedMessage:I |
+| 2       | 27293      | Lorg/telegram/ui/Cells/u1;->x3(Lorg/telegram/messenger/MessageObject;)V                                                           | Lorg/telegram/tgnet/TLRPC$Message;->edit_date:I    |
+| 3       | 20372      | Lxg/f3;->f1(Z)V                                                                                                                   | Lorg/telegram/messenger/R$string;->EditedMessage:I |
++---------+------------+-----------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------+

@@ -1,0 +1,7 @@
+SELECT DISTINCT file_id, method_idx, method, value FROM method_strings WHERE value LIKE '%clear history by overwrite%' ORDER BY method
+
++---------+------------+--------------------------------------------------------------------------------------------+------------------------------------------+
+| file_id | method_idx | method                                                                                     | value                                    |
++---------+------------+--------------------------------------------------------------------------------------------+------------------------------------------+
+| 2       | 49278      | Lorg/telegram/ui/ko;->B7(ZLorg/telegram/tgnet/TLRPC$TL_updates_channelDifferenceTooLong;)V | clear history by overwrite firstLoading= |
++---------+------------+--------------------------------------------------------------------------------------------+------------------------------------------+

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="remote_preferences_unavailable">模块配置服务不可用</string>
+    <string name="remote_preferences_unavailable_hint">请在兼容 API 102 的 LSPosed 框架中启用模块后重新打开此页面。</string>
+    <string name="remote_preferences_write_failed">设置保存失败，请检查框架连接后重新打开模块。</string>
+</resources>
