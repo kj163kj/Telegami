@@ -29,8 +29,9 @@ class HistorySnapshotFactory(private val target: TelegramHistoryResolver) {
         val media = c.mediaField.get(owner)
         if (accountId <= 0 || dialogId == 0L || c.id.getInt(owner) <= 0 ||
             c.encryptedDialog.invoke(null, dialogId) == true ||
-            c.action.get(owner) != null || c.ttl.getInt(owner) != 0 || c.ttlPeriod.getInt(owner) != 0 ||
-            (media != null && c.mediaTtl.getInt(media) != 0)) return null
+            c.action.get(owner) != null || MessageSendPolicy.isSelfDestructing(
+                c.ttl.getInt(owner), media?.let(c.mediaTtl::getInt) ?: 0, c.ttlPeriod.getInt(owner),
+            )) return null
         val text = c.text.get(owner) as? String ?: ""
         val entityBytes = pack((c.entities.get(owner) as? List<*>)?.filterNotNull().orEmpty())
         val mediaType = media?.javaClass?.simpleName ?: "none"

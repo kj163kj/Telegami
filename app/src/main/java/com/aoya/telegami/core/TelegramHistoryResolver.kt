@@ -11,6 +11,9 @@ class TelegramHistoryResolver(val c: TelegramMessageResolver) {
     val edit = storage.exactMethod(
         "lambda\$putMessages\$238", Void.TYPE, c.int, batch, c.long, c.long, c.int, c.int, c.bool,
     )
+    val ingest = storage.exactMethod(
+        "putMessagesInternal", Void.TYPE, c.list, c.bool, c.bool, c.int, c.bool, c.int, c.long,
+    )
     val messages = batch.exactField("messages", c.list)
     val account = c.type("org.telegram.messenger.BaseController").exactField("currentAccount", c.int)
     val input = c.type("org.telegram.tgnet.InputSerializedData")
@@ -41,7 +44,11 @@ class TelegramHistoryResolver(val c: TelegramMessageResolver) {
     }
 
     fun cloneOwner(owner: Any): Any {
-        val stream = serialized.getConstructor(ByteArray::class.java).newInstance(encode(owner))
+        return decodeOwner(encode(owner))
+    }
+
+    fun decodeOwner(bytes: ByteArray): Any {
+        val stream = serialized.getConstructor(ByteArray::class.java).newInstance(bytes)
         return try {
             deserialize.invoke(null, stream, readInt.invoke(stream, true), true)!!
         } finally {

@@ -68,4 +68,44 @@ class MessageHistoryDaoTest {
     fun refusesMixedScopesInOneTransaction() {
         MemoryDao().append(listOf(entry("A"), entry("B", account = 2)), 100)
     }
+
+    @Test fun ingestionAndEditsCaptureWithoutOpeningViewerIncludingMissingNativeRow() {
+        val dao = MemoryDao()
+        var native: MessageHistoryEntry? = null
+        val pipeline = HistoryCapturePipeline<MessageHistoryEntry, MessageHistoryEntry>(
+            readOld = { _: MessageHistoryEntry -> native }, snapshot = { it },
+            persist = { dao.append(it, 100) }, failed = { throw AssertionError(it) },
+        )
+        val a = entry("initial caption")
+        pipeline.capture(listOf(a))
+        native = a
+        val b = entry("edited caption", 101)
+        pipeline.capture(listOf(b))
+        native = null // Native cache may be evicted; the independent initial snapshot remains.
+        pipeline.capture(listOf(entry("formatted caption", 102)))
+        pipeline.capture(listOf(entry("formatted caption", 102)))
+        assertEquals(listOf("initial caption", "edited caption", "formatted caption"), dao.rows.map { it.contentHash })
+    }
+
+    @Test fun corruptOldRowAndOneFailedWriteDoNotDiscardOtherMessages() {
+        val dao = MemoryDao()
+        var errors = 0
+        val pipeline = HistoryCapturePipeline<MessageHistoryEntry, MessageHistoryEntry>(
+            readOld = { _: MessageHistoryEntry -> error("corrupt native TL") }, snapshot = { it },
+            persist = { rows: List<MessageHistoryEntry> ->
+                if (rows.first().messageId == 4) error("database unavailable")
+                dao.append(rows, 100)
+            },
+            failed = { errors++ },
+        )
+        val counts = pipeline.capture(listOf(entry("A"), entry("B", id = 4), entry("C", account = 2)))
+        assertEquals(4, errors)
+        assertEquals(2, counts.snapshots)
+        assertEquals(listOf("A", "C"), dao.rows.map { it.contentHash })
+    }
+
+    @Test fun autoDeleteRetentionDoesNotExcludeOrdinaryHistory() {
+        assertTrue(!MessageSendPolicy.isSelfDestructing(0, 0, 86400))
+        assertTrue(MessageSendPolicy.isSelfDestructing(0, 10, 86400))
+    }
 }
