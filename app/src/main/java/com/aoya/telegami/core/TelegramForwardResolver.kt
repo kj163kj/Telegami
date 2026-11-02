@@ -7,7 +7,7 @@ import com.aoya.telegami.hooks.messages.MessageSender
 import com.aoya.telegami.util.exactField
 import com.aoya.telegami.util.exactMethod
 
-/** Native Fa(2), bz.M3, ko.v and jf.d.a contracts, not inferred obfuscated names. */
+/** Native forward contracts, revalidated against 13.1.1 including ko.bd selection cleanup. */
 class TelegramForwardResolver(private val send: TelegramSendResolver) {
     private val c = send.common
     val picker = c.type("org.telegram.ui.bz")
@@ -55,7 +55,7 @@ class TelegramForwardResolver(private val send: TelegramSendResolver) {
     private val sparseArrayType = java.lang.reflect.Array.newInstance(SparseArray::class.java, 0).javaClass
     private val selectedArrays = listOf("V5", "W5", "X5").map { c.chat.exactField(it, sparseArrayType) }
     private val editingMessage = c.chat.exactField("m5", c.message)
-    private val endSelection = c.chat.exactMethod("ad", Void.TYPE, c.bool)
+    private val endSelection = c.chat.exactMethod("bd", Void.TYPE, c.bool)
 
     /** Same single-message/album/ordered multi-selection extraction as native ko.v. */
     fun forwardSources(chat: Any): List<Any> {

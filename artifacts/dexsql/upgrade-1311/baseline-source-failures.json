@@ -1,0 +1,51 @@
+{
+  "baseline": "fe7fe84959d6c8fc73be1baaaabd2dff3a422f8a",
+  "extracted_contracts": 312,
+  "missing_in_1311": [
+    {
+      "source": "core/TelegramForwardResolver.kt",
+      "descriptor": "Lorg/telegram/ui/ko;->ad(Z)V"
+    },
+    {
+      "source": "core/TelegramPrivacyResolver.kt",
+      "descriptor": "Lxg/h5;->r(I)Z"
+    },
+    {
+      "source": "hooks/messages/MessageTranslationHook.kt",
+      "descriptor": "Lorg/telegram/ui/Components/r51;-><init>(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/CharSequence;Lorg/telegram/tgnet/TLRPC$InputPeer;IZLorg/telegram/tgnet/tl/TL_iv$RichMessage;)V"
+    },
+    {
+      "source": "hooks/messages/MessageTranslationHook.kt",
+      "descriptor": "Lorg/telegram/ui/Components/r51;->N()V"
+    },
+    {
+      "source": "hooks/messages/MessageTranslationHook.kt",
+      "descriptor": "Lorg/telegram/ui/Components/r51;->c:Ljava/lang/CharSequence;"
+    },
+    {
+      "source": "hooks/messages/MessageTranslationHook.kt",
+      "descriptor": "Lorg/telegram/ui/Components/r51;->dismiss()V"
+    },
+    {
+      "source": "hooks/messages/MessageTranslationHook.kt",
+      "descriptor": "Lorg/telegram/ui/Components/r51;->dismissInternal()V"
+    },
+    {
+      "source": "hooks/messages/MessageTranslationHook.kt",
+      "descriptor": "Lorg/telegram/ui/Components/r51;->f:Z"
+    },
+    {
+      "source": "hooks/messages/MessageTranslationHook.kt",
+      "descriptor": "Lorg/telegram/ui/Components/r51;->h:Lorg/telegram/tgnet/tl/TL_iv$RichMessage;"
+    },
+    {
+      "source": "hooks/messages/MessageTranslationHook.kt",
+      "descriptor": "Lorg/telegram/ui/Components/r51;->o(Lorg/telegram/ui/Components/r51;Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;Lorg/telegram/tgnet/TLRPC$TL_error;)V"
+    },
+    {
+      "source": "hooks/messages/MessageTranslationHook.kt",
+      "descriptor": "Lorg/telegram/ui/Components/r51;->v:Ljava/lang/String;"
+    }
+  ],
+  "unresolved": []
+}

@@ -28,7 +28,7 @@ class MessageTranslationHook(
     fun install(xposed: XposedInterface) {
         val c = MessageMenuActions.target
         val t = TelegramTranslationResolver(c)
-        val sheet = c.type("org.telegram.ui.Components.r51")
+        val sheet = c.type("org.telegram.ui.Components.s51")
         val start = sheet.exactMethod("N", Void.TYPE)
         val source = sheet.exactField("c", CharSequence::class.java)
         val toLanguage = sheet.exactField("v", String::class.java)

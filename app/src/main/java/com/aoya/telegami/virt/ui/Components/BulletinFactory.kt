@@ -22,13 +22,9 @@ class BulletinFactory(
                     .resolve()
                     .firstMethod {
                         name = resolver.getMethod(OBJ_PATH, "createSaveToGalleryBulletin")
-                        parameterCount = if (Telegami.packageName == "org.telegram.messenger") 2 else 3
+                        parameterCount = 2
                     }.let {
-                        if (Telegami.packageName == "org.telegram.messenger") {
-                            it.invoke(ctx, video)
-                        } else {
-                            it.invoke(ctx, video, arg3)
-                        }
+                        it.invoke(ctx, video)
                     }!!,
             )
 

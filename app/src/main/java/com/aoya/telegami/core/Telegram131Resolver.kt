@@ -7,7 +7,7 @@ import com.aoya.telegami.util.exactField
 import com.aoya.telegami.util.exactMethod
 import java.util.ArrayList
 
-/** Exact reflection contract decoded from the supplied 13.1.0 APK. */
+/** Exact contracts revalidated against the supplied 13.1.1 APK; see docs/26_TELEGRAM_1311_HOOK_UPGRADE.md. */
 class Telegram131Resolver(loader: ClassLoader) {
     private val classLoader = loader
     private fun type(name: String) = classLoader.loadClass(name)

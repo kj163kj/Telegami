@@ -1,0 +1,3511 @@
+[
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/SQLite/SQLiteCursor;->dispose()V",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "34017",
+      "class_descriptor": "Lorg/telegram/SQLite/SQLiteCursor;",
+      "name": "dispose",
+      "descriptor": "Lorg/telegram/SQLite/SQLiteCursor;->dispose()V"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/SQLite/SQLiteCursor;->intValue(I)I",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "34023",
+      "class_descriptor": "Lorg/telegram/SQLite/SQLiteCursor;",
+      "name": "intValue",
+      "descriptor": "Lorg/telegram/SQLite/SQLiteCursor;->intValue(I)I"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/SQLite/SQLiteCursor;->longValue(I)J",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "34025",
+      "class_descriptor": "Lorg/telegram/SQLite/SQLiteCursor;",
+      "name": "longValue",
+      "descriptor": "Lorg/telegram/SQLite/SQLiteCursor;->longValue(I)J"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/SQLite/SQLiteCursor;->next()Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "34026",
+      "class_descriptor": "Lorg/telegram/SQLite/SQLiteCursor;",
+      "name": "next",
+      "descriptor": "Lorg/telegram/SQLite/SQLiteCursor;->next()Z"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/SQLite/SQLiteDatabase;->queryFinalized(Ljava/lang/String;[Ljava/lang/Object;)Lorg/telegram/SQLite/SQLiteCursor;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "34043",
+      "class_descriptor": "Lorg/telegram/SQLite/SQLiteDatabase;",
+      "name": "queryFinalized",
+      "descriptor": "Lorg/telegram/SQLite/SQLiteDatabase;->queryFinalized(Ljava/lang/String;[Ljava/lang/Object;)Lorg/telegram/SQLite/SQLiteCursor;"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/messenger/BaseController;->getUserConfig()Lorg/telegram/messenger/UserConfig;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "34979",
+      "class_descriptor": "Lorg/telegram/messenger/BaseController;",
+      "name": "getUserConfig",
+      "descriptor": "Lorg/telegram/messenger/BaseController;->getUserConfig()Lorg/telegram/messenger/UserConfig;"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/messenger/LocaleController;->getString(I)Ljava/lang/String;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "38392",
+      "class_descriptor": "Lorg/telegram/messenger/LocaleController;",
+      "name": "getString",
+      "descriptor": "Lorg/telegram/messenger/LocaleController;->getString(I)Ljava/lang/String;"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->currentAccount:I",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "20767",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "currentAccount",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->currentAccount:I"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->getDialogId()J",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40283",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "getDialogId",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->getDialogId()J"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->getId()I",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40323",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "getId",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->getId()I"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesController;->deleteMessages(Ljava/util/ArrayList;Ljava/util/ArrayList;Lorg/telegram/tgnet/TLRPC$EncryptedChat;JZIZJLorg/telegram/tgnet/TLObject;IZI)V",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "41325",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesController;",
+      "name": "deleteMessages",
+      "descriptor": "Lorg/telegram/messenger/MessagesController;->deleteMessages(Ljava/util/ArrayList;Ljava/util/ArrayList;Lorg/telegram/tgnet/TLRPC$EncryptedChat;JZIZJLorg/telegram/tgnet/TLObject;IZI)V"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesController;->lambda$processUpdateArray$419(Lorg/telegram/messenger/support/LongSparseIntArray;Lorg/telegram/messenger/support/LongSparseIntArray;Landroid/util/SparseIntArray;Lz/f;Lz/f;Lz/f;Lz/f;Lz/f;Lorg/telegram/messenger/support/LongSparseIntArray;)V",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "42012",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesController;",
+      "name": "lambda$processUpdateArray$419",
+      "descriptor": "Lorg/telegram/messenger/MessagesController;->lambda$processUpdateArray$419(Lorg/telegram/messenger/support/LongSparseIntArray;Lorg/telegram/messenger/support/LongSparseIntArray;Landroid/util/SparseIntArray;Lz/f;Lz/f;Lz/f;Lz/f;Lz/f;Lorg/telegram/messenger/support/LongSparseIntArray;)V"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesStorage;->database:Lorg/telegram/SQLite/SQLiteDatabase;",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "21703",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesStorage;",
+      "name": "database",
+      "descriptor": "Lorg/telegram/messenger/MessagesStorage;->database:Lorg/telegram/SQLite/SQLiteDatabase;"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesStorage;->getStorageQueue()Lorg/telegram/messenger/DispatchQueue;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "42819",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesStorage;",
+      "name": "getStorageQueue",
+      "descriptor": "Lorg/telegram/messenger/MessagesStorage;->getStorageQueue()Lorg/telegram/messenger/DispatchQueue;"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesStorage;->markMessagesAsDeletedInternal(JLjava/util/ArrayList;ZII)Ljava/util/ArrayList;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "43182",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesStorage;",
+      "name": "markMessagesAsDeletedInternal",
+      "descriptor": "Lorg/telegram/messenger/MessagesStorage;->markMessagesAsDeletedInternal(JLjava/util/ArrayList;ZII)Ljava/util/ArrayList;"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/messenger/NotificationCenter;->messagesDeleted:I",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "22080",
+      "class_descriptor": "Lorg/telegram/messenger/NotificationCenter;",
+      "name": "messagesDeleted",
+      "descriptor": "Lorg/telegram/messenger/NotificationCenter;->messagesDeleted:I"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/messenger/UserConfig;->getClientUserId()J",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "46561",
+      "class_descriptor": "Lorg/telegram/messenger/UserConfig;",
+      "name": "getClientUserId",
+      "descriptor": "Lorg/telegram/messenger/UserConfig;->getClientUserId()J"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/messenger/UserConfig;->getInstance(I)Lorg/telegram/messenger/UserConfig;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "46566",
+      "class_descriptor": "Lorg/telegram/messenger/UserConfig;",
+      "name": "getInstance",
+      "descriptor": "Lorg/telegram/messenger/UserConfig;->getInstance(I)Lorg/telegram/messenger/UserConfig;"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/n6;->T2:Landroid/text/TextPaint;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "27455",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/n6;",
+      "name": "T2",
+      "descriptor": "Lorg/telegram/ui/ActionBar/n6;->T2:Landroid/text/TextPaint;"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/ui/Cells/u1;->V3(Lorg/telegram/messenger/MessageObject;Lorg/telegram/messenger/MessageObject$GroupedMessages;ZZZZ)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "26972",
+      "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+      "name": "V3",
+      "descriptor": "Lorg/telegram/ui/Cells/u1;->V3(Lorg/telegram/messenger/MessageObject;Lorg/telegram/messenger/MessageObject$GroupedMessages;ZZZZ)V"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/ui/Cells/u1;->Zc:Z",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "31288",
+      "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+      "name": "Zc",
+      "descriptor": "Lorg/telegram/ui/Cells/u1;->Zc:Z"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/ui/Cells/u1;->ob:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "31514",
+      "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+      "name": "ob",
+      "descriptor": "Lorg/telegram/ui/Cells/u1;->ob:I"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/ui/Cells/u1;->pb:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "31529",
+      "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+      "name": "pb",
+      "descriptor": "Lorg/telegram/ui/Cells/u1;->pb:I"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/ui/Cells/u1;->sb:Ljava/lang/CharSequence;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "31576",
+      "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+      "name": "sb",
+      "descriptor": "Lorg/telegram/ui/Cells/u1;->sb:Ljava/lang/CharSequence;"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/ui/Cells/u1;->x3(Lorg/telegram/messenger/MessageObject;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "27281",
+      "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+      "name": "x3",
+      "descriptor": "Lorg/telegram/ui/Cells/u1;->x3(Lorg/telegram/messenger/MessageObject;)V"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/ui/Cells/u1;->x7:Lorg/telegram/messenger/MessageObject;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "31650",
+      "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+      "name": "x7",
+      "descriptor": "Lorg/telegram/ui/Cells/u1;->x7:Lorg/telegram/messenger/MessageObject;"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->S5:J",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "55576",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "S5",
+      "descriptor": "Lorg/telegram/ui/ko;->S5:J"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->a8(I[Ljava/lang/Object;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "49623",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "a8",
+      "descriptor": "Lorg/telegram/ui/ko;->a8(I[Ljava/lang/Object;)V"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->createView(Landroid/content/Context;)Landroid/view/View;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "49661",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "createView",
+      "descriptor": "Lorg/telegram/ui/ko;->createView(Landroid/content/Context;)Landroid/view/View;"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->currentAccount:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "28392",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+      "name": "currentAccount",
+      "descriptor": "Lorg/telegram/ui/ActionBar/r2;->currentAccount:I"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->q8(Lorg/telegram/messenger/MessageObject;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "49884",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "q8",
+      "descriptor": "Lorg/telegram/ui/ko;->q8(Lorg/telegram/messenger/MessageObject;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)V"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lz/f;->j(I)J",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "64721",
+      "class_descriptor": "Lz/f;",
+      "name": "j",
+      "descriptor": "Lz/f;->j(I)J"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lz/f;->m()I",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "64724",
+      "class_descriptor": "Lz/f;",
+      "name": "m",
+      "descriptor": "Lz/f;->m()I"
+    }
+  },
+  {
+    "source": "core/Telegram131Resolver.kt",
+    "requested": "Lz/f;->n(I)Ljava/lang/Object;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "64725",
+      "class_descriptor": "Lz/f;",
+      "name": "n",
+      "descriptor": "Lz/f;->n(I)Ljava/lang/Object;"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Ljf/d;->a(Lorg/telegram/ui/ko;Lorg/telegram/messenger/MessagesStorage$TopicKey;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "6115",
+      "class_descriptor": "Ljf/d;",
+      "name": "a",
+      "descriptor": "Ljf/d;->a(Lorg/telegram/ui/ko;Lorg/telegram/messenger/MessagesStorage$TopicKey;)V"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/messenger/ChatObject;->canManageMonoForum(ILorg/telegram/tgnet/TLRPC$Chat;)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "35431",
+      "class_descriptor": "Lorg/telegram/messenger/ChatObject;",
+      "name": "canManageMonoForum",
+      "descriptor": "Lorg/telegram/messenger/ChatObject;->canManageMonoForum(ILorg/telegram/tgnet/TLRPC$Chat;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/messenger/DialogObject;->getEncryptedChatId(J)I",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "35964",
+      "class_descriptor": "Lorg/telegram/messenger/DialogObject;",
+      "name": "getEncryptedChatId",
+      "descriptor": "Lorg/telegram/messenger/DialogObject;->getEncryptedChatId(J)I"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/messenger/DialogObject;->isUserDialog(J)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "35994",
+      "class_descriptor": "Lorg/telegram/messenger/DialogObject;",
+      "name": "isUserDialog",
+      "descriptor": "Lorg/telegram/messenger/DialogObject;->isUserDialog(J)Z"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject$GroupedMessages;->messages:Ljava/util/ArrayList;",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "20609",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject$GroupedMessages;",
+      "name": "messages",
+      "descriptor": "Lorg/telegram/messenger/MessageObject$GroupedMessages;->messages:Ljava/util/ArrayList;"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;-><init>(ILorg/telegram/tgnet/TLRPC$Message;ZZ)V",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40159",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;-><init>(ILorg/telegram/tgnet/TLRPC$Message;ZZ)V"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->isTopicMainMessage:Z",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "20846",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "isTopicMainMessage",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->isTopicMainMessage:Z"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesController;->checkCanOpenChat(Landroid/os/Bundle;Lorg/telegram/ui/ActionBar/r2;)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "41271",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesController;",
+      "name": "checkCanOpenChat",
+      "descriptor": "Lorg/telegram/messenger/MessagesController;->checkCanOpenChat(Landroid/os/Bundle;Lorg/telegram/ui/ActionBar/r2;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesController;->getTopicsController()Lorg/telegram/messenger/TopicsController;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "41501",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesController;",
+      "name": "getTopicsController",
+      "descriptor": "Lorg/telegram/messenger/MessagesController;->getTopicsController()Lorg/telegram/messenger/TopicsController;"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesController;->isMonoForumWithManageRights(J)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "41575",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesController;",
+      "name": "isMonoForumWithManageRights",
+      "descriptor": "Lorg/telegram/messenger/MessagesController;->isMonoForumWithManageRights(J)Z"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesStorage$TopicKey;->dialogId:J",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "21679",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesStorage$TopicKey;",
+      "name": "dialogId",
+      "descriptor": "Lorg/telegram/messenger/MessagesStorage$TopicKey;->dialogId:J"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesStorage$TopicKey;->topicId:J",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "21680",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesStorage$TopicKey;",
+      "name": "topicId",
+      "descriptor": "Lorg/telegram/messenger/MessagesStorage$TopicKey;->topicId:J"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesStorage;->getInstance(I)Lorg/telegram/messenger/MessagesStorage;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "42799",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesStorage;",
+      "name": "getInstance",
+      "descriptor": "Lorg/telegram/messenger/MessagesStorage;->getInstance(I)Lorg/telegram/messenger/MessagesStorage;"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesStorage;->isMonoForum(J)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "42857",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesStorage;",
+      "name": "isMonoForum",
+      "descriptor": "Lorg/telegram/messenger/MessagesStorage;->isMonoForum(J)Z"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/messenger/TopicsController;->findTopic(JJ)Lorg/telegram/tgnet/TLRPC$TL_forumTopic;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "46219",
+      "class_descriptor": "Lorg/telegram/messenger/TopicsController;",
+      "name": "findTopic",
+      "descriptor": "Lorg/telegram/messenger/TopicsController;->findTopic(JJ)Lorg/telegram/tgnet/TLRPC$TL_forumTopic;"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_forumTopic;->topicStartMessage:Lorg/telegram/tgnet/TLRPC$Message;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "17716",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_forumTopic;",
+      "name": "topicStartMessage",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_forumTopic;->topicStartMessage:Lorg/telegram/tgnet/TLRPC$Message;"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/r2;->getCurrentAccount()I",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24582",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+      "name": "getCurrentAccount",
+      "descriptor": "Lorg/telegram/ui/ActionBar/r2;->getCurrentAccount()I"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/r2;->presentFragment(Lorg/telegram/ui/ActionBar/r2;)Z",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24674",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+      "name": "presentFragment",
+      "descriptor": "Lorg/telegram/ui/ActionBar/r2;->presentFragment(Lorg/telegram/ui/ActionBar/r2;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/r2;->presentFragment(Lorg/telegram/ui/ActionBar/r2;Z)Z",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24675",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+      "name": "presentFragment",
+      "descriptor": "Lorg/telegram/ui/ActionBar/r2;->presentFragment(Lorg/telegram/ui/ActionBar/r2;Z)Z"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/r2;->removeSelfFromStack()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24679",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+      "name": "removeSelfFromStack",
+      "descriptor": "Lorg/telegram/ui/ActionBar/r2;->removeSelfFromStack()V"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/r2;->setCurrentAccount(I)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24688",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+      "name": "setCurrentAccount",
+      "descriptor": "Lorg/telegram/ui/ActionBar/r2;->setCurrentAccount(I)V"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/bz;-><init>(Landroid/os/Bundle;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "44723",
+      "class_descriptor": "Lorg/telegram/ui/bz;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/ui/bz;-><init>(Landroid/os/Bundle;)V"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/bz;->B2:Lorg/telegram/ui/vy;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "50454",
+      "class_descriptor": "Lorg/telegram/ui/bz;",
+      "name": "B2",
+      "descriptor": "Lorg/telegram/ui/bz;->B2:Lorg/telegram/ui/vy;"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;-><init>(Landroid/os/Bundle;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "49262",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/ui/ko;-><init>(Landroid/os/Bundle;)V"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->V5:[Landroid/util/SparseArray;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "55615",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "V5",
+      "descriptor": "Lorg/telegram/ui/ko;->V5:[Landroid/util/SparseArray;"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->W5:[Landroid/util/SparseArray;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "55628",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "W5",
+      "descriptor": "Lorg/telegram/ui/ko;->W5:[Landroid/util/SparseArray;"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->X5:[Landroid/util/SparseArray;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "55641",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "X5",
+      "descriptor": "Lorg/telegram/ui/ko;->X5:[Landroid/util/SparseArray;"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->bd(Z)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "49645",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "bd",
+      "descriptor": "Lorg/telegram/ui/ko;->bd(Z)V"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->g5:Lorg/telegram/messenger/MessageObject;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "55763",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "g5",
+      "descriptor": "Lorg/telegram/ui/ko;->g5:Lorg/telegram/messenger/MessageObject;"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->h5:Lorg/telegram/messenger/MessageObject$GroupedMessages;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "55777",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "h5",
+      "descriptor": "Lorg/telegram/ui/ko;->h5:Lorg/telegram/messenger/MessageObject$GroupedMessages;"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->m5:Lorg/telegram/messenger/MessageObject;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "55842",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "m5",
+      "descriptor": "Lorg/telegram/ui/ko;->m5:Lorg/telegram/messenger/MessageObject;"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->v(Lorg/telegram/ui/bz;Ljava/util/ArrayList;Ljava/lang/CharSequence;ZZIILorg/telegram/ui/og1;)Z",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "49947",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "v",
+      "descriptor": "Lorg/telegram/ui/ko;->v(Lorg/telegram/ui/bz;Ljava/util/ArrayList;Ljava/lang/CharSequence;ZZIILorg/telegram/ui/og1;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/vy;->D()Z",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "55378",
+      "class_descriptor": "Lorg/telegram/ui/vy;",
+      "name": "D",
+      "descriptor": "Lorg/telegram/ui/vy;->D()Z"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/vy;->J(Lorg/telegram/ui/bz;)Z",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "55379",
+      "class_descriptor": "Lorg/telegram/ui/vy;",
+      "name": "J",
+      "descriptor": "Lorg/telegram/ui/vy;->J(Lorg/telegram/ui/bz;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramForwardResolver.kt",
+    "requested": "Lorg/telegram/ui/vy;->v(Lorg/telegram/ui/bz;Ljava/util/ArrayList;Ljava/lang/CharSequence;ZZIILorg/telegram/ui/og1;)Z",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "55380",
+      "class_descriptor": "Lorg/telegram/ui/vy;",
+      "name": "v",
+      "descriptor": "Lorg/telegram/ui/vy;->v(Lorg/telegram/ui/bz;Ljava/util/ArrayList;Ljava/lang/CharSequence;ZZIILorg/telegram/ui/og1;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/SQLite/SQLiteCursor;->byteBufferValue(I)Lorg/telegram/tgnet/NativeByteBuffer;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "34006",
+      "class_descriptor": "Lorg/telegram/SQLite/SQLiteCursor;",
+      "name": "byteBufferValue",
+      "descriptor": "Lorg/telegram/SQLite/SQLiteCursor;->byteBufferValue(I)Lorg/telegram/tgnet/NativeByteBuffer;"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/messenger/BaseController;->currentAccount:I",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "18192",
+      "class_descriptor": "Lorg/telegram/messenger/BaseController;",
+      "name": "currentAccount",
+      "descriptor": "Lorg/telegram/messenger/BaseController;->currentAccount:I"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/messenger/FileLoader;->getInstance(I)Lorg/telegram/messenger/FileLoader;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "36635",
+      "class_descriptor": "Lorg/telegram/messenger/FileLoader;",
+      "name": "getInstance",
+      "descriptor": "Lorg/telegram/messenger/FileLoader;->getInstance(I)Lorg/telegram/messenger/FileLoader;"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/messenger/FileLoader;->getPathToMessage(Lorg/telegram/tgnet/TLRPC$Message;)Ljava/io/File;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "36647",
+      "class_descriptor": "Lorg/telegram/messenger/FileLoader;",
+      "name": "getPathToMessage",
+      "descriptor": "Lorg/telegram/messenger/FileLoader;->getPathToMessage(Lorg/telegram/tgnet/TLRPC$Message;)Ljava/io/File;"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesStorage;->lambda$putMessages$238(ILorg/telegram/tgnet/TLRPC$messages_Messages;JJIIZ)V",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "43051",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesStorage;",
+      "name": "lambda$putMessages$238",
+      "descriptor": "Lorg/telegram/messenger/MessagesStorage;->lambda$putMessages$238(ILorg/telegram/tgnet/TLRPC$messages_Messages;JJIIZ)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesStorage;->putMessagesInternal(Ljava/util/ArrayList;ZZIZIJ)V",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "43232",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesStorage;",
+      "name": "putMessagesInternal",
+      "descriptor": "Lorg/telegram/messenger/MessagesStorage;->putMessagesInternal(Ljava/util/ArrayList;ZZIZIJ)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/tgnet/InputSerializedData;->readInt32(Z)I",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12210",
+      "class_descriptor": "Lorg/telegram/tgnet/InputSerializedData;",
+      "name": "readInt32",
+      "descriptor": "Lorg/telegram/tgnet/InputSerializedData;->readInt32(Z)I"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/tgnet/NativeByteBuffer;->reuse()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12253",
+      "class_descriptor": "Lorg/telegram/tgnet/NativeByteBuffer;",
+      "name": "reuse",
+      "descriptor": "Lorg/telegram/tgnet/NativeByteBuffer;->reuse()V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/tgnet/SerializedData;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12294",
+      "class_descriptor": "Lorg/telegram/tgnet/SerializedData;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/SerializedData;-><init>()V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/tgnet/SerializedData;-><init>([B)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12299",
+      "class_descriptor": "Lorg/telegram/tgnet/SerializedData;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/SerializedData;-><init>([B)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/tgnet/SerializedData;->cleanup()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12300",
+      "class_descriptor": "Lorg/telegram/tgnet/SerializedData;",
+      "name": "cleanup",
+      "descriptor": "Lorg/telegram/tgnet/SerializedData;->cleanup()V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/tgnet/SerializedData;->toByteArray()[B",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12317",
+      "class_descriptor": "Lorg/telegram/tgnet/SerializedData;",
+      "name": "toByteArray",
+      "descriptor": "Lorg/telegram/tgnet/SerializedData;->toByteArray()[B"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLObject;->serializeToStream(Lorg/telegram/tgnet/OutputSerializedData;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12357",
+      "class_descriptor": "Lorg/telegram/tgnet/TLObject;",
+      "name": "serializeToStream",
+      "descriptor": "Lorg/telegram/tgnet/TLObject;->serializeToStream(Lorg/telegram/tgnet/OutputSerializedData;)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->TLdeserialize(Lorg/telegram/tgnet/InputSerializedData;IZ)Lorg/telegram/tgnet/TLRPC$Message;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12572",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "TLdeserialize",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->TLdeserialize(Lorg/telegram/tgnet/InputSerializedData;IZ)Lorg/telegram/tgnet/TLRPC$Message;"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->readAttachPath(Lorg/telegram/tgnet/InputSerializedData;J)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12574",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "readAttachPath",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->readAttachPath(Lorg/telegram/tgnet/InputSerializedData;J)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$messages_Messages;->messages:Ljava/util/ArrayList;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "21815",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$messages_Messages;",
+      "name": "messages",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$messages_Messages;->messages:Ljava/util/ArrayList;"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/messenger/ImageReceiver;->setImageBitmap(Landroid/graphics/Bitmap;)V",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "38079",
+      "class_descriptor": "Lorg/telegram/messenger/ImageReceiver;",
+      "name": "setImageBitmap",
+      "descriptor": "Lorg/telegram/messenger/ImageReceiver;->setImageBitmap(Landroid/graphics/Bitmap;)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;-><init>(ILorg/telegram/tgnet/TLRPC$Message;ZZ)V",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40159",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;-><init>(ILorg/telegram/tgnet/TLRPC$Message;ZZ)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->edit_hide:Z",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15805",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "edit_hide",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->edit_hide:Z"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->reply_to:Lorg/telegram/tgnet/TLRPC$MessageReplyHeader;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15859",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "reply_to",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->reply_to:Lorg/telegram/tgnet/TLRPC$MessageReplyHeader;"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/l;->getBackButton()Landroid/widget/ImageView;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24016",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/l;",
+      "name": "getBackButton",
+      "descriptor": "Lorg/telegram/ui/ActionBar/l;->getBackButton()Landroid/widget/ImageView;"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/l;->getTitle()Ljava/lang/String;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24028",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/l;",
+      "name": "getTitle",
+      "descriptor": "Lorg/telegram/ui/ActionBar/l;->getTitle()Ljava/lang/String;"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/l;->i()Lorg/telegram/ui/ActionBar/z;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24035",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/l;",
+      "name": "i",
+      "descriptor": "Lorg/telegram/ui/ActionBar/l;->i()Lorg/telegram/ui/ActionBar/z;"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/l;->setBackButtonImage(I)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24064",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/l;",
+      "name": "setBackButtonImage",
+      "descriptor": "Lorg/telegram/ui/ActionBar/l;->setBackButtonImage(I)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/l;->setOccupyStatusBar(Z)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24080",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/l;",
+      "name": "setOccupyStatusBar",
+      "descriptor": "Lorg/telegram/ui/ActionBar/l;->setOccupyStatusBar(Z)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/l;->setSubtitle(Ljava/lang/CharSequence;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24091",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/l;",
+      "name": "setSubtitle",
+      "descriptor": "Lorg/telegram/ui/ActionBar/l;->setSubtitle(Ljava/lang/CharSequence;)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/l;->setTitle(Ljava/lang/CharSequence;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24094",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/l;",
+      "name": "setTitle",
+      "descriptor": "Lorg/telegram/ui/ActionBar/l;->setTitle(Ljava/lang/CharSequence;)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/l;->w(Z)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24103",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/l;",
+      "name": "w",
+      "descriptor": "Lorg/telegram/ui/ActionBar/l;->w(Z)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/n6;->t0()Landroid/graphics/drawable/Drawable;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24336",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/n6;",
+      "name": "t0",
+      "descriptor": "Lorg/telegram/ui/ActionBar/n6;->t0()Landroid/graphics/drawable/Drawable;"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/r2;->createActionBar(Landroid/content/Context;)Lorg/telegram/ui/ActionBar/l;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24557",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+      "name": "createActionBar",
+      "descriptor": "Lorg/telegram/ui/ActionBar/r2;->createActionBar(Landroid/content/Context;)Lorg/telegram/ui/ActionBar/l;"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/r2;->getActionBar()Lorg/telegram/ui/ActionBar/l;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24571",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+      "name": "getActionBar",
+      "descriptor": "Lorg/telegram/ui/ActionBar/r2;->getActionBar()Lorg/telegram/ui/ActionBar/l;"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/x0;->F:Z",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "28609",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/x0;",
+      "name": "F",
+      "descriptor": "Lorg/telegram/ui/ActionBar/x0;->F:Z"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/x0;->L(Z)Z",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24893",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/x0;",
+      "name": "L",
+      "descriptor": "Lorg/telegram/ui/ActionBar/x0;->L(Z)Z"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/x0;->getSearchField()Lorg/telegram/ui/Components/EditTextBoldCursor;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24911",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/x0;",
+      "name": "getSearchField",
+      "descriptor": "Lorg/telegram/ui/ActionBar/x0;->getSearchField()Lorg/telegram/ui/Components/EditTextBoldCursor;"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/x0;->k()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24917",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/x0;",
+      "name": "k",
+      "descriptor": "Lorg/telegram/ui/ActionBar/x0;->k()V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/x0;->setSearchFieldHint(Ljava/lang/CharSequence;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24949",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/x0;",
+      "name": "setSearchFieldHint",
+      "descriptor": "Lorg/telegram/ui/ActionBar/x0;->setSearchFieldHint(Ljava/lang/CharSequence;)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/z;->a(II)Lorg/telegram/ui/ActionBar/x0;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "25034",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/z;",
+      "name": "a",
+      "descriptor": "Lorg/telegram/ui/ActionBar/z;->a(II)Lorg/telegram/ui/ActionBar/x0;"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/Cells/u1;-><init>(Landroid/content/Context;I)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "26861",
+      "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/ui/Cells/u1;-><init>(Landroid/content/Context;I)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/Cells/u1;->M7:Z",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "31091",
+      "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+      "name": "M7",
+      "descriptor": "Lorg/telegram/ui/Cells/u1;->M7:Z"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/Cells/u1;->getPhotoImage()Lorg/telegram/messenger/ImageReceiver;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "27108",
+      "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+      "name": "getPhotoImage",
+      "descriptor": "Lorg/telegram/ui/Cells/u1;->getPhotoImage()Lorg/telegram/messenger/ImageReceiver;"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/Cells/u1;->setAllowAssistant(Z)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "27223",
+      "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+      "name": "setAllowAssistant",
+      "descriptor": "Lorg/telegram/ui/Cells/u1;->setAllowAssistant(Z)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/Cells/u1;->setDelegate(Lorg/telegram/ui/Cells/l1;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "27229",
+      "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+      "name": "setDelegate",
+      "descriptor": "Lorg/telegram/ui/Cells/u1;->setDelegate(Lorg/telegram/ui/Cells/l1;)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/Cells/u1;->setFullyDraw(Z)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "27232",
+      "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+      "name": "setFullyDraw",
+      "descriptor": "Lorg/telegram/ui/Cells/u1;->setFullyDraw(Z)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/Cells/x0;-><init>(Landroid/content/Context;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "27601",
+      "class_descriptor": "Lorg/telegram/ui/Cells/x0;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/ui/Cells/x0;-><init>(Landroid/content/Context;)V"
+    }
+  },
+  {
+    "source": "core/TelegramHistoryUiResolver.kt",
+    "requested": "Lorg/telegram/ui/Cells/x0;->setCustomText(Ljava/lang/CharSequence;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "27674",
+      "class_descriptor": "Lorg/telegram/ui/Cells/x0;",
+      "name": "setCustomText",
+      "descriptor": "Lorg/telegram/ui/Cells/x0;->setCustomText(Ljava/lang/CharSequence;)V"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/FileLoader;->getAttachFileName(Lorg/telegram/tgnet/TLObject;)Ljava/lang/String;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "36614",
+      "class_descriptor": "Lorg/telegram/messenger/FileLoader;",
+      "name": "getAttachFileName",
+      "descriptor": "Lorg/telegram/messenger/FileLoader;->getAttachFileName(Lorg/telegram/tgnet/TLObject;)Ljava/lang/String;"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/FileLoader;->getClosestPhotoSizeWithSize(Ljava/util/ArrayList;I)Lorg/telegram/tgnet/TLRPC$PhotoSize;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "36618",
+      "class_descriptor": "Lorg/telegram/messenger/FileLoader;",
+      "name": "getClosestPhotoSizeWithSize",
+      "descriptor": "Lorg/telegram/messenger/FileLoader;->getClosestPhotoSizeWithSize(Ljava/util/ArrayList;I)Lorg/telegram/tgnet/TLRPC$PhotoSize;"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/FileLoader;->getInstance(I)Lorg/telegram/messenger/FileLoader;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "36635",
+      "class_descriptor": "Lorg/telegram/messenger/FileLoader;",
+      "name": "getInstance",
+      "descriptor": "Lorg/telegram/messenger/FileLoader;->getInstance(I)Lorg/telegram/messenger/FileLoader;"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/FileLoader;->getPathToAttach(Lorg/telegram/tgnet/TLObject;Z)Ljava/io/File;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "36646",
+      "class_descriptor": "Lorg/telegram/messenger/FileLoader;",
+      "name": "getPathToAttach",
+      "descriptor": "Lorg/telegram/messenger/FileLoader;->getPathToAttach(Lorg/telegram/tgnet/TLObject;Z)Ljava/io/File;"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/FileLoader;->getPathToMessage(Lorg/telegram/tgnet/TLRPC$Message;)Ljava/io/File;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "36647",
+      "class_descriptor": "Lorg/telegram/messenger/FileLoader;",
+      "name": "getPathToMessage",
+      "descriptor": "Lorg/telegram/messenger/FileLoader;->getPathToMessage(Lorg/telegram/tgnet/TLRPC$Message;)Ljava/io/File;"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/FileLoader;->loadFile(Lorg/telegram/messenger/ImageLocation;Ljava/lang/Object;Ljava/lang/String;II)V",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "36689",
+      "class_descriptor": "Lorg/telegram/messenger/FileLoader;",
+      "name": "loadFile",
+      "descriptor": "Lorg/telegram/messenger/FileLoader;->loadFile(Lorg/telegram/messenger/ImageLocation;Ljava/lang/Object;Ljava/lang/String;II)V"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/FileLoader;->loadFile(Lorg/telegram/tgnet/TLRPC$Document;Ljava/lang/Object;II)V",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "36692",
+      "class_descriptor": "Lorg/telegram/messenger/FileLoader;",
+      "name": "loadFile",
+      "descriptor": "Lorg/telegram/messenger/FileLoader;->loadFile(Lorg/telegram/tgnet/TLRPC$Document;Ljava/lang/Object;II)V"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/ImageLocation;->getForPhoto(Lorg/telegram/tgnet/TLRPC$PhotoSize;Lorg/telegram/tgnet/TLRPC$Photo;)Lorg/telegram/messenger/ImageLocation;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "37851",
+      "class_descriptor": "Lorg/telegram/messenger/ImageLocation;",
+      "name": "getForPhoto",
+      "descriptor": "Lorg/telegram/messenger/ImageLocation;->getForPhoto(Lorg/telegram/tgnet/TLRPC$PhotoSize;Lorg/telegram/tgnet/TLRPC$Photo;)Lorg/telegram/messenger/ImageLocation;"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->getSize()J",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40388",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "getSize",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->getSize()J"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/NotificationCenter$NotificationCenterDelegate;->didReceivedNotification(II[Ljava/lang/Object;)V",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "43551",
+      "class_descriptor": "Lorg/telegram/messenger/NotificationCenter$NotificationCenterDelegate;",
+      "name": "didReceivedNotification",
+      "descriptor": "Lorg/telegram/messenger/NotificationCenter$NotificationCenterDelegate;->didReceivedNotification(II[Ljava/lang/Object;)V"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/NotificationCenter;->addObserver(Lorg/telegram/messenger/NotificationCenter$NotificationCenterDelegate;I)V",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "43582",
+      "class_descriptor": "Lorg/telegram/messenger/NotificationCenter;",
+      "name": "addObserver",
+      "descriptor": "Lorg/telegram/messenger/NotificationCenter;->addObserver(Lorg/telegram/messenger/NotificationCenter$NotificationCenterDelegate;I)V"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/NotificationCenter;->fileLoadFailed:I",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "22021",
+      "class_descriptor": "Lorg/telegram/messenger/NotificationCenter;",
+      "name": "fileLoadFailed",
+      "descriptor": "Lorg/telegram/messenger/NotificationCenter;->fileLoadFailed:I"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/NotificationCenter;->fileLoaded:I",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "22023",
+      "class_descriptor": "Lorg/telegram/messenger/NotificationCenter;",
+      "name": "fileLoaded",
+      "descriptor": "Lorg/telegram/messenger/NotificationCenter;->fileLoaded:I"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/NotificationCenter;->getInstance(I)Lorg/telegram/messenger/NotificationCenter;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "43600",
+      "class_descriptor": "Lorg/telegram/messenger/NotificationCenter;",
+      "name": "getInstance",
+      "descriptor": "Lorg/telegram/messenger/NotificationCenter;->getInstance(I)Lorg/telegram/messenger/NotificationCenter;"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/NotificationCenter;->removeObserver(Lorg/telegram/messenger/NotificationCenter$NotificationCenterDelegate;I)V",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "43622",
+      "class_descriptor": "Lorg/telegram/messenger/NotificationCenter;",
+      "name": "removeObserver",
+      "descriptor": "Lorg/telegram/messenger/NotificationCenter;->removeObserver(Lorg/telegram/messenger/NotificationCenter$NotificationCenterDelegate;I)V"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper;->generatePhotoSizes(Ljava/lang/String;Landroid/net/Uri;)Lorg/telegram/tgnet/TLRPC$TL_photo;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "45462",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper;",
+      "name": "generatePhotoSizes",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper;->generatePhotoSizes(Ljava/lang/String;Landroid/net/Uri;)Lorg/telegram/tgnet/TLRPC$TL_photo;"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Document;->access_hash:J",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15510",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Document;",
+      "name": "access_hash",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Document;->access_hash:J"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Document;->dc_id:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15513",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Document;",
+      "name": "dc_id",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Document;->dc_id:I"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Document;->file_reference:[B",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15516",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Document;",
+      "name": "file_reference",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Document;->file_reference:[B"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Document;->flags:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15517",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Document;",
+      "name": "flags",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Document;->flags:I"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Document;->id:J",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15518",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Document;",
+      "name": "id",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Document;->id:J"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Document;->size:J",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15524",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Document;",
+      "name": "size",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Document;->size:J"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Document;->thumbs:Ljava/util/ArrayList;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15525",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Document;",
+      "name": "thumbs",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Document;->thumbs:Ljava/util/ArrayList;"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Document;->video_thumbs:Ljava/util/ArrayList;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15528",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Document;",
+      "name": "video_thumbs",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Document;->video_thumbs:Ljava/util/ArrayList;"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Photo;->sizes:Ljava/util/ArrayList;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "16159",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Photo;",
+      "name": "sizes",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Photo;->sizes:Ljava/util/ArrayList;"
+    }
+  },
+  {
+    "source": "core/TelegramMediaResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$PhotoSize;->size:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "16167",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$PhotoSize;",
+      "name": "size",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$PhotoSize;->size:I"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/ChatObject;->canSendDocument(Lorg/telegram/tgnet/TLRPC$Chat;)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "35443",
+      "class_descriptor": "Lorg/telegram/messenger/ChatObject;",
+      "name": "canSendDocument",
+      "descriptor": "Lorg/telegram/messenger/ChatObject;->canSendDocument(Lorg/telegram/tgnet/TLRPC$Chat;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/ChatObject;->canSendMusic(Lorg/telegram/tgnet/TLRPC$Chat;)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "35446",
+      "class_descriptor": "Lorg/telegram/messenger/ChatObject;",
+      "name": "canSendMusic",
+      "descriptor": "Lorg/telegram/messenger/ChatObject;->canSendMusic(Lorg/telegram/tgnet/TLRPC$Chat;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/ChatObject;->canSendPhoto(Lorg/telegram/tgnet/TLRPC$Chat;)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "35447",
+      "class_descriptor": "Lorg/telegram/messenger/ChatObject;",
+      "name": "canSendPhoto",
+      "descriptor": "Lorg/telegram/messenger/ChatObject;->canSendPhoto(Lorg/telegram/tgnet/TLRPC$Chat;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/ChatObject;->canSendPlain(Lorg/telegram/tgnet/TLRPC$Chat;)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "35448",
+      "class_descriptor": "Lorg/telegram/messenger/ChatObject;",
+      "name": "canSendPlain",
+      "descriptor": "Lorg/telegram/messenger/ChatObject;->canSendPlain(Lorg/telegram/tgnet/TLRPC$Chat;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/ChatObject;->canSendRoundVideo(Lorg/telegram/tgnet/TLRPC$Chat;)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "35450",
+      "class_descriptor": "Lorg/telegram/messenger/ChatObject;",
+      "name": "canSendRoundVideo",
+      "descriptor": "Lorg/telegram/messenger/ChatObject;->canSendRoundVideo(Lorg/telegram/tgnet/TLRPC$Chat;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/ChatObject;->canSendStickers(Lorg/telegram/tgnet/TLRPC$Chat;)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "35451",
+      "class_descriptor": "Lorg/telegram/messenger/ChatObject;",
+      "name": "canSendStickers",
+      "descriptor": "Lorg/telegram/messenger/ChatObject;->canSendStickers(Lorg/telegram/tgnet/TLRPC$Chat;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/ChatObject;->canSendVideo(Lorg/telegram/tgnet/TLRPC$Chat;)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "35452",
+      "class_descriptor": "Lorg/telegram/messenger/ChatObject;",
+      "name": "canSendVideo",
+      "descriptor": "Lorg/telegram/messenger/ChatObject;->canSendVideo(Lorg/telegram/tgnet/TLRPC$Chat;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/ChatObject;->canSendVoice(Lorg/telegram/tgnet/TLRPC$Chat;)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "35453",
+      "class_descriptor": "Lorg/telegram/messenger/ChatObject;",
+      "name": "canSendVoice",
+      "descriptor": "Lorg/telegram/messenger/ChatObject;->canSendVoice(Lorg/telegram/tgnet/TLRPC$Chat;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/ChatObject;->canWriteToChat(Lorg/telegram/tgnet/TLRPC$Chat;)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "35460",
+      "class_descriptor": "Lorg/telegram/messenger/ChatObject;",
+      "name": "canWriteToChat",
+      "descriptor": "Lorg/telegram/messenger/ChatObject;->canWriteToChat(Lorg/telegram/tgnet/TLRPC$Chat;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/ChatObject;->isForum(Lorg/telegram/tgnet/TLRPC$Chat;)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "35509",
+      "class_descriptor": "Lorg/telegram/messenger/ChatObject;",
+      "name": "isForum",
+      "descriptor": "Lorg/telegram/messenger/ChatObject;->isForum(Lorg/telegram/tgnet/TLRPC$Chat;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/ChatObject;->isMonoForum(Lorg/telegram/tgnet/TLRPC$Chat;)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "35522",
+      "class_descriptor": "Lorg/telegram/messenger/ChatObject;",
+      "name": "isMonoForum",
+      "descriptor": "Lorg/telegram/messenger/ChatObject;->isMonoForum(Lorg/telegram/tgnet/TLRPC$Chat;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/DialogObject;->isEncryptedDialog(J)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "35991",
+      "class_descriptor": "Lorg/telegram/messenger/DialogObject;",
+      "name": "isEncryptedDialog",
+      "descriptor": "Lorg/telegram/messenger/DialogObject;->isEncryptedDialog(J)Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MediaDataController;->getEntities([Ljava/lang/CharSequence;Z)Ljava/util/ArrayList;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "39514",
+      "class_descriptor": "Lorg/telegram/messenger/MediaDataController;",
+      "name": "getEntities",
+      "descriptor": "Lorg/telegram/messenger/MediaDataController;->getEntities([Ljava/lang/CharSequence;Z)Ljava/util/ArrayList;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MediaDataController;->getInstance(I)Lorg/telegram/messenger/MediaDataController;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "39525",
+      "class_descriptor": "Lorg/telegram/messenger/MediaDataController;",
+      "name": "getInstance",
+      "descriptor": "Lorg/telegram/messenger/MediaDataController;->getInstance(I)Lorg/telegram/messenger/MediaDataController;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->canForwardMessage()Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40201",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "canForwardMessage",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->canForwardMessage()Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->currentAccount:I",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "20767",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "currentAccount",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->currentAccount:I"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->getDialogId(Lorg/telegram/tgnet/TLRPC$Message;)J",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40284",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "getDialogId",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->getDialogId(Lorg/telegram/tgnet/TLRPC$Message;)J"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->isAnimatedSticker()Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40455",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "isAnimatedSticker",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->isAnimatedSticker()Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->isEphemeral()Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40480",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "isEphemeral",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->isEphemeral()Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->isMusic()Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40529",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "isMusic",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->isMusic()Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->isPhoto()Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40544",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "isPhoto",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->isPhoto()Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->isRoundVideo()Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40561",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "isRoundVideo",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->isRoundVideo()Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->isSecretMedia()Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40566",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "isSecretMedia",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->isSecretMedia()Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->isSponsored()Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40573",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "isSponsored",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->isSponsored()Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->isSticker()Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40578",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "isSticker",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->isSticker()Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->isVideo()Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40596",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "isVideo",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->isVideo()Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->isVoice()Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "40606",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "isVoice",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->isVoice()Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->messageOwner:Lorg/telegram/tgnet/TLRPC$Message;",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "20867",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "messageOwner",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->messageOwner:Lorg/telegram/tgnet/TLRPC$Message;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessageObject;->scheduled:Z",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "20913",
+      "class_descriptor": "Lorg/telegram/messenger/MessageObject;",
+      "name": "scheduled",
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->scheduled:Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesController;->getChat(Ljava/lang/Long;)Lorg/telegram/tgnet/TLRPC$Chat;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "41414",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesController;",
+      "name": "getChat",
+      "descriptor": "Lorg/telegram/messenger/MessagesController;->getChat(Ljava/lang/Long;)Lorg/telegram/tgnet/TLRPC$Chat;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesController;->getInstance(I)Lorg/telegram/messenger/MessagesController;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "41463",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesController;",
+      "name": "getInstance",
+      "descriptor": "Lorg/telegram/messenger/MessagesController;->getInstance(I)Lorg/telegram/messenger/MessagesController;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesController;->isChatNoForwards(Lorg/telegram/tgnet/TLRPC$Chat;)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "41558",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesController;",
+      "name": "isChatNoForwards",
+      "descriptor": "Lorg/telegram/messenger/MessagesController;->isChatNoForwards(Lorg/telegram/tgnet/TLRPC$Chat;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/MessagesController;->isFrozen()Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "41569",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesController;",
+      "name": "isFrozen",
+      "descriptor": "Lorg/telegram/messenger/MessagesController;->isFrozen()Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->caption:Ljava/lang/String;",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "36952",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "caption",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->caption:Ljava/lang/String;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->document:Lorg/telegram/tgnet/TLRPC$TL_document;",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "36955",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "document",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->document:Lorg/telegram/tgnet/TLRPC$TL_document;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->entities:Ljava/util/ArrayList;",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "36957",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "entities",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->entities:Ljava/util/ArrayList;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->hasMediaSpoilers:Z",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "36960",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "hasMediaSpoilers",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->hasMediaSpoilers:Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->invert_media:Z",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "36961",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "invert_media",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->invert_media:Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->monoForumPeer:J",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "36968",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "monoForumPeer",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->monoForumPeer:J"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->notify:Z",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "36969",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "notify",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->notify:Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->of(Ljava/lang/String;J)Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "45316",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "of",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->of(Ljava/lang/String;J)Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->parentObject:Ljava/lang/Object;",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "36971",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "parentObject",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->parentObject:Ljava/lang/Object;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->path:Ljava/lang/String;",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "36972",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "path",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->path:Ljava/lang/String;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->photo:Lorg/telegram/tgnet/TLRPC$TL_photo;",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "36975",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "photo",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->photo:Lorg/telegram/tgnet/TLRPC$TL_photo;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->replyToMsg:Lorg/telegram/messenger/MessageObject;",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "36983",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "replyToMsg",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->replyToMsg:Lorg/telegram/messenger/MessageObject;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->replyToTopMsg:Lorg/telegram/messenger/MessageObject;",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "36985",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "replyToTopMsg",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->replyToTopMsg:Lorg/telegram/messenger/MessageObject;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->scheduleDate:I",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "36989",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "scheduleDate",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->scheduleDate:I"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->scheduleRepeatPeriod:I",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "36990",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "scheduleRepeatPeriod",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->scheduleRepeatPeriod:I"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->suggestionParams:Lorg/telegram/messenger/MessageSuggestionParams;",
+    "resolved": {
+      "file_id": "0",
+      "field_idx": "36997",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+      "name": "suggestionParams",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->suggestionParams:Lorg/telegram/messenger/MessageSuggestionParams;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper;->canSendMessageToChat(Lorg/telegram/tgnet/TLRPC$Chat;Lorg/telegram/messenger/MessageObject;)I",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "45418",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper;",
+      "name": "canSendMessageToChat",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper;->canSendMessageToChat(Lorg/telegram/tgnet/TLRPC$Chat;Lorg/telegram/messenger/MessageObject;)I"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper;->getInstance(I)Lorg/telegram/messenger/SendMessagesHelper;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "45467",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper;",
+      "name": "getInstance",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper;->getInstance(I)Lorg/telegram/messenger/SendMessagesHelper;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper;->sendMessage(Ljava/util/ArrayList;JZZZIILorg/telegram/messenger/MessageObject;IJJLorg/telegram/messenger/MessageSuggestionParams;)I",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "45719",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper;",
+      "name": "sendMessage",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper;->sendMessage(Ljava/util/ArrayList;JZZZIILorg/telegram/messenger/MessageObject;IJJLorg/telegram/messenger/MessageSuggestionParams;)I"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/messenger/SendMessagesHelper;->sendMessage(Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;)V",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "45722",
+      "class_descriptor": "Lorg/telegram/messenger/SendMessagesHelper;",
+      "name": "sendMessage",
+      "descriptor": "Lorg/telegram/messenger/SendMessagesHelper;->sendMessage(Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;)V"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->action:Lorg/telegram/tgnet/TLRPC$MessageAction;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15798",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "action",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->action:Lorg/telegram/tgnet/TLRPC$MessageAction;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->attachPath:Ljava/lang/String;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15799",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "attachPath",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->attachPath:Ljava/lang/String;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->date:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15800",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "date",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->date:I"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->edit_date:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15804",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "edit_date",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->edit_date:I"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->entities:Ljava/util/ArrayList;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15807",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "entities",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->entities:Ljava/util/ArrayList;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->id:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15825",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "id",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->id:I"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->invert_media:Z",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15826",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "invert_media",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->invert_media:Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->media:Lorg/telegram/tgnet/TLRPC$MessageMedia;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15831",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "media",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->media:Lorg/telegram/tgnet/TLRPC$MessageMedia;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->message:Ljava/lang/String;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15834",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "message",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->message:Ljava/lang/String;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->noforwards:Z",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15835",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "noforwards",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->noforwards:Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->rich_message:Lorg/telegram/tgnet/tl/TL_iv$RichMessage;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15863",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "rich_message",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->rich_message:Lorg/telegram/tgnet/tl/TL_iv$RichMessage;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->send_state:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15866",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "send_state",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->send_state:I"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->ttl:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15882",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "ttl",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->ttl:I"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->ttl_period:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15883",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "ttl_period",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->ttl_period:I"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$MessageMedia;->document:Lorg/telegram/tgnet/TLRPC$Document;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15963",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$MessageMedia;",
+      "name": "document",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$MessageMedia;->document:Lorg/telegram/tgnet/TLRPC$Document;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$MessageMedia;->photo:Lorg/telegram/tgnet/TLRPC$Photo;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15980",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$MessageMedia;",
+      "name": "photo",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$MessageMedia;->photo:Lorg/telegram/tgnet/TLRPC$Photo;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$MessageMedia;->spoiler:Z",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15987",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$MessageMedia;",
+      "name": "spoiler",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$MessageMedia;->spoiler:Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$MessageMedia;->ttl_seconds:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15994",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$MessageMedia;",
+      "name": "ttl_seconds",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$MessageMedia;->ttl_seconds:I"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->Fa(I)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "49341",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "Fa",
+      "descriptor": "Lorg/telegram/ui/ko;->Fa(I)V"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->Q3:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "55548",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "Q3",
+      "descriptor": "Lorg/telegram/ui/ko;->Q3:I"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->S8()J",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "49512",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "S8",
+      "descriptor": "Lorg/telegram/ui/ko;->S8()J"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->W3:Lorg/telegram/messenger/MessageObject;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "55626",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "W3",
+      "descriptor": "Lorg/telegram/ui/ko;->W3:Lorg/telegram/messenger/MessageObject;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->c5:Lorg/telegram/messenger/MessageObject;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "55708",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "c5",
+      "descriptor": "Lorg/telegram/ui/ko;->c5:Lorg/telegram/messenger/MessageObject;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->d()J",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "49662",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "d",
+      "descriptor": "Lorg/telegram/ui/ko;->d()J"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->e:Lorg/telegram/tgnet/TLRPC$Chat;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "55730",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "e",
+      "descriptor": "Lorg/telegram/ui/ko;->e:Lorg/telegram/tgnet/TLRPC$Chat;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->f5:Lorg/telegram/messenger/MessageSuggestionParams;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "55750",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "f5",
+      "descriptor": "Lorg/telegram/ui/ko;->f5:Lorg/telegram/messenger/MessageSuggestionParams;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->getParentActivity()Landroid/app/Activity;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "24606",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+      "name": "getParentActivity",
+      "descriptor": "Lorg/telegram/ui/ActionBar/r2;->getParentActivity()Landroid/app/Activity;"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->h7(Landroid/view/View;)Z",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "49737",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "h7",
+      "descriptor": "Lorg/telegram/ui/ko;->h7(Landroid/view/View;)Z"
+    }
+  },
+  {
+    "source": "core/TelegramMessageResolver.kt",
+    "requested": "Lorg/telegram/ui/ko;->q8(Lorg/telegram/messenger/MessageObject;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "49884",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "q8",
+      "descriptor": "Lorg/telegram/ui/ko;->q8(Lorg/telegram/messenger/MessageObject;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)V"
+    }
+  },
+  {
+    "source": "core/TelegramPrivacyResolver.kt",
+    "requested": "Lorg/telegram/messenger/UserConfig;->getInstance(I)Lorg/telegram/messenger/UserConfig;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "46566",
+      "class_descriptor": "Lorg/telegram/messenger/UserConfig;",
+      "name": "getInstance",
+      "descriptor": "Lorg/telegram/messenger/UserConfig;->getInstance(I)Lorg/telegram/messenger/UserConfig;"
+    }
+  },
+  {
+    "source": "core/TelegramPrivacyResolver.kt",
+    "requested": "Lorg/telegram/messenger/UserConfig;->getMaxAccountCount()I",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "46567",
+      "class_descriptor": "Lorg/telegram/messenger/UserConfig;",
+      "name": "getMaxAccountCount",
+      "descriptor": "Lorg/telegram/messenger/UserConfig;->getMaxAccountCount()I"
+    }
+  },
+  {
+    "source": "core/TelegramPrivacyResolver.kt",
+    "requested": "Lorg/telegram/messenger/UserConfig;->isClientActivated()Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "46574",
+      "class_descriptor": "Lorg/telegram/messenger/UserConfig;",
+      "name": "isClientActivated",
+      "descriptor": "Lorg/telegram/messenger/UserConfig;->isClientActivated()Z"
+    }
+  },
+  {
+    "source": "core/TelegramPrivacyResolver.kt",
+    "requested": "Lorg/telegram/tgnet/ConnectionsManager;->getInstance(I)Lorg/telegram/tgnet/ConnectionsManager;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12056",
+      "class_descriptor": "Lorg/telegram/tgnet/ConnectionsManager;",
+      "name": "getInstance",
+      "descriptor": "Lorg/telegram/tgnet/ConnectionsManager;->getInstance(I)Lorg/telegram/tgnet/ConnectionsManager;"
+    }
+  },
+  {
+    "source": "core/TelegramPrivacyResolver.kt",
+    "requested": "Lorg/telegram/tgnet/ConnectionsManager;->sendRequest(Lorg/telegram/tgnet/TLObject;Lorg/telegram/tgnet/RequestDelegate;)I",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12164",
+      "class_descriptor": "Lorg/telegram/tgnet/ConnectionsManager;",
+      "name": "sendRequest",
+      "descriptor": "Lorg/telegram/tgnet/ConnectionsManager;->sendRequest(Lorg/telegram/tgnet/TLObject;Lorg/telegram/tgnet/RequestDelegate;)I"
+    }
+  },
+  {
+    "source": "core/TelegramPrivacyResolver.kt",
+    "requested": "Lorg/telegram/tgnet/ConnectionsManager;->sendRequestInternal(Lorg/telegram/tgnet/TLObject;Lorg/telegram/tgnet/RequestDelegate;Lorg/telegram/tgnet/RequestDelegateTimestamp;Lorg/telegram/tgnet/QuickAckDelegate;Lorg/telegram/tgnet/WriteToSocketDelegate;IIIZI)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12171",
+      "class_descriptor": "Lorg/telegram/tgnet/ConnectionsManager;",
+      "name": "sendRequestInternal",
+      "descriptor": "Lorg/telegram/tgnet/ConnectionsManager;->sendRequestInternal(Lorg/telegram/tgnet/TLObject;Lorg/telegram/tgnet/RequestDelegate;Lorg/telegram/tgnet/RequestDelegateTimestamp;Lorg/telegram/tgnet/QuickAckDelegate;Lorg/telegram/tgnet/WriteToSocketDelegate;IIIZI)V"
+    }
+  },
+  {
+    "source": "core/TelegramPrivacyResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLObject;->getObjectSize()I",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12354",
+      "class_descriptor": "Lorg/telegram/tgnet/TLObject;",
+      "name": "getObjectSize",
+      "descriptor": "Lorg/telegram/tgnet/TLObject;->getObjectSize()I"
+    }
+  },
+  {
+    "source": "core/TelegramPrivacyResolver.kt",
+    "requested": "Lorg/telegram/tgnet/tl/TL_account$updateStatus;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "19892",
+      "class_descriptor": "Lorg/telegram/tgnet/tl/TL_account$updateStatus;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/tl/TL_account$updateStatus;-><init>()V"
+    }
+  },
+  {
+    "source": "core/TelegramPrivacyResolver.kt",
+    "requested": "Lorg/telegram/tgnet/tl/TL_account$updateStatus;->offline:Z",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "22585",
+      "class_descriptor": "Lorg/telegram/tgnet/tl/TL_account$updateStatus;",
+      "name": "offline",
+      "descriptor": "Lorg/telegram/tgnet/tl/TL_account$updateStatus;->offline:Z"
+    }
+  },
+  {
+    "source": "core/TelegramPrivacyResolver.kt",
+    "requested": "Lorg/telegram/tgnet/tl/TL_account$updateStatus;->serializeToStream(Lorg/telegram/tgnet/OutputSerializedData;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "19894",
+      "class_descriptor": "Lorg/telegram/tgnet/tl/TL_account$updateStatus;",
+      "name": "serializeToStream",
+      "descriptor": "Lorg/telegram/tgnet/tl/TL_account$updateStatus;->serializeToStream(Lorg/telegram/tgnet/OutputSerializedData;)V"
+    }
+  },
+  {
+    "source": "core/TelegramPrivacyResolver.kt",
+    "requested": "Lxg/g5;->r(I)Z",
+    "resolved": {
+      "file_id": "3",
+      "method_idx": "20509",
+      "class_descriptor": "Lxg/g5;",
+      "name": "r",
+      "descriptor": "Lxg/g5;->r(I)Z"
+    }
+  },
+  {
+    "source": "core/TelegramPrivacyResolver.kt",
+    "requested": "Lxg/o5;->V(Lorg/telegram/tgnet/tl/TL_stories$PeerStories;Lorg/telegram/tgnet/tl/TL_stories$StoryItem;Z)Z",
+    "resolved": {
+      "file_id": "3",
+      "method_idx": "20927",
+      "class_descriptor": "Lxg/o5;",
+      "name": "V",
+      "descriptor": "Lxg/o5;->V(Lorg/telegram/tgnet/tl/TL_stories$PeerStories;Lorg/telegram/tgnet/tl/TL_stories$StoryItem;Z)Z"
+    }
+  },
+  {
+    "source": "hooks/HideStoryViewStatus.kt",
+    "requested": "Lxg/m2;->b(Landroid/graphics/Canvas;)V",
+    "resolved": {
+      "file_id": "3",
+      "method_idx": "20755",
+      "class_descriptor": "Lxg/m2;",
+      "name": "b",
+      "descriptor": "Lxg/m2;->b(Landroid/graphics/Canvas;)V"
+    }
+  },
+  {
+    "source": "hooks/PreventSecretMediaDeletion.kt",
+    "requested": "Lorg/telegram/ui/SecretMediaViewer;->f()Lorg/telegram/ui/SecretMediaViewer;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "43291",
+      "class_descriptor": "Lorg/telegram/ui/SecretMediaViewer;",
+      "name": "f",
+      "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->f()Lorg/telegram/ui/SecretMediaViewer;"
+    }
+  },
+  {
+    "source": "hooks/PreventSecretMediaDeletion.kt",
+    "requested": "Lorg/telegram/ui/SecretMediaViewer;->g()Z",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "43292",
+      "class_descriptor": "Lorg/telegram/ui/SecretMediaViewer;",
+      "name": "g",
+      "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->g()Z"
+    }
+  },
+  {
+    "source": "hooks/PreventSecretMediaDeletion.kt",
+    "requested": "Lorg/telegram/ui/SecretMediaViewer;->g0:Lorg/telegram/messenger/MessageObject;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "48968",
+      "class_descriptor": "Lorg/telegram/ui/SecretMediaViewer;",
+      "name": "g0",
+      "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->g0:Lorg/telegram/messenger/MessageObject;"
+    }
+  },
+  {
+    "source": "hooks/PreventSecretMediaDeletion.kt",
+    "requested": "Lorg/telegram/ui/SecretMediaViewer;->s:Z",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "48995",
+      "class_descriptor": "Lorg/telegram/ui/SecretMediaViewer;",
+      "name": "s",
+      "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->s:Z"
+    }
+  },
+  {
+    "source": "hooks/PreventSecretMediaDeletion.kt",
+    "requested": "Lorg/telegram/ui/vn;->n0(Lorg/telegram/ui/Cells/u1;FFZ)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "55229",
+      "class_descriptor": "Lorg/telegram/ui/vn;",
+      "name": "n0",
+      "descriptor": "Lorg/telegram/ui/vn;->n0(Lorg/telegram/ui/Cells/u1;FFZ)V"
+    }
+  },
+  {
+    "source": "hooks/UnlockChannelFeatures.kt",
+    "requested": "Lorg/telegram/messenger/MessagesController;->isChatNoForwards(J)Z",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "41557",
+      "class_descriptor": "Lorg/telegram/messenger/MessagesController;",
+      "name": "isChatNoForwards",
+      "descriptor": "Lorg/telegram/messenger/MessagesController;->isChatNoForwards(J)Z"
+    }
+  },
+  {
+    "source": "hooks/UnlockChannelFeatures.kt",
+    "requested": "Lorg/telegram/ui/ko;->D9()Z",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "49314",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "D9",
+      "descriptor": "Lorg/telegram/ui/ko;->D9()Z"
+    }
+  },
+  {
+    "source": "hooks/UnlockChannelFeatures.kt",
+    "requested": "Lorg/telegram/ui/ko;->L7(Landroid/view/View;ZZFFZZZ)Z",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "49419",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "L7",
+      "descriptor": "Lorg/telegram/ui/ko;->L7(Landroid/view/View;ZZFFZZZ)Z"
+    }
+  },
+  {
+    "source": "hooks/messages/HistorySnapshotFactory.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Document;->attributes:Ljava/util/ArrayList;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15511",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Document;",
+      "name": "attributes",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Document;->attributes:Ljava/util/ArrayList;"
+    }
+  },
+  {
+    "source": "hooks/messages/HistorySnapshotFactory.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Document;->id:J",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15518",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Document;",
+      "name": "id",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Document;->id:J"
+    }
+  },
+  {
+    "source": "hooks/messages/HistorySnapshotFactory.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Document;->mime_type:Ljava/lang/String;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15523",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Document;",
+      "name": "mime_type",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Document;->mime_type:Ljava/lang/String;"
+    }
+  },
+  {
+    "source": "hooks/messages/HistorySnapshotFactory.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Document;->size:J",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15524",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Document;",
+      "name": "size",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Document;->size:J"
+    }
+  },
+  {
+    "source": "hooks/messages/HistorySnapshotFactory.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Message;->invert_media:Z",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15826",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Message;",
+      "name": "invert_media",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Message;->invert_media:Z"
+    }
+  },
+  {
+    "source": "hooks/messages/HistorySnapshotFactory.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$MessageMedia;->document:Lorg/telegram/tgnet/TLRPC$Document;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15963",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$MessageMedia;",
+      "name": "document",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$MessageMedia;->document:Lorg/telegram/tgnet/TLRPC$Document;"
+    }
+  },
+  {
+    "source": "hooks/messages/HistorySnapshotFactory.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$MessageMedia;->photo:Lorg/telegram/tgnet/TLRPC$Photo;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15980",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$MessageMedia;",
+      "name": "photo",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$MessageMedia;->photo:Lorg/telegram/tgnet/TLRPC$Photo;"
+    }
+  },
+  {
+    "source": "hooks/messages/HistorySnapshotFactory.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$MessageMedia;->spoiler:Z",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15987",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$MessageMedia;",
+      "name": "spoiler",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$MessageMedia;->spoiler:Z"
+    }
+  },
+  {
+    "source": "hooks/messages/HistorySnapshotFactory.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$Photo;->id:J",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "16158",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$Photo;",
+      "name": "id",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$Photo;->id:J"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageRepeatHook.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/h1;->g(Ljava/lang/CharSequence;ILandroid/graphics/drawable/Drawable;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "23563",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/h1;",
+      "name": "g",
+      "descriptor": "Lorg/telegram/ui/ActionBar/h1;->g(Ljava/lang/CharSequence;ILandroid/graphics/drawable/Drawable;)V"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageText.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->length:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15935",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;",
+      "name": "length",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->length:I"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageText.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->offset:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15936",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;",
+      "name": "offset",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->offset:I"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageText.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->url:Ljava/lang/String;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15937",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;",
+      "name": "url",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->url:Ljava/lang/String;"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/messenger/MediaDataController;->getEntities([Ljava/lang/CharSequence;Z)Ljava/util/ArrayList;",
+    "resolved": {
+      "file_id": "0",
+      "method_idx": "39514",
+      "class_descriptor": "Lorg/telegram/messenger/MediaDataController;",
+      "name": "getEntities",
+      "descriptor": "Lorg/telegram/messenger/MediaDataController;->getEntities([Ljava/lang/CharSequence;Z)Ljava/util/ArrayList;"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;-><init>(Landroid/content/Context;Lorg/telegram/ui/ActionBar/j6;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "23257",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;-><init>(Landroid/content/Context;Lorg/telegram/ui/ActionBar/j6;)V"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->f([Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "23263",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;",
+      "name": "f",
+      "descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->f([Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)V"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->l(Ljava/lang/CharSequence;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "23269",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;",
+      "name": "l",
+      "descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->l(Ljava/lang/CharSequence;)V"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->o()Lorg/telegram/ui/ActionBar/f2;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "23272",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;",
+      "name": "o",
+      "descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->o()Lorg/telegram/ui/ActionBar/f2;"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/k3;->currentAccount:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "26651",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/k3;",
+      "name": "currentAccount",
+      "descriptor": "Lorg/telegram/ui/ActionBar/k3;->currentAccount:I"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/ui/Components/s51;-><init>(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/CharSequence;Lorg/telegram/tgnet/TLRPC$InputPeer;IZLorg/telegram/tgnet/tl/TL_iv$RichMessage;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "37976",
+      "class_descriptor": "Lorg/telegram/ui/Components/s51;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/ui/Components/s51;-><init>(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/CharSequence;Lorg/telegram/tgnet/TLRPC$InputPeer;IZLorg/telegram/tgnet/tl/TL_iv$RichMessage;)V"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/ui/Components/s51;->N()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "37989",
+      "class_descriptor": "Lorg/telegram/ui/Components/s51;",
+      "name": "N",
+      "descriptor": "Lorg/telegram/ui/Components/s51;->N()V"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/ui/Components/s51;->c:Ljava/lang/CharSequence;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "43215",
+      "class_descriptor": "Lorg/telegram/ui/Components/s51;",
+      "name": "c",
+      "descriptor": "Lorg/telegram/ui/Components/s51;->c:Ljava/lang/CharSequence;"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/ui/Components/s51;->dismiss()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "37993",
+      "class_descriptor": "Lorg/telegram/ui/Components/s51;",
+      "name": "dismiss",
+      "descriptor": "Lorg/telegram/ui/Components/s51;->dismiss()V"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/ui/Components/s51;->dismissInternal()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "37994",
+      "class_descriptor": "Lorg/telegram/ui/Components/s51;",
+      "name": "dismissInternal",
+      "descriptor": "Lorg/telegram/ui/Components/s51;->dismissInternal()V"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/ui/Components/s51;->f:Z",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "43218",
+      "class_descriptor": "Lorg/telegram/ui/Components/s51;",
+      "name": "f",
+      "descriptor": "Lorg/telegram/ui/Components/s51;->f:Z"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/ui/Components/s51;->h:Lorg/telegram/tgnet/tl/TL_iv$RichMessage;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "43219",
+      "class_descriptor": "Lorg/telegram/ui/Components/s51;",
+      "name": "h",
+      "descriptor": "Lorg/telegram/ui/Components/s51;->h:Lorg/telegram/tgnet/tl/TL_iv$RichMessage;"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/ui/Components/s51;->o(Lorg/telegram/ui/Components/s51;Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;Lorg/telegram/tgnet/TLRPC$TL_error;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "37995",
+      "class_descriptor": "Lorg/telegram/ui/Components/s51;",
+      "name": "o",
+      "descriptor": "Lorg/telegram/ui/Components/s51;->o(Lorg/telegram/ui/Components/s51;Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;Lorg/telegram/tgnet/TLRPC$TL_error;)V"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/ui/Components/s51;->v:Ljava/lang/String;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "43223",
+      "class_descriptor": "Lorg/telegram/ui/Components/s51;",
+      "name": "v",
+      "descriptor": "Lorg/telegram/ui/Components/s51;->v:Ljava/lang/String;"
+    }
+  },
+  {
+    "source": "hooks/messages/MessageTranslationHook.kt",
+    "requested": "Lorg/telegram/ui/ko;->getResourceProvider()Lorg/telegram/ui/ActionBar/j6;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "49726",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "getResourceProvider",
+      "descriptor": "Lorg/telegram/ui/ko;->getResourceProvider()Lorg/telegram/ui/ActionBar/j6;"
+    }
+  },
+  {
+    "source": "hooks/messages/NativeMessageDialogs.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;-><init>(Landroid/content/Context;Lorg/telegram/ui/ActionBar/j6;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "23257",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;-><init>(Landroid/content/Context;Lorg/telegram/ui/ActionBar/j6;)V"
+    }
+  },
+  {
+    "source": "hooks/messages/NativeMessageDialogs.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->g(Ljava/lang/CharSequence;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "23264",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;",
+      "name": "g",
+      "descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->g(Ljava/lang/CharSequence;)V"
+    }
+  },
+  {
+    "source": "hooks/messages/NativeMessageDialogs.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->h(Ljava/lang/String;Lorg/telegram/ui/ActionBar/e2;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "23265",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;",
+      "name": "h",
+      "descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->h(Ljava/lang/String;Lorg/telegram/ui/ActionBar/e2;)V"
+    }
+  },
+  {
+    "source": "hooks/messages/NativeMessageDialogs.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->j(Landroid/content/DialogInterface$OnDismissListener;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "23267",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;",
+      "name": "j",
+      "descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->j(Landroid/content/DialogInterface$OnDismissListener;)V"
+    }
+  },
+  {
+    "source": "hooks/messages/NativeMessageDialogs.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->k(Ljava/lang/CharSequence;Lorg/telegram/ui/ActionBar/e2;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "23268",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;",
+      "name": "k",
+      "descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->k(Ljava/lang/CharSequence;Lorg/telegram/ui/ActionBar/e2;)V"
+    }
+  },
+  {
+    "source": "hooks/messages/NativeMessageDialogs.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->l(Ljava/lang/CharSequence;)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "23269",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;",
+      "name": "l",
+      "descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->l(Ljava/lang/CharSequence;)V"
+    }
+  },
+  {
+    "source": "hooks/messages/NativeMessageDialogs.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->o()Lorg/telegram/ui/ActionBar/f2;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "23272",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;",
+      "name": "o",
+      "descriptor": "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->o()Lorg/telegram/ui/ActionBar/f2;"
+    }
+  },
+  {
+    "source": "hooks/messages/NativeMessageDialogs.kt",
+    "requested": "Lorg/telegram/ui/ActionBar/e2;->i(Lorg/telegram/ui/ActionBar/f2;I)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "23464",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/e2;",
+      "name": "i",
+      "descriptor": "Lorg/telegram/ui/ActionBar/e2;->i(Lorg/telegram/ui/ActionBar/f2;I)V"
+    }
+  },
+  {
+    "source": "hooks/messages/NativeMessageDialogs.kt",
+    "requested": "Lorg/telegram/ui/ko;->getResourceProvider()Lorg/telegram/ui/ActionBar/j6;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "49726",
+      "class_descriptor": "Lorg/telegram/ui/ko;",
+      "name": "getResourceProvider",
+      "descriptor": "Lorg/telegram/ui/ko;->getResourceProvider()Lorg/telegram/ui/ActionBar/j6;"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/ConnectionsManager;->cancelRequest(IZ)V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12035",
+      "class_descriptor": "Lorg/telegram/tgnet/ConnectionsManager;",
+      "name": "cancelRequest",
+      "descriptor": "Lorg/telegram/tgnet/ConnectionsManager;->cancelRequest(IZ)V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/ConnectionsManager;->getInstance(I)Lorg/telegram/tgnet/ConnectionsManager;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12056",
+      "class_descriptor": "Lorg/telegram/tgnet/ConnectionsManager;",
+      "name": "getInstance",
+      "descriptor": "Lorg/telegram/tgnet/ConnectionsManager;->getInstance(I)Lorg/telegram/tgnet/ConnectionsManager;"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/ConnectionsManager;->sendRequest(Lorg/telegram/tgnet/TLObject;Lorg/telegram/tgnet/RequestDelegate;)I",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "12164",
+      "class_descriptor": "Lorg/telegram/tgnet/ConnectionsManager;",
+      "name": "sendRequest",
+      "descriptor": "Lorg/telegram/tgnet/ConnectionsManager;->sendRequest(Lorg/telegram/tgnet/TLObject;Lorg/telegram/tgnet/RequestDelegate;)I"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->collapsed:Z",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15932",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;",
+      "name": "collapsed",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->collapsed:Z"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->language:Ljava/lang/String;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15934",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;",
+      "name": "language",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->language:Ljava/lang/String;"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->length:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15935",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;",
+      "name": "length",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->length:I"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->offset:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15936",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;",
+      "name": "offset",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->offset:I"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->url:Ljava/lang/String;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "15937",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;",
+      "name": "url",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$MessageEntity;->url:Ljava/lang/String;"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityBlockquote;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15871",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityBlockquote;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityBlockquote;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityBold;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15879",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityBold;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityBold;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityBotCommand;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15884",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityBotCommand;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityBotCommand;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityCashtag;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15889",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityCashtag;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityCashtag;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityCode;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15894",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityCode;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityCode;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityCustomEmoji;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15899",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityCustomEmoji;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityCustomEmoji;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityCustomEmoji;->document_id:J",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "18807",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityCustomEmoji;",
+      "name": "document_id",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityCustomEmoji;->document_id:J"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityEmail;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15919",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityEmail;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityEmail;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityHashtag;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15930",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityHashtag;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityHashtag;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityItalic;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15935",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityItalic;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityItalic;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityMention;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15940",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityMention;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityMention;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityMentionName;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15945",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityMentionName;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityMentionName;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityMentionName;->user_id:J",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "18834",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityMentionName;",
+      "name": "user_id",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityMentionName;->user_id:J"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityPhone;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15953",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityPhone;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityPhone;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityPre;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15958",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityPre;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityPre;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntitySpoiler;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15963",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntitySpoiler;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntitySpoiler;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityStrike;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15968",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityStrike;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityStrike;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityTextUrl;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15973",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityTextUrl;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityTextUrl;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityUnderline;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15983",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityUnderline;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityUnderline;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityUrl;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "15993",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityUrl;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messageEntityUrl;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messages_translateResult;->result:Ljava/util/ArrayList;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "20358",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messages_translateResult;",
+      "name": "result",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messages_translateResult;->result:Ljava/util/ArrayList;"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messages_translateText;->flags:I",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "20367",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messages_translateText;",
+      "name": "flags",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messages_translateText;->flags:I"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messages_translateText;->text:Ljava/util/ArrayList;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "20370",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messages_translateText;",
+      "name": "text",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messages_translateText;->text:Ljava/util/ArrayList;"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messages_translateText;->to_lang:Ljava/lang/String;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "20371",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messages_translateText;",
+      "name": "to_lang",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messages_translateText;->to_lang:Ljava/lang/String;"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "18370",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;-><init>()V"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;->entities:Ljava/util/ArrayList;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "21154",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;",
+      "name": "entities",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;->entities:Ljava/util/ArrayList;"
+    }
+  },
+  {
+    "source": "translation/TelegramTranslationResolver.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;->text:Ljava/lang/String;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "21155",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;",
+      "name": "text",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;->text:Ljava/lang/String;"
+    }
+  },
+  {
+    "source": "translation/providers/TelegramNativeTranslator.kt",
+    "requested": "Lorg/telegram/tgnet/TLRPC$TL_messages_translateText;-><init>()V",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "17380",
+      "class_descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messages_translateText;",
+      "name": "<init>",
+      "descriptor": "Lorg/telegram/tgnet/TLRPC$TL_messages_translateText;-><init>()V"
+    }
+  },
+  {
+    "source": "virt/ui/ProfileActivity.kt",
+    "requested": "Lorg/telegram/ui/ProfileActivity;->fragmentView:Landroid/view/View;",
+    "resolved": {
+      "file_id": "2",
+      "field_idx": "28395",
+      "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+      "name": "fragmentView",
+      "descriptor": "Lorg/telegram/ui/ActionBar/r2;->fragmentView:Landroid/view/View;"
+    }
+  },
+  {
+    "source": "virt/ui/ProfileActivity.kt",
+    "requested": "Lorg/telegram/ui/ProfileActivity;->getResourceProvider()Lorg/telegram/ui/ActionBar/j6;",
+    "resolved": {
+      "file_id": "2",
+      "method_idx": "43115",
+      "class_descriptor": "Lorg/telegram/ui/ProfileActivity;",
+      "name": "getResourceProvider",
+      "descriptor": "Lorg/telegram/ui/ProfileActivity;->getResourceProvider()Lorg/telegram/ui/ActionBar/j6;"
+    }
+  }
+]

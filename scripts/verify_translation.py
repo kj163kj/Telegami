@@ -1,18 +1,21 @@
 """Verify translation handoff/security contracts and generate a factual JVM test summary."""
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import xml.etree.ElementTree as ET
+from hook_contracts import extract
 
 ROOT = Path(__file__).resolve().parent.parent
 MAIN = ROOT / "app/src/main"
-EVIDENCE = ROOT / "artifacts/dexsql/translation-1310"
+EVIDENCE = ROOT / "artifacts/dexsql/upgrade-1311"
 ANDROID = "{http://schemas.android.com/apk/res/android}"
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--report", type=Path)
+    p.add_argument("--apk", type=Path, default=ROOT / "Telegram.apk")
     args = p.parse_args()
     manifest = ET.parse(MAIN / "AndroidManifest.xml").getroot()
     assert any(item.get(ANDROID + "name") == "android.permission.INTERNET" for item in manifest.findall("uses-permission"))
@@ -25,12 +28,19 @@ def main():
     assert security.find("base-config").get("cleartextTrafficPermitted") == "false"
     assert {node.text for node in security.findall("domain-config/domain")} == {"localhost", "127.0.0.1", "::1"}
 
-    methods = (EVIDENCE / "methods.txt").read_text(encoding="utf-8")
+    audit = json.loads((EVIDENCE / "audit.json").read_text(encoding="utf-8"))
+    assert audit["apk_sha256"] == hashlib.sha256(args.apk.read_bytes()).hexdigest(), "APK changed: rerun analyze_apk_upgrade.py --verify"
+    contracts = json.loads((EVIDENCE / "source-contracts.json").read_text(encoding="utf-8"))
+    source, unresolved = extract()
+    assert not unresolved
+    assert source == sorted((c["source"], c["requested"]) for c in contracts), "Source changed: regenerate current DEX contracts"
+    assert all(c["resolved"] is not None for c in contracts)
+    methods = {c["resolved"]["descriptor"] for c in contracts}
     required = [
-        "Lorg/telegram/ui/Components/r51;->N()V",
-        "Lorg/telegram/ui/Components/r51;->dismiss()V",
-        "Lorg/telegram/ui/Components/r51;->dismissInternal()V",
-        "Lorg/telegram/ui/Components/r51;->o(Lorg/telegram/ui/Components/r51;Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;Lorg/telegram/tgnet/TLRPC$TL_error;)V",
+        "Lorg/telegram/ui/Components/s51;->N()V",
+        "Lorg/telegram/ui/Components/s51;->dismiss()V",
+        "Lorg/telegram/ui/Components/s51;->dismissInternal()V",
+        "Lorg/telegram/ui/Components/s51;->o(Lorg/telegram/ui/Components/s51;Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;Lorg/telegram/tgnet/TLRPC$TL_error;)V",
         "Lorg/telegram/ui/ActionBar/AlertDialog$Builder;->f([Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)V",
         "Lorg/telegram/messenger/MediaDataController;->getEntities([Ljava/lang/CharSequence;Z)Ljava/util/ArrayList;",
         "Lorg/telegram/tgnet/ConnectionsManager;->sendRequest(Lorg/telegram/tgnet/TLObject;Lorg/telegram/tgnet/RequestDelegate;)I",
@@ -38,9 +48,8 @@ def main():
     ]
     for descriptor in required:
         assert descriptor in methods, descriptor
-    entities = (EVIDENCE / "entity_types.txt").read_text(encoding="utf-8")
     for kind in ("Bold", "Italic", "Underline", "Strike", "Code", "Pre", "TextUrl", "Mention", "MentionName", "CustomEmoji", "Blockquote", "Spoiler", "Url", "Email", "Hashtag", "BotCommand", "Phone", "Cashtag"):
-        assert f"TLRPC$TL_messageEntity{kind};-><init>()V" in entities, kind
+        assert f"Lorg/telegram/tgnet/TLRPC$TL_messageEntity{kind};-><init>()V" in methods, kind
     print("PASS: native descriptors, entity types, broker manifest and transport policy")
 
     suites = []

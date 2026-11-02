@@ -39,7 +39,7 @@ class TelegramStoryPrivacyResolver(loader: ClassLoader) {
         "V", bool, loader.loadClass("org.telegram.tgnet.tl.TL_stories\$PeerStories"),
         loader.loadClass("org.telegram.tgnet.tl.TL_stories\$StoryItem"), bool,
     )
-    val incrementViews = loader.loadClass("xg.h5").exactMethod(
+    val incrementViews = loader.loadClass("xg.g5").exactMethod(
         "r", bool, Int::class.javaPrimitiveType!!,
     )
 }

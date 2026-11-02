@@ -1,102 +1,120 @@
 {
   "variant": "telegram",
   "package_name": "org.telegram.messenger",
-  "version": "12.10.3",
-  "updated": "2026-09-24",
+  "version": "13.1.1",
+  "updated": "2026-11-02",
   "mappings": {
     "org.telegram.ui.Cells.ChatMessageCell": {
       "fields": {
         "currentTimeString": {
-          "hint": "CharSequence",
-          "obfuscated": "sb"
+          "hint": "Verified DEX: Lorg/telegram/ui/Cells/u1;->sb:Ljava/lang/CharSequence;",
+          "obfuscated": "sb",
+          "descriptor": "Lorg/telegram/ui/Cells/u1;->sb:Ljava/lang/CharSequence;"
         },
         "timeTextWidth": {
-          "hint": "int",
-          "obfuscated": "ob"
+          "hint": "Verified DEX: Lorg/telegram/ui/Cells/u1;->pb:I",
+          "obfuscated": "pb",
+          "descriptor": "Lorg/telegram/ui/Cells/u1;->pb:I"
         },
         "timeWidth": {
-          "hint": "int",
-          "obfuscated": "pb"
+          "hint": "Verified DEX: Lorg/telegram/ui/Cells/u1;->ob:I",
+          "obfuscated": "ob",
+          "descriptor": "Lorg/telegram/ui/Cells/u1;->ob:I"
         }
       },
       "hint": "ImportedMessages",
       "methods": {
         "measureTime": {
-          "hint": "final void \\w*(<MessageObject>",
-          "obfuscated": "x3"
+          "hint": "Verified DEX: Lorg/telegram/ui/Cells/u1;->x3(Lorg/telegram/messenger/MessageObject;)V",
+          "obfuscated": "x3",
+          "descriptor": "Lorg/telegram/ui/Cells/u1;->x3(Lorg/telegram/messenger/MessageObject;)V"
         },
         "setMessageContent": {
-          "hint": "final void \\w*(<MessageObject> \\w*, <MessageObject.GroupedMessages>",
-          "obfuscated": "V3"
+          "hint": "Verified DEX: Lorg/telegram/ui/Cells/u1;->V3(Lorg/telegram/messenger/MessageObject;Lorg/telegram/messenger/MessageObject$GroupedMessages;ZZZZ)V",
+          "obfuscated": "V3",
+          "descriptor": "Lorg/telegram/ui/Cells/u1;->V3(Lorg/telegram/messenger/MessageObject;Lorg/telegram/messenger/MessageObject$GroupedMessages;ZZZZ)V"
         }
       },
-      "obfuscated": "org.telegram.ui.Cells.v1"
+      "obfuscated": "org.telegram.ui.Cells.u1"
     },
     "org.telegram.ui.ChatActivity": {
       "fields": {
         "userId": {
-          "obfuscated": "d1"
+          "obfuscated": "d1",
+          "descriptor": "Lorg/telegram/ui/ko;->d1:Lorg/telegram/ui/ActionBar/v0;",
+          "hint": "Verified DEX: Lorg/telegram/ui/ko;->d1:Lorg/telegram/ui/ActionBar/v0;"
         },
         "dialog_id": {
-          "hint": "long",
-          "obfuscated": "S5"
+          "hint": "Verified DEX: Lorg/telegram/ui/ko;->S5:J",
+          "obfuscated": "S5",
+          "descriptor": "Lorg/telegram/ui/ko;->S5:J"
         }
       },
       "hint": "clear history by overwrite firstLoading=",
       "methods": {
         "addSponsoredMessages": {
-          "hint": "https://t\\.me",
-          "obfuscated": "s6"
+          "hint": "Verified DEX: Lorg/telegram/ui/ko;->w6()V",
+          "obfuscated": "w6",
+          "descriptor": "Lorg/telegram/ui/ko;->w6()V"
         },
         "fillMessageMenu": {
-          "hint": "public final void \\w*(<MessageObject> \\w*, ArrayList ",
-          "obfuscated": "m8"
+          "hint": "Verified DEX: Lorg/telegram/ui/ko;->q8(Lorg/telegram/messenger/MessageObject;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)V",
+          "obfuscated": "q8",
+          "descriptor": "Lorg/telegram/ui/ko;->q8(Lorg/telegram/messenger/MessageObject;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)V"
         },
         "sendSecretMediaDelete": {
-          "hint": "public final \\w* \\w*(\\w* \\w*, <MessageObject> \\w*)",
-          "obfuscated": "N4"
+          "hint": "Verified DEX: Lorg/telegram/ui/ko;->P4(Lorg/telegram/ui/ko;Lorg/telegram/messenger/MessageObject;)Lbh/f4;",
+          "obfuscated": "P4",
+          "descriptor": "Lorg/telegram/ui/ko;->P4(Lorg/telegram/ui/ko;Lorg/telegram/messenger/MessageObject;)Lbh/f4;"
         },
         "sendSecretMessageRead": {
-          "hint": "public final \\w* \\w*(<MessageObject> \\w*, boolean \\w*)",
-          "obfuscated": "db"
+          "hint": "Verified DEX: Lorg/telegram/ui/ko;->kb(Lorg/telegram/messenger/MessageObject;Z)Lorg/telegram/ui/ef;",
+          "obfuscated": "kb",
+          "descriptor": "Lorg/telegram/ui/ko;->kb(Lorg/telegram/messenger/MessageObject;Z)Lorg/telegram/ui/ef;"
         }
       },
-      "obfuscated": "org.telegram.ui.po"
+      "obfuscated": "org.telegram.ui.ko"
     },
     "org.telegram.ui.Components.ColoredImageSpan": {
       "fields": {},
       "hint": "isRelativeSize",
       "methods": {
         "setOverrideColor": {
-          "hint": "public void setOverrideColor(int)",
-          "obfuscated": "setOverrideColor"
+          "hint": "Verified DEX: Lorg/telegram/ui/Components/ir;->setOverrideColor(I)Lorg/telegram/ui/Components/ir;",
+          "obfuscated": "setOverrideColor",
+          "descriptor": "Lorg/telegram/ui/Components/ir;->setOverrideColor(I)Lorg/telegram/ui/Components/ir;"
         },
         "setSize": {
-          "hint": "public void setSize(int)",
-          "obfuscated": "setSize"
+          "hint": "Verified DEX: Lorg/telegram/ui/Components/ir;->setSize(I)V",
+          "obfuscated": "setSize",
+          "descriptor": "Lorg/telegram/ui/Components/ir;->setSize(I)V"
         }
       },
-      "obfuscated": "org.telegram.ui.Components.yq"
+      "obfuscated": "org.telegram.ui.Components.ir"
     },
     "org.telegram.ui.ActionBar.BaseFragment": {
       "fields": {},
       "hint": null,
       "methods": {
         "getContext": {
-          "hint": null,
-          "obfuscated": "getContext"
+          "hint": "Verified DEX: Lorg/telegram/ui/ActionBar/r2;->getContext()Landroid/content/Context;",
+          "obfuscated": "getContext",
+          "descriptor": "Lorg/telegram/ui/ActionBar/r2;->getContext()Landroid/content/Context;"
         },
         "getMessagesController": {
-          "hint": null,
-          "obfuscated": "getMessagesController"
+          "hint": "Verified DEX: Lorg/telegram/ui/ActionBar/r2;->getMessagesController()Lorg/telegram/messenger/MessagesController;",
+          "obfuscated": "getMessagesController",
+          "descriptor": "Lorg/telegram/ui/ActionBar/r2;->getMessagesController()Lorg/telegram/messenger/MessagesController;"
         },
         "getUserConfig": {
-          "hint": null,
-          "obfuscated": "getUserConfig"
+          "hint": "Verified DEX: Lorg/telegram/ui/ActionBar/r2;->getUserConfig()Lorg/telegram/messenger/UserConfig;",
+          "obfuscated": "getUserConfig",
+          "descriptor": "Lorg/telegram/ui/ActionBar/r2;->getUserConfig()Lorg/telegram/messenger/UserConfig;"
         },
         "presentFragment": {
-          "hint": null,
-          "obfuscated": "presentFragment"
+          "hint": "Verified DEX: Lorg/telegram/ui/ActionBar/r2;->presentFragment(Lorg/telegram/ui/ActionBar/r2;)Z",
+          "obfuscated": "presentFragment",
+          "descriptor": "Lorg/telegram/ui/ActionBar/r2;->presentFragment(Lorg/telegram/ui/ActionBar/r2;)Z"
         }
       },
       "obfuscated": "org.telegram.ui.ActionBar.r2"
@@ -106,24 +124,27 @@
       "hint": null,
       "methods": {
         "setText": {
-          "hint": "public boolean k(CharSequence)",
-          "obfuscated": "k"
+          "hint": "Verified DEX: Lorg/telegram/ui/ActionBar/p5;->k(Ljava/lang/CharSequence;)Z",
+          "obfuscated": "k",
+          "descriptor": "Lorg/telegram/ui/ActionBar/p5;->k(Ljava/lang/CharSequence;)Z"
         }
       },
-      "obfuscated": "org.telegram.ui.ActionBar.o5"
+      "obfuscated": "org.telegram.ui.ActionBar.p5"
     },
     "org.telegram.ui.ActionBar.ActionBar": {
       "fields": {
         "menu": {
-          "hint": "ActionBarMenu",
-          "obfuscated": "D"
+          "hint": "Verified DEX: Lorg/telegram/ui/ActionBar/l;->D:Lorg/telegram/ui/ActionBar/z;",
+          "obfuscated": "D",
+          "descriptor": "Lorg/telegram/ui/ActionBar/l;->D:Lorg/telegram/ui/ActionBar/z;"
         }
       },
       "hint": null,
       "methods": {
         "createMenu": {
-          "hint": "public final ActionBarMenu n()",
-          "obfuscated": "n"
+          "hint": "Verified DEX: Lorg/telegram/ui/ActionBar/l;->i()Lorg/telegram/ui/ActionBar/z;",
+          "obfuscated": "i",
+          "descriptor": "Lorg/telegram/ui/ActionBar/l;->i()Lorg/telegram/ui/ActionBar/z;"
         }
       },
       "obfuscated": "org.telegram.ui.ActionBar.l"
@@ -133,12 +154,14 @@
       "hint": null,
       "methods": {
         "addItem": {
-          "hint": "public final ActionBarMenuItem d(int, Drawable)",
-          "obfuscated": "d"
+          "hint": "Verified DEX: Lorg/telegram/ui/ActionBar/z;->d(ILandroid/graphics/drawable/Drawable;)Lorg/telegram/ui/ActionBar/x0;",
+          "obfuscated": "d",
+          "descriptor": "Lorg/telegram/ui/ActionBar/z;->d(ILandroid/graphics/drawable/Drawable;)Lorg/telegram/ui/ActionBar/x0;"
         },
         "getItem": {
-          "hint": "public final ActionBarMenuItem k(int)",
-          "obfuscated": "k"
+          "hint": "Verified DEX: Lorg/telegram/ui/ActionBar/z;->k(I)Lorg/telegram/ui/ActionBar/x0;",
+          "obfuscated": "k",
+          "descriptor": "Lorg/telegram/ui/ActionBar/z;->k(I)Lorg/telegram/ui/ActionBar/x0;"
         }
       },
       "obfuscated": "org.telegram.ui.ActionBar.z"
@@ -148,139 +171,160 @@
       "hint": null,
       "methods": {
         "add": {
-          "hint": "public final void c(int, CharSequence, Runnable, boolean)",
-          "obfuscated": "c"
+          "hint": "Verified DEX: Lorg/telegram/ui/Components/a90;->c(ILjava/lang/CharSequence;Ljava/lang/Runnable;Z)V",
+          "obfuscated": "c",
+          "descriptor": "Lorg/telegram/ui/Components/a90;->c(ILjava/lang/CharSequence;Ljava/lang/Runnable;Z)V"
         },
         "setGravity": {
-          "hint": "public final void V(int)",
-          "obfuscated": "V"
+          "hint": "Verified DEX: Lorg/telegram/ui/Components/a90;->V(I)V",
+          "obfuscated": "V",
+          "descriptor": "Lorg/telegram/ui/Components/a90;->V(I)V"
         },
         "show": {
-          "hint": "public final void Z()",
-          "obfuscated": "Z"
+          "hint": "Verified DEX: Lorg/telegram/ui/Components/a90;->Z()V",
+          "obfuscated": "Z",
+          "descriptor": "Lorg/telegram/ui/Components/a90;->Z()V"
         }
       },
-      "obfuscated": "org.telegram.ui.Components.g80"
+      "obfuscated": "org.telegram.ui.Components.a90"
     },
     "org.telegram.ui.Components.BulletinFactory": {
       "fields": {},
       "hint": null,
       "methods": {
         "createSaveToGalleryBulletin": {
-          "hint": "public static Bulletin F(FrameLayout, boolean)",
-          "obfuscated": "F"
+          "hint": "Verified DEX: Lorg/telegram/ui/Components/xc;->F(Landroid/widget/FrameLayout;Z)Lorg/telegram/ui/Components/qc;",
+          "obfuscated": "F",
+          "descriptor": "Lorg/telegram/ui/Components/xc;->F(Landroid/widget/FrameLayout;Z)Lorg/telegram/ui/Components/qc;"
         }
       },
-      "obfuscated": "org.telegram.ui.Components.vc"
+      "obfuscated": "org.telegram.ui.Components.xc"
     },
     "org.telegram.ui.Components.Bulletin": {
       "fields": {},
       "hint": null,
       "methods": {
         "show": {
-          "hint": "public Bulletin j()",
-          "obfuscated": "j"
+          "hint": "Verified DEX: Lorg/telegram/ui/Components/qc;->j()Lorg/telegram/ui/Components/qc;",
+          "obfuscated": "j",
+          "descriptor": "Lorg/telegram/ui/Components/qc;->j()Lorg/telegram/ui/Components/qc;"
         }
       },
-      "obfuscated": "org.telegram.ui.Components.oc"
+      "obfuscated": "org.telegram.ui.Components.qc"
     },
     "org.telegram.ui.Stories.StoriesController": {
       "fields": {},
       "hint": "TL_stories.PeerStories",
       "methods": {
         "markStoryAsRead": {
-          "hint": "public final boolean \\w*(TL_stories.PeerStories \\w*, TL_stories.StoryItem \\w*, boolean \\w*)",
-          "obfuscated": "V"
+          "hint": "Verified DEX: Lxg/o5;->V(Lorg/telegram/tgnet/tl/TL_stories$PeerStories;Lorg/telegram/tgnet/tl/TL_stories$StoryItem;Z)Z",
+          "obfuscated": "V",
+          "descriptor": "Lxg/o5;->V(Lorg/telegram/tgnet/tl/TL_stories$PeerStories;Lorg/telegram/tgnet/tl/TL_stories$StoryItem;Z)Z"
         }
       },
-      "obfuscated": "sg.o5"
+      "obfuscated": "xg.o5"
     },
     "org.telegram.ui.Stories.PeerStoriesView$StoryItemHolder": {
       "fields": {},
       "hint": "https://t.me/%1",
       "methods": {
         "allowScreenshots": {
-          "hint": null,
-          "obfuscated": "d"
+          "hint": "Verified DEX: Lxg/e3;->d()Z",
+          "obfuscated": "d",
+          "descriptor": "Lxg/e3;->d()Z"
         }
       },
-      "obfuscated": "sg.i3"
+      "obfuscated": "xg.e3"
     },
     "org.telegram.ui.PeerColorActivity": {
       "fields": {
         "namePage": {
-          "hint": null,
-          "obfuscated": "f40136n"
+          "hint": "Verified DEX: Lorg/telegram/ui/hq0;->h:Lorg/telegram/ui/bq0;",
+          "obfuscated": "h",
+          "descriptor": "Lorg/telegram/ui/hq0;->h:Lorg/telegram/ui/bq0;"
         },
         "profilePage": {
-          "hint": null,
-          "obfuscated": "f40132h"
+          "hint": "Verified DEX: Lorg/telegram/ui/hq0;->n:Lorg/telegram/ui/bq0;",
+          "obfuscated": "n",
+          "descriptor": "Lorg/telegram/ui/hq0;->n:Lorg/telegram/ui/bq0;"
         }
       },
       "hint": null,
       "methods": {
         "apply": {
-          "hint": "below \\w*(this.isDark, true);",
-          "obfuscated": "x0"
+          "hint": "Verified DEX: Lorg/telegram/ui/hq0;->x0()V",
+          "obfuscated": "x0",
+          "descriptor": "Lorg/telegram/ui/hq0;->x0()V"
         }
       },
-      "obfuscated": "org.telegram.ui.nq0"
+      "obfuscated": "org.telegram.ui.hq0"
     },
     "org.telegram.ui.PeerColorActivity$Page": {
       "fields": {
         "selectedColor": {
-          "hint": "int",
-          "obfuscated": "f37560h"
+          "hint": "Verified DEX: Lorg/telegram/ui/bq0;->h:I",
+          "obfuscated": "h",
+          "descriptor": "Lorg/telegram/ui/bq0;->h:I"
         },
         "selectedEmoji": {
-          "hint": "long",
-          "obfuscated": "f37566n"
+          "hint": "Verified DEX: Lorg/telegram/ui/bq0;->n:J",
+          "obfuscated": "n",
+          "descriptor": "Lorg/telegram/ui/bq0;->n:J"
         }
       },
       "hint": "public class \\w* extends FrameLayout",
       "methods": {},
-      "obfuscated": "org.telegram.ui.hq0"
+      "obfuscated": "org.telegram.ui.bq0"
     },
     "org.telegram.ui.ProfileActivity": {
       "fields": {
         "chatId": {
-          "hint": "arguments.getLong(\"chat_id\", 0L)",
-          "obfuscated": "e1"
+          "hint": "Verified DEX: Lorg/telegram/ui/ProfileActivity;->e1:J",
+          "obfuscated": "e1",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->e1:J"
         },
         "myProfile": {
-          "hint": "arguments.getBoolean(\"my_profile\", false)",
-          "obfuscated": "r1"
+          "hint": "Verified DEX: Lorg/telegram/ui/ProfileActivity;->r1:Z",
+          "obfuscated": "r1",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->r1:Z"
         },
         "onlineTextView": {
-          "hint": "SimpleTextView[4]",
-          "obfuscated": "r"
+          "hint": "Verified DEX: Lorg/telegram/ui/ProfileActivity;->r:[Lorg/telegram/ui/ActionBar/p5;",
+          "obfuscated": "r",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->r:[Lorg/telegram/ui/ActionBar/p5;"
         },
         "topicId": {
-          "hint": "arguments.getLong(\"topic_id\", 0L)",
-          "obfuscated": "f1"
+          "hint": "Verified DEX: Lorg/telegram/ui/ProfileActivity;->f1:J",
+          "obfuscated": "f1",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->f1:J"
         },
         "userId": {
-          "hint": "arguments.getLong(\"user_id\", 0L)",
-          "obfuscated": "d1"
+          "hint": "Verified DEX: Lorg/telegram/ui/ProfileActivity;->d1:Lorg/telegram/ui/v11;",
+          "obfuscated": "d1",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->d1:Lorg/telegram/ui/v11;"
         },
         "usernameRow": {
-          "hint": "public username row index",
-          "obfuscated": "K3"
+          "hint": "Verified DEX: Lorg/telegram/ui/ProfileActivity;->K3:I",
+          "obfuscated": "K3",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->K3:I"
         }
       },
       "hint": null,
       "methods": {
         "editRow": {
-          "hint": "public final boolean \\w*(final int \\w*, View \\w*)",
-          "obfuscated": "J3"
+          "hint": "Verified DEX: Lorg/telegram/ui/ProfileActivity;->J3(ILandroid/view/View;)Z",
+          "obfuscated": "J3",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->J3(ILandroid/view/View;)Z"
         },
         "processOnClickOrPress": {
-          "hint": "final boolean \\w*(float",
-          "obfuscated": "C4"
+          "hint": "Verified DEX: Lorg/telegram/ui/ProfileActivity;->C4(FFILandroid/view/View;)Z",
+          "obfuscated": "C4",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->C4(FFILandroid/view/View;)Z"
         },
         "updateProfileData": {
-          "hint": "\"avatar\",",
-          "obfuscated": "i5"
+          "hint": "Verified DEX: Lorg/telegram/ui/ProfileActivity;->i5(Z)V",
+          "obfuscated": "i5",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->i5(Z)V"
         }
       },
       "obfuscated": "org.telegram.ui.ProfileActivity"
@@ -288,40 +332,49 @@
     "org.telegram.ui.SecretMediaViewer": {
       "fields": {
         "actionBar": {
-          "hint": "ActionBar",
-          "obfuscated": "E"
+          "hint": "Verified DEX: Lorg/telegram/ui/SecretMediaViewer;->E:Lnf/d1;",
+          "obfuscated": "E",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->E:Lnf/d1;"
         },
         "activeViewer": {
-          "hint": "static SecretMediaViewer singleton",
-          "obfuscated": "w1"
+          "hint": "Verified DEX: Lorg/telegram/ui/SecretMediaViewer;->w1:Lorg/telegram/ui/SecretMediaViewer;",
+          "obfuscated": "w1",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->w1:Lorg/telegram/ui/SecretMediaViewer;"
         },
         "centerImage": {
-          "hint": "ImageReceiver",
-          "obfuscated": "h"
+          "hint": "Verified DEX: Lorg/telegram/ui/SecretMediaViewer;->h:Lorg/telegram/messenger/ImageReceiver;",
+          "obfuscated": "h",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->h:Lorg/telegram/messenger/ImageReceiver;"
         },
         "containerView": {
-          "hint": "FrameLayoutDrawer",
-          "obfuscated": "e"
+          "hint": "Verified DEX: Lorg/telegram/ui/SecretMediaViewer;->e:Lbf/h;",
+          "obfuscated": "e",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->e:Lbf/h;"
         },
         "currentAccount": {
-          "hint": "int",
-          "obfuscated": "a"
+          "hint": "Verified DEX: Lorg/telegram/ui/SecretMediaViewer;->a:I",
+          "obfuscated": "a",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->a:I"
         },
         "isVideo": {
-          "hint": "boolean",
-          "obfuscated": "I"
+          "hint": "Verified DEX: Lorg/telegram/ui/SecretMediaViewer;->I:Z",
+          "obfuscated": "I",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->I:Z"
         },
         "messageObject": {
-          "hint": "MessageObject",
-          "obfuscated": "g0"
+          "hint": "Verified DEX: Lorg/telegram/ui/SecretMediaViewer;->g0:Lorg/telegram/messenger/MessageObject;",
+          "obfuscated": "g0",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->g0:Lorg/telegram/messenger/MessageObject;"
         },
         "parentActivity": {
-          "hint": "Activity",
-          "obfuscated": "b"
+          "hint": "Verified DEX: Lorg/telegram/ui/SecretMediaViewer;->b:Landroid/app/Activity;",
+          "obfuscated": "b",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->b:Landroid/app/Activity;"
         },
         "secretDeleteTimer": {
-          "hint": "new t51\\(f14, parentActivity\\)",
-          "obfuscated": "n"
+          "hint": "Verified DEX: Lorg/telegram/ui/SecretMediaViewer;->n:Lorg/telegram/ui/m51;",
+          "obfuscated": "n",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->n:Lorg/telegram/ui/m51;"
         }
       },
       "hint": null,
@@ -331,40 +384,32 @@
     "org.telegram.ui.ActionBar.Theme": {
       "fields": {
         "chat_timePaint": {
-          "hint": "TextPaint",
-          "obfuscated": "W2"
+          "hint": "Verified DEX: Lorg/telegram/ui/ActionBar/n6;->T2:Landroid/text/TextPaint;",
+          "obfuscated": "T2",
+          "descriptor": "Lorg/telegram/ui/ActionBar/n6;->T2:Landroid/text/TextPaint;"
         }
       },
       "hint": "Theme colors",
       "methods": {
         "getActiveTheme": {
-          "hint": "ThemeInfo A0()",
-          "obfuscated": "A0"
+          "hint": "Verified DEX: Lorg/telegram/ui/ActionBar/n6;->B0()Lorg/telegram/ui/ActionBar/m6;",
+          "obfuscated": "B0",
+          "descriptor": "Lorg/telegram/ui/ActionBar/n6;->B0()Lorg/telegram/ui/ActionBar/m6;"
         }
       },
-      "obfuscated": "org.telegram.ui.ActionBar.o6"
+      "obfuscated": "org.telegram.ui.ActionBar.n6"
     },
     "org.telegram.ui.ActionBar.Theme$ThemeInfo": {
       "fields": {},
       "hint": "theme descriptor",
       "methods": {
         "isDark": {
-          "hint": "boolean",
-          "obfuscated": "q"
+          "hint": "Verified DEX: Lorg/telegram/ui/ActionBar/m6;->q()Z",
+          "obfuscated": "q",
+          "descriptor": "Lorg/telegram/ui/ActionBar/m6;->q()Z"
         }
       },
-      "obfuscated": "org.telegram.ui.ActionBar.n6"
+      "obfuscated": "org.telegram.ui.ActionBar.m6"
     }
-  },
-  "org.telegram.ui.Stories.PeerStoriesView$StoryItemHolder": {
-    "fields": {},
-    "hint": "https://t.me/%1",
-    "methods": {
-      "allowScreenshots": {
-        "hint": null,
-        "obfuscated": "d"
-      }
-    },
-    "obfuscated": "sg.i3"
   }
 }

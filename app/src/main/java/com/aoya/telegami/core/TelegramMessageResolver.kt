@@ -6,7 +6,7 @@ import com.aoya.telegami.hooks.UnlockChannelFeatures
 import com.aoya.telegami.util.exactField
 import com.aoya.telegami.util.exactMethod
 
-/** Descriptors verified in artifacts/dexsql/message-tools-1310. */
+/** Current descriptors verified in artifacts/dexsql/upgrade-1311/source-contracts.json. */
 class TelegramMessageResolver(val loader: ClassLoader) {
     fun type(name: String): Class<*> = loader.loadClass(name)
     val int = Int::class.javaPrimitiveType!!

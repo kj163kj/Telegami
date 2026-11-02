@@ -29,26 +29,17 @@ class ItemOptions private constructor(
         onClickListener: Runnable,
     ): ItemOptions =
         apply {
-            if (Telegami.packageName == "org.telegram.messenger") {
-                instance
-                    .asResolver()
-                    .firstMethod {
-                        name = resolver.getMethod(objPath, "add")
-                        parameters(
-                            Int::class.javaPrimitiveType!!,
-                            CharSequence::class.java,
-                            Runnable::class.java,
-                            Boolean::class.javaPrimitiveType!!,
-                        )
-                    }.invoke(iconResId, text, onClickListener, false)
-            } else {
-                instance
-                    .asResolver()
-                    .firstMethod {
-                        name = resolver.getMethod(objPath, "add")
-                        parameters(Int::class.javaPrimitiveType!!, CharSequence::class.java, Runnable::class.java)
-                    }.invoke(iconResId, text, onClickListener)
-            }
+            instance
+                .asResolver()
+                .firstMethod {
+                    name = resolver.getMethod(objPath, "add")
+                    parameters(
+                        Int::class.javaPrimitiveType!!,
+                        CharSequence::class.java,
+                        Runnable::class.java,
+                        Boolean::class.javaPrimitiveType!!,
+                    )
+                }.invoke(iconResId, text, onClickListener, false)
         }
 
     fun show(): ItemOptions =

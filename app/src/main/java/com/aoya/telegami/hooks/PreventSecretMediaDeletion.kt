@@ -8,13 +8,13 @@ import com.aoya.telegami.Telegami
 import com.aoya.telegami.service.Config
 import com.aoya.telegami.util.SecretMedia
 import com.aoya.telegami.util.findMethod
+import com.aoya.telegami.util.exactMethod
+import com.aoya.telegami.util.exactField
 import com.aoya.telegami.virt.messenger.FileLoader
 import com.aoya.telegami.virt.messenger.MediaController
-import com.aoya.telegami.virt.messenger.MessageObject
 import com.aoya.telegami.virt.ui.SecretMediaViewer
 import com.aoya.telegami.virt.ui.components.BulletinFactory
 import io.github.libxposed.api.XposedInterface
-import com.aoya.telegami.core.obfuscate.ResolverManager as resolver
 
 object PreventSecretMediaDeletion {
     const val CHAT_ACTIVITY_CN = "org.telegram.ui.ChatActivity"
@@ -60,38 +60,32 @@ object PreventSecretMediaDeletion {
             if (!hasResult) result = chain.proceed(args.toTypedArray())
             result
         }
-        if (Telegami.packageName == "org.telegram.messenger") {
-            // Telegram 12.10.3 inlines SecretMediaViewer.openMedia into ao.t0.
-            val openMedia = classLoader.findMethod("org.telegram.ui.ao", "t0")
-            xposed.hook(openMedia).intercept { chain ->
-                val result = chain.proceed(chain.args.toTypedArray())
-                try {
-                    val viewerClass = classLoader.loadClass(resolver.get(SECRET_MEDIA_VIEWER_CN))
-                    val field =
-                        viewerClass
-                            .getDeclaredField(resolver.getField(SECRET_MEDIA_VIEWER_CN, "activeViewer"))
-                            .apply { isAccessible = true }
-                    val viewer = field.get(null)?.let(::SecretMediaViewer) ?: return@intercept result
-                    val msgObj = viewer.currentMessageObject ?: return@intercept result
-                    if (msgObj.isSecretMedia()) addDownloadItem(viewer, msgObj)
-                } catch (throwable: Throwable) {
-                    Log.e("Telegami", "Failed to add secret-media download item", throwable)
+        // 13.1.1 inlines openMedia into the message-cell delegate, including the website APK.
+        val viewerClass = classLoader.loadClass(SECRET_MEDIA_VIEWER_CN)
+        val hasInstance = viewerClass.exactMethod("g", Boolean::class.javaPrimitiveType!!)
+        val visible = viewerClass.exactField("s", Boolean::class.javaPrimitiveType!!)
+        val currentMessage = viewerClass.exactField("g0", Telegami.telegram.message)
+        val getViewer = viewerClass.exactMethod("f", viewerClass)
+        val openMedia = classLoader.loadClass("org.telegram.ui.vn").exactMethod(
+            "n0", Void.TYPE, Telegami.telegram.cell,
+            Float::class.javaPrimitiveType!!, Float::class.javaPrimitiveType!!, Boolean::class.javaPrimitiveType!!,
+        )
+        xposed.hook(openMedia).intercept { chain ->
+            val result = chain.proceed()
+            try {
+                if (hasInstance.invoke(null) != true) return@intercept result
+                val nativeViewer = getViewer.invoke(null)!!
+                if (!visible.getBoolean(nativeViewer)) return@intercept result
+                if (currentMessage.get(nativeViewer) !== Telegami.telegram.boundMessage.get(chain.args[0])) {
+                    return@intercept result
                 }
-                result
+                val viewer = SecretMediaViewer(nativeViewer)
+                val msgObj = viewer.currentMessageObject ?: return@intercept result
+                if (msgObj.isSecretMedia()) addDownloadItem(viewer, msgObj)
+            } catch (throwable: Throwable) {
+                Log.e("Telegami", "Failed to add secret-media download item", throwable)
             }
-        } else {
-            val openMedia = classLoader.findMethod(SECRET_MEDIA_VIEWER_CN, "openMedia")
-            xposed.hook(openMedia).intercept { chain ->
-                val result = chain.proceed(chain.args.toTypedArray())
-                try {
-                    val viewer = chain.thisObject?.let(::SecretMediaViewer) ?: return@intercept result
-                    val msgObj = chain.args.firstOrNull()?.let(::MessageObject) ?: return@intercept result
-                    if (msgObj.isSecretMedia()) addDownloadItem(viewer, msgObj)
-                } catch (throwable: Throwable) {
-                    Log.e("Telegami", "Failed to add secret-media download item", throwable)
-                }
-                result
-            }
+            result
         }
     }
 

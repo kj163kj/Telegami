@@ -1,0 +1,1507 @@
+{
+  "apk_sha256": "148f1aa51b0a76c8168e4ad0eb121a66b78c2b8f50e4dc44e7a667668cf8823b",
+  "previous_evidence_members": 1319,
+  "missing_previous_members": [
+    {
+      "descriptor": "Lorg/telegram/ui/ko;->ad(Z)V",
+      "evidence": [
+        "artifacts/dexsql/local-forward-1310/methods.txt",
+        "artifacts/dexsql/telegram-1310/deleted_flag_refs.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/wj;->b(I)V",
+      "evidence": [
+        "artifacts/dexsql/message-tools-1310/calls.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->cachedQuality:Lorg/telegram/ui/Components/b91;",
+      "evidence": [
+        "artifacts/dexsql/message-tools-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->highestQuality:Lorg/telegram/ui/Components/b91;",
+      "evidence": [
+        "artifacts/dexsql/message-tools-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->parentStoriesList:Lxg/h5;",
+      "evidence": [
+        "artifacts/dexsql/message-tools-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/messenger/MessageObject;->thumbQuality:Lorg/telegram/ui/Components/b91;",
+      "evidence": [
+        "artifacts/dexsql/message-tools-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/ko;->X:Lorg/telegram/ui/wk;",
+      "evidence": [
+        "artifacts/dexsql/message-tools-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lxg/h5;->r(I)Z",
+      "evidence": [
+        "artifacts/dexsql/privacy-channel-1310/methods.txt",
+        "artifacts/dexsql/privacy-channel-1310/story_callers.txt",
+        "artifacts/dexsql/privacy-channel-1310/story_callers.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r21;-><init>(Lorg/telegram/ui/Components/s21;Ljava/util/ArrayList;Ljava/lang/Runnable;)V",
+      "evidence": [
+        "artifacts/dexsql/telegram-1310/deleted_flag_refs.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/ek;->drawChild(Landroid/graphics/Canvas;Landroid/view/View;J)Z",
+      "evidence": [
+        "artifacts/dexsql/telegram-1310/deleted_flag_refs.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/ek;->x1(Landroid/graphics/Canvas;Landroid/graphics/RectF;)V",
+      "evidence": [
+        "artifacts/dexsql/telegram-1310/deleted_flag_refs.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/hw0;-><init>(Lorg/telegram/ui/ActionBar/r2;)V",
+      "evidence": [
+        "artifacts/dexsql/telegram-1310/notification_producers.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/hw0;->didReceivedNotification(II[Ljava/lang/Object;)V",
+      "evidence": [
+        "artifacts/dexsql/telegram-1310/notification_producers.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/pw0;-><init>(Landroid/content/Context;JLorg/telegram/ui/Components/hw0;ILjava/util/ArrayList;Lorg/telegram/tgnet/TLRPC$ChatFull;Lorg/telegram/tgnet/TLRPC$UserFull;IILorg/telegram/ui/ActionBar/r2;Lorg/telegram/ui/Components/zu0;ILorg/telegram/ui/ActionBar/j6;Lwf/a;)V",
+      "evidence": [
+        "artifacts/dexsql/telegram-1310/notification_producers.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/pw0;->didReceivedNotification(II[Ljava/lang/Object;)V",
+      "evidence": [
+        "artifacts/dexsql/telegram-1310/notification_producers.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/PhotoViewer;->f2(Lorg/telegram/messenger/MessageObject;Lorg/telegram/tgnet/TLRPC$FileLocation;Lorg/telegram/messenger/ImageLocation;Lorg/telegram/messenger/ImageLocation;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;ILorg/telegram/ui/iv0;Lorg/telegram/ui/ko;JJJZLorg/telegram/ui/ev0;Ljava/lang/Integer;)Z",
+      "evidence": [
+        "artifacts/dexsql/telegram-1310/notification_producers.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/o9;->didReceivedNotification(II[Ljava/lang/Object;)V",
+      "evidence": [
+        "artifacts/dexsql/telegram-1310/notification_producers.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/o9;->onFragmentCreate()Z",
+      "evidence": [
+        "artifacts/dexsql/telegram-1310/notification_producers.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/o9;->onFragmentDestroy()V",
+      "evidence": [
+        "artifacts/dexsql/telegram-1310/notification_producers.txt"
+      ]
+    },
+    {
+      "descriptor": "Lxg/k5;->run(Lorg/telegram/tgnet/TLObject;Lorg/telegram/tgnet/TLRPC$TL_error;)V",
+      "evidence": [
+        "artifacts/dexsql/telegram-1310/update_callers.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/c61;->W()V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;-><init>(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/CharSequence;Lorg/telegram/tgnet/TLRPC$InputPeer;IZLorg/telegram/tgnet/tl/TL_iv$RichMessage;)V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->N()V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->F(Ljava/lang/String;[Z[Z)Ljava/lang/String;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->M(Ljava/lang/String;Z)Ljava/lang/String;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->G(Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;)Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->E(Ljava/lang/CharSequence;)Ljava/util/HashMap;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->K(Landroid/app/Activity;Lorg/telegram/ui/ko;Lorg/telegram/tgnet/TLRPC$InputPeer;IZLjava/lang/String;Ljava/lang/String;Ljava/lang/CharSequence;ZLorg/telegram/ui/dg;Ljava/lang/Runnable;)Lorg/telegram/ui/Components/j51;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->I(Z)V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->L(Landroid/content/Context;Lorg/telegram/ui/ActionBar/r2;Ljava/lang/String;Ljava/lang/String;Ljava/lang/CharSequence;Lorg/telegram/ui/s20;Lorg/telegram/ui/Cells/g;)V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->show()V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->O()V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->z(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/telegram/messenger/Utilities$Callback2;)V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->dismissInternal()V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->o(Lorg/telegram/ui/Components/r51;Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;Lorg/telegram/tgnet/TLRPC$TL_error;)V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->H(Ljava/lang/CharSequence;)Ljava/lang/CharSequence;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->dismiss()V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->p(Lorg/telegram/ui/Components/r51;Lorg/telegram/tgnet/TLRPC$TL_error;Lorg/telegram/tgnet/TLObject;Lorg/telegram/tgnet/TLRPC$TL_textWithEntities;)V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->q(Lorg/telegram/ui/Components/r51;Lorg/telegram/tgnet/TLObject;)V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->r(Lorg/telegram/ui/Components/r51;Ljava/lang/String;Ljava/lang/Boolean;)V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/calls.txt",
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->D:Lorg/telegram/ui/Components/c51;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->E:Lorg/telegram/ui/Components/qa0;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->F:Z",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->G:Lorg/telegram/ui/Components/d51;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->H:Lorg/telegram/ui/Components/q51;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->I:Lorg/telegram/ui/Cells/o9;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->J:Lorg/telegram/ui/Cells/aa;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->K:Landroid/view/View;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->L:Lorg/telegram/ui/ActionBar/r2;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->M:Lorg/telegram/messenger/Utilities$CallbackReturn;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->N:Z",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->O:Lorg/telegram/ui/Components/g6;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->P:Ljava/lang/Boolean;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->Q:[Ljava/lang/String;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt",
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->R:Ljava/util/HashMap;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->b:Ljava/lang/Integer;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->c:Ljava/lang/CharSequence;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->d:Lorg/telegram/tgnet/TLRPC$InputPeer;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->f:Z",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->h:Lorg/telegram/tgnet/tl/TL_iv$RichMessage;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->n:Lorg/telegram/messenger/RichMessageLayout$PreviewView;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->r:Lorg/telegram/messenger/RichMessageLayout$PreviewView;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->s:Ljava/lang/String;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->v:Ljava/lang/String;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->w:Ljava/lang/String;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->x:Lorg/telegram/ui/Components/p51;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->y:Lch/o;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/fields.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;-><clinit>()V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->A(Ljava/lang/String;)Ljava/lang/String;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->C(Z)F",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->D()Ljava/lang/String;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->J(Ljava/lang/String;)V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->canDismissWithSwipe()Z",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->didReceivedNotification(II[Ljava/lang/Object;)V",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->s(Lorg/telegram/ui/Components/r51;)Landroid/view/ViewGroup;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->t(Lorg/telegram/ui/Components/r51;)Lorg/telegram/ui/ActionBar/j6;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->u(Lorg/telegram/ui/Components/r51;)Lorg/telegram/ui/ActionBar/j6;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->v(Lorg/telegram/ui/Components/r51;)Landroid/view/ViewGroup;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->w(Lorg/telegram/ui/Components/r51;)Z",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->x(Lorg/telegram/ui/Components/r51;)Landroid/view/ViewGroup;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    },
+    {
+      "descriptor": "Lorg/telegram/ui/Components/r51;->y(Lorg/telegram/ui/Components/r51;)Landroid/view/ViewGroup;",
+      "evidence": [
+        "artifacts/dexsql/translation-1310/methods.txt"
+      ]
+    }
+  ],
+  "mapping": [
+    {
+      "class": "org.telegram.ui.Cells.ChatMessageCell",
+      "member": "measureTime",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/Cells/u1;->x3",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "27281",
+          "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+          "name": "x3",
+          "descriptor": "Lorg/telegram/ui/Cells/u1;->x3(Lorg/telegram/messenger/MessageObject;)V"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/Cells/u1;->x3(Lorg/telegram/messenger/MessageObject;)V",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.Cells.ChatMessageCell",
+      "member": "setMessageContent",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/Cells/u1;->V3",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "26972",
+          "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+          "name": "V3",
+          "descriptor": "Lorg/telegram/ui/Cells/u1;->V3(Lorg/telegram/messenger/MessageObject;Lorg/telegram/messenger/MessageObject$GroupedMessages;ZZZZ)V"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/Cells/u1;->V3(Lorg/telegram/messenger/MessageObject;Lorg/telegram/messenger/MessageObject$GroupedMessages;ZZZZ)V",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.Cells.ChatMessageCell",
+      "member": "currentTimeString",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/Cells/u1;->sb",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "31576",
+          "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+          "name": "sb",
+          "descriptor": "Lorg/telegram/ui/Cells/u1;->sb:Ljava/lang/CharSequence;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/Cells/u1;->sb:Ljava/lang/CharSequence;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.Cells.ChatMessageCell",
+      "member": "timeTextWidth",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/Cells/u1;->pb",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "31529",
+          "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+          "name": "pb",
+          "descriptor": "Lorg/telegram/ui/Cells/u1;->pb:I"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/Cells/u1;->pb:I",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.Cells.ChatMessageCell",
+      "member": "timeWidth",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/Cells/u1;->ob",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "31514",
+          "class_descriptor": "Lorg/telegram/ui/Cells/u1;",
+          "name": "ob",
+          "descriptor": "Lorg/telegram/ui/Cells/u1;->ob:I"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/Cells/u1;->ob:I",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ChatActivity",
+      "member": "addSponsoredMessages",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ko;->w6",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "49968",
+          "class_descriptor": "Lorg/telegram/ui/ko;",
+          "name": "w6",
+          "descriptor": "Lorg/telegram/ui/ko;->w6()V"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ko;->w6()V",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ChatActivity",
+      "member": "fillMessageMenu",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ko;->q8",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "49884",
+          "class_descriptor": "Lorg/telegram/ui/ko;",
+          "name": "q8",
+          "descriptor": "Lorg/telegram/ui/ko;->q8(Lorg/telegram/messenger/MessageObject;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)V"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ko;->q8(Lorg/telegram/messenger/MessageObject;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)V",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ChatActivity",
+      "member": "sendSecretMediaDelete",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ko;->P4",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "49469",
+          "class_descriptor": "Lorg/telegram/ui/ko;",
+          "name": "P4",
+          "descriptor": "Lorg/telegram/ui/ko;->P4(Lorg/telegram/ui/ko;Lorg/telegram/messenger/MessageObject;)Lbh/f4;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ko;->P4(Lorg/telegram/ui/ko;Lorg/telegram/messenger/MessageObject;)Lbh/f4;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ChatActivity",
+      "member": "sendSecretMessageRead",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ko;->kb",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "49787",
+          "class_descriptor": "Lorg/telegram/ui/ko;",
+          "name": "kb",
+          "descriptor": "Lorg/telegram/ui/ko;->kb(Lorg/telegram/messenger/MessageObject;Z)Lorg/telegram/ui/ef;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ko;->kb(Lorg/telegram/messenger/MessageObject;Z)Lorg/telegram/ui/ef;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ChatActivity",
+      "member": "userId",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/ko;->d1",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "55718",
+          "class_descriptor": "Lorg/telegram/ui/ko;",
+          "name": "d1",
+          "descriptor": "Lorg/telegram/ui/ko;->d1:Lorg/telegram/ui/ActionBar/v0;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ko;->d1:Lorg/telegram/ui/ActionBar/v0;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ChatActivity",
+      "member": "dialog_id",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/ko;->S5",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "55576",
+          "class_descriptor": "Lorg/telegram/ui/ko;",
+          "name": "S5",
+          "descriptor": "Lorg/telegram/ui/ko;->S5:J"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ko;->S5:J",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.Components.ColoredImageSpan",
+      "member": "setOverrideColor",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/Components/ir;->setOverrideColor",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "33639",
+          "class_descriptor": "Lorg/telegram/ui/Components/ir;",
+          "name": "setOverrideColor",
+          "descriptor": "Lorg/telegram/ui/Components/ir;->setOverrideColor(I)Lorg/telegram/ui/Components/ir;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/Components/ir;->setOverrideColor(I)Lorg/telegram/ui/Components/ir;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.Components.ColoredImageSpan",
+      "member": "setSize",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/Components/ir;->setSize",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "33643",
+          "class_descriptor": "Lorg/telegram/ui/Components/ir;",
+          "name": "setSize",
+          "descriptor": "Lorg/telegram/ui/Components/ir;->setSize(I)V"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/Components/ir;->setSize(I)V",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ActionBar.BaseFragment",
+      "member": "getContext",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ActionBar/r2;->getContext",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "24581",
+          "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+          "name": "getContext",
+          "descriptor": "Lorg/telegram/ui/ActionBar/r2;->getContext()Landroid/content/Context;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ActionBar/r2;->getContext()Landroid/content/Context;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ActionBar.BaseFragment",
+      "member": "getMessagesController",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ActionBar/r2;->getMessagesController",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "24598",
+          "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+          "name": "getMessagesController",
+          "descriptor": "Lorg/telegram/ui/ActionBar/r2;->getMessagesController()Lorg/telegram/messenger/MessagesController;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ActionBar/r2;->getMessagesController()Lorg/telegram/messenger/MessagesController;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ActionBar.BaseFragment",
+      "member": "getUserConfig",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ActionBar/r2;->getUserConfig",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "24616",
+          "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+          "name": "getUserConfig",
+          "descriptor": "Lorg/telegram/ui/ActionBar/r2;->getUserConfig()Lorg/telegram/messenger/UserConfig;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ActionBar/r2;->getUserConfig()Lorg/telegram/messenger/UserConfig;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ActionBar.BaseFragment",
+      "member": "presentFragment",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ActionBar/r2;->presentFragment",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "24673",
+          "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+          "name": "presentFragment",
+          "descriptor": "Lorg/telegram/ui/ActionBar/r2;->presentFragment(Lorg/telegram/ui/ActionBar/h5;)Z"
+        },
+        {
+          "file_id": "2",
+          "method_idx": "24674",
+          "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+          "name": "presentFragment",
+          "descriptor": "Lorg/telegram/ui/ActionBar/r2;->presentFragment(Lorg/telegram/ui/ActionBar/r2;)Z"
+        },
+        {
+          "file_id": "2",
+          "method_idx": "24675",
+          "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+          "name": "presentFragment",
+          "descriptor": "Lorg/telegram/ui/ActionBar/r2;->presentFragment(Lorg/telegram/ui/ActionBar/r2;Z)Z"
+        },
+        {
+          "file_id": "2",
+          "method_idx": "24676",
+          "class_descriptor": "Lorg/telegram/ui/ActionBar/r2;",
+          "name": "presentFragment",
+          "descriptor": "Lorg/telegram/ui/ActionBar/r2;->presentFragment(Lorg/telegram/ui/ActionBar/r2;ZZ)Z"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ActionBar/r2;->presentFragment(Lorg/telegram/ui/ActionBar/r2;)Z",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ActionBar.SimpleTextView",
+      "member": "setText",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ActionBar/p5;->k",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "24447",
+          "class_descriptor": "Lorg/telegram/ui/ActionBar/p5;",
+          "name": "k",
+          "descriptor": "Lorg/telegram/ui/ActionBar/p5;->k(Ljava/lang/CharSequence;)Z"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ActionBar/p5;->k(Ljava/lang/CharSequence;)Z",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ActionBar.ActionBar",
+      "member": "createMenu",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ActionBar/l;->i",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "24035",
+          "class_descriptor": "Lorg/telegram/ui/ActionBar/l;",
+          "name": "i",
+          "descriptor": "Lorg/telegram/ui/ActionBar/l;->i()Lorg/telegram/ui/ActionBar/z;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ActionBar/l;->i()Lorg/telegram/ui/ActionBar/z;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ActionBar.ActionBar",
+      "member": "menu",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/ActionBar/l;->D",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "26831",
+          "class_descriptor": "Lorg/telegram/ui/ActionBar/l;",
+          "name": "D",
+          "descriptor": "Lorg/telegram/ui/ActionBar/l;->D:Lorg/telegram/ui/ActionBar/z;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ActionBar/l;->D:Lorg/telegram/ui/ActionBar/z;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ActionBar.ActionBarMenu",
+      "member": "addItem",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ActionBar/z;->d",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "25037",
+          "class_descriptor": "Lorg/telegram/ui/ActionBar/z;",
+          "name": "d",
+          "descriptor": "Lorg/telegram/ui/ActionBar/z;->d(ILandroid/graphics/drawable/Drawable;)Lorg/telegram/ui/ActionBar/x0;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ActionBar/z;->d(ILandroid/graphics/drawable/Drawable;)Lorg/telegram/ui/ActionBar/x0;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ActionBar.ActionBarMenu",
+      "member": "getItem",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ActionBar/z;->k",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "25048",
+          "class_descriptor": "Lorg/telegram/ui/ActionBar/z;",
+          "name": "k",
+          "descriptor": "Lorg/telegram/ui/ActionBar/z;->k(I)Lorg/telegram/ui/ActionBar/x0;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ActionBar/z;->k(I)Lorg/telegram/ui/ActionBar/x0;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.Components.ItemOptions",
+      "member": "add",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/Components/a90;->c",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "28980",
+          "class_descriptor": "Lorg/telegram/ui/Components/a90;",
+          "name": "c",
+          "descriptor": "Lorg/telegram/ui/Components/a90;->c(ILjava/lang/CharSequence;Ljava/lang/Runnable;Z)V"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/Components/a90;->c(ILjava/lang/CharSequence;Ljava/lang/Runnable;Z)V",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.Components.ItemOptions",
+      "member": "setGravity",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/Components/a90;->V",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "28971",
+          "class_descriptor": "Lorg/telegram/ui/Components/a90;",
+          "name": "V",
+          "descriptor": "Lorg/telegram/ui/Components/a90;->V(I)V"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/Components/a90;->V(I)V",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.Components.ItemOptions",
+      "member": "show",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/Components/a90;->Z",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "28975",
+          "class_descriptor": "Lorg/telegram/ui/Components/a90;",
+          "name": "Z",
+          "descriptor": "Lorg/telegram/ui/Components/a90;->Z()V"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/Components/a90;->Z()V",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.Components.BulletinFactory",
+      "member": "createSaveToGalleryBulletin",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/Components/xc;->F",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "40683",
+          "class_descriptor": "Lorg/telegram/ui/Components/xc;",
+          "name": "F",
+          "descriptor": "Lorg/telegram/ui/Components/xc;->F(Landroid/widget/FrameLayout;Z)Lorg/telegram/ui/Components/qc;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/Components/xc;->F(Landroid/widget/FrameLayout;Z)Lorg/telegram/ui/Components/qc;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.Components.Bulletin",
+      "member": "show",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/Components/qc;->j",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "37020",
+          "class_descriptor": "Lorg/telegram/ui/Components/qc;",
+          "name": "j",
+          "descriptor": "Lorg/telegram/ui/Components/qc;->j()Lorg/telegram/ui/Components/qc;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/Components/qc;->j()Lorg/telegram/ui/Components/qc;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.Stories.StoriesController",
+      "member": "markStoryAsRead",
+      "kind": "methods",
+      "mapped": "Lxg/o5;->V",
+      "matches": [
+        {
+          "file_id": "3",
+          "method_idx": "20927",
+          "class_descriptor": "Lxg/o5;",
+          "name": "V",
+          "descriptor": "Lxg/o5;->V(Lorg/telegram/tgnet/tl/TL_stories$PeerStories;Lorg/telegram/tgnet/tl/TL_stories$StoryItem;Z)Z"
+        }
+      ],
+      "expected_descriptor": "Lxg/o5;->V(Lorg/telegram/tgnet/tl/TL_stories$PeerStories;Lorg/telegram/tgnet/tl/TL_stories$StoryItem;Z)Z",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.Stories.PeerStoriesView$StoryItemHolder",
+      "member": "allowScreenshots",
+      "kind": "methods",
+      "mapped": "Lxg/e3;->d",
+      "matches": [
+        {
+          "file_id": "3",
+          "method_idx": "20276",
+          "class_descriptor": "Lxg/e3;",
+          "name": "d",
+          "descriptor": "Lxg/e3;->d()Z"
+        }
+      ],
+      "expected_descriptor": "Lxg/e3;->d()Z",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.PeerColorActivity",
+      "member": "apply",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/hq0;->x0",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "47731",
+          "class_descriptor": "Lorg/telegram/ui/hq0;",
+          "name": "x0",
+          "descriptor": "Lorg/telegram/ui/hq0;->x0()V"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/hq0;->x0()V",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.PeerColorActivity",
+      "member": "namePage",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/hq0;->h",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "53721",
+          "class_descriptor": "Lorg/telegram/ui/hq0;",
+          "name": "h",
+          "descriptor": "Lorg/telegram/ui/hq0;->h:Lorg/telegram/ui/bq0;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/hq0;->h:Lorg/telegram/ui/bq0;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.PeerColorActivity",
+      "member": "profilePage",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/hq0;->n",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "53725",
+          "class_descriptor": "Lorg/telegram/ui/hq0;",
+          "name": "n",
+          "descriptor": "Lorg/telegram/ui/hq0;->n:Lorg/telegram/ui/bq0;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/hq0;->n:Lorg/telegram/ui/bq0;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.PeerColorActivity$Page",
+      "member": "selectedColor",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/bq0;->h",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "50382",
+          "class_descriptor": "Lorg/telegram/ui/bq0;",
+          "name": "h",
+          "descriptor": "Lorg/telegram/ui/bq0;->h:I"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/bq0;->h:I",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.PeerColorActivity$Page",
+      "member": "selectedEmoji",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/bq0;->n",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "50389",
+          "class_descriptor": "Lorg/telegram/ui/bq0;",
+          "name": "n",
+          "descriptor": "Lorg/telegram/ui/bq0;->n:J"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/bq0;->n:J",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ProfileActivity",
+      "member": "editRow",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ProfileActivity;->J3",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "42964",
+          "class_descriptor": "Lorg/telegram/ui/ProfileActivity;",
+          "name": "J3",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->J3(ILandroid/view/View;)Z"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ProfileActivity;->J3(ILandroid/view/View;)Z",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ProfileActivity",
+      "member": "processOnClickOrPress",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ProfileActivity;->C4",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "42926",
+          "class_descriptor": "Lorg/telegram/ui/ProfileActivity;",
+          "name": "C4",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->C4(FFILandroid/view/View;)Z"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ProfileActivity;->C4(FFILandroid/view/View;)Z",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ProfileActivity",
+      "member": "updateProfileData",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ProfileActivity;->i5",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "43131",
+          "class_descriptor": "Lorg/telegram/ui/ProfileActivity;",
+          "name": "i5",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->i5(Z)V"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ProfileActivity;->i5(Z)V",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ProfileActivity",
+      "member": "chatId",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/ProfileActivity;->e1",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "48702",
+          "class_descriptor": "Lorg/telegram/ui/ProfileActivity;",
+          "name": "e1",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->e1:J"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ProfileActivity;->e1:J",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ProfileActivity",
+      "member": "myProfile",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/ProfileActivity;->r1",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "48797",
+          "class_descriptor": "Lorg/telegram/ui/ProfileActivity;",
+          "name": "r1",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->r1:Z"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ProfileActivity;->r1:Z",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ProfileActivity",
+      "member": "onlineTextView",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/ProfileActivity;->r",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "48795",
+          "class_descriptor": "Lorg/telegram/ui/ProfileActivity;",
+          "name": "r",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->r:[Lorg/telegram/ui/ActionBar/p5;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ProfileActivity;->r:[Lorg/telegram/ui/ActionBar/p5;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ProfileActivity",
+      "member": "topicId",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/ProfileActivity;->f1",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "48710",
+          "class_descriptor": "Lorg/telegram/ui/ProfileActivity;",
+          "name": "f1",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->f1:J"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ProfileActivity;->f1:J",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ProfileActivity",
+      "member": "userId",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/ProfileActivity;->d1",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "48694",
+          "class_descriptor": "Lorg/telegram/ui/ProfileActivity;",
+          "name": "d1",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->d1:Lorg/telegram/ui/v11;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ProfileActivity;->d1:Lorg/telegram/ui/v11;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ProfileActivity",
+      "member": "usernameRow",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/ProfileActivity;->K3",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "48557",
+          "class_descriptor": "Lorg/telegram/ui/ProfileActivity;",
+          "name": "K3",
+          "descriptor": "Lorg/telegram/ui/ProfileActivity;->K3:I"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ProfileActivity;->K3:I",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.SecretMediaViewer",
+      "member": "actionBar",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/SecretMediaViewer;->E",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "48905",
+          "class_descriptor": "Lorg/telegram/ui/SecretMediaViewer;",
+          "name": "E",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->E:Lnf/d1;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/SecretMediaViewer;->E:Lnf/d1;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.SecretMediaViewer",
+      "member": "activeViewer",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/SecretMediaViewer;->w1",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "49007",
+          "class_descriptor": "Lorg/telegram/ui/SecretMediaViewer;",
+          "name": "w1",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->w1:Lorg/telegram/ui/SecretMediaViewer;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/SecretMediaViewer;->w1:Lorg/telegram/ui/SecretMediaViewer;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.SecretMediaViewer",
+      "member": "centerImage",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/SecretMediaViewer;->h",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "48970",
+          "class_descriptor": "Lorg/telegram/ui/SecretMediaViewer;",
+          "name": "h",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->h:Lorg/telegram/messenger/ImageReceiver;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/SecretMediaViewer;->h:Lorg/telegram/messenger/ImageReceiver;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.SecretMediaViewer",
+      "member": "containerView",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/SecretMediaViewer;->e",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "48962",
+          "class_descriptor": "Lorg/telegram/ui/SecretMediaViewer;",
+          "name": "e",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->e:Lbf/h;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/SecretMediaViewer;->e:Lbf/h;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.SecretMediaViewer",
+      "member": "currentAccount",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/SecretMediaViewer;->a",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "48949",
+          "class_descriptor": "Lorg/telegram/ui/SecretMediaViewer;",
+          "name": "a",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->a:I"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/SecretMediaViewer;->a:I",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.SecretMediaViewer",
+      "member": "isVideo",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/SecretMediaViewer;->I",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "48913",
+          "class_descriptor": "Lorg/telegram/ui/SecretMediaViewer;",
+          "name": "I",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->I:Z"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/SecretMediaViewer;->I:Z",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.SecretMediaViewer",
+      "member": "messageObject",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/SecretMediaViewer;->g0",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "48968",
+          "class_descriptor": "Lorg/telegram/ui/SecretMediaViewer;",
+          "name": "g0",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->g0:Lorg/telegram/messenger/MessageObject;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/SecretMediaViewer;->g0:Lorg/telegram/messenger/MessageObject;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.SecretMediaViewer",
+      "member": "parentActivity",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/SecretMediaViewer;->b",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "48953",
+          "class_descriptor": "Lorg/telegram/ui/SecretMediaViewer;",
+          "name": "b",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->b:Landroid/app/Activity;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/SecretMediaViewer;->b:Landroid/app/Activity;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.SecretMediaViewer",
+      "member": "secretDeleteTimer",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/SecretMediaViewer;->n",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "48983",
+          "class_descriptor": "Lorg/telegram/ui/SecretMediaViewer;",
+          "name": "n",
+          "descriptor": "Lorg/telegram/ui/SecretMediaViewer;->n:Lorg/telegram/ui/m51;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/SecretMediaViewer;->n:Lorg/telegram/ui/m51;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ActionBar.Theme",
+      "member": "getActiveTheme",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ActionBar/n6;->B0",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "24222",
+          "class_descriptor": "Lorg/telegram/ui/ActionBar/n6;",
+          "name": "B0",
+          "descriptor": "Lorg/telegram/ui/ActionBar/n6;->B0()Lorg/telegram/ui/ActionBar/m6;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ActionBar/n6;->B0()Lorg/telegram/ui/ActionBar/m6;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ActionBar.Theme",
+      "member": "chat_timePaint",
+      "kind": "fields",
+      "mapped": "Lorg/telegram/ui/ActionBar/n6;->T2",
+      "matches": [
+        {
+          "file_id": "2",
+          "field_idx": "27455",
+          "class_descriptor": "Lorg/telegram/ui/ActionBar/n6;",
+          "name": "T2",
+          "descriptor": "Lorg/telegram/ui/ActionBar/n6;->T2:Landroid/text/TextPaint;"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ActionBar/n6;->T2:Landroid/text/TextPaint;",
+      "exact_match": true
+    },
+    {
+      "class": "org.telegram.ui.ActionBar.Theme$ThemeInfo",
+      "member": "isDark",
+      "kind": "methods",
+      "mapped": "Lorg/telegram/ui/ActionBar/m6;->q",
+      "matches": [
+        {
+          "file_id": "2",
+          "method_idx": "24172",
+          "class_descriptor": "Lorg/telegram/ui/ActionBar/m6;",
+          "name": "q",
+          "descriptor": "Lorg/telegram/ui/ActionBar/m6;->q()Z"
+        }
+      ],
+      "expected_descriptor": "Lorg/telegram/ui/ActionBar/m6;->q()Z",
+      "exact_match": true
+    }
+  ]
+}

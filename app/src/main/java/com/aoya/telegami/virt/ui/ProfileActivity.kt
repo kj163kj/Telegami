@@ -3,6 +3,9 @@ package com.aoya.telegami.virt.ui
 import com.aoya.telegami.virt.ui.actionbar.BaseFragment
 import com.aoya.telegami.virt.ui.actionbar.SimpleTextView
 import com.aoya.telegami.Telegami
+import android.view.View
+import com.aoya.telegami.util.exactField
+import com.aoya.telegami.util.exactMethod
 import com.highcapable.kavaref.KavaRef.Companion.asResolver
 import com.aoya.telegami.core.obfuscate.ResolverManager as resolver
 
@@ -27,26 +30,12 @@ class ProfileActivity(
         get() = instance.asResolver().firstField { name = resolver.getField(objPath, "usernameRow") }.get<Int>()!!
 
     val contentView: Any?
-        get() =
-            if (Telegami.packageName == "org.telegram.messenger") {
-                instance.asResolver().firstField {
-                    name = "fragmentView"
-                    superclass()
-                }.get()
-            } else {
-                instance.asResolver().firstField { name = resolver.getField(objPath, "contentView") }.get()
-            }
+        get() = instance.javaClass.exactField("fragmentView", View::class.java).get(instance)
 
     val resourcesProvider: Any?
-        get() =
-            if (Telegami.packageName == "org.telegram.messenger") {
-                instance.asResolver().firstField {
-                    name = "resourceProvider"
-                    superclass()
-                }.get()
-            } else {
-                instance.asResolver().firstField { name = resolver.getField(objPath, "resourcesProvider") }.get()
-            }
+        get() = instance.javaClass.exactMethod(
+            "getResourceProvider", Telegami.loadClass("org.telegram.ui.ActionBar.j6"),
+        ).invoke(instance)
 
     val onlineTextView: Array<SimpleTextView>
         get() {

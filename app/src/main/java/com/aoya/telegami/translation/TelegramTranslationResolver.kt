@@ -4,7 +4,7 @@ import com.aoya.telegami.core.TelegramMessageResolver
 import com.aoya.telegami.util.exactField
 import com.aoya.telegami.util.exactMethod
 
-/** Exact native contracts: artifacts/dexsql/translation-1310. */
+/** Exact native contracts: artifacts/dexsql/upgrade-1311/source-contracts.json. */
 class TelegramTranslationResolver(val c: TelegramMessageResolver) {
     val textType = c.type("org.telegram.tgnet.TLRPC\$TL_textWithEntities")
     val text = textType.exactField("text", String::class.java)
