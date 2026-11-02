@@ -110,4 +110,58 @@ It does not substitute for ART/LSPosed runtime or server-side behavior testing.
 - The Google Play package remains in scope, but no separate 13.1.1 Play APK
   was supplied; its independent DEX layout remains unverified.
 
-Final artifact checks and build log paths are recorded after the final assembly.
+Final assembly succeeded after restoring a required MessageObject wrapper import
+that had been removed during cleanup. The intermediate compile failure log is
+retained separately; it is not presented as a successful build.
+
+Final build: `:app:testDebugUnitTest :app:assembleDebug :app:assembleRelease`,
+**BUILD SUCCESSFUL**. APK signature verification (existing release certificate),
+4-byte ZIP alignment, packaged mapping equality, official-only scopes and API
+102 entry points all pass. Database migration/schema regression checks pass on
+the host; on-device migration remains unverified.
+
+| Artifact | Path | SHA-256 |
+| --- | --- | --- |
+| Signed Release | `artifacts/releases/Telegami-3.1.3-tg13.1.1-release.apk` | `d5fab18498a09106b82e4a6c3f66b85e1486d4c1ec66916896324d734645b4de` |
+| Debug | `artifacts/releases/Telegami-3.1.3-tg13.1.1-debug.apk` | `4d2ccbe5b8bba6117a5fb3956d451c1cf45a3df221d812e99c9f1fbcb0de1a37` |
+
+The APK files are local deliverables ignored by Git. Normal Gradle output paths
+also contain these builds. App version remains 3.1.3 / 30005. Source including
+the restored import is committed as `18a6652`; documentation and validation
+records follow in a separate commit.
+
+Validation records under `artifacts/validation/`:
+
+- `telegram-1311-build.log`: successful final build.
+- `telegram-1311-lint-build.log`: initial assembly and full-Lint failure.
+- `telegram-1311-import-failure.log`: intermediate import error, subsequently fixed.
+- `telegram-1311-lint-summary.json`: confirms all six error-location resource
+  files are byte-identical to the baseline after newline normalization.
+- `telegram-1311-tests.json`: current JVM results and explicit device limitations.
+- `telegram-1311-artifacts.json`: input/output identity, sizes, hashes and signer.
+- `telegram-1311-preserved-bodies.json`: ten existing Hook-related method bodies
+  compared to prior disassembly. Deletion UI and text params are identical;
+  other bodies include renamed internal references, so they are not reported
+  as byte-identical or runtime-validated.
+
+## Device follow-up
+
+Install the new Debug APK, enable it for the supplied official Telegram package
+in LSPosed, and fully restart Telegram. Check module initialization/installer
+logs first, then text/media repeat, protected and ordinary sourceless forward,
+topic destination navigation, single/multiple edits without opening history
+first, deletion/edit markers, translation sheet/results/cancellation, story
+privacy/save, profile popup, secret-media save and download boost.
+
+For Windows PowerShell with platform-tools in PATH:
+
+```powershell
+adb logcat -c
+adb logcat -v threadtime > telegami-1311-runtime.log
+```
+
+Reproduce while capture runs, then press Ctrl+C. The full log can contain
+private device/application data; inspect it before sharing. For a reduced
+capture, use `adb logcat -v threadtime | Select-String
+'Telegami|HookInstall|ModuleInit|MessageTools|Translation|AndroidRuntime' >
+telegami-1311-filtered.log` on a single command line.

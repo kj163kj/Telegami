@@ -1,0 +1,28 @@
+{
+  "source_commit": "18a6652fe18dbfb911fdb400930043814308ddf4",
+  "target_apk_sha256": "148f1aa51b0a76c8168e4ad0eb121a66b78c2b8f50e4dc44e7a667668cf8823b",
+  "target_version": "13.1.1 / 72379",
+  "application_id": "com.techsky.telegami",
+  "version_name": "3.1.3",
+  "version_code": 30005,
+  "release_signer_sha256": "bc80329b9ba7c8c8da2bc2b57057544d7b967477038f2037a2fb332d5a0186d7",
+  "device": "UNVERIFIED: adb devices empty",
+  "apk": [
+    {
+      "type": "release",
+      "path": "artifacts/releases/Telegami-3.1.3-tg13.1.1-release.apk",
+      "bytes": 13674781,
+      "sha256": "d5fab18498a09106b82e4a6c3f66b85e1486d4c1ec66916896324d734645b4de",
+      "packaged_mapping_matches_source": true,
+      "zipalign": "PASS"
+    },
+    {
+      "type": "debug",
+      "path": "artifacts/releases/Telegami-3.1.3-tg13.1.1-debug.apk",
+      "bytes": 22160334,
+      "sha256": "4d2ccbe5b8bba6117a5fb3956d451c1cf45a3df221d812e99c9f1fbcb0de1a37",
+      "packaged_mapping_matches_source": true,
+      "zipalign": "PASS"
+    }
+  ]
+}

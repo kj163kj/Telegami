@@ -1,0 +1,72 @@
+[
+  {
+    "descriptor": "Lorg/telegram/messenger/MessagesController;->lambda$processUpdateArray$419(Lorg/telegram/messenger/support/LongSparseIntArray;Lorg/telegram/messenger/support/LongSparseIntArray;Landroid/util/SparseIntArray;Lz/f;Lz/f;Lz/f;Lz/f;Lz/f;Lorg/telegram/messenger/support/LongSparseIntArray;)V",
+    "old_evidence": "telegram-1310/updates_ui_delete.smali",
+    "current_file_id": "0",
+    "current_method_idx": "42012",
+    "method_body_unchanged": true
+  },
+  {
+    "descriptor": "Lorg/telegram/messenger/MessagesStorage;->markMessagesAsDeletedInternal(JLjava/util/ArrayList;ZII)Ljava/util/ArrayList;",
+    "old_evidence": "telegram-1310/storage_delete.smali",
+    "current_file_id": "0",
+    "current_method_idx": "43182",
+    "method_body_unchanged": false
+  },
+  {
+    "descriptor": "Lorg/telegram/ui/Cells/u1;->x3(Lorg/telegram/messenger/MessageObject;)V",
+    "old_evidence": "telegram-1310/measure_time.smali",
+    "current_file_id": "2",
+    "current_method_idx": "27281",
+    "method_body_unchanged": false
+  },
+  {
+    "descriptor": "Lorg/telegram/messenger/MessagesStorage;->lambda$putMessages$238(ILorg/telegram/tgnet/TLRPC$messages_Messages;JJIIZ)V",
+    "old_evidence": "history-native-1310/edit_storage.smali",
+    "current_file_id": "0",
+    "current_method_idx": "43051",
+    "method_body_unchanged": false
+  },
+  {
+    "descriptor": "Lorg/telegram/messenger/MessagesStorage;->putMessagesInternal(Ljava/util/ArrayList;ZZIZIJ)V",
+    "old_evidence": "history-native-1310/put_messages_internal.smali",
+    "current_file_id": "0",
+    "current_method_idx": "43232",
+    "method_body_unchanged": false
+  },
+  {
+    "descriptor": "Lorg/telegram/ui/Cells/u1;->V3(Lorg/telegram/messenger/MessageObject;Lorg/telegram/messenger/MessageObject$GroupedMessages;ZZZZ)V",
+    "old_evidence": "history-native-1310/bind_message.smali",
+    "current_file_id": "2",
+    "current_method_idx": "26972",
+    "method_body_unchanged": false
+  },
+  {
+    "descriptor": "Lorg/telegram/messenger/SendMessagesHelper;->sendMessage(Ljava/util/ArrayList;JZZZIILorg/telegram/messenger/MessageObject;IJJLorg/telegram/messenger/MessageSuggestionParams;)I",
+    "old_evidence": "message-tools-1310/forward.smali",
+    "current_file_id": "0",
+    "current_method_idx": "45719",
+    "method_body_unchanged": false
+  },
+  {
+    "descriptor": "Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;->of(Ljava/lang/String;J)Lorg/telegram/messenger/SendMessagesHelper$SendMessageParams;",
+    "old_evidence": "message-tools-1310/params_text.smali",
+    "current_file_id": "0",
+    "current_method_idx": "45316",
+    "method_body_unchanged": true
+  },
+  {
+    "descriptor": "Lorg/telegram/ui/ko;->Fa(I)V",
+    "old_evidence": "message-tools-1310/menu_dispatch.smali",
+    "current_file_id": "2",
+    "current_method_idx": "49341",
+    "method_body_unchanged": false
+  },
+  {
+    "descriptor": "Lorg/telegram/ui/ko;->q8(Lorg/telegram/messenger/MessageObject;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)V",
+    "old_evidence": "privacy-channel-1310/menu_fill.smali",
+    "current_file_id": "2",
+    "current_method_idx": "49884",
+    "method_body_unchanged": false
+  }
+]

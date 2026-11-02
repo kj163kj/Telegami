@@ -1,0 +1,17 @@
+{
+  "errors": 92,
+  "warnings": 125,
+  "error_categories": {
+    "MissingTranslation": 88,
+    "NewApi": 4
+  },
+  "baseline": "fe7fe84959d6c8fc73be1baaaabd2dff3a422f8a",
+  "error_location_files_unchanged": {
+    "app/src/main/res/anim/activity_close_enter.xml": true,
+    "app/src/main/res/anim/activity_close_exit.xml": true,
+    "app/src/main/res/anim/activity_open_enter.xml": true,
+    "app/src/main/res/anim/activity_open_exit.xml": true,
+    "app/src/main/res/values/configuration.xml": true,
+    "app/src/main/res/values/strings.xml": true
+  }
+}
