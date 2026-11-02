@@ -12,6 +12,7 @@ import com.aoya.telegami.util.exactMethod
 import com.aoya.telegami.util.exactField
 import com.aoya.telegami.virt.messenger.FileLoader
 import com.aoya.telegami.virt.messenger.MediaController
+import com.aoya.telegami.virt.messenger.MessageObject
 import com.aoya.telegami.virt.ui.SecretMediaViewer
 import com.aoya.telegami.virt.ui.components.BulletinFactory
 import io.github.libxposed.api.XposedInterface
